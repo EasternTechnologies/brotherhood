@@ -11,14 +11,22 @@
 |
 */
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('forum.index');
 });
 
-Route::get('/index', function () {
-    return view('index');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' => 'roles',
+    'roles' => ['Admin', 'Author']], function (){
+    Route::get('/', 'DashboardController@index')->name('admin.dashboard.index');
+    Route::resource('forum/categories', 'CategoryController')->names('forum.admin.categories');
+});
