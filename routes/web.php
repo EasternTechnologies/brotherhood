@@ -11,19 +11,11 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 Route::get('/', function () {
     return view('forum.index');
 });
 
-
-
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' => 'roles',
     'roles' => ['Admin', 'Author']], function (){
