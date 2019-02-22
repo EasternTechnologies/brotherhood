@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+Route::resource('/', 'Forum\HomeController')->names('forum.home');
+
 Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' => 'roles',
     'roles' => ['Admin', 'Author']], function (){
     Route::get('/', 'DashboardController@index')->name('admin.dashboard.index');
