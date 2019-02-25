@@ -1,5 +1,5 @@
 <table>
-    @foreach($category as $item)
+    @foreach($pagination as $item)
         <tr>
             <td>{{$item->id}}</td>
             <td>{{$item->title}}</td>

@@ -91,14 +91,14 @@ Site.FormManager = function() {
     };
 
     this.requestFormSubmit = function() {
-        var nameID = "entry.1648384019";
+        var routeID = "";
         var companyID = "entry.1226040904";
         var emailID = "entry.755399294";
         var needsID = "entry.348093703";
 
-        var baseURL = 'https://docs.google.com/forms/d/e/1FAIpQLSfqgIMyYq42o28HoIQ5PpBE65QNrKhCxYgs52LJ6d3azNKqmg/formResponse?';
+        var baseURL = '/';
         var submitRef = '&submit=6643460394068581655';
-        var submitURL = (baseURL + nameID + "=" + nameInput.value + "&" + companyID + "=" + companyInput.value + "&" + emailID + "=" + String(emailInput.value) + "&" + needsID + "=" + needsInput.value + submitRef);
+        var submitURL = (baseURL + routeID + "?name=" + nameInput.value + "&country=" + companyID + "=" + companyInput.value + "&" + emailID + "=" + String(emailInput.value) + "&" + needsID + "=" + needsInput.value + submitRef);
 
         this.inputsRemoveClass("error");
         this.errorCheck();

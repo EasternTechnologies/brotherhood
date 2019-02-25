@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\ForumCategory as Model;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
@@ -39,6 +40,33 @@ class ForumCategoryRepository extends CoreRepository
      */
     public function getForComboBox()
     {
-        return $this->startConditions()->all();
+        $columns = implode(', ', [
+           'id',
+           'CONCAT (id, ". ", title) AS id_title',
+        ]);
+
+        $data[] = $this->startConditions()
+                    ->selectRaw($columns)
+                    ->toBase()
+                    ->get();
+
+        return $data;
+    }
+
+    /**
+     * @param int|null $perPage
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getAllWithPaginate($perPage = null)
+    {
+        $columns = ['id', 'title'];
+
+        $data = $this
+            ->startConditions()
+            ->select($columns)
+            ->paginate($perPage);
+
+        return $data;
     }
 }

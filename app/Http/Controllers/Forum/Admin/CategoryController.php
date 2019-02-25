@@ -2,26 +2,34 @@
 
 namespace App\Http\Controllers\Forum\Admin;
 
+use App\Models\ForumCategory;
 use App\Repositories\ForumCategoryRepository;
 use Illuminate\Http\Request;
 
 class CategoryController extends BaseController
 {
     /**
+     * @var ForumCategoryRepository
+     */
+    private $forumCategoryRepository;
+
+    public function __construct()
+    {
+        $this->forumCategoryRepository = app(ForumCategoryRepository::class);
+    }
+
+    /**
      * Display a listing of the resource.
-     *
-     * @param ForumCategoryRepository $forumCategoryRepository
-     *
+     *     *
      * @return \Illuminate\Http\Response
      */
-    public function index(ForumCategoryRepository $forumCategoryRepository)
+    public function index()
     {
+        dd(1);
 
-        $category = $forumCategoryRepository->getForComboBox();
+        $pagination = $this->forumCategoryRepository->getAllWithPaginate(10);
 
-        return view('forum.admin.category.index', [
-            'category'  =>  $category
-        ]);
+        return view('forum.admin.category.index', compact('pagination'));
 
     }
 
@@ -32,8 +40,10 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        dd(__METHOD__);
+        $newCategory =new ForumCategory();
+        $category = $this->forumCategoryRepository->getForComboBox();
 
+        return view('forum.admin.category.index', compact('newCategory', 'category'));
     }
 
     /**
@@ -45,6 +55,11 @@ class CategoryController extends BaseController
     public function store(Request $request)
     {
         dd(__METHOD__);
+        $data = $request->input();
+
+        $item = (new ForumCategory())->create($data);
+
+        return redirect()->route('categories.index');
 
     }
 
@@ -68,8 +83,8 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
-
+        $item = $this->forumCategoryRepository->getEdit($id);
+        dd($item);
     }
 
     /**

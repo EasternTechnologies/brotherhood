@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,12 +12,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('forum.index');
-});
+
+Route::post('login', 'Auth\LoginController@login')->name('login.admin');
 
 Auth::routes();
-
 
 Route::resource('/', 'Forum\HomeController')->names('forum.home');
 
@@ -25,3 +24,10 @@ Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' 
     Route::get('/', 'DashboardController@index')->name('admin.dashboard.index');
     Route::resource('forum/categories', 'CategoryController')->names('forum.admin.categories');
 });
+
+
+/**
+ * Frontend route
+ */
+include '/var/www/brotherhood/resources/views/frontend/routes/web.php';
+

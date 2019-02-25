@@ -19,9 +19,7 @@ class DashboardController extends BaseController
     {
         $category = $forumCategoryRepository->getForComboBox();
 
-        return view('forum.admin.category.index', [
-            'category'  =>  $category
-        ]);
+        return view('forum.admin.dashboard.index', compact('category'));
 
     }
 }

@@ -275,7 +275,9 @@
                     <p>Repellendus minima consectetur odit nemo quo voluptatum ipsam quisquam molestiae, natus quidem, sapiente tempore!</p>
                 </div>
                 <div class="animated-body" id="form-section">
+
                     <form id="request-form" action method="POST" target="no-target">
+                        @csrf
                         <div class="input-block" id="block-one">
                             <label for="NAME">ФИО <span>*</span></label>
                             <input id="NAME" name="NAME" type="text" value required>
@@ -298,6 +300,7 @@
                         </div>
                         <!-- <input id="request" type="submit" value="Request a Quote" name="SUBMIT"> -->
                     </form>
+
                     <span id="error-message">* - поля, обязательные для заполнения.</span>
                     <iframe id="no-target" name="no-target" src="about:blank" style="visibility:hidden; display:none"></iframe>
                 </div>
