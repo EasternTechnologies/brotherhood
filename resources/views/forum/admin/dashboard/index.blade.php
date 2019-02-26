@@ -1,3 +1,5 @@
+<script src="jquery-2.1.4.js"></script>
+<script src="jquery.autocomplite.min.js"></script>
 
 @foreach($category as $item)
 
@@ -30,3 +32,17 @@
             </form>
         </div>
 @endauth
+<br>
+
+<input type="text" name="country" id="autocomplete"/>
+
+
+
+<script>
+    $('#autocomplete').autocomplete({
+        serviceUrl: '/admin/autocomplite',
+        onSelect: function (suggestion) {
+            alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        }
+    });
+</script>

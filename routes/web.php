@@ -22,5 +22,6 @@ Route::resource('/', 'Forum\HomeController')->names('forum.home');
 Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' => 'roles',
     'roles' => ['Admin', 'Author']], function (){
     Route::get('/', 'DashboardController@index')->name('admin.dashboard.index');
+    Route::post('/autocomplite', 'DashboardController@show');
     Route::resource('forum/categories', 'CategoryController')->names('forum.admin.categories');
 });

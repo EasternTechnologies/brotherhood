@@ -305,7 +305,7 @@
                     <iframe id="no-target" name="no-target" src="about:blank" style="visibility:hidden; display:none"></iframe>
                 </div>
                 <h2 id="success-message">Ваше сообщение<span class="emdash"><span></span>успешно отправлено!</span></h2>
-                <a class="callback" href="/index">Вернуться назад</a>
+                <a class="callback" href="/">Вернуться назад</a>
             </div>
         </div>
     </div>

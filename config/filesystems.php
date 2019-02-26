@@ -64,6 +64,11 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'redis' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/redis/country'),
+        ],
+
     ],
 
 ];
