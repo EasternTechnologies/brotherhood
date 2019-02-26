@@ -1,5 +1,22 @@
 
+@foreach($category as $item)
 
+    <table>
+        <tr>
+            <td>{{$item->id_title}}</td>
+        </tr>
+    </table>
+
+@endforeach
+@foreach($post as $article)
+    <table>
+        <tr>
+            <td>{{$article->id}} : </td>
+            <td>{{$article->title}}</td>
+            <td>{{$article->text}}</td>
+        </tr>
+    </table>
+@endforeach
 @auth
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('logout') }}"

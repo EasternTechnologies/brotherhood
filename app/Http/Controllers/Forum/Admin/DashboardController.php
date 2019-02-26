@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Forum\Admin;
 
+use App\Repositories\ForumPostRepository;
 use Illuminate\Http\Request;
 use App\Repositories\ForumCategoryRepository;
 
@@ -15,11 +16,17 @@ class DashboardController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ForumCategoryRepository $forumCategoryRepository)
+    public function index(ForumCategoryRepository $forumCategoryRepository, ForumPostRepository $forumPostRepository)
     {
+
+        $published = $forumPostRepository->getAllPublishedPost();
+
         $category = $forumCategoryRepository->getForComboBox();
 
-        return view('forum.admin.dashboard.index', compact('category'));
+        $post = $forumPostRepository->getAllWithPaginate(10);
+
+
+        return view('forum.admin.dashboard.index', compact('category', 'post'));
 
     }
 }

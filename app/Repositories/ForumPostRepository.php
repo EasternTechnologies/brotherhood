@@ -2,15 +2,15 @@
 
 namespace App\Repositories;
 
-use App\Models\ForumCategory as Model;
+use App\Models\ForumPost as Model;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
- * Class ForumCategoryRepository
+ * Class ForumPostRepository
  *
  * @package App\Repositories
  */
-class ForumCategoryRepository extends CoreRepository
+class ForumPostRepository extends CoreRepository
 {
     /**
      * return string
@@ -40,14 +40,15 @@ class ForumCategoryRepository extends CoreRepository
     public function getForComboBox()
     {
         $columns = implode(', ', [
-           'id',
-           'CONCAT (id, ". ", title) AS id_title',
+            'id',
+            'CONCAT (id, ". ", title) AS id_title',
         ]);
 
-        $data = $this->startConditions()
-                    ->selectRaw($columns)
-                    ->toBase()
-                    ->get();
+        $data = $this
+            ->startConditions()
+            ->selectRaw($columns)
+            ->toBase()
+            ->get();
 
         return $data;
     }
@@ -65,6 +66,28 @@ class ForumCategoryRepository extends CoreRepository
             ->startConditions()
             ->select($columns)
             ->paginate($perPage);
+
+        return $data;
+    }
+
+    /**
+     * Get all published post
+     *
+     * @return mixed
+     */
+    public function getAllPublishedPost()
+    {
+        $columns = implode(', ', [
+            'id',
+            'title',
+        ]);
+
+        $data = $this
+            ->startConditions()
+            ->selectRaw($columns)
+            ->where('is_published', false)
+            ->toBase()
+            ->get();
 
         return $data;
     }

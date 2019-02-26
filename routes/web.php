@@ -24,10 +24,3 @@ Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' 
     Route::get('/', 'DashboardController@index')->name('admin.dashboard.index');
     Route::resource('forum/categories', 'CategoryController')->names('forum.admin.categories');
 });
-
-
-/**
- * Frontend route
- */
-include '/var/www/brotherhood/resources/views/frontend/routes/web.php';
-

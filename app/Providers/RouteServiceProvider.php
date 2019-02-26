@@ -39,8 +39,22 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapFrontendRoutes();
     }
+
+    /**
+     *
+     *Define the "frontend" routes for the application.
+     *
+     * @return void
+     */
+    protected function mapFrontendRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('resources/views/frontend/routes/web.php'));
+    }
+
 
     /**
      * Define the "web" routes for the application.
