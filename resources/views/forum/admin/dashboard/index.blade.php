@@ -1,5 +1,4 @@
-<script src="jquery-2.1.4.js"></script>
-<script src="jquery.autocomplite.min.js"></script>
+<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
 
 @foreach($category as $item)
 
@@ -34,15 +33,44 @@
 @endauth
 <br>
 
-<input type="text" name="country" id="autocomplete"/>
+<div>
+    <input type="text" autocomplete="off" name="country" id="autocomplete" >
+    <ul class="autocomplete">
+
+    </ul>
+</div>
 
 
+<p></p>
+<script type="text/javascript">
+    $( "input#autocomplete" )
+        .keyup(function() {
+            let value = $( this ).val();
+    if (value != null){
+        $.ajax({
+            url:'/admin/autocomplite',
+            method:'get',
+            data:'value='+value,
+            success:function (result) {
 
-<script>
-    $('#autocomplete').autocomplete({
-        serviceUrl: '/admin/autocomplite',
-        onSelect: function (suggestion) {
-            alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
-        }
-    });
+                $('.autocomplete').empty();
+                    var count_country = result.length;
+                    if ( count_country >= 1 ) {
+
+                        if ( count_country > 5) {
+                            count_country = 5
+                        }
+                        for ( i = 0 ; i < count_country; i++)
+                        {
+                            addCountry ();
+                        }
+                    }
+
+                function addCountry () {
+                    $('.autocomplete').prepend('<li>',result[i],'</li>');
+                    console.log(result[i]);
+                }
+            }
+        })}
+    })
 </script>
