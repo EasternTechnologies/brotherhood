@@ -1,23 +1,96 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Nunito");
+@import "components/fonts";
+
+// Mixins
+@import "components/mixins";
 
 // Variables
-@import "variables";
+@import "components/variables";
+
+// Normalize
+@import "components/normalize";
 
 // Bootstrap
 // @import "~bootstrap/scss/bootstrap";
 
-.navbar-laravel {
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// .navbar-laravel {
+//   background-color: #ffffff;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.login {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  width: 100%;
+
+html {
   height: 100%;
-  background: #22445b;
+  font-size: 100%;
 }
 
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+// font-family: $mainFont;
+  // font-size: $mainFontSize;
+  line-height: 1.42;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.container {
+  width: 1230px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.visually-hidden:not(:focus):not(:active),
+input[type="checkbox"].visually-hidden,
+input[type="radio"].visually-hidden,
+input[type="file"].visually-hidden {
+  position: absolute;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+          clip-path: inset(100%);
+
+  -webkit-clip-path: inset(100%);
+}
+
+@import "modules/login.scss";

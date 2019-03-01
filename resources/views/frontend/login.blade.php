@@ -10,20 +10,20 @@
       <p class="login-form__block">
         <label>
           <span class="login-form__block-title">E-mail</span>
-          <input type="email" name="email" required>
+          <input class="login-form__field" type="email" name="email" required>
         </label>
       </p>
       <p class="login-form__block">
         <label>
           <span class="login-form__block-title">Пароль</span>
-          <input type="password" name="password" required>
+          <input class="login-form__field" type="password" name="password" required>
         </label>
       </p>
       <p class="login-form__block login-form__block--recaptcha">
-
+        This is reCAPTCHA
       </p>
       <p class="login-form__block login-form__block--submit">
-
+        <button class="login-form__submit" type="sybmit">Войти</button>
       </p>
       <p class="login-form__block login-form__block--forget">
         <a class="login-form__link" href="#">Забыли пароль?</a>
