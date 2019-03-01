@@ -23,14 +23,11 @@ class DashboardController extends BaseController
     public function index(ForumCategoryRepository $forumCategoryRepository, ForumPostRepository $forumPostRepository)
     {
 
-        // $test = json_decode(File::get('/var/www/brotherhood/public/place.json'));
+        $test = json_decode(File::get('/var/www/brotherhood/public/place.json'));
 
-//        DashboardController::changeEnvironmentVariable('amoisa@gmail.com');
-        // DashboardController::changeEnvironmentVariable('MAIL_ADMIN', 'amoisa@gmail.com');
+        DashboardController::changeEnvironmentVariable('MAIL_ADMIN', 'amoisa@8795.com');
 
-
-
-        // $path =  file_get_contents(base_path('.env'));
+        $path =  file_get_contents(base_path('.env'));
 
 
         dd($path);
@@ -77,32 +74,19 @@ class DashboardController extends BaseController
 
     }
 
-    // public static function changeEnvironmentVariable($key,$value)
-    // {
-    //     $path = base_path('.env');
+    public static function changeEnvironmentVariable($key,$value)
+    {
+        $path = base_path('.env');
 
-    //     if(env($key))
-    //     {
-    //         $old = env($key)? 'true' : 'false';
-    //     }
+        if(env($key))
+        {
+            $old = env($key);
+        }
 
-    //     if (file_exists($path)) {
-    //         file_put_contents($path, str_replace(
-    //             "$key=".$old, "$key=".$value, file_get_contents($path)
-    //         ));
-    //     }
-    // }
-
-//    public static function changeEnvironmentVariable($value)
-//    {
-//        $path = base_path('.env');
-//
-//            $old = env('MAIL_ADMIN')? 'true' : 'false';
-//
-//        if (file_exists($path)) {
-//            file_put_contents($path, str_replace(
-//                'MAIL_ADMIN='.$old, 'MAIL_ADMIN='.$value, file_get_contents($path)
-//            ));
-//        }
-//    }
+        if (file_exists($path)) {
+            file_put_contents($path, str_replace(
+                "$key=".$old, "$key=".$value, file_get_contents($path)
+            ));
+        }
+    }
 }
