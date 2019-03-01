@@ -31,6 +31,16 @@ class LoginController extends Controller
     protected $redirectTo = '/admin';
 
     /**
+     * Change login view
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showLoginForm()
+    {
+        return view('forum.admin.login');
+    }
+
+    /**
      * Create a new controller instance.
      *
      * @return void

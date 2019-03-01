@@ -1,4 +1,4 @@
-@extends('frontend.layouts.login')
+@extends('forum.admin.layouts.login')
 
 @section('content')
 <section class="login">
@@ -6,17 +6,29 @@
   <div class="login__form">
     <h2 class="login__form-title">Войти в систему</h2>
 
-    <form class="login-form">
+    <form method="POST" action="{{ route('login') }}" class="login-form">
+      @csrf
+
       <p class="login-form__block">
         <label>
           <span class="login-form__block-title">E-mail</span>
-          <input class="login-form__field" type="email" name="email" required>
+          <input class="login-form__field form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" name="email" value="{{ old('email') }}" required autofocus>
+          @if ($errors->has('email'))
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $errors->first('email') }}</strong>
+            </span>
+          @endif
         </label>
       </p>
       <p class="login-form__block">
         <label>
           <span class="login-form__block-title">Пароль</span>
-          <input class="login-form__field" type="password" name="password" required>
+          <input id="password" class="login-form__field form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" name="password" required>
+        @if ($errors->has('password'))
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $errors->first('password') }}</strong>
+            </span>
+          @endif
         </label>
       </p>
       <p class="login-form__block login-form__block--recaptcha">
