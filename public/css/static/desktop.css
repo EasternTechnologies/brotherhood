@@ -386,7 +386,8 @@ p.viz-caption a:hover svg {
 .wheel {
   position: absolute;
   top: -4px;
-  /*transition: all 1s cubic-bezier(0.390, 0.575, 0.565, 1.000);*/
+
+/*transition: all 1s cubic-bezier(0.390, 0.575, 0.565, 1.000);*/
   left: 50%;
   -webkit-transform: translate3d(-50%, 0, 0);
           transform: translate3d(-50%, 0, 0);
@@ -398,10 +399,12 @@ p.viz-caption a:hover svg {
           animation-name: wheelBounce;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
-  /* or: Xms */
+
+/* or: Xms */
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
-  /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
+
+/* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
   -webkit-animation-fill-mode: both;
@@ -526,9 +529,8 @@ Copy area
 }
 
 .content-block p span {
+  font-size: 25px;
   font-weight: 400;
-  color: #c43dff;
-  font-style: italic;
 }
 
 .copy-section ul {
@@ -609,7 +611,8 @@ Copy area
 .copy-section span.emdash {
   position: relative;
   display: block;
-  /* padding-top: 50px; */
+
+/* padding-top: 50px; */
   padding: 0 0 0 6.5vw;
   font-size: 30px;
   color: #ffffff;
@@ -635,7 +638,8 @@ Copy area
   top: 50%;
   left: 0;
   display: block;
-  /* width: 5.0vw; */
+
+/* width: 5.0vw; */
   height: 3px;
   background: white;
   -webkit-transform: scaleX(0);
@@ -719,7 +723,8 @@ div#quake-info strong {
   display: block;
   display: none;
   font-weight: 300;
-  /* color: #fff; */
+
+/* color: #fff; */
   color: #00ffff;
   opacity: 0;
 }
@@ -870,7 +875,8 @@ Form
 
 #form-section .input-block input {
   display: block;
-  /*margin: 50px 0 0 0;*/
+
+/*margin: 50px 0 0 0;*/
   width: 100%;
   padding: 0 0 12px 0;
   font: 16px "Roboto", sans-serif;
@@ -931,7 +937,8 @@ textarea:focus {
 #form-section #error-message {
   display: block;
   margin: 15px 0 0 0;
-  /* text-align: center; */
+
+/* text-align: center; */
   /* color: rgb(255, 204, 0); */
   color: #c43dff;
   opacity: 1;
@@ -947,7 +954,8 @@ textarea:focus {
 .topic-form #success-message {
   position: absolute;
   top: 0;
-  /*opacity: 0;*/
+
+/*opacity: 0;*/
   z-index: -10;
   margin: 32px 0;
   font-size: 64px;
