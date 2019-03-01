@@ -32,11 +32,8 @@ class DashboardController extends BaseController
 
         // $path =  file_get_contents(base_path('.env'));
 
-//        $i = gettype(env($key));.
 
-//        $old = env($key)? 'true' : 'false';
-
-//        dd($path);
+        dd($path);
 
 
         $published = $forumPostRepository->getAllPublishedPost();
