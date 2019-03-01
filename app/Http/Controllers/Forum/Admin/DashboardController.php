@@ -25,18 +25,12 @@ class DashboardController extends BaseController
 
         $test = json_decode(File::get('/var/www/brotherhood/public/place.json'));
 
-//        DashboardController::changeEnvironmentVariable('amoisa@gmail.com');
-        DashboardController::changeEnvironmentVariable('MAIL_ADMIN', 'amoisa@gmail.com');
-
-
+        DashboardController::changeEnvironmentVariable('MAIL_ADMIN', 'amoisa@8795.com');
 
         $path =  file_get_contents(base_path('.env'));
 
-//        $i = gettype(env($key));.
 
-//        $old = env($key)? 'true' : 'false';
-
-//        dd($path);
+        dd($path);
 
 
         $published = $forumPostRepository->getAllPublishedPost();
@@ -86,7 +80,7 @@ class DashboardController extends BaseController
 
         if(env($key))
         {
-            $old = env($key)? 'true' : 'false';
+            $old = env($key);
         }
 
         if (file_exists($path)) {
@@ -95,17 +89,4 @@ class DashboardController extends BaseController
             ));
         }
     }
-
-//    public static function changeEnvironmentVariable($value)
-//    {
-//        $path = base_path('.env');
-//
-//            $old = env('MAIL_ADMIN')? 'true' : 'false';
-//
-//        if (file_exists($path)) {
-//            file_put_contents($path, str_replace(
-//                'MAIL_ADMIN='.$old, 'MAIL_ADMIN='.$value, file_get_contents($path)
-//            ));
-//        }
-//    }
 }
