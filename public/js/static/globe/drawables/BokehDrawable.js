@@ -77,8 +77,8 @@ GK.BokehDrawable = function(){
         this.program = GK.ProgramManager.create(vertex, fragment);
         this.createGeometry();
 
-        texture1 = GK.TextureManager.loadTexture("/svg/img/texture/bokeh1.png", true, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
-        texture2 = GK.TextureManager.loadTexture("/svg/img/texture/bokeh2.png", true, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
+        texture1 = GK.TextureManager.loadTexture("img/texture/bokeh1.png", true, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
+        texture2 = GK.TextureManager.loadTexture("img/texture/bokeh2.png", true, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
 
         return this;
     }
