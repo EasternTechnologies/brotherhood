@@ -10,13 +10,13 @@
       <p class="login-form__block">
         <label>
           <span class="login-form__block-title">E-mail</span>
-          <input class="login-form__field" type="email" name="email" required>
+          <input class="login-form__field" name="email" type="email" required>
         </label>
       </p>
       <p class="login-form__block">
         <label>
           <span class="login-form__block-title">Пароль</span>
-          <input class="login-form__field" type="password" name="password" required>
+          <input class="login-form__field" name="password" type="password" required>
         </label>
       </p>
       <p class="login-form__block login-form__block--recaptcha">
