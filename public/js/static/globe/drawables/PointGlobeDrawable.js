@@ -140,8 +140,8 @@ GK.PointGlobeDrawable = function(){
 
     this.init = function() {
         this.program = GK.ProgramManager.create(vertex, fragment);
-        texture = GK.TextureManager.loadTexture("img/texture/dot.png", true, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
-        noiseTexture = GK.TextureManager.loadTexture("img/texture/clouds.png", true, gl.REPEAT, gl.REPEAT);
+        texture = GK.TextureManager.loadTexture("/img/texture/dot.png", true, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
+        noiseTexture = GK.TextureManager.loadTexture("/img/texture/clouds.png", true, gl.REPEAT, gl.REPEAT);
         return this;
     }
 
