@@ -1,8 +1,10 @@
-@extends('frontend.layouts.globe')
+@extends('frontend.layouts.index')
 
 @section('content')
 <div id="quake-info">
-  <div><span></span></div>
+  <div>
+    <span></span>
+  </div>
 </div>
 
 <div class="header">
@@ -211,17 +213,9 @@
       </div>
     </div>
 
-    <!-- <div class="copy-section topic-quote">
-        <div class="copy-content">
-            <h1 class="animated-text">Братство<span class="emdash"><span></span>Мартин Лютер Кинг</span></h1>
-            <p class="animated-body">«Мы научились летать как птицы и плавать как рыбы, но нам все еще надо
-              учиться просто ходить по земле как братья».</p>
-          </div>
-        </div> -->
-
     <div class="copy-section topic-form">
       <div class="copy-content">
-        <h1 class="animated-text"><span>&ldquo;</span>Братство<span>&rdquo;</span><span class="emdash"><span></span>Международное общество</span></h1>
+        <h1 class="animated-text">Братство<span class="emdash"><span></span>Международное общество</span></h1>
         <div class="contacts">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore dolor iste quod assumenda.</p>
           <p>Totam, nesciunt sint. Atque natus recusandae autem ab illo. Laudantium autem molestiae dignissimos.</p>
