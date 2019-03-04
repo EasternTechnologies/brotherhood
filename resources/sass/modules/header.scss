@@ -5,6 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  width: 100%;
 }
 
 // Logo
@@ -45,6 +46,7 @@
   line-height: rem(20);
   font-weight: 300;
   color: #ffffff;
+  text-transform: uppercase;
   background: transparent;
   border: none;
 }
