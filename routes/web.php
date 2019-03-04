@@ -1,6 +1,5 @@
 <?php
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,12 +11,15 @@
 |
 */
 
-
 Route::post('login', 'Auth\LoginController@login')->name('login.admin');
 
 Auth::routes();
 
 Route::resource('/', 'Forum\HomeController')->names('forum.home');
+
+Route::group(['namespace' => 'Forum', 'prefix' => 'project'], function(){
+    Route::get('/{id}', 'ProjectController@index')->name('forum.project');
+});
 
 Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' => 'roles',
     'roles' => ['Admin', 'Author']], function (){
