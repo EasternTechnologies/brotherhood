@@ -24,11 +24,11 @@ Site = {
     Site.sizeElements();
 
     Site.canvasManager = new Site.CanvasManager();
-    // Site.scrollManager = new Site.ScrollManager();
+    Site.scrollManager = new Site.ScrollManager();
     Site.modelManager = new Site.ModelManager();
     Site.dataManager = new Site.DataManager();
-    // Site.formManager = new Site.FormManager();
-    // Site.formManager.init();
+    Site.formManager = new Site.FormManager();
+    Site.formManager.init();
 
     Site.canvasManager.init(Site.canvas);
 
@@ -67,8 +67,8 @@ Site = {
   },
 
   addEventListeners: function() {
-    // Site.scrollManager.sectionChangeSignal.add(Site, Site.formManager.showForm);
-    // Site.formManager.formSubmitSignal.add(Site, Site.formDidSubmit);
+    Site.scrollManager.sectionChangeSignal.add(Site, Site.formManager.showForm);
+    Site.formManager.formSubmitSignal.add(Site, Site.formDidSubmit);
     Site.modelManager.loadSignal.add(Site, Site.modelsDidLoad);
     Site.dataManager.loadSignal.add(Site, Site.dataDidLoad);
 
@@ -98,17 +98,17 @@ Site = {
         Site.updateCanvas();
       }, 200));
 
-      // Site.formManager.requestButton.addEventListener("click", function(ev) {
-      //   ev.preventDefault();
-      //   if (Site.formManager.requestButton.classList.contains("submit")) {
-      //     Site.formManager.requestFormSubmit();
-      //   } else {
-      //     Site.scrollManager.didSelectSection(Site.scrollManager.sections[4]);
-      //   }
-      //   return false;
-      // });
+      Site.formManager.requestButton.addEventListener("click", function(ev) {
+        ev.preventDefault();
+        if (Site.formManager.requestButton.classList.contains("submit")) {
+          Site.formManager.requestFormSubmit();
+        } else {
+          Site.scrollManager.didSelectSection(Site.scrollManager.sections[4]);
+        }
+        return false;
+      });
 
-      // window.addEventListener("scroll", Site.scrollManager.mouseWheelHide);
+      window.addEventListener("scroll", Site.scrollManager.mouseWheelHide);
     }
   },
 
@@ -122,20 +122,20 @@ Site = {
 
     if (Site.ready) {
       Site.playIntroAnimation();
-      // Site.scrollManager.init();
+      Site.scrollManager.init();
 
-      // Site.scrollManager.windowDidScroll();
-      // Site.canvasManager.ring.progress = Site.scrollManager.getScrollPercent();
+      Site.scrollManager.windowDidScroll();
+      Site.canvasManager.ring.progress = Site.scrollManager.getScrollPercent();
 
-      // document.body.classList.add("fonts-active");
-      // window.addEventListener("scroll", function() {
-      //   Site.canvasManager.ring.progress = Site.scrollManager.getScrollPercent();
-      //   Site.scrollManager.windowDidScroll();
-      // });
+      document.body.classList.add("fonts-active");
+      window.addEventListener("scroll", function() {
+        Site.canvasManager.ring.progress = Site.scrollManager.getScrollPercent();
+        Site.scrollManager.windowDidScroll();
+      });
 
-      // if (document.body.scrollTop == 0) {
-      //   document.getElementById("mouse-wheel").classList.add("visible");
-      // }
+      if (document.body.scrollTop == 0) {
+        document.getElementById("mouse-wheel").classList.add("visible");
+      }
     }
   },
 
@@ -154,10 +154,10 @@ Site = {
   windowDidResize: function() {
     Site.sizeElements();
 
-    // if (Site.ready) {
-    //   Site.scrollManager.updateItemRects();
-    //   Site.scrollManager.windowDidScroll();
-    // }
+    if (Site.ready) {
+      Site.scrollManager.updateItemRects();
+      Site.scrollManager.windowDidScroll();
+    }
   },
 
   fontsDidActivate: function() {
@@ -168,7 +168,7 @@ Site = {
   updateCanvas: function() {
     var cm = Site.canvasManager;
     cm.updateViewport();
-    // cm.ring.progress = Site.scrollManager.getScrollPercent();
+    cm.ring.progress = Site.scrollManager.getScrollPercent();
     cm.globe.pointSize = Site.ps;
     cm.quakes.pointSize = Site.ps / 1.1;
   },
@@ -284,43 +284,43 @@ Site.debounce = function debounce(func, wait, immediate) {
 
 
 
-// $(function() {
-//   var contentLink = $('.content-link.content-link--block');
+$(function() {
+  var contentLink = $('.content-link.content-link--block');
 
-//   contentLink.on('click', function(e) {
-//     e.preventDefault();
-//     contentLink.not(this).next().fadeOut(0);
-//     $(this).next().fadeToggle(900);
-//     $(this).next().attr('style', 'display:flex');
+  contentLink.on('click', function(e) {
+    e.preventDefault();
+    contentLink.not(this).next().fadeOut(0);
+    $(this).next().fadeToggle(900);
+    $(this).next().attr('style', 'display:flex');
 
-//     contentLink.not(this).removeClass('active');
-//     $(this).toggleClass('active');
-//   })
+    contentLink.not(this).removeClass('active');
+    $(this).toggleClass('active');
+  })
 
 
-//   $(window).scroll(function() {
-//     var content = $('.content-link.content-link--block.active');
-//     if ((content).next('.content-block').is(':visible')) {
+  $(window).scroll(function() {
+    var content = $('.content-link.content-link--block.active');
+    if ((content).next('.content-block').is(':visible')) {
 
-//       var top = content.next().offset().top;
-//       var contentH = content.next().height();
-//       var sctop = $(this).scrollTop();
-//       var winh = $(this).height();
-//       var y = top - sctop - winh;
+      var top = content.next().offset().top;
+      var contentH = content.next().height();
+      var sctop = $(this).scrollTop();
+      var winh = $(this).height();
+      var y = top - sctop - winh;
 
-//       if (y > 0 || -y > winh + contentH) {
-//         content.removeClass('active')
-//         content.next().fadeOut(0);
-//       }
-//     }
-//   });
+      if (y > 0 || -y > winh + contentH) {
+        content.removeClass('active')
+        content.next().fadeOut(0);
+      }
+    }
+  });
 
-//   var contacts = $('.animated-text');
-//   contacts.on('mouseenter', function() {
-//     $(this).next('.contacts').fadeToggle(900);
-//     $(this).next('.contacts').attr('style', 'display:flex');
-//   })
-//   contacts.on('mouseleave', function() {
-//     $(this).next('.contacts').fadeOut(900);
-//   })
-// });
+  var contacts = $('.animated-text');
+  contacts.on('mouseenter', function() {
+    $(this).next('.contacts').fadeToggle(900);
+    $(this).next('.contacts').attr('style', 'display:flex');
+  })
+  contacts.on('mouseleave', function() {
+    $(this).next('.contacts').fadeOut(900);
+  })
+});
