@@ -108,6 +108,7 @@ class ForumPostRepository extends CoreRepository
         $columns = [
             'id',
             'title',
+            'text',
             'user_id',
             'category_id',
         ];
