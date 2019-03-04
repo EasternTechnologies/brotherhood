@@ -17,8 +17,8 @@ Site.ModelManager = function(){
         var r = new XMLHttpRequest();
 
         var path = (Site.isMobile) ?
-            "bin/mobile/combined.blob":
-            "bin/desktop/combined.blob";
+            "/bin/mobile/combined.blob":
+            "/bin/desktop/combined.blob";
 
         r.open("GET", path, true);
         r.responseType = "arraybuffer";

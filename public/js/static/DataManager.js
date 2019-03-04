@@ -3,7 +3,7 @@
 var Site = Site || {};
 Site.DataManager = function(){
     var self = this;
-    var url = "place.json";
+    var url = "/place.json";
     this.earthquakes = [];
     this.loadSignal = new BK.Signal();
 

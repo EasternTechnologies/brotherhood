@@ -74,7 +74,7 @@ GK.EarthquakeDrawable = function(){
 
     this.init = function() {
         this.program = GK.ProgramManager.create(vertex, fragment);
-        texture = GK.TextureManager.loadTexture("img/texture/eq.png", true, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
+        texture = GK.TextureManager.loadTexture("/img/texture/eq.png", true, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
         return this;
     };
 

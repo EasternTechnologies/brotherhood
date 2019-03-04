@@ -11,15 +11,14 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
 
-  {{-- <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> --}}
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 
   <!-- Scripts -->
-  <script src="{{ asset('js/static/Site.js') }}"></script>
-  <script src="{{ asset('js/static/FormManager.js') }}"></script>
+  <script src="{{ asset('js/static/innerSite.js') }}"></script>
   <script src="{{ asset('js/static/DataManager.js') }}"></script>
   <script src="{{ asset('js/static/ModelManager.js') }}"></script>
-  <script src="{{ asset('js/static/ScrollManager.js') }}"></script>
   <script src="{{ asset('js/static/CanvasManager.js') }}"></script>
 
   <script src="{{ asset('js/static/globe/third-party/gl-matrix.js') }}"></script>
@@ -45,22 +44,26 @@
   <script src="{{ asset('js/static/third-party/greensock/SplitText.js') }}"></script>
   <script src="{{ asset('js/static/third-party/greensock/TweenMax.js') }}"></script>
 
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="https://www.google.com/recaptcha/api.js" defer></script>
+
   <!-- Fonts -->
   <script src="{{ asset('js/static/WebFontConfig.js') }}" defer></script>
   <script src="{{ asset('js/static/third-party/google/WebFontLoader.js') }}" defer></script>
 
   <!-- Other JS -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  {{--
+  <script src="{{ asset('js/app.js') }}" defer></script> --}}
   <script src="https://www.google.com/recaptcha/api.js" defer></script>
-  
+
   <!-- Styles -->
   <link href="{{ asset('css/static/desktop.css') }}" rel="stylesheet">
   <link href="{{ asset('css/static/mobile.css') }}" rel="stylesheet">
   <link href="{{ asset('css/inner.css') }}" rel="stylesheet">
 </head>
 
-<body class="index">
-  @yield('content')
+<body class="inner">
+  @yield('header') @yield('content')
 </body>
 
 </html>
