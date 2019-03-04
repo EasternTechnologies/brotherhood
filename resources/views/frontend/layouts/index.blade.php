@@ -58,6 +58,7 @@
 </head>
 
 <body class="index">
+  @yield('header')
   @yield('content')
 </body>
 
