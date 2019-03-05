@@ -1777,7 +1777,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-var language = $('.languages-form__field option:checked').val();
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1790,7 +1789,8 @@ var language = $('.languages-form__field option:checked').val();
       var _this = this;
 
       this.countries = [];
-      axios.get('/api/country', {
+      var language = $('.languages-form__field option:checked').val();
+      axios.get('/language', {
         params: {
           queryString: this.queryString,
           language: language

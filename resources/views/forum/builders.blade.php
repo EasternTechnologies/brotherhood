@@ -1,13 +1,15 @@
-@extends('frontend.layouts.inner')
-@include('frontend.modules.header')
+@extends('forum.layouts.inner')
+@include('forum.modules.header')
 @section('content')
   <main class="page-content builders container">
-    <section class="builders__intro">
+    <section id="app" class="builders__intro">
       <h1 class="page-title builders__intro-title">Строители</h1>
       <b class="page-subtitle builders__intro-subtitle">Нас уже более <span>500</span>
       </b>
 
       <button class="btn builders__join-btn">Присоединиться</button>
+
+      <autocomplete></autocomplete>
     </section>
 
     <section class="builders__content">
@@ -19,15 +21,15 @@
         <ul class="quotes__list">
           @foreach($posts as $post)
             <li class="quotes__item quote">
-            <blockquote>
-              <p>
-                {{$post->text}}
-              </p>
-              <cite>
-                {{$post->user->name}}
-              </cite>
-            </blockquote>
-          </li>
+              <blockquote>
+                <p>
+                  {{$post->text}}
+                </p>
+                <cite>
+                  {{$post->user->name}}
+                </cite>
+              </blockquote>
+            </li>
           @endforeach
         </ul>
       </section>
@@ -112,52 +114,5 @@
   </div>
 
   <canvas id="globe-canvas" width="1024" height="1024"></canvas>
-  <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-  <script type="text/javascript">
-    // $( "input#autocomplete" )
-    //         .keyup(function() {
-    //           let value = $( this ).val();
-    //           if (value != null){
-    //             $.ajax({
-    //               url:'/admin/autocomplite',
-    //               method:'get',
-    //               data:'value='+value,
-    //               success:function (result) {
-    //
-    //                 $('.autocomplete').empty();
-    //                 var count_country = result.length;
-    //                 if ( count_country >= 1 ) {
-    //
-    //                   if ( count_country > 5) {
-    //                     count_country = 5
-    //                   }
-    //                   for ( i = 0 ; i < count_country; i++)
-    //                   {
-    //                     addCountry ();
-    //                   }
-    //                 }
-    //
-    //                 function addCountry () {
-    //                   $('.autocomplete').prepend('<li>',result[i],'</li>');
-    //                   console.log(result[i]);
-    //                 }
-    //               }
-    //             })}
-    //         })
-    $("select.languages-form__field").change(function () {
-      let value = $("select.languages-form__field").val();
-      if (value != null){
-        $.ajax({
-          url:'/language',
-          method:'get',
-          data:'value='+value,
-          success:function (result) {
-            console.log(result)
-          }
-      })}
-    })
 
-
-
-  </script>
 @endsection

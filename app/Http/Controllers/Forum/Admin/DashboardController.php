@@ -46,9 +46,8 @@ class DashboardController extends BaseController
         ];
 
 
-        Redis::set('country', $item_en);
+        Redis::set('country', $item_ru);
 
-        Redis::set('ru', 'country_list_ru');
 
         $category = $forumCategoryRepository->getForComboBox();
 
@@ -65,7 +64,7 @@ class DashboardController extends BaseController
 
         $result = [];
         foreach($coutnry as $key => $value){
-            if(stripos($value, $word) !== false){
+            if(mb_stripos($value, $word) !== false){
                 $result[]= $value;
             }
         }
