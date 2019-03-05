@@ -1,0 +1,55 @@
+<template>
+  <ul class="quotes__list">
+    <li class="quotes__item quote" v-for="person in persons" :key="person">
+      <blockquote>
+        <p>
+          Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий
+          уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное
+          планирование предоставляет широкие возможности для благоприятн.
+        </p>
+        <cite>
+          Захаров Игорь Васильевич
+        </cite>
+      </blockquote>
+    </li>
+  </ul>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        persons: []
+      }
+    },
+    methods: {
+      getInitialUsers() {
+        for (var i = 0; i < 5; i++) {
+          axios.get(`https://randomuser.me/api/`)
+            .then(response => {
+              this.persons.push(response.data.results[0])
+            })
+        }
+      },
+      scroll(person) {
+        window.onscroll = () => {
+          let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+          if (bottomOfWindow) {
+            axios.get(`https://randomuser.me/api/`)
+              .then(response => {
+                person.push(response.data.results[0]);
+              })
+          }
+        }
+      },
+    },
+    beforeMount() {
+      this.getInitialUsers();
+    },
+    mounted() {
+      this.scroll(this.person);
+    }
+  }
+
+</script>

@@ -23,7 +23,11 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('autocomplete', require('./components/Autocomplete.vue').default);
+Vue.component('join-autocomplete', require('./components/JoinAutocomplete.vue').default);
+
+Vue.component('search-autocomplete', require('./components/SearchAutocomplete.vue').default);
+
+Vue.component('endless-scroll', require('./components/EndlessScroll.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

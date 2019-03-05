@@ -1,6 +1,14 @@
 <template>
-  <div>
-    <input type="text" v-model="queryString" @keyup="getResult()">
+  <p class="join-form__block">
+    <label aria-label="Поле ввода страны, обязательно для заполнения">
+      <input class="join-form__field" name="country" type="text" placeholder="Страна*:" required v-model="queryString" @keyup="getResult">
+    </label>
+    <ul v-if="countries.length">
+      <li v-for="country in countries"> {{country.name}} </li>
+    </ul>
+  </p>
+  <!-- <div>
+    <input type="text" v-model="queryString" @keyup="getResult">
     <div>
       <ul>
         <li v-for="country in countries" @click="search"> {{country}} </li>
@@ -9,12 +17,10 @@
 
     <button type="btn" @click="search"> search </button>
 
-  </div>
+  </div> -->
 </template>
 
-<script>  
-
-  let language = $('.languages-form__field option:checked').val();
+<script>
 
   export default {
     data() {
@@ -25,6 +31,8 @@
     },
     methods: {
       getResult() {
+        let language = $('.languages-form__field option:checked').val();
+        
         this.countries = [];
 
         axios.get('/api/country', { params: { queryString: this.queryString, language: language } }).then(response => {
@@ -32,9 +40,6 @@
             this.countries.push(country);
           });
         })
-      },
-      search() {
-        console.log(language)
       }
     }
   }
