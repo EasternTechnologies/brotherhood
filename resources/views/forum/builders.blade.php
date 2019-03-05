@@ -1,13 +1,15 @@
-@extends('frontend.layouts.inner')
-@include('frontend.modules.header')
+@extends('forum.layouts.inner')
+@include('forum.modules.header')
 @section('content')
   <main class="page-content builders container">
-    <section class="builders__intro">
+    <section id="app" class="builders__intro">
       <h1 class="page-title builders__intro-title">Строители</h1>
       <b class="page-subtitle builders__intro-subtitle">Нас уже более <span>500</span>
       </b>
 
       <button class="btn builders__join-btn">Присоединиться</button>
+
+      <autocomplete></autocomplete>
     </section>
 
     <section class="builders__content">
@@ -19,15 +21,15 @@
         <ul class="quotes__list">
           @foreach($posts as $post)
             <li class="quotes__item quote">
-            <blockquote>
-              <p>
-                {{$post->text}}
-              </p>
-              <cite>
-                {{$post->user->name}}
-              </cite>
-            </blockquote>
-          </li>
+              <blockquote>
+                <p>
+                  {{$post->text}}
+                </p>
+                <cite>
+                  {{$post->user->name}}
+                </cite>
+              </blockquote>
+            </li>
           @endforeach
         </ul>
       </section>
@@ -107,14 +109,10 @@
 
   </main>
 
-
-
-
-
-
   <div id="quake-info">
     <span></span>
   </div>
 
   <canvas id="globe-canvas" width="1024" height="1024"></canvas>
+
 @endsection

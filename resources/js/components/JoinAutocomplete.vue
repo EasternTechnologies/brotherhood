@@ -20,7 +20,9 @@
   </div> -->
 </template>
 
-<script>
+<script>  
+
+
 
   export default {
     data() {
@@ -34,8 +36,9 @@
         let language = $('.languages-form__field option:checked').val();
         
         this.countries = [];
+        let language = $('.languages-form__field option:checked').val();
 
-        axios.get('/api/country', { params: { queryString: this.queryString, language: language } }).then(response => {
+        axios.get('/language', { params: { queryString: this.queryString, language: language } }).then(response => {
           response.data.forEach((country) => {
             this.countries.push(country);
           });
