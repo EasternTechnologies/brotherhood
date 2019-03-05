@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html id="lang" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
   <meta charset="utf-8">
@@ -12,8 +12,8 @@
 
 
   <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+  <script src="{{asset('js/jquery-3.3.1.min.js')}}" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
 
   <!-- Scripts -->
   <script src="{{ asset('js/static/innerSite.js') }}"></script>
@@ -63,7 +63,7 @@
 </head>
 
 <body class="inner">
-  @yield('header') @yield('content')
+@yield('header') @yield('content')
 </body>
 
 </html>

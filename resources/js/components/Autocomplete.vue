@@ -14,7 +14,7 @@
 
 <script>  
 
-  let language = $('.languages-form__field option:checked').val();
+
 
   export default {
     data() {
@@ -26,8 +26,9 @@
     methods: {
       getResult() {
         this.countries = [];
+        let language = $('.languages-form__field option:checked').val();
 
-        axios.get('/api/country', { params: { queryString: this.queryString, language: language } }).then(response => {
+        axios.get('/language', { params: { queryString: this.queryString, language: language } }).then(response => {
           response.data.forEach((country) => {
             this.countries.push(country);
           });
