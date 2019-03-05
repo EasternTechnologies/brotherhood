@@ -25,8 +25,6 @@ class ProjectController extends Controller
         $id = 10;
 
         $posts = $this->forumPostRepository->getAllWithCategoryPatinate($perpage, $id);
-
-
         return view('forum.builders', compact('posts'));
     }
 }

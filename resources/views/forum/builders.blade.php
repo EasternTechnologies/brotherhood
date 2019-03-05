@@ -107,14 +107,57 @@
 
   </main>
 
-
-
-
-
-
   <div id="quake-info">
     <span></span>
   </div>
 
   <canvas id="globe-canvas" width="1024" height="1024"></canvas>
+  <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+  <script type="text/javascript">
+    // $( "input#autocomplete" )
+    //         .keyup(function() {
+    //           let value = $( this ).val();
+    //           if (value != null){
+    //             $.ajax({
+    //               url:'/admin/autocomplite',
+    //               method:'get',
+    //               data:'value='+value,
+    //               success:function (result) {
+    //
+    //                 $('.autocomplete').empty();
+    //                 var count_country = result.length;
+    //                 if ( count_country >= 1 ) {
+    //
+    //                   if ( count_country > 5) {
+    //                     count_country = 5
+    //                   }
+    //                   for ( i = 0 ; i < count_country; i++)
+    //                   {
+    //                     addCountry ();
+    //                   }
+    //                 }
+    //
+    //                 function addCountry () {
+    //                   $('.autocomplete').prepend('<li>',result[i],'</li>');
+    //                   console.log(result[i]);
+    //                 }
+    //               }
+    //             })}
+    //         })
+    $("select.languages-form__field").change(function () {
+      let value = $("select.languages-form__field").val();
+      if (value != null){
+        $.ajax({
+          url:'/language',
+          method:'get',
+          data:'value='+value,
+          success:function (result) {
+            console.log(result)
+          }
+      })}
+    })
+
+
+
+  </script>
 @endsection
