@@ -60,12 +60,20 @@ class ForumPostRepository extends CoreRepository
      */
     public function getAllWithPaginate($perPage = null)
     {
-        $columns = ['id', 'title'];
+        $columns = [
+            'id',
+            'title',
+            'is_published',
+            'user_id',
+            'category_id',
+        ];
 
         $data = $this
             ->startConditions()
             ->select($columns)
-            ->paginate($perPage);
+            ->orderBy('id', 'DESC')
+            ->with(['user', 'category'])
+            ->paginate(20);
 
         return $data;
     }
@@ -87,6 +95,32 @@ class ForumPostRepository extends CoreRepository
             ->selectRaw($columns)
             ->where('is_published', false)
             ->toBase()
+            ->get();
+
+        return $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAllWithCategoryPatinate($perPage = null, $id)
+    {
+        $columns = [
+            'id',
+            'title',
+            'text',
+            'user_id',
+            'category_id',
+        ];
+
+        $data = $this
+            ->startConditions()
+            ->select($columns)
+            ->where('category_id', '=', $id)
+            ->with(['category' => function ($query){
+                $query->select(['id', 'title']);
+            },
+                'user'])
             ->get();
 
         return $data;
