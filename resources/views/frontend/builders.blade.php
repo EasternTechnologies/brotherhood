@@ -2,12 +2,14 @@
   @include('frontend.modules.header') 
 @section('content')
 <main class="page-content builders container">
-  <section class="builders__intro">
+  <section id="app" class="builders__intro">
     <h1 class="page-title builders__intro-title">Строители</h1>
     <b class="page-subtitle builders__intro-subtitle">Нас уже более <span>500</span>
     </b>
 
     <button class="btn builders__join-btn">Присоединиться</button>
+
+    <autocomplete></autocomplete>
   </section>
 
   <section class="builders__content">
