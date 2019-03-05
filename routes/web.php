@@ -15,7 +15,12 @@ Route::post('login', 'Auth\LoginController@login')->name('login.admin');
 
 Auth::routes();
 
-Route::resource('/', 'Forum\HomeController')->names('forum.home');
+Route::group(['namespace' => 'Forum'], function(){
+    Route::get('/', 'HomeController@index')->name('forum.home');
+    Route::post('/sendMail', 'HomeController@sendMail')->name('forum.home.mail');
+    Route::get('/language', 'HomeController@selectedLanguage');
+});
+
 
 Route::group(['namespace' => 'Forum', 'prefix' => 'project'], function(){
     Route::get('/{id}', 'ProjectController@index')->name('forum.project');

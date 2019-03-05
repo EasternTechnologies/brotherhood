@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Forum;
 use App\Mail\MailClass;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redis;
 
 class HomeController extends Controller
 {
@@ -16,17 +19,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('forum.index');
-    }
+        Redis::set('ru', Storage::disk('redis')->get('ru.json'));
+        Redis::set('eng', Storage::disk('redis')->get('en.json'));
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('forum.index');
     }
 
     /**
@@ -35,7 +31,7 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function sendMail(Request $request)
     {
         if($request->isMethod('POST')) {
 
@@ -66,47 +62,33 @@ class HomeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function selectedLanguage (Request $request)
     {
-        //
-    }
+        $language = $request->value;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $locale = App::getLocale();
+
+        if (App::isLocale('en')) {
+            App::setLocale('ru');
+        }
+
+        dd($language);
+
+
+        $coutnry = json_decode(Redis::get($word),true);
+
+
+
+        $result = [];
+        foreach($coutnry as $key => $value){
+            if(stripos($value, $word) !== false){
+                $result[]= $value;
+            }
+        }
+        return $result;
+
+
     }
 }
