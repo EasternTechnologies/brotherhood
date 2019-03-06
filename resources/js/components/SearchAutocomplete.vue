@@ -41,7 +41,12 @@
       },
       selectCountry(event) {
         this.queryString = event.target.innerHTML
+
         this.countries = []
+
+        axios.get('/country', { params: { country: this.queryString } }).then(response => {
+          console.log(this.queryString)
+        })
       }
     }
   }

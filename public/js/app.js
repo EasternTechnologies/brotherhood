@@ -2068,8 +2068,17 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     selectCountry: function selectCountry(event) {
+      var _this2 = this;
+
       this.queryString = event.target.innerHTML;
       this.countries = [];
+      axios.get('/country', {
+        params: {
+          country: this.queryString
+        }
+      }).then(function (response) {
+        console.log(_this2.queryString);
+      });
     }
   }
 });
