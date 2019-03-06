@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Mail\MailClass;
+use App\Repositories\ForumCategoryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
+    private $forumCategoryRepository;
+
+    public function __construct()
+    {
+        $this->forumCategoryRepository = app (ForumCategoryRepository::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +32,9 @@ class HomeController extends Controller
             Redis::set('eng', Storage::disk('redis')->get('en.json'));
         }
 
-        return view('forum.index');
+        $categories = $this->forumCategoryRepository->getForComboBox();
+
+        return view('forum.index', compact('categories'));
     }
 
     /**

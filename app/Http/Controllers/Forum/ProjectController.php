@@ -20,7 +20,6 @@ class ProjectController extends Controller
 
     public function index($id)
     {
-        $id = 10;
         $category = $this->forumCategoryRepository->getCategoryTitle($id);
         $posts = $this->forumPostRepository->getAllWithCategory($id);
         return view('forum.builders', compact('posts', 'category'));

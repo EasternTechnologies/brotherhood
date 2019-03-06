@@ -41,7 +41,7 @@ class  ForumCategoryRepository extends CoreRepository
     {
         $columns = implode(', ', [
            'id',
-           'CONCAT (id, ". ", title) AS id_title',
+           'title',
         ]);
 
         $data = $this->startConditions()
