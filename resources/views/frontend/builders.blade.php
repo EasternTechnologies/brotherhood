@@ -1,7 +1,7 @@
 @extends('frontend.layouts.inner')
   @include('frontend.modules.header') 
 @section('content')
-<main id="app" class="page-content builders container">
+<main class="page-content builders container" id="app">
   <section class="builders__intro">
     <h1 class="page-title builders__intro-title">Строители</h1>
     <b class="page-subtitle builders__intro-subtitle">Нас уже более <span>500</span>
@@ -15,96 +15,9 @@
 
     <section class="builders__quotes quotes active">
       <h3 class="quotes__title">Братство - это...</h3>
-
-      {{-- <endless-scroll></endless-scroll> --}}
-
-
-      {{-- <ul class="quotes__list">
-        <li class="quotes__item quote">
-          <blockquote>
-            <p>
-              Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий
-              уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное
-              планирование предоставляет широкие возможности для благоприятн.
-            </p>
-            <cite>
-              Захаров Игорь Васильевич
-            </cite>
-          </blockquote>
-        </li>
-        <li class="quotes__item quote">
-          <blockquote>
-            <p>
-              Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий
-              уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное
-              планирование предоставляет широкие возможности для благоприятн.
-            </p>
-            <cite>
-              Захаров Игорь Васильевич
-            </cite>
-          </blockquote>
-        </li>
-        <li class="quotes__item quote">
-          <blockquote>
-            <p>
-              Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий
-              уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное
-              планирование предоставляет широкие возможности для благоприятн.
-            </p>
-            <cite>
-              Захаров Игорь Васильевич
-            </cite>
-          </blockquote>
-        </li>
-        <li class="quotes__item quote">
-          <blockquote>
-            <p>
-              Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий
-              уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное
-              планирование предоставляет широкие возможности для благоприятн.
-            </p>
-            <cite>
-              Захаров Игорь Васильевич
-            </cite>
-          </blockquote>
-        </li>
-        <li class="quotes__item quote">
-          <blockquote>
-            <p>
-              Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий
-              уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное
-              планирование предоставляет широкие возможности для благоприятн.
-            </p>
-            <cite>
-              Захаров Игорь Васильевич
-            </cite>
-          </blockquote>
-        </li>
-        <li class="quotes__item quote">
-          <blockquote>
-            <p>
-              Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий
-              уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное
-              планирование предоставляет широкие возможности для благоприятн.
-            </p>
-            <cite>
-              Захаров Игорь Васильевич
-            </cite>
-          </blockquote>
-        </li>
-        <li class="quotes__item quote">
-          <blockquote>
-            <p>
-              Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий
-              уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное
-              планирование предоставляет широкие возможности для благоприятн.
-            </p>
-            <cite>
-              Захаров Игорь Васильевич
-            </cite>
-          </blockquote>
-        </li>
-      </ul> --}}
+      
+      <endless-scroll></endless-scroll>
+      
     </section>
 
     <section class="builders__join join">
@@ -117,13 +30,9 @@
               <input class="join-form__field" name="name" type="text" placeholder="Имя*:" required>
             </label>
           </p>
+
           <join-autocomplete></join-autocomplete>
-          {{-- <p class="join-form__block">
-            <label aria-label="Поле ввода страны, обязательно для заполнения">
-              <input class="join-form__field" name="country" type="text" placeholder="Страна*:" required>
-              </input>
-            </label>
-          </p> --}}
+
           <p class="join-form__block">
             <label aria-label="Поле ввода емэйла">
               <input class="join-form__field" name="email" type="email" placeholder="E-mail:">
@@ -149,15 +58,15 @@
             </label>
           </p>
           <p class="join-form__block join-form__block--recaptcha">
-            
+
           </p>
           <p class="join-form__block">
             <button class="btn join-form__submit" type="submit">Отправить</button>
           </p>
-        </form>     
+        </form>
 
         <button class="join__form-close" type="button" aria-label="Закрыть форму отправки сообщения"></button>
-      </div> 
+      </div>
     </section>
 
   </section>
@@ -166,20 +75,9 @@
     <h2 class="visually-hidden">Поиск по странице</h2>
 
     <div class="search__form">
-      <form class="search-form" autocomplete="off">
-        <search-autocomplete></search-autocomplete>
 
-        {{-- <p class="search-form__block">
-          <label aria-label="Искать на странице">
-            <input class="search-form__field" name="search" type="search" placeholder="Поиск">
-          </label>
-          <button class="search-form__submit" aria-label="Поиск">
-            <svg class="search-form__submit-img" role="img" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 30.239 30.239">
-              <path d="M20.194,3.46c-4.613-4.613-12.121-4.613-16.734,0c-4.612,4.614-4.612,12.121,0,16.735   c4.108,4.107,10.506,4.547,15.116,1.34c0.097,0.459,0.319,0.897,0.676,1.254l6.718,6.718c0.979,0.977,2.561,0.977,3.535,0   c0.978-0.978,0.978-2.56,0-3.535l-6.718-6.72c-0.355-0.354-0.794-0.577-1.253-0.674C24.743,13.967,24.303,7.57,20.194,3.46z    M18.073,18.074c-3.444,3.444-9.049,3.444-12.492,0c-3.442-3.444-3.442-9.048,0-12.492c3.443-3.443,9.048-3.443,12.492,0   C21.517,9.026,21.517,14.63,18.073,18.074z"></path>
-            </svg>
-          </button>
-        </p> --}}
-      </form>
+      <search-autocomplete></search-autocomplete>
+
     </div>
   </section>
 

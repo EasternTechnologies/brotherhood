@@ -1777,7 +1777,115 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1788,23 +1896,23 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getInitialUsers: function getInitialUsers() {
-      var _this = this;
-
-      for (var i = 0; i < 5; i++) {
-        axios.get("https://randomuser.me/api/").then(function (response) {
-          _this.persons.push(response.data.results[0]);
-        });
-      }
+    getInitialUsers: function getInitialUsers() {// for (var i = 0; i < 5; i++) {
+      //   axios.get(`https://randomuser.me/api/`)
+      //     .then(response => {
+      //       this.persons.push(response.data.results[0])
+      //     })
+      // }
     },
     scroll: function scroll(person) {
       window.onscroll = function () {
         var bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
 
         if (bottomOfWindow) {
-          axios.get("https://randomuser.me/api/").then(function (response) {
-            person.push(response.data.results[0]);
-          });
+          // axios.get(`https://randomuser.me/api/`)
+          //   .then(response => {
+          //     person.push(response.data.results[0]);
+          //   })
+          console.log('scroll');
         }
       };
     }
@@ -1872,19 +1980,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-=======
->>>>>>> 62d1f1fbf48e88a9f46966553c2249c6ee981c76
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1898,7 +1993,6 @@ __webpack_require__.r(__webpack_exports__);
 
       var language = $('.languages-form__field option:checked').val();
       this.countries = [];
-      var language = $('.languages-form__field option:checked').val();
       axios.get('/language', {
         params: {
           queryString: this.queryString,
@@ -1909,6 +2003,10 @@ __webpack_require__.r(__webpack_exports__);
           _this.countries.push(country);
         });
       });
+    },
+    selectCountry: function selectCountry(event) {
+      this.queryString = event.target.innerHTML;
+      this.countries = [];
     }
   }
 });
@@ -1945,20 +2043,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1972,7 +2056,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var language = $('.languages-form__field option:checked').val();
       this.countries = [];
-      axios.get('/api/country', {
+      axios.get('/language', {
         params: {
           queryString: this.queryString,
           language: language
@@ -1983,8 +2067,9 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
-    search: function search() {
-      console.log(language);
+    selectCountry: function selectCountry(event) {
+      this.queryString = event.target.innerHTML;
+      this.countries = [];
     }
   }
 });
@@ -37033,30 +37118,133 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "ul",
-    { staticClass: "quotes__list" },
-    _vm._l(_vm.persons, function(person) {
-      return _c("li", { key: person, staticClass: "quotes__item quote" }, [
-        _vm._m(0, true)
-      ])
-    }),
-    0
-  )
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("blockquote", [
-      _c("p", [
-        _vm._v(
-          "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-        )
+    return _c("ul", { staticClass: "quotes__list" }, [
+      _c("li", { staticClass: "quotes__item quote" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v(
+              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+        ])
       ]),
       _vm._v(" "),
-      _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+      _c("li", { staticClass: "quotes__item quote" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v(
+              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "quotes__item quote" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v(
+              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "quotes__item quote" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v(
+              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "quotes__item quote" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v(
+              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "quotes__item quote" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v(
+              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "quotes__item quote" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v(
+              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "quotes__item quote" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v(
+              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "quotes__item quote" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v(
+              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "quotes__item quote" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v(
+              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+        ])
+      ])
     ])
   }
 ]
@@ -37168,8 +37356,21 @@ var render = function() {
     _vm.countries.length
       ? _c(
           "ul",
+          { staticClass: "join-form__result" },
           _vm._l(_vm.countries, function(country) {
-            return _c("li", [_vm._v(" " + _vm._s(country.name) + " ")])
+            return _c(
+              "li",
+              {
+                key: country,
+                staticClass: "join-form__result-item",
+                on: {
+                  click: function($event) {
+                    return _vm.selectCountry($event)
+                  }
+                }
+              },
+              [_vm._v(" " + _vm._s(country) + " ")]
+            )
           }),
           0
         )
@@ -37198,99 +37399,96 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", { staticClass: "search-form__block" }, [
-    _c("label", { attrs: { "aria-label": "Искать на странице" } }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.queryString,
-            expression: "queryString"
-          }
-        ],
-        staticClass: "search-form__field",
-        attrs: { name: "search", type: "search", placeholder: "Поиск" },
-        domProps: { value: _vm.queryString },
-        on: {
-          keyup: _vm.getResult,
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+  return _c(
+    "form",
+    { staticClass: "search-form", attrs: { autocomplete: "off" } },
+    [
+      _c("p", { staticClass: "search-form__block" }, [
+        _c("label", { attrs: { "aria-label": "Искать на странице" } }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.queryString,
+                expression: "queryString"
+              }
+            ],
+            staticClass: "search-form__field",
+            attrs: { name: "search", type: "search", placeholder: "Поиск" },
+            domProps: { value: _vm.queryString },
+            on: {
+              keyup: _vm.getResult,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.queryString = $event.target.value
+              }
             }
-            _vm.queryString = $event.target.value
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "search-form__submit", attrs: { "aria-label": "Поиск" } },
-      [
+          })
+        ]),
+        _vm._v(" "),
         _c(
-          "svg",
+          "button",
           {
-            staticClass: "search-form__submit-img",
-            attrs: {
-              role: "img",
-              xmlns: "http://www.w3.org/2000/svg",
-              width: "30px",
-              height: "30px",
-              viewBox: "0 0 30.239 30.239"
-            }
+            staticClass: "search-form__submit",
+            attrs: { "aria-label": "Поиск" }
           },
           [
-            _c("path", {
-              attrs: {
-                d:
-                  "M20.194,3.46c-4.613-4.613-12.121-4.613-16.734,0c-4.612,4.614-4.612,12.121,0,16.735   c4.108,4.107,10.506,4.547,15.116,1.34c0.097,0.459,0.319,0.897,0.676,1.254l6.718,6.718c0.979,0.977,2.561,0.977,3.535,0   c0.978-0.978,0.978-2.56,0-3.535l-6.718-6.72c-0.355-0.354-0.794-0.577-1.253-0.674C24.743,13.967,24.303,7.57,20.194,3.46z    M18.073,18.074c-3.444,3.444-9.049,3.444-12.492,0c-3.442-3.444-3.442-9.048,0-12.492c3.443-3.443,9.048-3.443,12.492,0   C21.517,9.026,21.517,14.63,18.073,18.074z"
-              }
-            })
+            _c(
+              "svg",
+              {
+                staticClass: "search-form__submit-img",
+                attrs: {
+                  role: "img",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  width: "30px",
+                  height: "30px",
+                  viewBox: "0 0 30.239 30.239"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    d:
+                      "M20.194,3.46c-4.613-4.613-12.121-4.613-16.734,0c-4.612,4.614-4.612,12.121,0,16.735   c4.108,4.107,10.506,4.547,15.116,1.34c0.097,0.459,0.319,0.897,0.676,1.254l6.718,6.718c0.979,0.977,2.561,0.977,3.535,0   c0.978-0.978,0.978-2.56,0-3.535l-6.718-6.72c-0.355-0.354-0.794-0.577-1.253-0.674C24.743,13.967,24.303,7.57,20.194,3.46z    M18.073,18.074c-3.444,3.444-9.049,3.444-12.492,0c-3.442-3.444-3.442-9.048,0-12.492c3.443-3.443,9.048-3.443,12.492,0   C21.517,9.026,21.517,14.63,18.073,18.074z"
+                  }
+                })
+              ]
+            )
           ]
         )
-      ]
-    ),
-    _vm._v(" "),
-    _vm._m(0)
-  ])
+      ]),
+      _vm._v(" "),
+      _vm.countries.length
+        ? _c("p", { staticClass: "search-form__result" }, [
+            _c(
+              "ul",
+              { staticClass: "search-form__result-list" },
+              _vm._l(_vm.countries, function(country) {
+                return _c(
+                  "li",
+                  {
+                    key: country,
+                    staticClass: "search-form__result-item",
+                    on: {
+                      click: function($event) {
+                        return _vm.selectCountry($event)
+                      }
+                    }
+                  },
+                  [_vm._v(" " + _vm._s(country) + " ")]
+                )
+              }),
+              0
+            )
+          ])
+        : _vm._e()
+    ]
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "search-form__result" }, [
-      _c("ul", { staticClass: "search-form__result-list" }, [
-        _c("li", { staticClass: "search-form__result-item" }, [
-          _vm._v("Belarus")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "search-form__result-item" }, [
-          _vm._v("Russia")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "search-form__result-item" }, [_vm._v("USA")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "search-form__result-item" }, [
-          _vm._v("Germany")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "search-form__result-item" }, [
-          _vm._v("Poland")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "search-form__result-item" }, [
-          _vm._v("Other country")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "search-form__result-item" }, [
-          _vm._v("Country")
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -37413,7 +37611,7 @@ function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.7
+ * Vue.js v2.6.8
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -37891,7 +38089,7 @@ var config = ({
  * using https://www.w3.org/TR/html53/semantics-scripting.html#potentialcustomelementname
  * skipping \u10000-\uEFFFF due to it freezing up PhantomJS
  */
-var unicodeLetters = 'a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD';
+var unicodeRegExp = /a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD/;
 
 /**
  * Check if a string starts with $ or _
@@ -37916,7 +38114,7 @@ function def (obj, key, val, enumerable) {
 /**
  * Parse simple path.
  */
-var bailRE = new RegExp(("[^" + unicodeLetters + ".$_\\d]"));
+var bailRE = new RegExp(("[^" + (unicodeRegExp.source) + ".$_\\d]"));
 function parsePath (path) {
   if (bailRE.test(path)) {
     return
@@ -38820,7 +39018,7 @@ function checkComponents (options) {
 }
 
 function validateComponentName (name) {
-  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + unicodeLetters + "]*$")).test(name)) {
+  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + (unicodeRegExp.source) + "]*$")).test(name)) {
     warn(
       'Invalid component name: "' + name + '". Component names ' +
       'should conform to valid custom element name in html5 specification.'
@@ -41024,17 +41222,21 @@ function resolveAsyncComponent (
     return factory.resolved
   }
 
+  var owner = currentRenderingInstance;
+  if (isDef(factory.owners) && factory.owners.indexOf(owner) === -1) {
+    // already pending
+    factory.owners.push(owner);
+  }
+
   if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
     return factory.loadingComp
   }
 
-  var owner = currentRenderingInstance;
-  if (isDef(factory.owners)) {
-    // already pending
-    factory.owners.push(owner);
-  } else {
+  if (!isDef(factory.owners)) {
     var owners = factory.owners = [owner];
-    var sync = true;
+    var sync = true
+
+    ;(owner).$on('hook:destroyed', function () { return remove(owners, owner); });
 
     var forceRender = function (renderCompleted) {
       for (var i = 0, l = owners.length; i < l; i++) {
@@ -42814,7 +43016,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.7';
+Vue.version = '2.6.8';
 
 /*  */
 
@@ -46616,7 +46818,7 @@ var isNonPhrasingTag = makeMap(
 // Regular Expressions for parsing tags and attributes
 var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
 var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
-var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + unicodeLetters + "]*";
+var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + (unicodeRegExp.source) + "]*";
 var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
 var startTagOpen = new RegExp(("^<" + qnameCapture));
 var startTagClose = /^\s*(\/?)>/;
@@ -46878,7 +47080,7 @@ function parseHTML (html, options) {
         ) {
           options.warn(
             ("tag <" + (stack[i].tag) + "> has no matching end tag."),
-            { start: stack[i].start }
+            { start: stack[i].start, end: stack[i].end }
           );
         }
         if (options.end) {
@@ -46915,7 +47117,7 @@ var dynamicArgRE = /^\[.*\]$/;
 
 var argRE = /:(.*)$/;
 var bindRE = /^:|^\.|^v-bind:/;
-var modifierRE = /\.[^.]+/g;
+var modifierRE = /\.[^.\]]+(?=[^\]]*$)/g;
 
 var slotRE = /^v-slot(:|$)|^#/;
 
@@ -47092,7 +47294,7 @@ function parse (
     shouldDecodeNewlinesForHref: options.shouldDecodeNewlinesForHref,
     shouldKeepComment: options.comments,
     outputSourceRange: options.outputSourceRange,
-    start: function start (tag, attrs, unary, start$1) {
+    start: function start (tag, attrs, unary, start$1, end) {
       // check namespace.
       // inherit parent ns if there is one
       var ns = (currentParent && currentParent.ns) || platformGetTagNamespace(tag);
@@ -47111,6 +47313,7 @@ function parse (
       {
         if (options.outputSourceRange) {
           element.start = start$1;
+          element.end = end;
           element.rawAttrsMap = element.attrsList.reduce(function (cumulated, attr) {
             cumulated[attr.name] = attr;
             return cumulated
@@ -48595,7 +48798,7 @@ function genScopedSlots (
   // components with only scoped slots to skip forced updates from parent.
   // but in some cases we have to bail-out of this optimization
   // for example if the slot contains dynamic names, has v-if or v-for on them...
-  var needsForceUpdate = Object.keys(slots).some(function (key) {
+  var needsForceUpdate = el.for || Object.keys(slots).some(function (key) {
     var slot = slots[key];
     return (
       slot.slotTargetDynamic ||
@@ -49708,15 +49911,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************************************!*\
   !*** ./resources/js/components/SearchAutocomplete.vue ***!
   \********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SearchAutocomplete_vue_vue_type_template_id_1b55ff5b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SearchAutocomplete.vue?vue&type=template&id=1b55ff5b& */ "./resources/js/components/SearchAutocomplete.vue?vue&type=template&id=1b55ff5b&");
 /* harmony import */ var _SearchAutocomplete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SearchAutocomplete.vue?vue&type=script&lang=js& */ "./resources/js/components/SearchAutocomplete.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _SearchAutocomplete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _SearchAutocomplete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -49746,7 +49948,7 @@ component.options.__file = "resources/js/components/SearchAutocomplete.vue"
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/SearchAutocomplete.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
