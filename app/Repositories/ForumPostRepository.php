@@ -103,7 +103,7 @@ class ForumPostRepository extends CoreRepository
     /**
      * @return mixed
      */
-    public function getAllWithCategoryPatinate($perPage = null, $id)
+    public function getAllWithCategory($id)
     {
         $columns = [
             'id',

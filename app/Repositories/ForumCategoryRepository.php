@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
  *
  * @package App\Repositories
  */
-class ForumCategoryRepository extends CoreRepository
+class  ForumCategoryRepository extends CoreRepository
 {
     /**
      * return string
@@ -48,6 +48,23 @@ class ForumCategoryRepository extends CoreRepository
                     ->selectRaw($columns)
                     ->toBase()
                     ->get();
+
+        return $data;
+    }
+
+    public function getCategoryTitle($id)
+    {
+        $columns = implode (', ', [
+            'id',
+            'title'
+        ]);
+
+        $data = $this
+            ->startConditions()
+            ->where('id', '=', $id)
+            ->selectRaw($columns)
+            ->toBase()
+            ->first();
 
         return $data;
     }

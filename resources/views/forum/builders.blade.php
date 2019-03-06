@@ -3,7 +3,7 @@
 @section('content')
   <main class="page-content builders container">
     <section id="app" class="builders__intro">
-      <h1 class="page-title builders__intro-title">Строители</h1>
+      <h1 data-title="{{$category->id}}" class="page-title builders__intro-title">{{$category->title}}</h1>
       <b class="page-subtitle builders__intro-subtitle">Нас уже более <span>500</span>
       </b>
 

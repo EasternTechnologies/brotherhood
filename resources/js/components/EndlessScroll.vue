@@ -25,7 +25,7 @@
     methods: {
       getInitialUsers() {
         for (var i = 0; i < 5; i++) {
-          axios.get(`https://randomuser.me/api/`)
+          axios.get(`/project/10/loadpost`)
             .then(response => {
               this.persons.push(response.data.results[0])
             })
@@ -36,7 +36,7 @@
           let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
 
           if (bottomOfWindow) {
-            axios.get(`https://randomuser.me/api/`)
+            axios.get(`/project/10/loadpost`)
               .then(response => {
                 person.push(response.data.results[0]);
               })

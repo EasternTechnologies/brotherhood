@@ -20,11 +20,14 @@ class ProjectController extends Controller
 
     public function index($id)
     {
-
-        $perpage = 10;
         $id = 10;
+        $category = $this->forumCategoryRepository->getCategoryTitle($id);
+        $posts = $this->forumPostRepository->getAllWithCategory($id);
+        return view('forum.builders', compact('posts', 'category'));
+    }
 
-        $posts = $this->forumPostRepository->getAllWithCategoryPatinate($perpage, $id);
-        return view('forum.builders', compact('posts'));
+    public function loadPost()
+    {
+
     }
 }

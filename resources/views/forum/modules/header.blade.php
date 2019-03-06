@@ -20,7 +20,7 @@
           <label aria-label="Выбор языка интерфейса">
               <select class="languages-form__field" name="languages">
                 <option value="ru">ru</option>
-                <option value="eng">eng</option>
+                <option value="eng">en</option>
               </select>
             </label>
         </p>
