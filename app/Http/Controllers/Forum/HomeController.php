@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -19,8 +19,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Redis::set('ru', Storage::disk('redis')->get('ru.json'));
-        Redis::set('eng', Storage::disk('redis')->get('en.json'));
+        if(! Redis::get('ru') || ! Redis::get('eng')){
+            Redis::set('ru', Storage::disk('redis')->get('ru.json'));
+            Redis::set('eng', Storage::disk('redis')->get('en.json'));
+        }
 
         return view('forum.index');
     }

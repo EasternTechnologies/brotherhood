@@ -26,8 +26,10 @@ class ProjectController extends Controller
         return view('forum.builders', compact('posts', 'category'));
     }
 
-    public function loadPost()
+    public function loadPost($id)
     {
+        $posts = $this->forumPostRepository->getAllWithCategory($id, $start = 1);
 
+        dd($posts);
     }
 }

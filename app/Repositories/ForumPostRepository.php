@@ -103,7 +103,7 @@ class ForumPostRepository extends CoreRepository
     /**
      * @return mixed
      */
-    public function getAllWithCategory($id)
+    public function getAllWithCategory($id, $start = null)
     {
         $columns = [
             'id',
@@ -117,6 +117,8 @@ class ForumPostRepository extends CoreRepository
             ->startConditions()
             ->select($columns)
             ->where('category_id', '=', $id)
+            ->offset($start)
+            ->limit(15)
             ->with(['category' => function ($query){
                 $query->select(['id', 'title']);
             },
