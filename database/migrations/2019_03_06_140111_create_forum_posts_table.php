@@ -18,6 +18,7 @@ class CreateForumPostsTable extends Migration
 
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('country_id')->unsigned();
 
             $table->string('title');
             $table->text('text');
@@ -28,6 +29,7 @@ class CreateForumPostsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('forum_categories');
             $table->index('is_published');

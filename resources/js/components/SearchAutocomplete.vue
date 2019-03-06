@@ -44,7 +44,7 @@
 
         this.countries = []
 
-        axios.get('/country', { params: { country: this.queryString } }).then(response => {
+        axios.get('/loadPost', { params: { country: this.queryString } }).then(response => {
           console.log(this.queryString)
         })
       }
