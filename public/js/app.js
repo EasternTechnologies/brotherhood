@@ -1804,11 +1804,13 @@ __webpack_require__.r(__webpack_exports__);
 
       if (blockSize >= lastSize) {
         var country = $('.search-form input').val();
+        var language = $('.languages-form__field').val();
         console.log(country);
         axios.get("/project/1/loadpost", {
           params: {
             personsLength: this.persons.length,
-            country: country
+            country: country,
+            language: language
           }
         }).then(function (response) {
           _this2.persons.push(response.data[0]);
@@ -1971,7 +1973,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.queryString = event.target.innerHTML;
       this.countries = [];
-      axios.get('/loadPost', {
+      axios.get('/project/1/loadpost', {
         params: {
           country: this.queryString
         }
@@ -37266,7 +37268,6 @@ var render = function() {
                 return _c(
                   "li",
                   {
-                    key: country,
                     staticClass: "search-form__result-item",
                     on: {
                       click: function($event) {

@@ -40,9 +40,10 @@
 
         if (blockSize >= lastSize) {
           let country = $('.search-form input').val();
+          let language = $('.languages-form__field').val();
           console.log(country)
 
-          axios.get(`/project/1/loadpost`, { params: { personsLength: this.persons.length, country: country } })
+          axios.get(`/project/1/loadpost`, { params: { personsLength: this.persons.length, country: country, language: language } })
             .then(response => {
               this.persons.push(response.data[0]);
             })

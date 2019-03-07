@@ -13,7 +13,7 @@
 
     <p class="search-form__result" v-if="countries.length">
       <ul class="search-form__result-list">
-        <li class="search-form__result-item" v-for="country in countries" @click="selectCountry($event)" :key="country"> {{country}} </li>
+        <li class="search-form__result-item" v-for="country in countries" @click="selectCountry($event)"> {{country}} </li>
       </ul>
     </p>
   </form>
@@ -44,7 +44,7 @@
 
         this.countries = []
 
-        axios.get('/loadPost', { params: { country: this.queryString } }).then(response => {
+        axios.get('/project/1/loadpost', { params: { country: this.queryString } }).then(response => {
           console.log(this.queryString)
         })
       }

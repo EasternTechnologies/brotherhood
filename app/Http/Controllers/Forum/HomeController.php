@@ -78,24 +78,21 @@ class HomeController extends Controller
      */
     public function selectedLanguage (Request $request)
     {
-        $language = $request->language;
-//        $locale = App::getLocale();
-//        dd($language, $locale);
-//
-//        if (App::getLocale() == $language ) {
-//            App::setLocale('ru');
-//            dd(1);
-//        }
-        $word = $request->queryString;
+		$result = [];
+		$word = $request->queryString;
 
-        $country = json_decode(Redis::get($language),true);
+		if ( $word ) {
 
-        $result = [];
-        foreach($country as $key => $value){
-            if(mb_stripos($value, $word) !== false){
-                $result[] = $value;
-            }
+			$language = $request->language;
+			$country = json_decode( Redis::get( $language ),true );
+
+			foreach ( $country as $key => $value ) {
+				if ( mb_stripos( $value, $word ) !== false ) {
+					$result[] = $value;
+				}
+			}
         }
+
         return $result;
     }
 

@@ -28,4 +28,14 @@ class ForumPost extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Country's post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }
