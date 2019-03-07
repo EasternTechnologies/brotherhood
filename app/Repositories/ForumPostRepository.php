@@ -101,6 +101,8 @@ class ForumPostRepository extends CoreRepository
     }
 
     /**
+	 * Get all published post with country
+	 *
      * @return mixed
      */
     public function getAllWithCategory($id, $start, $county)

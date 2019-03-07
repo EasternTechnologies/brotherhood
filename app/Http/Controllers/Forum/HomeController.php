@@ -27,9 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(! Redis::get('ru') || ! Redis::get('eng')){
+        if(! Redis::get('ru') || ! Redis::get('en')){
             Redis::set('ru', Storage::disk('redis')->get('ru.json'));
-            Redis::set('eng', Storage::disk('redis')->get('en.json'));
+            Redis::set('en', Storage::disk('redis')->get('en.json'));
         }
 
         $categories = $this->forumCategoryRepository->getForComboBox();
@@ -84,6 +84,11 @@ class HomeController extends Controller
 		if ( $word ) {
 
 			$language = $request->language;
+
+			if ( App::getLocale() !== $language ) {
+				App::setLocale($language);
+			}
+
 			$country = json_decode( Redis::get( $language ),true );
 
 			foreach ( $country as $key => $value ) {

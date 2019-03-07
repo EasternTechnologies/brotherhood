@@ -7,6 +7,8 @@ use App\Repositories\ForumPostRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\App;
+
 
 
 class ProjectController extends Controller
@@ -23,15 +25,15 @@ class ProjectController extends Controller
 	/**
 	 * Page with create new post
 	 *
+	 * @param Request $request
 	 * @param $id
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function index($id)
+    public function index(Request $request, $id)
     {
         $category = $this->forumCategoryRepository->getCategoryTitle($id);
         return view('forum.builders', compact( 'category'));
     }
-
 
 	/**
 	 * Load post with selected language, country
@@ -55,4 +57,12 @@ class ProjectController extends Controller
 
        return $posts;
     }
+
+	/**
+	 * @param Request $request
+	 */
+    public function newPost(Request $request)
+	{
+		dd(App::getLocale());
+	}
 }

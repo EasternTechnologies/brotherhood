@@ -186,11 +186,13 @@
       <div class="copy-content">
         <h1 class="animated-text">Проекты</h1>
         <ul class="animated-body content-list">
+
           @foreach($categories as $category)
           <li class="content-item">
             <a class="content-link" href="/project/{{$category->id}}">{{$category->title}}</a>
           </li>
           @endforeach
+
         </ul>
       </div>
     </div>
@@ -226,7 +228,9 @@
         <div class="animated-body" id="form-section">
 
           <form id="request-form" action method="POST" target="no-target">
+
             @csrf
+
             <div class="input-block" id="block-one">
               <label for="NAME">ФИО <span>*</span></label>
               <input id="NAME" name="NAME" type="text" value required>

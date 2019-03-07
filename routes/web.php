@@ -25,6 +25,7 @@ Route::group(['namespace' => 'Forum'], function(){
 Route::group(['namespace' => 'Forum', 'prefix' => 'project'], function(){
     Route::get('/{id}', 'ProjectController@index')->name('forum.project');
     Route::get('/{id}/loadpost', 'ProjectController@loadPost')->name('forum.project.load_post');
+    Route::post('/{id}/newpost', 'ProjectController@newPost')->name('forum.project.new_post');
 });
 
 Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' => 'roles',

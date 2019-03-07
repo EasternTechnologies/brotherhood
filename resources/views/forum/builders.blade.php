@@ -25,7 +25,10 @@
         <h3 class="join__title visually-hidden">Форма отправки сообщения</h3>
 
         <div class="join__form">
-          <form class="join-form" autocomplete="off">
+          <form action="{{route('forum.project.new_post', $category->id)}}" method="POST" class="join-form" autocomplete="off">
+
+            @csrf
+
             <p class="join-form__block">
               <label aria-label="Поле ввода имени, обязательно для заполнения">
                 <input class="join-form__field" name="name" type="text" placeholder="Имя*:" required>
