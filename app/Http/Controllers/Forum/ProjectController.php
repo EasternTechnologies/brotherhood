@@ -29,6 +29,6 @@ class ProjectController extends Controller
     {
         $posts = $this->forumPostRepository->getAllWithCategory($id, $start = 1);
 
-        dd($request);
+       return $posts;
     }
 }

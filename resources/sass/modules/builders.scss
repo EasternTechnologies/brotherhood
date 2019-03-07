@@ -69,6 +69,10 @@
   margin-bottom: rem(25);
 }
 
+.quotes__item:last-child {
+  margin-bottom: 0;
+}
+
 .quotes__item::after {
   content: "";
   position: absolute;

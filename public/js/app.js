@@ -1791,104 +1791,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1896,32 +1798,53 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getInitialUsers: function getInitialUsers() {// for (var i = 0; i < 5; i++) {
-      //   axios.get(`https://randomuser.me/api/`)
-      //     .then(response => {
-      //       this.persons.push(response.data.results[0])
-      //     })
-      // }
-    },
-    scroll: function scroll(person) {
-      window.onscroll = function () {
-        var bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+    getInitialUsers: function getInitialUsers() {
+      var _this = this;
 
-        if (bottomOfWindow) {
-          // axios.get(`https://randomuser.me/api/`)
-          //   .then(response => {
-          //     person.push(response.data.results[0]);
-          //   })
-          console.log('scroll');
-        }
-      };
+      for (var i = 0; i < 10; i++) {
+        axios.get("/project/1/loadpost").then(function (response) {
+          // this.persons.push(response.data.results[0])
+          _this.persons.push(response.data[0]);
+
+          console.log(response.data[0]);
+        });
+      }
+    },
+    // scroll(person) {
+    scroll: function scroll() {
+      var _this2 = this;
+
+      // window.onscroll = () => {
+      // let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+      var block = this.$refs.quotes;
+      var last = block.lastChild;
+      var blockSize = block.scrollTop + block.offsetHeight + block.offsetTop;
+      var lastSize = last.offsetTop + last.offsetHeight;
+      console.log(blockSize, lastSize);
+
+      if (blockSize >= lastSize) {
+        axios.get("/project/1/loadpost").then(function (response) {
+          // person.push(response.data.results[0]);
+          _this2.persons.push(response.data[0]);
+        });
+        console.log('scroll');
+      } // if (bottomOfWindow) {
+      //   // axios.get(`https://randomuser.me/api/`)
+      //   //   .then(response => {
+      //   //     person.push(response.data.results[0]);
+      //   //   })
+      //   console.log('scroll')
+      // }
+      // }
+
     }
   },
   beforeMount: function beforeMount() {
     this.getInitialUsers();
   },
   mounted: function mounted() {
-    this.scroll(this.person);
+    // this.scroll(this.person);
+    this.scroll();
   }
 });
 
@@ -37127,136 +37050,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "quotes__list" }, [
-      _c("li", { staticClass: "quotes__item quote" }, [
+  return _c(
+    "ul",
+    { ref: "quotes", staticClass: "quotes__list", on: { scroll: _vm.scroll } },
+    _vm._l(_vm.persons, function(person) {
+      return _c("li", { staticClass: "quotes__item quote" }, [
         _c("blockquote", [
-          _c("p", [
-            _vm._v(
-              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-            )
-          ]),
+          _c("p", [_vm._v("\n        " + _vm._s(person.text) + "\n      ")]),
           _vm._v(" "),
-          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "quotes__item quote" }, [
-        _c("blockquote", [
-          _c("p", [
-            _vm._v(
-              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-            )
-          ]),
-          _vm._v(" "),
-          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "quotes__item quote" }, [
-        _c("blockquote", [
-          _c("p", [
-            _vm._v(
-              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-            )
-          ]),
-          _vm._v(" "),
-          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "quotes__item quote" }, [
-        _c("blockquote", [
-          _c("p", [
-            _vm._v(
-              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-            )
-          ]),
-          _vm._v(" "),
-          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "quotes__item quote" }, [
-        _c("blockquote", [
-          _c("p", [
-            _vm._v(
-              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-            )
-          ]),
-          _vm._v(" "),
-          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "quotes__item quote" }, [
-        _c("blockquote", [
-          _c("p", [
-            _vm._v(
-              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-            )
-          ]),
-          _vm._v(" "),
-          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "quotes__item quote" }, [
-        _c("blockquote", [
-          _c("p", [
-            _vm._v(
-              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-            )
-          ]),
-          _vm._v(" "),
-          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "quotes__item quote" }, [
-        _c("blockquote", [
-          _c("p", [
-            _vm._v(
-              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-            )
-          ]),
-          _vm._v(" "),
-          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "quotes__item quote" }, [
-        _c("blockquote", [
-          _c("p", [
-            _vm._v(
-              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-            )
-          ]),
-          _vm._v(" "),
-          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "quotes__item quote" }, [
-        _c("blockquote", [
-          _c("p", [
-            _vm._v(
-              "\n        Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий\n        уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное\n        планирование предоставляет широкие возможности для благоприятн.\n      "
-            )
-          ]),
-          _vm._v(" "),
-          _c("cite", [_vm._v("\n        Захаров Игорь Васильевич\n      ")])
+          _c("cite", [
+            _vm._v("\n        " + _vm._s(person.user.name) + "\n      ")
+          ])
         ])
       ])
-    ])
-  }
-]
+    }),
+    0
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
