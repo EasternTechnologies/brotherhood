@@ -1,7 +1,6 @@
 <template>
   <ul class="quotes__list" ref="quotes" @scroll="scroll">
-     <li class="quotes__item quote" v-for="person in persons">
-    <!--<li class="quotes__item quote">-->
+    <li class="quotes__item quote" v-for="person in persons">
       <blockquote>
         <p>
           {{ person.text }}
@@ -11,18 +10,6 @@
         </cite>
       </blockquote>
     </li>
-    <!--<li class="quotes__item quote">-->
-      <!--<blockquote>-->
-        <!--<p>-->
-          <!--Следует отметить, что социально-экономическое развитие требует анализа инновационных методов управления процессами. Высокий-->
-          <!--уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное-->
-          <!--планирование предоставляет широкие возможности для благоприятн.-->
-        <!--</p>-->
-        <!--<cite>-->
-          <!--Захаров Игорь Васильевич-->
-        <!--</cite>-->
-      <!--</blockquote>-->
-    <!--</li>-->
   </ul>
 </template>
 
@@ -35,56 +22,38 @@
     },
     methods: {
       getInitialUsers() {
-        for (var i = 0; i < 10; i++) {
-          axios.get(`/project/1/loadpost`)
-            .then(response => {
-              // this.persons.push(response.data.results[0])
+        axios.get(`/project/1/loadpost`)
+          .then(response => {
+            for (var i = 0; i < response.data.length; i++) {
               this.persons.push(response.data[0])
-
-              console.log(response.data[0])
-            })
-        }
+            }
+          })
       },
-      // scroll(person) {
 
       scroll() {
-        // window.onscroll = () => {
-          // let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-          let block =  this.$refs.quotes;
-          let last = block.lastChild;
 
-          let blockSize = block.scrollTop + block.offsetHeight + block.offsetTop;
-          let lastSize = last.offsetTop + last.offsetHeight;
+        let block = this.$refs.quotes;
+        let last = block.lastChild;
 
-          console.log(blockSize, lastSize);
+        let blockSize = block.scrollTop + block.offsetHeight + block.offsetTop;
+        let lastSize = last.offsetTop + last.offsetHeight;
 
-          if(blockSize >= lastSize) {
-              axios.get(`/project/1/loadpost`)
-                 .then(response => {
-                   // person.push(response.data.results[0]);
-                   this.persons.push(response.data[0]);
+        if (blockSize >= lastSize) {
+          let country = $('.search-form input').val();
+          console.log(country)
 
-                 })
-              console.log('scroll')
-          }
-
-          // if (bottomOfWindow) {
-          //   // axios.get(`https://randomuser.me/api/`)
-          //   //   .then(response => {
-          //   //     person.push(response.data.results[0]);
-          //   //   })
-          //   console.log('scroll')
-          // }
-        // }
+          axios.get(`/project/1/loadpost`, { params: { personsLength: this.persons.length, country: country } })
+            .then(response => {
+              this.persons.push(response.data[0]);
+            })
+        }
       },
     },
     beforeMount() {
       this.getInitialUsers();
     },
     mounted() {
-      // this.scroll(this.person);
       this.scroll();
-
     }
   }
 
