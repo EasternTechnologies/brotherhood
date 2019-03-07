@@ -272,8 +272,8 @@ class CountriesTableSeeder extends Seeder
 
         $country = [];
 
-        for ( $i = 1; $i <= 5; $i ++ ) {
-            $cName = $county_array[rand(1, 254)];
+        for ( $i = 0; $i <= 254; $i ++ ) {
+            $cName = $county_array[$i];
 
             $country[] = [
                 'name' => $cName,
