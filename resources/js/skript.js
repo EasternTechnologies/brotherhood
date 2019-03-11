@@ -18,4 +18,10 @@ $(document).ready(function() {
   //   quotes.toggleClass('active');
   //   form.toggleClass('active');
   // })
+
+  let languageForm = $('.languages-form');
+  let changeLanguage = 'http://brotherhood.com/setlocale/' + $('.languages-form select').change().val();
+  $('.languages-form select').change(function () {
+    languageForm.attr('action', changeLanguage).submit();
+  })
 });

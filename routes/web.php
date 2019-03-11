@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +9,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('setlocale/{locale}', function ($locale) {
+
+	if (in_array($locale, \Config::get('app.locales'))) {
+		Session::put('locale', $locale);
+	}
+
+	return redirect()->back();
+})->name('change.locale');
 
 Route::post('login', 'Auth\LoginController@login')->name('login.admin');
 

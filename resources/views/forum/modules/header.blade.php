@@ -15,12 +15,18 @@
 
   <div class="page-header__languages languages">
     <div class="languages__form">
-      <form class="languages-form">
+      <form action="" method="GET" class="languages-form">
+        @csrf
         <p class="languages-form__block">
           <label aria-label="Выбор языка интерфейса">
               <select class="languages-form__field" name="languages">
                 <option value="ru">ru</option>
                 <option value="en">en</option>
+
+                @lang('en')
+                <h1>ASDASDASDd</h1>
+                @endlang
+
               </select>
             </label>
         </p>
