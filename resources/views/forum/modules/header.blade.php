@@ -9,24 +9,19 @@
         <circle class="fil1" cx="629.846" cy="583.769" r="105.057"></circle>
         <circle class="fil1" cx="370.154" cy="583.769" r="105.057"></circle>
       </svg>
-      <span class="logo__text">Братство</span>
+      <span class="logo__text">@lang('project.name_project')</span>
     </a>
   </div>
 
   <div class="page-header__languages languages">
     <div class="languages__form">
-      <form action="" method="GET" class="languages-form">
+      <form method="GET" class="languages-form">
         @csrf
         <p class="languages-form__block">
           <label aria-label="Выбор языка интерфейса">
               <select class="languages-form__field" name="languages">
                 <option value="ru">ru</option>
-                <option value="en">en</option>
-
-                @lang('en')
-                <h1>ASDASDASDd</h1>
-                @endlang
-
+                <option value="en" @if(app()->getLocale() == 'en') selected @endif>en</option>
               </select>
             </label>
         </p>

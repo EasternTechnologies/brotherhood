@@ -5,17 +5,17 @@
     <section class="builders__intro">
       <h1 data-title="{{$category->id}}" class="page-title builders__intro-title">{{$category->title}}</h1>
 
-      <b class="page-subtitle builders__intro-subtitle">Нас уже более <span>500</span>
+      <b class="page-subtitle builders__intro-subtitle">@lang('project.count') <span>500</span>
       </b>
 
-      <button class="btn builders__join-btn">Присоединиться</button>
+      <button class="btn builders__join-btn">@lang('project.invite')</button>
     </section>
 
     <section class="builders__content">
       <h2 class="visually-hidden">Основной контент на странице</h2>
 
       <section class="builders__quotes quotes active">
-        <h3 class="quotes__title">Братство - это...</h3>
+        <h3 class="quotes__title">@lang('project.project_is')</h3>
 
         <endless-scroll></endless-scroll>
 

@@ -49792,10 +49792,9 @@ $(document).ready(function () {
   //   form.toggleClass('active');
   // })
 
-  var languageForm = $('.languages-form');
-  var changeLanguage = 'http://brotherhood.com/setlocale/' + $('.languages-form select').change().val();
   $('.languages-form select').change(function () {
-    languageForm.attr('action', changeLanguage).submit();
+    var changeLanguage = 'http://brotherhood.com/setlocale/' + $('.languages-form select').val();
+    $('.languages-form').attr('action', changeLanguage).submit();
   });
 });
 

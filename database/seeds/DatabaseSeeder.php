@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleTableSeeder::class);
         $this->call(ForumCategoriesTableSeeder::class);
         $this->call(UserTableSeeder::class);
-        factory(App\Models\ForumPost::class, 100)->create();
+        factory(App\Models\ForumPost::class, 1000)->create();
     }
 }
