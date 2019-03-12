@@ -28,7 +28,7 @@ class ForumPostCreateRequest extends FormRequest
 			'country' => 'required|string|max:100',
 			'email'   => 'nullable|email',
 			'phone'   => 'nullable|integer|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-			'text'    => 'string|min:3|max:500',
+			'text'    => 'string|min:3|max:200',
 		];
     }
 }

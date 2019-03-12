@@ -95,8 +95,6 @@ class ProjectController extends Controller
 
 		} else {
 
-			$old_user->name = $request->name;
-			$old_user->country_id = $country;
 			if ( $request->phone ) $old_user->phone = $request->phone;
 			$old_user->updated_at = time();
 

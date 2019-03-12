@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\ForumPost::class, function (Faker $faker) {
 
-    $text = $faker->realText(rand(100, 1000));
+    $text = $faker->realText(rand(100, 200));
     $isPublished = rand(1, 10) > 1;
     $createdAt = $faker->dateTimeBetween('-3 months', '-2 months');
 
