@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\Captcha;
 
-class ForumPostCreateRequest extends FormRequest
+class FeedbackRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class ForumPostCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,12 +25,12 @@ class ForumPostCreateRequest extends FormRequest
     public function rules()
     {
         return [
-			'name' 	  => 'required|min:3|max:150',
-			'country' => 'required|string|max:100',
-			'email'   => 'nullable|email',
-			'phone'   => 'nullable|integer|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-			'text'    => 'string|min:3|max:300',
+			'NAME' 		=> 'required|max:255',
+			'COUNTRY' 	=> 'required|max:255',
+			'EMAIL' 	=> 'required|email',
+			'NEEDS' 	=> 'required',
+			'COMPANY' 	=> 'required|max:255|string',
 			'g-recaptcha-response' => 'required', new Captcha(),
-		];
+        ];
     }
 }

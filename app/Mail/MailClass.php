@@ -36,15 +36,6 @@ class MailClass extends Mailable
      */
     public function build()
     {
-
-//        dd($this->item);
-//
-//        foreach ($this->item as $i )
-//        {
-//            $i;
-//        }
-
-
         return $this->view('forum.mail');
     }
 }

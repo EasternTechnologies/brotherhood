@@ -569,3 +569,7 @@ input[type=file].visually-hidden {
   text-decoration: underline;
 }
 
+.page-header {
+  background: linear-gradient(to bottom, #121a3e 0%, #1d3b4f 100%);
+}
+

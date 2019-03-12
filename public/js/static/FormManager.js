@@ -96,7 +96,7 @@ Site.FormManager = function() {
         var emailID = "entry.755399294";
         var needsID = "entry.348093703";
 
-        var baseURL = '/';
+        var baseURL = '/sendMail';
         var submitRef = '&submit=6643460394068581655';
         var submitURL = (baseURL + routeID + "?name=" + nameInput.value + "&country=" + companyID + "=" + companyInput.value + "&" + emailID + "=" + String(emailInput.value) + "&" + needsID + "=" + needsInput.value + submitRef);
 

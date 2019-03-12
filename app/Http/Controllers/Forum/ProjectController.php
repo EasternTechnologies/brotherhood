@@ -12,7 +12,6 @@ use App\Repositories\ForumPostRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\App;
 
@@ -25,6 +24,11 @@ class ProjectController extends Controller
     private $countryRepository;
     private $userRepository;
 
+	/**
+	 * construct new model for search in repository
+	 *
+	 * ProjectController constructor.
+	 */
     public function __construct()
     {
         $this->forumPostRepository = app (ForumPostRepository::class);
@@ -40,11 +44,11 @@ class ProjectController extends Controller
 	 * @param $id
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function index(Request $request, $id)
+    public function index( Request $request, $id )
     {
-        $category = $this->forumCategoryRepository->getCategoryTitle($id);
+        $category = $this->forumCategoryRepository->getCategoryTitle( $id );
 		$count_user = $this->userRepository->getCountUser();
-        return view('forum.builders', compact( 'category', 'count_user'));
+        return view('forum.builders', compact( 'category', 'count_user' ));
     }
 
 	/**
@@ -54,11 +58,10 @@ class ProjectController extends Controller
 	 * @param $id
 	 * @return mixed
 	 */
-    public function loadPost(Request $request, $id)
+    public function loadPost( Request $request, $id )
     {
-
     	if ( $request->country ) {
-			$county = array_search($request->country, json_decode( Redis::get( App::getlocale() ), true ));
+			$county = array_search( $request->country, json_decode( Redis::get( App::getlocale() ), true ));
 		}
     	else
 		{
@@ -72,12 +75,15 @@ class ProjectController extends Controller
     }
 
 	/**
-	 * @param Request $request
+	 * Create new posts with new or old user
+	 *
+	 * @param ForumPostCreateRequest $request
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
-    public function newPost(ForumPostCreateRequest $request)
+    public function newPost( ForumPostCreateRequest $request )
 	{
-		$old_user = $this->userRepository->getUser($request->email);
-		$country = $this->getCountyId($request->country);
+		$old_user = $this->userRepository->getUser( $request->email );
+		$country = $this->getCountyId( $request->country );
 
 		if ( ! $request->email || ! $old_user ) {
 
@@ -85,13 +91,13 @@ class ProjectController extends Controller
 
 			$data_user['name'] = $request->name;
 			$data_user['country_id'] = $country;
-			$data_user['password'] = bcrypt("$request->name");
+			$data_user['password'] = bcrypt("$request->name" );
 			$data_user['email'] = $request->email;
 			if ( $request->phone ) $data_user['phone'] = $request->phone;
 
-			$user = new User($data_user);
+			$user = new User( $data_user );
 			$user->save();
-			$user->roles()->attach($role_user);
+			$user->roles()->attach( $role_user );
 
 		} else {
 
@@ -102,28 +108,34 @@ class ProjectController extends Controller
 			$user->save();
 		}
 
-
-		$cut_url=str_replace('http://brotherhood.com/project/','',$request->url());
-		$category_id=substr($cut_url,0,mb_stripos($cut_url,'/'));
+		$cut_url = str_replace('http://brotherhood.com/project/','', $request->url() );
+		$category_id = substr( $cut_url,0, mb_stripos( $cut_url,'/' ));
 
 		$post = new ForumPost();
 		$post->country_id = $country;
 		$post->category_id = $category_id;
 		$post->text = $request->text;
-		$post->user()->associate($user);
+		$post->user()->associate( $user );
 		$post->save();
 
 		if ( $post && $user ) {
-			return redirect()->route('forum.project', $category_id);
+			return redirect()->route('forum.project', $category_id );
 		} else {
 			return back();
 		}
 	}
 
-	public function getCountyId($search)
+
+	/**
+	 * Get country id
+	 *
+	 * @param $search
+	 * @return mixed
+	 */
+	public function getCountyId( $search )
 	{
-		$county_name = array_search($search, json_decode( Redis::get( App::getlocale() ), true ));
-		$country_id = $this->countryRepository->getId($county_name);
+		$county_name = array_search( $search, json_decode( Redis::get( App::getlocale() ), true ));
+		$country_id = $this->countryRepository->getId( $county_name );
 
 		return $country_id;
 	}

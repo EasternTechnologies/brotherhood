@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable {
+
 	use Notifiable;
 
 	/**
@@ -40,9 +41,7 @@ class User extends Authenticatable {
 	}
 
 	/**
-	 *
 	 * $roles mixed
-	 *
 	 **/
 	public function hasAnyRole( $roles ) {
 		if ( is_array( $roles ) ) {
@@ -61,11 +60,8 @@ class User extends Authenticatable {
 	}
 
 	/**
-	 *
 	 * $role mixed
-	 *
 	 * isset this 'name' in \App\Models\Role
-	 *
 	 **/
 	public function hasRole( $role ) {
 		if ( $this->roles()->where( 'name', $role )->first() ) {

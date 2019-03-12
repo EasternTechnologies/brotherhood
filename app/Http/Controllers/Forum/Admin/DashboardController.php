@@ -55,36 +55,44 @@ class DashboardController extends BaseController
 
     }
 
+	/**
+	 * @param Request $request
+	 * @return array
+	 */
     public function show (Request $request)
     {
-
         $word = $request->value;
 
         $coutnry = json_decode(Redis::get('country'),true);
 
         $result = [];
-        foreach($coutnry as $key => $value){
-            if(mb_stripos($value, $word) !== false){
+        foreach ( $coutnry as $key => $value ) {
+            if ( mb_stripos ( $value, $word ) !== false){
                 $result[]= $value;
             }
         }
+
         return $result;
-
-
     }
 
-    public static function changeEnvironmentVariable($key,$value)
+	/**
+	 * Change email for recaptcha in environment file
+	 *
+	 * @param $key
+	 * @param $value
+	 */
+    public static function changeEnvironmentVariable( $key,$value )
     {
         $path = base_path('.env');
 
-        if(env($key))
+        if ( env( $key ))
         {
-            $old = env($key);
+            $old = env( $key );
         }
 
-        if (file_exists($path)) {
-            file_put_contents($path, str_replace(
-                "$key=".$old, "$key=".$value, file_get_contents($path)
+        if ( file_exists ( $path )) {
+            file_put_contents ( $path, str_replace (
+                "$key=".$old, "$key=".$value, file_get_contents( $path )
             ));
         }
     }

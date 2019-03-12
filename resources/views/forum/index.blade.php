@@ -251,6 +251,16 @@
               <label for="NEEDS">Задайте Ваш вопрос или оставьте сообщение</label>
               <textarea id="NEEDS" name="NEEDS"></textarea>
             </div>
+
+            <div class="login-form__block login-form__block--recaptcha">
+              <span class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></span>
+              @if($errors->has('g-recaptcha-response'))
+                <span class="invalid-feedback" style="display: block;">
+                <strong>{{$errors->first('g-recaptcha-response')}}</strong>
+              </span>
+              @endif
+            </div>
+
             <!-- <input id="request" type="submit" value="Request a Quote" name="SUBMIT"> -->
           </form>
 
@@ -258,7 +268,7 @@
           <iframe id="no-target" name="no-target" src="about:blank" style="visibility:hidden; display:none"></iframe>
         </div>
         <h2 id="success-message">Ваше сообщение<span class="emdash"><span></span>успешно отправлено!</span></h2>
-        <a class="callback" href="/">Вернуться назад</a>
+        <a class="callback" href="/">Вернуться</a>
       </div>
     </div>
   </div>

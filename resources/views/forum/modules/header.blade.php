@@ -9,7 +9,7 @@
         <circle class="fil1" cx="629.846" cy="583.769" r="105.057"></circle>
         <circle class="fil1" cx="370.154" cy="583.769" r="105.057"></circle>
       </svg>
-      <span class="logo__text">@lang('project.name_project')</span>
+      <span class="logo__text">@lang('project.builders.site_name')</span>
     </a>
   </div>
 
