@@ -20,7 +20,6 @@ class CreateForumPostsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('country_id')->unsigned();
 
-            $table->string('title');
             $table->text('text');
 
             $table->boolean('is_published')->default(false);

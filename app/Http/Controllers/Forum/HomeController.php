@@ -83,13 +83,7 @@ class HomeController extends Controller
 
 		if ( $word ) {
 
-			$language = $request->language;
-
-			if ( App::getLocale() !== $language ) {
-				App::setLocale($language);
-			}
-
-			$country = json_decode( Redis::get( $language ),true );
+			$country = json_decode( Redis::get( App::getlocale() ),true );
 
 			foreach ( $country as $key => $value ) {
 				if ( mb_stripos( $value, $word ) !== false ) {
@@ -100,5 +94,4 @@ class HomeController extends Controller
 
         return $result;
     }
-
 }

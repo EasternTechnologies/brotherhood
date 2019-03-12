@@ -1790,7 +1790,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/project/1/loadpost").then(function (response) {
         for (var i = 0; i < response.data.length; i++) {
-          _this.persons.push(response.data[0]);
+          _this.persons.push(response.data[i]);
         }
       });
     },
@@ -1804,16 +1804,15 @@ __webpack_require__.r(__webpack_exports__);
 
       if (blockSize >= lastSize) {
         var country = $('.search-form input').val();
-        var language = $('.languages-form__field').val();
-        console.log(country);
         axios.get("/project/1/loadpost", {
           params: {
             personsLength: this.persons.length,
-            country: country,
-            language: language
+            country: country
           }
         }).then(function (response) {
-          _this2.persons.push(response.data[0]);
+          for (var i = 0; i < response.data.length; i++) {
+            _this2.persons.push(response.data[i]);
+          }
         });
       }
     }
@@ -1955,12 +1954,10 @@ __webpack_require__.r(__webpack_exports__);
     getResult: function getResult() {
       var _this = this;
 
-      var language = $('.languages-form__field option:checked').val();
       this.countries = [];
       axios.get('/language', {
         params: {
-          queryString: this.queryString,
-          language: language
+          queryString: this.queryString
         }
       }).then(function (response) {
         response.data.forEach(function (country) {
@@ -1969,17 +1966,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     selectCountry: function selectCountry(event) {
-      var _this2 = this;
-
       this.queryString = event.target.innerHTML;
       this.countries = [];
       axios.get('/project/1/loadpost', {
         params: {
           country: this.queryString
         }
-      }).then(function (response) {
-        console.log(_this2.queryString);
-      });
+      }).then(function (response) {});
     }
   }
 });

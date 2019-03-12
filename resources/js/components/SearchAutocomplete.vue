@@ -29,11 +29,10 @@
     },
     methods: {
       getResult() {
-        let language = $('.languages-form__field option:checked').val();
 
         this.countries = [];
 
-        axios.get('/language', { params: { queryString: this.queryString, language: language } }).then(response => {
+        axios.get('/language', { params: { queryString: this.queryString } }).then(response => {
           response.data.forEach((country) => {
             this.countries.push(country);
           });
@@ -45,7 +44,6 @@
         this.countries = []
 
         axios.get('/project/1/loadpost', { params: { country: this.queryString } }).then(response => {
-          console.log(this.queryString)
         })
       }
     }

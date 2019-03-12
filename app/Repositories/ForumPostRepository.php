@@ -108,22 +108,24 @@ class ForumPostRepository extends CoreRepository
     public function getAllWithCategory($id, $start, $county)
     {
         $columns = [
-			'id',
-            'text',
-            'user_id',
-            'category_id',
-			'country_id',
+			'forum_posts.id',
+            'forum_posts.text',
+            'forum_posts.user_id',
+            'forum_posts.category_id',
+			'forum_posts.country_id',
+			'forum_posts.created_at'
         ];
 
         $data = $this
             ->startConditions()
             ->select($columns)
+			->leftjoin('countries', 'country_id', '=', 'countries.id')
 			->where([
-				['category_id', '=', $id],
-				['is_published', false],
+				['forum_posts.category_id', '=', $id],
+				['forum_posts.is_published', true],
 			])
 			->when($county, function ($query, $county) {
-				return $query->where('country_id', $county);
+				return $query->where('countries.name', $county);
 			})
             ->offset($start)
             ->limit(15)
@@ -142,15 +144,8 @@ class ForumPostRepository extends CoreRepository
             		'name'
 				]);
 
-			},
-				'country' => function ($query) {
-            	$query->select
-				([
-					'name',
-				]);
-			}
-			])
-			->orderBy('created_at', 'DESC')
+			}])
+			->orderBy('forum_posts.created_at', 'DESC')
 			->get();
 
         return $data;

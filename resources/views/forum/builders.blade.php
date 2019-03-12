@@ -5,7 +5,7 @@
     <section class="builders__intro">
       <h1 data-title="{{$category->id}}" class="page-title builders__intro-title">{{$category->title}}</h1>
 
-      <b class="page-subtitle builders__intro-subtitle">@lang('project.count') <span>500</span>
+      <b class="page-subtitle builders__intro-subtitle">@lang('project.count') <span>{{$count_user}}</span>
       </b>
 
       <button class="btn builders__join-btn">@lang('project.invite')</button>

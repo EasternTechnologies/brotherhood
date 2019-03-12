@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Http\Requests\ForumPostCreateRequest;
+use App\Models\ForumPost;
+use App\Models\Role;
+use App\Models\User;
+use App\Repositories\CountryRepository;
 use App\Repositories\ForumCategoryRepository;
 use App\Repositories\ForumPostRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\App;
 
@@ -15,11 +22,15 @@ class ProjectController extends Controller
 {
     private $forumPostRepository;
     private $forumCategoryRepository;
+    private $countryRepository;
+    private $userRepository;
 
     public function __construct()
     {
         $this->forumPostRepository = app (ForumPostRepository::class);
         $this->forumCategoryRepository = app (ForumCategoryRepository::class);
+        $this->countryRepository = app (CountryRepository::class);
+        $this->userRepository = app (UserRepository::class);
     }
 
 	/**
@@ -32,7 +43,8 @@ class ProjectController extends Controller
     public function index(Request $request, $id)
     {
         $category = $this->forumCategoryRepository->getCategoryTitle($id);
-        return view('forum.builders', compact( 'category'));
+		$count_user = $this->userRepository->getCountUser();
+        return view('forum.builders', compact( 'category', 'count_user'));
     }
 
 	/**
@@ -44,15 +56,16 @@ class ProjectController extends Controller
 	 */
     public function loadPost(Request $request, $id)
     {
+
     	if ( $request->country ) {
-			$county = array_search($request->country, json_decode(Redis::get($request->language), true ));
+			$county = array_search($request->country, json_decode( Redis::get( App::getlocale() ), true ));
 		}
     	else
 		{
 			$county = null;
 		}
 
-        $request->personsLength ? $start = $request->personsLength : $start = 1;
+        $request->personsLength ? $start = $request->personsLength : $start = 0;
         $posts = $this->forumPostRepository->getAllWithCategory( $id, $start, $county );
 
        return $posts;
@@ -61,8 +74,59 @@ class ProjectController extends Controller
 	/**
 	 * @param Request $request
 	 */
-    public function newPost(Request $request)
+    public function newPost(ForumPostCreateRequest $request)
 	{
-		dd(App::getLocale());
+		$old_user = $this->userRepository->getUser($request->email);
+		$country = $this->getCountyId($request->country);
+
+		if ( ! $request->email || ! $old_user ) {
+
+			$role_user = Role::where('name', 'User')->first();
+
+			$data_user['name'] = $request->name;
+			$data_user['country_id'] = $country;
+			$data_user['password'] = bcrypt("$request->name");
+			$data_user['email'] = $request->email;
+			if ( $request->phone ) $data_user['phone'] = $request->phone;
+
+			$user = new User($data_user);
+			$user->save();
+			$user->roles()->attach($role_user);
+
+		} else {
+
+			$old_user->name = $request->name;
+			$old_user->country_id = $country;
+			if ( $request->phone ) $old_user->phone = $request->phone;
+			$old_user->updated_at = time();
+
+			$user = $old_user;
+			$user->save();
+		}
+
+
+		$cut_url=str_replace('http://brotherhood.com/project/','',$request->url());
+		$category_id=substr($cut_url,0,mb_stripos($cut_url,'/'));
+
+		$post = new ForumPost();
+		$post->country_id = $country;
+		$post->category_id = $category_id;
+		$post->text = $request->text;
+		$post->user()->associate($user);
+		$post->save();
+
+		if ( $post && $user ) {
+			return redirect()->route('forum.project', $category_id);
+		} else {
+			return back();
+		}
+	}
+
+	public function getCountyId($search)
+	{
+		$county_name = array_search($search, json_decode( Redis::get( App::getlocale() ), true ));
+		$country_id = $this->countryRepository->getId($county_name);
+
+		return $country_id;
 	}
 }
