@@ -98,7 +98,11 @@ Site.FormManager = function() {
 
         var baseURL = '/sendMail';
         var submitRef = '&submit=6643460394068581655';
-        var submitURL = (baseURL + routeID + "?name=" + nameInput.value + "&country=" + companyID + "=" + companyInput.value + "&" + emailID + "=" + String(emailInput.value) + "&" + needsID + "=" + needsInput.value + submitRef);
+        var submitURL =
+            // (
+            baseURL
+            // + routeID + "?name=" + nameInput.value + "&country=" + companyID + "=" + companyInput.value + "&" + emailID + "=" + String(emailInput.value)
+            // + "&" + needsID + "=" + needsInput.value + submitRef);
 
         this.inputsRemoveClass("error");
         this.errorCheck();

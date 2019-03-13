@@ -14,7 +14,7 @@ class FeedbackRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,13 +24,13 @@ class FeedbackRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+		return [
 			'NAME' 		=> 'required|max:255',
 			'COUNTRY' 	=> 'required|max:255',
 			'EMAIL' 	=> 'required|email',
 			'NEEDS' 	=> 'required',
-			'COMPANY' 	=> 'required|max:255|string',
+			'COMPANY' 	=> 'nullable|max:255',
 			'g-recaptcha-response' => 'required', new Captcha(),
         ];
-    }
+	}
 }

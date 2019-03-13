@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Http\Requests\FeedbackRequest;
 use App\Mail\MailClass;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\FeedbackRequest;
 use App\Repositories\ForumCategoryRepository;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
-use App\Rules\Captcha;
 
 class HomeController extends Controller
 {
@@ -46,30 +45,20 @@ class HomeController extends Controller
     }
 
 	/**
-	 * Send feedback email
+	 * Send feedback mail to admin
 	 *
 	 * @param FeedbackRequest $request
+	 *
 	 */
     public function sendMail( FeedbackRequest $request )
     {
-//        if( $request->isMethod('POST' )) {
+        if( $request->isMethod('POST' )) {
 
             $mail_admin = env('MAIL_ADMIN');
             $mail_user = env('MAIL_USERNAME');
 
             ! $request['EMAIL'] ? $request['EMAIL'] = $mail_user : $mail_user = $request['EMAIL'];
             if ( ! $request['COMPANY'] ) $request['COMPANY'] = 'UNKNOWN';
-
-            dd($request);
-
-//            $this->validate( $request, [
-//                'NAME' 		=> 'required|max:255',
-//                'COUNTRY' 	=> 'required|max:255',
-//                'EMAIL' 	=> 'required|email',
-//                'NEEDS' 	=> 'required',
-//                'COMPANY' 	=> 'required|max:255|string',
-//				'g-recaptcha-response' => 'required', new Captcha(),
-//			]);
 
             $layout_mail = [
                 'name' 		=> $request['NAME'],
@@ -80,7 +69,7 @@ class HomeController extends Controller
             ];
 
             Mail::to( $mail_admin )->send( new MailClass( $layout_mail ));
-//        }
+        }
     }
 
 	/**
