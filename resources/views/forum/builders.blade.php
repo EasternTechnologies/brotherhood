@@ -4,11 +4,8 @@
   <main class="page-content builders container" id="app">
     <section class="builders__intro">
       <h1 data-title="{{$category->id}}" class="page-title builders__intro-title">
-        @if ( $category->id == 1 )
-          @lang('project.builders.builders')</h1>
-        @else
-          {{$category->title}}
-        @endif
+      {{__('project.builders.project_name.'.$category->id)}}
+      </h1>
       <b class="page-subtitle builders__intro-subtitle">@lang('project.builders.count') <span>{{$count_user}}</span>
       </b>
 

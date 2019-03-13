@@ -13,6 +13,12 @@ return [
 		'send'			=>	'Send',
 		'phone'			=>	'Phone',
 		'name'			=>	'Name',
-		'builders'		=>	'Builders',
+		'project_name'	=>	[
+			'1'			=>	'Builders',
+			'2'			=>	'Builders_2',
+			'3'			=>	'Builders_3',
+			'4'			=>	'Builders_4',
+			'5'			=>	'Builders_5',
+		],
 	],
 ];

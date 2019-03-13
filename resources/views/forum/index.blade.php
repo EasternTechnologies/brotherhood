@@ -22,11 +22,27 @@
 
   <div class="logo-text">
     <a href="/index">
-      <h1>Братство</h1>
+      <h1>@lang('home_page.logo')</h1>
     </a>
   </div>
 
+
   <div class="social">
+    <div class="page-header__languages languages">
+      <div class="languages__form">
+        <form method="GET" class="languages-form">
+          @csrf
+          <p class="languages-form__block">
+            <label aria-label="Выбор языка интерфейса">
+              <select class="languages-form__field" name="languages">
+                <option value="ru">ru</option>
+                <option value="en" @if(app()->getLocale() == 'en') selected @endif>en</option>
+              </select>
+            </label>
+          </p>
+        </form>
+      </div>
+    </div>
     <ul>
       <li class="instagram icon">
         <a href="#" target="_blank">
@@ -62,24 +78,24 @@
 
     <div class="copy-section topic-start">
       <div class="copy-content">
-        <h1 class="animated-text">Начало</h1>
+        <h1 class="animated-text">@lang('home_page.page_1.start')</h1>
         <ul class="animated-body content-list">
           <li class="content-item">
-            <a class="content-link content-link--block" href="#">Слово</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_1.word')</a>
             <div class="content-block">
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab atque dignissimos, blanditiis, ipsum mollitia quasi quidem provident hic quod, necessitatibus sed laudantium aut fuga numquam.</p>
+              <p>@lang('home_page.page_1.message.word')</p>
             </div>
           </li>
           <li class="content-item">
-            <a class="content-link content-link--block" href="#">Миссия</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_1.mission')</a>
             <div class="content-block">
-              <p>«В часы великого земного ожесточения, вернуть миру понятие, которое венчает человеческие отношения»</p>
+              <p>@lang('home_page.page_1.message.mission')</p>
             </div>
           </li>
           <li class="content-item">
-            <a class="content-link content-link--block" href="#">Цель</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_1.target')</a>
             <div class="content-block">
-              <p>«Зажечь сердца народов красотою значения Братства, объединив прогрессивные силы и умы человечества в нерушимый союз доверия»</p>
+              <p>@lang('home_page.page_1.message.target')</p>
             </div>
           </li>
         </ul>
@@ -88,94 +104,78 @@
 
     <div class="copy-section topic-guardian">
       <div class="copy-content">
-        <h1 class="animated-text">Хранители</h1>
+        <h1 class="animated-text">@lang('home_page.page_2.custodians')</h1>
         <ul class="animated-body">
           <li class="content-item content-list">
-            <a class="content-link content-link--block" href="#">Нельсон Мандела</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_2.mandela.name')</a>
             <div class="content-block">
               <div class="content-img">
                 <img src="{{ asset('img/content/Mandela.jpg') }}" alt="Нельсон Мандела">
               </div>
-              <p>
-                «Я обращаюсь к тем, кто участвует в сражении <span>братьев</span> с <span>братьями</span>. Возьмите ваши ружья, ваши ножи и копья, и бросьте их в море. Давайте вместе работать, чтобы построить мирное и здоровое общество нашей мечты».
-              </p>
+              <p>@lang('home_page.page_2.mandela.message')</p>
             </div>
           </li>
           <li class="content-item">
-            <a class="content-link content-link--block" href="#">Махатма Ганди</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_2.gandhi.name')</a>
             <div class="content-block">
               <div class="content-img">
                 <img src="{{ asset('img/content/Gandhi.jpg') }}" alt="Махатма Ганди">
               </div>
-              <p>
-                «Да, история в самом деле свидетельствует о бесконечных войнах, но мы стремимся создать новую историю человечества, теперь уже без войн и насилия, и я говорю об этом как выразитель чаяний моего народа. Человеку суждено заменить закон джунглей законом осознанного <span>Братства</span>».
-              </p>
+              <p>@lang('home_page.page_2.gandhi.message')</p>
             </div>
           </li>
           <li class="content-item">
-            <a class="content-link content-link--block" href="#">Николай Рерих</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_2.roerich.name')</a>
             <div class="content-block">
               <div class="content-img">
                 <img src="{{ asset('img/content/Roerich.jpg') }}" alt="Николай Рерих">
               </div>
-              <p>
-                «Для невежд единение, сердечность, дружба — всё это абстракции, но познающие понимают всё непреложное и неотложное значение этих великих понятий. За ними высятся и любовь, и <span>Братство</span>».
-              </p>
+              <p>@lang('home_page.page_2.roerich.message')</p>
             </div>
           </li>
           <li class="content-item">
-            <a class="content-link content-link--block" href="#">Константин Циолковский</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_2.tsiolkovsky.name')</a>
             <div class="content-block">
               <div class="content-img">
                 <img src="{{ asset('img/content/Tsiolkovsky.jpg') }}" alt="Константин Циолковский">
               </div>
-              <p>
-                «Каждый человек должен быть проникнут высшими идеями, ведущими всех людей к счастью и совершенству. Таковы мысли о единении и <span>братстве</span> всех народов».
-              </p>
+              <p>@lang('home_page.page_2.tsiolkovsky.message')</p>
             </div>
           </li>
           <li class="content-item">
-            <a class="content-link content-link--block" href="#">Евгений Евтушенко</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_2.yevtushenko.name')</a>
             <div class="content-block">
               <div class="content-img">
                 <img src="{{ asset('img/content/Evtushenko.jpg') }}" alt="Евгений Евтушенко">
               </div>
-              <p>
-                «…..самая великая идея на земле. Идея <span>братства</span>. Выше нет».
-              </p>
+              <p>@lang('home_page.page_2.yevtushenko.message')</p>
             </div>
           </li>
           <li class="content-item">
-            <a class="content-link content-link--block" href="#">Лев Толстой</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_2.tolstoy.name')</a>
             <div class="content-block">
               <div class="content-img">
                 <img src="{{ asset('img/content/Tolstoy.jpg') }}" alt="Лев Толстой">
               </div>
-              <p>
-                «Придет время и приходит уже, когда христианские основы жизни - равенства, <span>братства</span> людей, общности имуществ, непротивления злу насилием - сделаются столь же естественными и простыми, какими теперь нам кажутся основы жизни семейной, общественной, государственной».
-              </p>
+              <p>@lang('home_page.page_2.tolstoy.message')</p>
             </div>
           </li>
           <li class="content-item">
-            <a class="content-link content-link--block" href="#">Мартин Лютер Кинг</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_2.king.name')</a>
             <div class="content-block">
               <div class="content-img">
                 <img src="{{ asset('img/content/King.jpg') }}" alt="Мартин Лютер Кинг">
               </div>
-              <p>
-                «Мы научились летать как птицы и плавать как рыбы, но нам все еще надо учиться просто ходить по земле как <span>братья</span>».
-              </p>
+              <p>@lang('home_page.page_2.king.message')</p>
             </div>
           </li>
           <li class="content-item">
-            <a class="content-link content-link--block" href="#">Фёдор Достоевский</a>
+            <a class="content-link content-link--block" href="#">@lang('home_page.page_2.dostoevsky.name')</a>
             <div class="content-block">
               <div class="content-img">
                 <img src="{{ asset('img/content/Dostoevsky.jpg') }}" alt="Фёдор Достоевский">
               </div>
-              <p>
-                «<span>Братство</span> различных национальностей есть великая, прекрасная, самая русская вещь, то есть самая русская цель. Это впоследствии все поймут, что это одна из главных русских целей».
-              </p>
+              <p>@lang('home_page.page_2.dostoevsky.message')</p>
             </div>
           </li>
         </ul>
@@ -184,12 +184,14 @@
 
     <div class="copy-section topic-projects">
       <div class="copy-content">
-        <h1 class="animated-text">Проекты</h1>
+        <h1 class="animated-text">@lang('home_page.page_3.project')</h1>
         <ul class="animated-body content-list">
 
           @foreach($categories as $category)
           <li class="content-item">
-            <a class="content-link" href="/project/{{$category->id}}">{{$category->title}}</a>
+            <a class="content-link" href="/project/{{$category->id}}">
+              {{__('home_page.page_3.'.$category->id)}}
+            </a>
           </li>
           @endforeach
 
@@ -199,19 +201,19 @@
 
     <div class="copy-section topic-ways">
       <div class="copy-content">
-        <h1 class="animated-text">Пути</h1>
+        <h1 class="animated-text">@lang('home_page.page_4.way')</h1>
         <ul class="animated-body content-list">
           <li class="content-item">
-            <a class="content-link" href="#">Искусства</a>
+            <a class="content-link" href="#">@lang('home_page.page_4.art')</a>
           </li>
           <li class="content-item">
-            <a class="content-link" href="#">Науки</a>
+            <a class="content-link" href="#">@lang('home_page.page_4.science')</a>
           </li>
           <li class="content-item">
-            <a class="content-link" href="#">Веры</a>
+            <a class="content-link" href="#">@lang('home_page.page_4.faith')</a>
           </li>
           <li class="content-item">
-            <a class="content-link" href="#">Народной мудрости</a>
+            <a class="content-link" href="#">@lang('home_page.page_4.folk wisdom')</a>
           </li>
         </ul>
       </div>
@@ -219,7 +221,7 @@
 
     <div class="copy-section topic-form">
       <div class="copy-content">
-        <h1 class="animated-text">Братство<span class="emdash"><span></span>Международное общество</span></h1>
+        <h1 class="animated-text">@lang('home_page.logo')<span class="emdash"><span></span>@lang('home_page.page_5.international')</span></h1>
         <div class="contacts">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore dolor iste quod assumenda.</p>
           <p>Totam, nesciunt sint. Atque natus recusandae autem ab illo. Laudantium autem molestiae dignissimos.</p>
@@ -227,28 +229,28 @@
         </div>
         <div class="animated-body" id="form-section">
 
-          <form id="request-form" action method="POST" target="no-target">
+          <form id="request-form" action method="POST" target="no-target" autocomplete="off">
 
             @csrf
 
             <div class="input-block" id="block-one">
-              <label for="NAME">ФИО <span>*</span></label>
+              <label for="NAME">@lang('home_page.page_5.full name') <span>*</span></label>
               <input id="NAME" name="NAME" type="text" value required>
             </div>
             <div class="input-block" id="block-two">
-              <label for="COMPANY">Организация</label>
+              <label for="COMPANY">@lang('home_page.page_5.organization')</label>
               <input id="COMPANY" name="COMPANY" type="text" value>
             </div>
             <div class="input-block" id="block-three">
-              <label for="COUNTRY">Страна <span>*</span></label>
+              <label for="COUNTRY">@lang('home_page.page_5.country') <span>*</span></label>
               <input id="COUNTRY" name="COUNTRY" type="text" value required>
             </div>
             <div class="input-block" id="block-four">
-              <label for="EMAIL">Email/Tel.</label>
-              <input id="EMAIL" name="EMAIL" type="email" value>
+              <label for="EMAIL">Email/Tel. <span>*</span></label>
+              <input id="EMAIL" name="EMAIL" type="email" value required>
             </div>
             <div class="textarea-block" id="block-five">
-              <label for="NEEDS">Задайте Ваш вопрос или оставьте сообщение</label>
+              <label for="NEEDS">@lang('home_page.page_5.question')</label>
               <textarea id="NEEDS" name="NEEDS"></textarea>
             </div>
 
@@ -264,11 +266,11 @@
             <!-- <input id="request" type="submit" value="Request a Quote" name="SUBMIT"> -->
           </form>
 
-          <span id="error-message">* - поля, обязательные для заполнения.</span>
+          <span id="error-message">* - @lang('home_page.page_5.required')</span>
           <iframe id="no-target" name="no-target" src="about:blank" style="visibility:hidden; display:none"></iframe>
         </div>
-        <h2 id="success-message">Ваше сообщение<span class="emdash"><span></span>успешно отправлено!</span></h2>
-        <a class="callback" href="/">Вернуться</a>
+        <h2 id="success-message">@lang('home_page.success')</h2>
+        <a class="callback" href="/">@lang('home_page.return')</a>
       </div>
     </div>
   </div>

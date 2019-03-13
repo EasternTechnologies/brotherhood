@@ -100,7 +100,7 @@ Site.FormManager = function() {
         var submitRef = '&submit=6643460394068581655';
         var submitURL =
             // (
-            baseURL
+            baseURL;
             // + routeID + "?name=" + nameInput.value + "&country=" + companyID + "=" + companyInput.value + "&" + emailID + "=" + String(emailInput.value)
             // + "&" + needsID + "=" + needsInput.value + submitRef);
 
