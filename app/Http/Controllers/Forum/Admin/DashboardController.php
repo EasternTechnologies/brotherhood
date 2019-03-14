@@ -23,9 +23,16 @@ class DashboardController extends BaseController
     public function index(ForumCategoryRepository $forumCategoryRepository, ForumPostRepository $forumPostRepository)
     {
 
-        $test = json_decode(File::get('/var/www/brotherhood/public/place.json'));
+//        $test = json_decode(File::get('/var/www/brotherhood/public/place.json'));
 
-        DashboardController::changeEnvironmentVariable('MAIL_ADMIN', 'amoisa@8795.com');
+        $message = 'LALALLAALA';
+
+        $place = 10;
+
+        DashboardController::changeMessagePlace( $place, $message);
+
+
+//        DashboardController::changeEnvironmentVariable('MAIL_ADMIN', 'amoisa@8795.com');
 
         $path =  file_get_contents(base_path('.env'));
 
@@ -74,6 +81,22 @@ class DashboardController extends BaseController
 
         return $result;
     }
+
+
+    public static function changeMessagePlace ( $key, $value )
+	{
+		$file = json_decode(Storage::disk('public')->get('place.json'));
+
+		dd($file);
+
+		$file->features[$key]->properties->place = $value;
+
+//		dd( $file->features[$key]->properties->place );
+		json_encode(Storage::disk('public')->put('place.json', $file));
+
+
+
+	}
 
 	/**
 	 * Change email for recaptcha in environment file
