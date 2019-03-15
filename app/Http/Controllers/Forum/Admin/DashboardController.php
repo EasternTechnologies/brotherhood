@@ -23,16 +23,23 @@ class DashboardController extends BaseController
     public function index(ForumCategoryRepository $forumCategoryRepository, ForumPostRepository $forumPostRepository)
     {
 
-//        $test = json_decode(File::get('/var/www/brotherhood/public/place.json'));
-
-        $message = 'LALALLAALA';
-
-        $place = 10;
-
-        DashboardController::changeMessagePlace( $place, $message);
 
 
-//        DashboardController::changeEnvironmentVariable('MAIL_ADMIN', 'amoisa@8795.com');
+
+        $message = 'Eastern Technologies';
+        $number_item = 0;
+        $coordinates = [
+        	0 => 27.539602518081665,
+			1 => 53.905047652725024
+		];
+        $mag = rand( 20, 30);
+
+        DashboardController::changeMessagePlace( $number_item, $message, $coordinates, $mag );
+
+		dd(true);
+
+
+//        DashboardController::changeEnvironmentVariable('MAIL_ADMIN', 'MObratstvo@gmail.com');
 
         $path =  file_get_contents(base_path('.env'));
 
@@ -83,19 +90,26 @@ class DashboardController extends BaseController
     }
 
 
-    public static function changeMessagePlace ( $key, $value )
+    public static function changeMessagePlace ( $item, $message, $coordinates, $mag )
 	{
-		$file = json_decode(Storage::disk('public')->get('place.json'));
+		if ( $item <= 0 ) $item = 0;
 
-		dd($file);
+		$old_file = json_decode(Storage::disk('public')->get('place.json'));
+		$count = count( $old_file->features);
 
-		$file->features[$key]->properties->place = $value;
+		dd($old_file->features);
 
-//		dd( $file->features[$key]->properties->place );
-		json_encode(Storage::disk('public')->put('place.json', $file));
+		if ( $item >= $count ) {
+			$item = $count;
+			$old_file->features[$item] = $old_file->features[0];
+		}
 
+		$old_file->features[$item]->properties->mag = $mag;
+		$old_file->features[$item]->properties->place = $message;
+		$old_file->features[$item]->geometry->coordinates = $coordinates;
 
-
+		$new_file = json_encode($old_file);
+		json_encode(Storage::disk('public')->put('place.json', $new_file));
 	}
 
 	/**
