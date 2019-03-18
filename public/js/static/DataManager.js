@@ -2,8 +2,20 @@
 
 var Site = Site || {};
 Site.DataManager = function(){
+    var formLanguage = document.forms[0];
+    var selectLanguage = formLanguage.elements.languages;
+    for (var i = 0; i < selectLanguage.options.length; i++) {
+        var optionLanguage = selectLanguage.options[i];
+        if( optionLanguage.selected ) {
+            var selectedLanguage = optionLanguage.value;
+        }
+    }
+    if (selectedLanguage === 'ru') {
+        var url = "/storage/ru.place.json";
+    }else{
+        var url = "/storage/en.place.json";
+    }
     var self = this;
-    var url = "/storage/place.json";
     this.earthquakes = [];
     this.loadSignal = new BK.Signal();
 

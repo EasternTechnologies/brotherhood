@@ -62,7 +62,7 @@ class ForumPostRepository extends CoreRepository
     {
         $columns = [
             'id',
-            'title',
+            'text',
             'is_published',
             'user_id',
             'category_id',

@@ -30,18 +30,11 @@ class DashboardController extends BaseController
 
         DashboardController::changeMessagePlace( $number_item, $message, $coordinates, $mag );
 
-		dd(true);
-
-
 //        DashboardController::changeEnvironmentVariable('MAIL_ADMIN', 'MObratstvo@gmail.com');
 
-        $path =  file_get_contents(base_path('.env'));
+//        $path =  file_get_contents(base_path('.env'));
 
-
-//        dd($path);
-    
-
-        $published = $forumPostRepository->getAllPublishedPost();
+//        $published = $forumPostRepository->getAllPublishedPost();
 
         $post = $forumPostRepository->getAllWithPaginate(10);
 
@@ -52,8 +45,6 @@ class DashboardController extends BaseController
     }
 
 	/**
-	 *
-	 *
 	 * @param Request $request
 	 * @return array
 	 */
@@ -86,7 +77,7 @@ class DashboardController extends BaseController
 	{
 		if ( $item <= 0 ) $item = 0;
 
-		$old_file = json_decode(Storage::disk('public')->get('place.json'));
+		$old_file = json_decode(Storage::disk('public')->get('ru.place.json'));
 		$count = count( $old_file->features);
 
 		if ( $item >= $count ) {
@@ -99,7 +90,7 @@ class DashboardController extends BaseController
 		if ( $coordinates ) $old_file->features[$item]->geometry->coordinates = $coordinates;
 
 		$new_file = json_encode($old_file);
-		json_encode(Storage::disk('public')->put('place.json', $new_file));
+		json_encode(Storage::disk('public')->put('ru.place.json', $new_file));
 	}
 
 	/**
