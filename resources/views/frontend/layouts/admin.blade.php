@@ -11,30 +11,29 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
-  {{-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
+  <script src="{{ asset('js/admin.js') }}" defer></script>
+  {{--
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
 
   <!-- Styles -->
   <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 
 <body class="admin">
-  <header class="page-header">
-    @yield('header')
-  </header>
+  <div id="admin">
+  {{-- @include('frontend.modules.admin.header')
 
-  <div class="page-content">
-    <aside class="page-aside">
-      @yield('aside')
-    </aside>
-    <main class="page-main">
-      @yield('content')
-    </main>
+    <div class="page-content">
+  @include('frontend.modules.admin.aside')
+
+      <main class="page-main">
+        {{-- @yield('content') --}}
+        {{-- <h3>hello world!</h3> --}}
+        {{-- <router-view></router-view> --}}
+      {{-- </main> --}}
+    {{-- </div> --}}
+  {{-- @include('frontend.modules.admin.footer') --}} --}}
   </div>
-
-  <footer class="page-footer">
-    @yield('footer')
-  </footer>
 
 </body>
 

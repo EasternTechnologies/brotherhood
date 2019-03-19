@@ -26,11 +26,20 @@ html {
 }
 
 body {
+  // display: flex;
+  // flex-direction: column;
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: $light;
   line-height: 1.42;
   color: #ffffff;
+}
+
+#admin {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 img {
@@ -87,8 +96,138 @@ input[type="file"].visually-hidden {
   -webkit-clip-path: inset(100%);
 }
 
+
+// Buttons
+.btn {
+  display: flex;
+  align-items: center;
+  padding: rem(10) rem(20);
+  font-size: rem(25);
+  color: #ffffff;
+  background: #2b335b;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 4px 3px 18px 2px rgba(14, 15, 15, 0.4);
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+  background: lighten(#2b335b, 10%);
+}
+
+.btn svg {
+  margin-right: rem(10);
+  fill: #ffffff;
+}
+
+
+// Tooltip
+// *[title]:hover:after {
+//   content: attr(title);
+//   position: absolute;
+//   top: 110%;
+//   right: 0;
+//   z-index: 1;
+//   display: block;
+//   padding: 5px;
+//   background: #aaaaaa;
+//   border: #777777;
+// }
+
 @import "modules/login.scss";
 @import "modules/admin/header.scss";
 @import "modules/admin/aside.scss";
 @import "modules/admin/main.scss";
 @import "modules/admin/footer.scss";
+@import "modules/admin/dashboard.scss";
+@import "modules/admin/users.scss";
+
+
+.page-content {
+  display: flex;
+  flex: 1 0 auto;
+  background: #d8d8d8;
+}
+
+.page-main {
+  width: calc(100% - #{rem(360)});
+  padding: rem(60);
+  padding-top: rem(100);
+}
+
+.section {
+  padding: rem(35) rem(50);
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 8px 6px 18px 2px rgba(14, 15, 15, 0.3);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: rem(15);
+}
+
+.section-header__title {
+  font-size: rem(30);
+  font-weight: 300;
+  color: $mainTextAdmin;
+}
+
+
+// Table
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead {
+  border-top: 1px solid #c4c4c4;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+table thead th {
+  padding: rem(15) rem(25);
+  font-size: rem(23);
+  font-weight: 300;
+  text-align: left;
+  color: $mainTextAdmin;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #c4c4c4;
+}
+
+table td {
+  padding: rem(15) rem(25);
+  font-size: rem(20);
+  color: $mainTextAdmin;
+}
+
+table td a {
+  color: $mainTextAdmin;
+}
+
+.table-controls__list {
+  display: flex;
+}
+
+.table-controls__item {
+  margin-right: rem(15);
+}
+
+.table-controls__item button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.table-controls__item-img {
+  fill: $mainTextAdmin;
+}
