@@ -1,6 +1,5 @@
-window.Vue = require('vue');
-// import Vue from 'vue'
-import App from './App.vue'
+// window.Vue = require('vue');
+import Vue from 'vue'
 import VueRouter from 'vue-router'
 import router from './routes'
 
@@ -13,6 +12,5 @@ Vue.use(VueRouter)
 
 new Vue({
     el: '#admin',
-    render: h => h(App),
     router
 });

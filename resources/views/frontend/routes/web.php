@@ -6,6 +6,6 @@ Route::group(['prefix' => 'frontend'], function (){
     Route::get('/builders', function () { return view('frontend.builders'); });
     // Route::get('/admin/dashboard', function () { return view('frontend.modules.admin.content.dashboard'); });    
     // Route::get('/admin/users', function () { return view('frontend.modules.admin.content.users'); });    
-    Route::get('/{any}', 'Forum\Admin\UserController@index')->where('any', '.*');   
+    Route::get('/admin', 'Forum\Admin\UserController@index');  
 });
 
