@@ -13,22 +13,22 @@ class CheckRole {
 	 *
 	 * @return mixed
 	 */
-	public function handle( $request, Closure $next ) {
-		if ( $request->user() === null ) {
+	public function handle($request, Closure $next) {
+		if ($request->user() === null) {
 
-			return redirect()->route( 'login' );
+			return redirect()->route('login');
 
 		}
 
 		$actions = $request->route()->getAction();
-		$roles   = isset( $actions['roles'] ) ? $actions['roles'] : null;
+		$roles   = isset($actions['roles']) ? $actions['roles'] : null;
 
-		if ( $request->user()->hasAnyRole( $roles ) || ! $roles ) {
+		if ($request->user()->hasAnyRole($roles) || ! $roles) {
 
-			return $next( $request );
+			return $next($request);
 
 		}
 
-		return redirect()->route( 'login' );
+		return redirect()->route('login');
 	}
 }

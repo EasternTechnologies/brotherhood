@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Forum\Admin;
 
-use App\Repositories\ForumPostRepository;
 use Illuminate\Http\Request;
-use App\Repositories\ForumCategoryRepository;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
+use App\Repositories\ForumPostRepository;
+use App\Repositories\ForumCategoryRepository;
 
 class DashboardController extends BaseController
 {
@@ -28,9 +28,9 @@ class DashboardController extends BaseController
 		];
         $mag = rand( 20, 30 );
 
-        DashboardController::changeMessagePlace( $number_item, $message, $coordinates, $mag );
+        self::changeMessagePlace($number_item, $message, $coordinates, $mag);
 
-//        DashboardController::changeEnvironmentVariable('MAIL_ADMIN', 'MObratstvo@gmail.com');
+//        self::changeEnvironmentVariable('MAIL_ADMIN', 'MObratstvo@gmail.com');
 
 //        $path =  file_get_contents(base_path('.env'));
 
@@ -48,15 +48,15 @@ class DashboardController extends BaseController
 	 * @param Request $request
 	 * @return array
 	 */
-    public function show (Request $request)
+    public function show(Request $request)
     {
         $word = $request->value;
 
         $coutnry = json_decode(Redis::get('country'),true);
 
         $result = [];
-        foreach ( $coutnry as $key => $value ) {
-            if ( mb_stripos ( $value, $word ) !== false){
+        foreach ($coutnry as $key => $value) {
+            if (mb_stripos($value, $word) !== false){
                 $result[]= $value;
             }
         }
@@ -73,21 +73,21 @@ class DashboardController extends BaseController
 	 * @param null $mag
 	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
-    public static function changeMessagePlace ( $item, $message = null, $coordinates = null, $mag = null )
+    public static function changeMessagePlace($item, $message = null, $coordinates = null, $mag = null)
 	{
-		if ( $item <= 0 ) $item = 0;
+		if ($item <= 0) $item = 0;
 
 		$old_file = json_decode(Storage::disk('public')->get('ru.place.json'));
-		$count = count( $old_file->features);
+		$count = count($old_file->features);
 
-		if ( $item >= $count ) {
+		if ($item >= $count) {
 			$item = $count;
 			$old_file->features[$item] = $old_file->features[0];
 		}
 
-		if ( $mag ) $old_file->features[$item]->properties->mag = $mag;
-		if ( $message ) $old_file->features[$item]->properties->place = $message;
-		if ( $coordinates ) $old_file->features[$item]->geometry->coordinates = $coordinates;
+		if ($mag) $old_file->features[$item]->properties->mag = $mag;
+		if ($message) $old_file->features[$item]->properties->place = $message;
+		if ($coordinates) $old_file->features[$item]->geometry->coordinates = $coordinates;
 
 		$new_file = json_encode($old_file);
 		json_encode(Storage::disk('public')->put('ru.place.json', $new_file));
@@ -99,18 +99,18 @@ class DashboardController extends BaseController
 	 * @param $key
 	 * @param $value
 	 */
-    public static function changeEnvironmentVariable( $key,$value )
+    public static function changeEnvironmentVariable($key, $value)
     {
         $path = base_path('.env');
 
-        if ( env( $key ))
+        if (env($key))
         {
-            $old = env( $key );
+            $old = env($key);
         }
 
-        if ( file_exists ( $path )) {
-            file_put_contents ( $path, str_replace (
-                "$key=".$old, "$key=".$value, file_get_contents( $path )
+        if ( file_exists($path)) {
+            file_put_contents($path, str_replace(
+                "$key=".$old, "$key=".$value, file_get_contents($path)
             ));
         }
     }

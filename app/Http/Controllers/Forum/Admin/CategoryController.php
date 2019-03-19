@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Forum\Admin;
 
+use Illuminate\Http\Request;
 use App\Models\ForumCategory;
 use App\Repositories\ForumCategoryRepository;
-use Illuminate\Http\Request;
 
 class CategoryController extends BaseController
 {
