@@ -16,40 +16,38 @@ use App\Repositories\ForumCategoryRepository;
 use App\Http\Requests\ForumPostCreateRequest;
 
 
-
 class ProjectController extends Controller
 {
-    private $forumPostRepository;
-    private $forumCategoryRepository;
-    private $countryRepository;
-    private $userRepository;
+	private $forumPostRepository;
+	private $forumCategoryRepository;
+	private $countryRepository;
+	private $userRepository;
 
 	/**
 	 * construct new model for search in repository
 	 *
 	 * ProjectController constructor.
 	 */
-    public function __construct()
-    {
-        $this->forumPostRepository = app (ForumPostRepository::class);
-        $this->forumCategoryRepository = app (ForumCategoryRepository::class);
-        $this->countryRepository = app (CountryRepository::class);
-        $this->userRepository = app (UserRepository::class);
-    }
+	public function __construct()
+	{
+		$this->forumPostRepository = app(ForumPostRepository::class);
+		$this->forumCategoryRepository = app(ForumCategoryRepository::class);
+		$this->countryRepository = app(CountryRepository::class);
+		$this->userRepository = app(UserRepository::class);
+	}
 
 	/**
-	 * Page with create new post
+	 * Page with show post in project
 	 *
-	 * @param Request $request
 	 * @param $id
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function index(Request $request, $id)
-    {
-        $category = $this->forumCategoryRepository->getCategoryTitle($id);
+	public function index($id)
+	{
+		$category = $this->forumCategoryRepository->getCategoryTitle($id);
 		$count_user = $this->userRepository->getCountUser();
-        return view('forum.builders', compact( 'category', 'count_user' ));
-    }
+		return view('forum.builders', compact('category', 'count_user'));
+	}
 
 	/**
 	 * Load post with selected language, country
@@ -58,21 +56,19 @@ class ProjectController extends Controller
 	 * @param $id
 	 * @return mixed
 	 */
-    public function loadPost(Request $request, $id)
-    {
-    	if ($request->country) {
+	public function loadPost(Request $request, $id)
+	{
+		if ($request->country) {
 			$county = array_search($request->country, json_decode(Redis::get(App::getlocale()), true));
-		}
-    	else
-		{
+		} else {
 			$county = null;
 		}
 
-        $request->personsLength ? $start = $request->personsLength : $start = 0;
-        $posts = $this->forumPostRepository->getAllWithCategory($id, $start, $county);
+		$request->personsLength ? $start = $request->personsLength : $start = 0;
+		$posts = $this->forumPostRepository->getAllWithCategory($id, $start, $county);
 
-       return $posts;
-    }
+		return $posts;
+	}
 
 	/**
 	 * Create new posts with new or old user
@@ -80,7 +76,7 @@ class ProjectController extends Controller
 	 * @param ForumPostCreateRequest $request
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-    public function newPost(ForumPostCreateRequest $request)
+	public function newPost(ForumPostCreateRequest $request)
 	{
 		$old_user = $this->userRepository->getUser($request->email);
 		$country = $this->getCountyId($request->country);
@@ -91,13 +87,13 @@ class ProjectController extends Controller
 
 			$data_user['name'] = $request->name;
 			$data_user['country_id'] = $country;
-			$data_user['password'] = bcrypt("$request->name" );
+			$data_user['password'] = bcrypt("$request->name");
 			$data_user['email'] = $request->email;
 			if ($request->phone) $data_user['phone'] = $request->phone;
 
 			$user = new User($data_user);
 			$user->save();
-			$user->roles()->attach( $role_user );
+			$user->roles()->attach($role_user);
 
 		} else {
 
@@ -108,8 +104,8 @@ class ProjectController extends Controller
 			$user->save();
 		}
 
-		$cut_url = str_replace('http://brotherhood.com/project/','', $request->url());
-		$category_id = substr($cut_url,0, mb_stripos($cut_url, '/'));
+		$cut_url = str_replace('http://brotherhood.com/project/', '', $request->url());
+		$category_id = substr($cut_url, 0, mb_stripos($cut_url, '/'));
 
 		$post = new ForumPost();
 		$post->country_id = $country;

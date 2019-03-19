@@ -18,17 +18,17 @@ class DashboardController extends BaseController
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
-    public function index(ForumCategoryRepository $forumCategoryRepository, ForumPostRepository $forumPostRepository)
-    {	
-        $message = 'Eastern Technologies';
-        $number_item = 0;
-        $coordinates = [
-        	0 => 27.539602518081665,
+	public function index(ForumCategoryRepository $forumCategoryRepository, ForumPostRepository $forumPostRepository)
+	{
+		$message = 'Eastern Technologies';
+		$number_item = 0;
+		$coordinates = [
+			0 => 27.539602518081665,
 			1 => 53.905047652725024
 		];
-        $mag = rand( 20, 30 );
+		$mag = rand(20, 30);
 
-        self::changeMessagePlace($number_item, $message, $coordinates, $mag);
+		self::changeMessagePlace($number_item, $message, $coordinates, $mag);
 
 //        self::changeEnvironmentVariable('MAIL_ADMIN', 'MObratstvo@gmail.com');
 
@@ -36,33 +36,33 @@ class DashboardController extends BaseController
 
 //        $published = $forumPostRepository->getAllPublishedPost();
 
-        $post = $forumPostRepository->getAllWithPaginate(10);
+		$post = $forumPostRepository->getAllWithPaginate(10);
 
-        $category = $forumCategoryRepository->getForComboBox();
+		$category = $forumCategoryRepository->getForComboBox();
 
-        return view('forum.admin.dashboard.index', compact('category', 'post'));
+		return view('forum.admin.dashboard.index', compact('category', 'post'));
 
-    }
+	}
 
 	/**
 	 * @param Request $request
 	 * @return array
 	 */
-    public function show(Request $request)
-    {
-        $word = $request->value;
+	public function show(Request $request)
+	{
+		$word = $request->value;
 
-        $coutnry = json_decode(Redis::get('country'),true);
+		$coutnry = json_decode(Redis::get('country'), true);
 
-        $result = [];
-        foreach ($coutnry as $key => $value) {
-            if (mb_stripos($value, $word) !== false){
-                $result[]= $value;
-            }
-        }
+		$result = [];
+		foreach ($coutnry as $key => $value) {
+			if (mb_stripos($value, $word) !== false) {
+				$result[] = $value;
+			}
+		}
 
-        return $result;
-    }
+		return $result;
+	}
 
 	/**
 	 * Change or create new coordinate, message on Earth
@@ -73,7 +73,7 @@ class DashboardController extends BaseController
 	 * @param null $mag
 	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
-    public static function changeMessagePlace($item, $message = null, $coordinates = null, $mag = null)
+	public static function changeMessagePlace($item, $message = null, $coordinates = null, $mag = null)
 	{
 		if ($item <= 0) $item = 0;
 
@@ -99,19 +99,18 @@ class DashboardController extends BaseController
 	 * @param $key
 	 * @param $value
 	 */
-    public static function changeEnvironmentVariable($key, $value)
-    {
-        $path = base_path('.env');
+	public static function changeEnvironmentVariable($key, $value)
+	{
+		$path = base_path('.env');
 
-        if (env($key))
-        {
-            $old = env($key);
-        }
+		if (env($key)) {
+			$old = env($key);
+		}
 
-        if ( file_exists($path)) {
-            file_put_contents($path, str_replace(
-                "$key=".$old, "$key=".$value, file_get_contents($path)
-            ));
-        }
-    }
+		if (file_exists($path)) {
+			file_put_contents($path, str_replace(
+				"$key=" . $old, "$key=" . $value, file_get_contents($path)
+			));
+		}
+	}
 }
