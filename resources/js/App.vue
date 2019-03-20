@@ -1,21 +1,23 @@
 <template>
-    <!-- @include('frontend.modules.admin.header') -->
+  <div class="admin">
+    <app-header></app-header>
 
     <div class="page-content">
-  <!-- @include('frontend.modules.admin.aside') -->
+      <app-aside></app-aside>
 
       <main class="page-main">
-        <!-- {{-- @yield('content') --}} -->
-        <h3>hello world!</h3>
         <router-view></router-view>
       </main>
     </div>
-  <!-- @include('frontend.modules.admin.footer') -->
+
+    <app-footer></app-footer>
+  </div>
 </template>
 
 
 <script>
-export default {
-  
-}
+  export default {
+
+  }
+
 </script>

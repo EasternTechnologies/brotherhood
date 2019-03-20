@@ -423,7 +423,7 @@ body {
   color: #ffffff;
 }
 
-#admin {
+.admin {
   display: flex;
   flex-direction: column;
   height: 100%;

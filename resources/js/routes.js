@@ -3,16 +3,16 @@ import Users from './pages/Users'
 import Dashboard from './pages/Dashboard'
 
 export default new VueRouter ({
-  // mode: 'history',
+  mode: 'history',
   routes: [
     {
-      path: '',
+      path: '/frontend/admin/dashboard',
       name: 'dashboard',
       component: Dashboard
     },
     {
-      path: '/users',
-      name: '',
+      path: '/frontend/admin/users',
+      name: 'users',
       component: Users
     }
   ]
