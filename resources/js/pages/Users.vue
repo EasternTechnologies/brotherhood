@@ -81,7 +81,20 @@
 
 <script>
   export default {
-
+    data() {
+      return {
+        users: [],
+      }
+    },
+    methods: {
+      getUsers() {
+        axios.get(`/project/1/loadpost`).then(response => {
+          for (var i = 0; i < response.data.length; i++) {
+            this.users.push(response.data[i])
+          }
+        })
+      }
+    }
   }
 
 </script>

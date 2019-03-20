@@ -29,29 +29,30 @@
           </a>
         </router-link>
 
-        <router-link class="nav__item" tag="li" to="/frontend/admin/projects" active-class="active">
-          <a class="nav__link submenu">
+        <li class="nav__item">
+          <h3 class="nav__link submenu" @click="show = !show">
             <svg class="nav__link-img" role="img" width="30px" height="30px">
               <use xlink:href="../../../public/img/svg/sprite.svg#projects"></use>
             </svg>
             <span class="nav__link-text">Проекты</span>
-          </a>
+          </h3>
 
-          <ul class="nav__sublist">
+          <ul class="nav__sublist" v-show="show">
             <li class="nav__subitem">
-              <a class="nav__sublink submenu" href="#">Строители</a>
+              <h4 class="nav__subtitle submenu" @click="visible = !visible">Строители</h4>
 
-              <ul class="nav__sublist">
-                <li class="nav__subitem">
-                  <a class="nav__sublink" href="#">Модерация</a>
-                </li>
-                <li class="nav__subitem">
-                  <a class="nav__sublink" href="#">Материалы</a>
-                </li>
+              <ul class="nav__sublist" v-show="visible">
+                <router-link to="/frontend/admin/projects/builders/moderation" class="nav__subitem">
+                  <a class="nav__sublink">Модерация</a>
+                </router-link>
+                <router-link to="/frontend/admin/projects/builders/materials" class="nav__subitem">
+                  <a class="nav__sublink">Материалы</a>
+                </router-link>
               </ul>
+
             </li>
           </ul>
-        </router-link>
+        </li>
 
         <router-link class="nav__item" tag="li" to="/frontend/admin/control" active-class="active">
           <a class="nav__link">
@@ -77,7 +78,15 @@
 
 <script>
   export default {
-
+    data() {
+      return {
+        show: false,
+        visible: false,
+      }
+    },
+    methods: {
+     
+    }
   }
 
 </script>
