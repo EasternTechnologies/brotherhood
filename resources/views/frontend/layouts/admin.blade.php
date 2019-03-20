@@ -19,21 +19,9 @@
   <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 
-<body class="admin">
-  @include('frontend.modules.admin.header')
-  
-  <div class="page-content">
-    @include('frontend.modules.admin.aside')
-    
-    <main class="page-main">
-      @yield('content')
-      <div id="admin">
-      <h3>hello world!</h3>
-        <router-view></router-view>
-      </div>
-      </main>
-    </div>
-    @include('frontend.modules.admin.footer')
+<body>
+
+  <div id="admin"></div>
 
 </body>
 

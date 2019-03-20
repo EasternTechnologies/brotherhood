@@ -4,7 +4,7 @@
       <li class="nav__item active">
         <a class="nav__link" href="/frontend/dashboard">
         <svg class="nav__link-img" role="img" width="30px" height="30px">
-          <use xlink:href="{{ asset('img/svg/sprite.svg#panel') }}"></use>
+          {{-- <use xlink:href="{{ asset('img/svg/sprite.svg#panel') }}"></use> --}}
         </svg>
         <span class="nav__link-text">Панель</span>
       </a>
@@ -12,7 +12,7 @@
       <li class="nav__item">
         <a class="nav__link" href="/frontend/users">
         <svg class="nav__link-img" role="img" width="30px" height="30px">
-          <use xlink:href="{{ asset('img/svg/sprite.svg#users') }}"></use>
+          {{-- <use xlink:href="{{ asset('img/svg/sprite.svg#users') }}"></use> --}}
         </svg>
         <span class="nav__link-text">Пользователи</span>
       </a>
@@ -20,7 +20,7 @@
       <li class="nav__item">
         <a class="nav__link" href="#">
         <svg class="nav__link-img" role="img" width="30px" height="30px">
-          <use xlink:href="{{ asset('img/svg/sprite.svg#backup') }}"></use>
+          {{-- <use xlink:href="{{ asset('img/svg/sprite.svg#backup') }}"></use> --}}
         </svg>
         <span class="nav__link-text">Бэкап</span>
       </a>
@@ -28,7 +28,7 @@
       <li class="nav__item">
         <a class="nav__link submenu" href="#">
         <svg class="nav__link-img" role="img" width="30px" height="30px">
-          <use xlink:href="{{ asset('img/svg/sprite.svg#projects') }}"></use>
+          {{-- <use xlink:href="{{ asset('img/svg/sprite.svg#projects') }}"></use> --}}
         </svg>
         <span class="nav__link-text">Проекты</span>
       </a>
@@ -51,7 +51,7 @@
       <li class="nav__item">
         <a class="nav__link" href="#">
         <svg class="nav__link-img" role="img" width="30px" height="30px">
-          <use xlink:href="{{ asset('img/svg/sprite.svg#control') }}"></use>
+          {{-- <use xlink:href="{{ asset('img/svg/sprite.svg#control') }}"></use> --}}
         </svg>
         <span class="nav__link-text">Управление интерфейсом</span>
       </a>
@@ -59,7 +59,7 @@
       <li class="nav__item">
         <a class="nav__link" href="#">
         <svg class="nav__link-img" role="img" width="30px" height="30px">
-          <use xlink:href="{{ asset('img/svg/sprite.svg#email-settings') }}"></use>
+          {{-- <use xlink:href="{{ asset('img/svg/sprite.svg#email-settings') }}"></use> --}}
         </svg>
         <span class="nav__link-text">Настройки почты</span>
       </a>
