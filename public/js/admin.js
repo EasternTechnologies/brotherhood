@@ -16468,7 +16468,7 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/login.svg?2111a2cf7e3f4b08e3c28253f697499f";
+module.exports = "/images/login.svg?477f74b58de90b08265b18e5c6a9bbe8";
 
 /***/ }),
 
