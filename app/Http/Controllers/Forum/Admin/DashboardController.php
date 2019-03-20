@@ -20,15 +20,15 @@ class DashboardController extends BaseController
 	 */
 	public function index(ForumCategoryRepository $forumCategoryRepository, ForumPostRepository $forumPostRepository)
 	{
-		$message = 'Eastern Technologies';
-		$number_item = 0;
-		$coordinates = [
-			0 => 27.539602518081665,
-			1 => 53.905047652725024
-		];
-		$mag = rand(20, 30);
-
-		self::changeMessagePlace($number_item, $message, $coordinates, $mag);
+//		$message = 'Eastern Technologies';
+//		$number_item = 0;
+//		$coordinates = [
+//			0 => 27.539602518081665,
+//			1 => 53.905047652725024
+//		];
+//		$mag = rand(20, 30);
+//
+//		self::changeMessagePlace($number_item, $message, $coordinates, $mag);
 
 //        self::changeEnvironmentVariable('MAIL_ADMIN', 'MObratstvo@gmail.com');
 
@@ -36,11 +36,11 @@ class DashboardController extends BaseController
 
 //        $published = $forumPostRepository->getAllPublishedPost();
 
-		$post = $forumPostRepository->getAllWithPaginate(10);
+//		$post = $forumPostRepository->getAllWithPaginate(10);
+//
+//		$category = $forumCategoryRepository->getForComboBox();
 
-		$category = $forumCategoryRepository->getForComboBox();
-
-		return view('forum.admin.dashboard.index', compact('category', 'post'));
+		return view('forum.admin.layouts.admin');
 
 	}
 

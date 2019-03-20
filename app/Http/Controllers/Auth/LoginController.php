@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/admin/dashboard';
 
     /**
      * Change login view
@@ -74,6 +74,6 @@ class LoginController extends Controller
      */
     public function logout() {
         Auth::logout();
-        return redirect('/login');
+//        return redirect('/login');
     }
 }
