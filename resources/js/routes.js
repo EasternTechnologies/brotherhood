@@ -10,32 +10,32 @@ export default new VueRouter ({
   mode: 'history',
   routes: [
     {
-      path: '/frontend/admin/dashboard',
+      path: '/admin/dashboard',
       name: 'dashboard',
       component: Dashboard
     },
     {
-      path: '/frontend/admin/users',
+      path: '/admin/users',
       name: 'users',
       component: Users
     },
     {
-      path: '/frontend/admin/backup',
+      path: '/admin/backup',
       name: 'backup',
       component: Backup
     },
     {
-      path: '/frontend/admin/projects',
+      path: '/admin/projects',
       name: 'projects',
       component: Projects
     },
     {
-      path: '/frontend/admin/control',
+      path: '/admin/control',
       name: 'control',
       component: Control
     },
     {
-      path: '/frontend/admin/email-settings',
+      path: '/admin/email-settings',
       name: 'emailSettings',
       component: EmailSettings
     },

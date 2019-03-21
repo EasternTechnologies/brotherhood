@@ -80,18 +80,24 @@
 </template>
 
 <script>
+import axios from 'axios'
+
   export default {
     data() {
       return {
         users: [],
       }
     },
+    mounted() {
+      this.getUsers()
+    },
     methods: {
       getUsers() {
-        axios.get(`/project/1/loadpost`).then(response => {
-          for (var i = 0; i < response.data.length; i++) {
-            this.users.push(response.data[i])
-          }
+        axios.get(`/admin/users/show`).then(response => {
+          console.log(response)
+          // for (var i = 0; i < response.data.length; i++) {
+          //   this.users.push(response.data[i])
+          // }
         })
       }
     }

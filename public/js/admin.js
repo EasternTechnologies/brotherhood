@@ -1955,6 +1955,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1964,12 +1968,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/logout').then(function (response) {
-        if (response.status === 302 || 401) {
-          self.$router.push('/login');
-          console.log(true);
-        } else {// throw error and go to catch block
-        }
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/logout').then(function (response) {// if (response.status === 302 || 401) {
+        //   self.$router.push('/login')
+        //   console.log(true)
+        // }
+        // else {
+        //   // throw error and go to catch block
+        // }
       }).catch(function (error) {});
     }
   }
@@ -2129,6 +2134,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2210,20 +2217,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       users: []
     };
   },
+  mounted: function mounted() {
+    this.getUsers();
+  },
   methods: {
     getUsers: function getUsers() {
-      var _this = this;
-
-      axios.get("/project/1/loadpost").then(function (response) {
-        for (var i = 0; i < response.data.length; i++) {
-          _this.users.push(response.data[i]);
-        }
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/admin/users/show").then(function (response) {
+        console.log(response); // for (var i = 0; i < response.data.length; i++) {
+        //   this.users.push(response.data[i])
+        // }
       });
     }
   }
@@ -2802,7 +2811,7 @@ var render = function() {
               staticClass: "nav__item",
               attrs: {
                 tag: "li",
-                to: "/frontend/admin/dashboard",
+                to: "admin/dashboard",
                 "active-class": "active"
               }
             },
@@ -2836,11 +2845,7 @@ var render = function() {
             "router-link",
             {
               staticClass: "nav__item",
-              attrs: {
-                tag: "li",
-                to: "/frontend/admin/users",
-                "active-class": "active"
-              }
+              attrs: { tag: "li", to: "/admin/users", "active-class": "active" }
             },
             [
               _c("a", { staticClass: "nav__link" }, [
@@ -2874,7 +2879,7 @@ var render = function() {
               staticClass: "nav__item",
               attrs: {
                 tag: "li",
-                to: "/frontend/admin/backup",
+                to: "/admin/backup",
                 "active-class": "active"
               }
             },
@@ -2983,9 +2988,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav__subitem",
-                          attrs: {
-                            to: "/frontend/admin/projects/builders/moderation"
-                          }
+                          attrs: { to: "/admin/projects/builders/moderation" }
                         },
                         [
                           _c("a", { staticClass: "nav__sublink" }, [
@@ -2998,9 +3001,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav__subitem",
-                          attrs: {
-                            to: "/frontend/admin/projects/builders/materials"
-                          }
+                          attrs: { to: "/admin/projects/builders/materials" }
                         },
                         [
                           _c("a", { staticClass: "nav__sublink" }, [
@@ -3022,7 +3023,7 @@ var render = function() {
               staticClass: "nav__item",
               attrs: {
                 tag: "li",
-                to: "/frontend/admin/control",
+                to: "/admin/control",
                 "active-class": "active"
               }
             },
@@ -3058,7 +3059,7 @@ var render = function() {
               staticClass: "nav__item",
               attrs: {
                 tag: "li",
-                to: "/frontend/admin/email-settings",
+                to: "/admin/email-settings",
                 "active-class": "active"
               }
             },
@@ -3255,6 +3256,19 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("span", { staticClass: "logout__text" }, [_vm._v("Выход")])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          { attrs: { id: "logout-form", action: "/logout", method: "POST" } },
+          [
+            _c("input", {
+              attrs: { type: "hidden", name: "_token" },
+              domProps: { value: _vm.csrf }
+            }),
+            _vm._v(" "),
+            _c("button", { attrs: { type: "submit" } }, [_vm._v("Submit")])
           ]
         )
       ])
@@ -19318,27 +19332,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   mode: 'history',
   routes: [{
-    path: '/frontend/admin/dashboard',
+    path: '/admin/dashboard',
     name: 'dashboard',
     component: _pages_Dashboard__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
-    path: '/frontend/admin/users',
+    path: '/admin/users',
     name: 'users',
     component: _pages_Users__WEBPACK_IMPORTED_MODULE_1__["default"]
   }, {
-    path: '/frontend/admin/backup',
+    path: '/admin/backup',
     name: 'backup',
     component: _pages_Backup__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
-    path: '/frontend/admin/projects',
+    path: '/admin/projects',
     name: 'projects',
     component: _pages_Projects__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
-    path: '/frontend/admin/control',
+    path: '/admin/control',
     name: 'control',
     component: _pages_Control__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
-    path: '/frontend/admin/email-settings',
+    path: '/admin/email-settings',
     name: 'emailSettings',
     component: _pages_EmailSettings__WEBPACK_IMPORTED_MODULE_6__["default"]
   }]

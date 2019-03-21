@@ -24,6 +24,10 @@
         </svg>
         <span class="logout__text">Выход</span>
       </a>
+        <form id="logout-form" action="/logout" method="POST">
+          <input type="hidden" name="_token" :value="csrf">
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </div>
   </header>
@@ -39,13 +43,13 @@
     methods:{
       logout:function(){
         axios.post('/logout').then(response => {
-          if (response.status === 302 || 401) {
-            self.$router.push('/login')
-            console.log(true)
-          }
-          else {
-            // throw error and go to catch block
-          }
+          // if (response.status === 302 || 401) {
+          //   self.$router.push('/login')
+          //   console.log(true)
+          // }
+          // else {
+          //   // throw error and go to catch block
+          // }
         }).catch(error => {
 
         });

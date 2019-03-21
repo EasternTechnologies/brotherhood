@@ -41,7 +41,6 @@ class DashboardController extends BaseController
 //		$category = $forumCategoryRepository->getForComboBox();
 
 		return view('forum.admin.layouts.admin');
-
 	}
 
 	/**
