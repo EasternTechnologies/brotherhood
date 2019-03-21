@@ -36,7 +36,7 @@ Route::group(['namespace' => 'Forum', 'prefix' => 'project'], function(){
 
 Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' => 'roles',
     'roles' => ['Admin', 'Author']], function (){
-	Route::get('/{slug}', 'DashboardController@index')->where('slug', '.*');
+	Route::get('/{slug}', function () { return view('forum.admin.layouts.admin');})->where('slug', '[A-Za-z]+');
 	Route::get('/{slug}/show', 'UserController@show');
 	//    Route::get('/', 'DashboardController@index')->name('admin.dashboard.index');
 //    Route::get('/autocomplite', 'DashboardController@show');

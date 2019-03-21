@@ -31,9 +31,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Набоков Иннокентиевич</td>
-              <td><a href="mailto:2tarek.matmeurx@mail.com">2tarek.matmeurx@mail.com</a></td>
+            <tr v-for="user in users">
+              <td>asdasd</td>
+              <td><a href="mailto:2tarek.matmeurx@mail.com"></a></td>
               <td>2tarek.matmeurx</td>
               <td><a href="tel:+80291234567">80291234567</a></td>
               <td>Администратор</td>
@@ -68,7 +68,7 @@
       </div>
 
       <div class="users__new">
-        <button class="users__new-btn btn" type="button">
+        <button class="users__new-btn btn" type="button" @click="getUsers">
           <svg role="img" width="20px" height="20px">
             <use xlink:href="../../../public/img/svg/sprite.svg#user-add"></use>
           </svg>
@@ -93,11 +93,12 @@ import axios from 'axios'
     },
     methods: {
       getUsers() {
-        axios.get(`/admin/users/show`).then(response => {
-          console.log(response)
-          // for (var i = 0; i < response.data.length; i++) {
-          //   this.users.push(response.data[i])
-          // }
+        axios.get('/admin/users/show').then(response => {
+          console.log(response.data)
+          // this.users = response.data
+          for (var i = 0; i < response.data.length; i++) {
+            this.users.push(response.data[i])
+          }
         })
       }
     }

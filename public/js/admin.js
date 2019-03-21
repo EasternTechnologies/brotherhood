@@ -2229,10 +2229,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getUsers: function getUsers() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/admin/users/show").then(function (response) {
-        console.log(response); // for (var i = 0; i < response.data.length; i++) {
-        //   this.users.push(response.data[i])
-        // }
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/users/show').then(function (response) {
+        console.log(response.data); // this.users = response.data
+
+        for (var i = 0; i < response.data.length; i++) {
+          _this.users.push(response.data[i]);
+        }
       });
     }
   }
@@ -3630,136 +3634,144 @@ var render = function() {
         _c("table", [
           _vm._m(1),
           _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("Набоков Иннокентиевич")]),
-              _vm._v(" "),
-              _vm._m(2),
-              _vm._v(" "),
-              _c("td", [_vm._v("2tarek.matmeurx")]),
-              _vm._v(" "),
-              _vm._m(3),
-              _vm._v(" "),
-              _c("td", [_vm._v("Администратор")]),
-              _vm._v(" "),
-              _c(
-                "td",
-                { staticClass: "users-table__controls table-controls" },
-                [
-                  _c("ul", { staticClass: "table-controls__list" }, [
-                    _c("li", { staticClass: "table-controls__item" }, [
-                      _c(
-                        "button",
-                        {
-                          attrs: {
-                            type: "button",
-                            title: "Удалить пользователя"
-                          }
-                        },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "table-controls__item-img",
-                              attrs: {
-                                role: "img",
-                                width: "20px",
-                                height: "20px"
-                              }
-                            },
-                            [
-                              _c("use", {
+          _c(
+            "tbody",
+            _vm._l(_vm.users, function(user) {
+              return _c("tr", [
+                _c("td", [_vm._v("asdasd")]),
+                _vm._v(" "),
+                _vm._m(2, true),
+                _vm._v(" "),
+                _c("td", [_vm._v("2tarek.matmeurx")]),
+                _vm._v(" "),
+                _vm._m(3, true),
+                _vm._v(" "),
+                _c("td", [_vm._v("Администратор")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  { staticClass: "users-table__controls table-controls" },
+                  [
+                    _c("ul", { staticClass: "table-controls__list" }, [
+                      _c("li", { staticClass: "table-controls__item" }, [
+                        _c(
+                          "button",
+                          {
+                            attrs: {
+                              type: "button",
+                              title: "Удалить пользователя"
+                            }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "table-controls__item-img",
                                 attrs: {
-                                  "xlink:href":
-                                    __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") +
-                                    "#user-delete"
+                                  role: "img",
+                                  width: "20px",
+                                  height: "20px"
                                 }
-                              })
-                            ]
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "table-controls__item" }, [
-                      _c(
-                        "button",
-                        {
-                          attrs: {
-                            type: "button",
-                            title: "Блокировать пользователя"
-                          }
-                        },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "table-controls__item-img",
-                              attrs: {
-                                role: "img",
-                                width: "20px",
-                                height: "20px"
-                              }
-                            },
-                            [
-                              _c("use", {
+                              },
+                              [
+                                _c("use", {
+                                  attrs: {
+                                    "xlink:href":
+                                      __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") +
+                                      "#user-delete"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "table-controls__item" }, [
+                        _c(
+                          "button",
+                          {
+                            attrs: {
+                              type: "button",
+                              title: "Блокировать пользователя"
+                            }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "table-controls__item-img",
                                 attrs: {
-                                  "xlink:href":
-                                    __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") +
-                                    "#user-block"
+                                  role: "img",
+                                  width: "20px",
+                                  height: "20px"
                                 }
-                              })
-                            ]
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "table-controls__item" }, [
-                      _c(
-                        "button",
-                        {
-                          attrs: {
-                            type: "button",
-                            title: "Настройки пользователя"
-                          }
-                        },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "table-controls__item-img",
-                              attrs: {
-                                role: "img",
-                                width: "20px",
-                                height: "20px"
-                              }
-                            },
-                            [
-                              _c("use", {
+                              },
+                              [
+                                _c("use", {
+                                  attrs: {
+                                    "xlink:href":
+                                      __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") +
+                                      "#user-block"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "table-controls__item" }, [
+                        _c(
+                          "button",
+                          {
+                            attrs: {
+                              type: "button",
+                              title: "Настройки пользователя"
+                            }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "table-controls__item-img",
                                 attrs: {
-                                  "xlink:href":
-                                    __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") +
-                                    "#user-settings"
+                                  role: "img",
+                                  width: "20px",
+                                  height: "20px"
                                 }
-                              })
-                            ]
-                          )
-                        ]
-                      )
+                              },
+                              [
+                                _c("use", {
+                                  attrs: {
+                                    "xlink:href":
+                                      __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") +
+                                      "#user-settings"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ])
                     ])
-                  ])
-                ]
-              )
-            ])
-          ])
+                  ]
+                )
+              ])
+            }),
+            0
+          )
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "users__new" }, [
         _c(
           "button",
-          { staticClass: "users__new-btn btn", attrs: { type: "button" } },
+          {
+            staticClass: "users__new-btn btn",
+            attrs: { type: "button" },
+            on: { click: _vm.getUsers }
+          },
           [
             _c(
               "svg",
@@ -3844,9 +3856,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [
-      _c("a", { attrs: { href: "mailto:2tarek.matmeurx@mail.com" } }, [
-        _vm._v("2tarek.matmeurx@mail.com")
-      ])
+      _c("a", { attrs: { href: "mailto:2tarek.matmeurx@mail.com" } })
     ])
   },
   function() {

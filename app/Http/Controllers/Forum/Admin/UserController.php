@@ -26,10 +26,10 @@ class UserController extends BaseController
 	 */
 	public function show(Request $request)
 	{
+		$users = $this->userRepository->getAllUsers();
 
-//		dd($request);
-//		$users = $this->userRepository->getAllUsers();
+		dd($users);
 
-		return true;
+		return $users;
 	}
 }
