@@ -8,10 +8,10 @@
           <div class="user-search__block">
             <input name="text" type="text">
             <select name="category">
-              <option value="user">Поиск по пользователям</option>
-              <option value="email">Поиск по email</option>
-              <option value="country">Поиск по странам</option>
-              <option value="phone">Поиск по телефону</option>
+              <option :value="user" :selected="true">Поиск по пользователям</option>
+              <option :value="email">Поиск по email</option>
+              <option :value="country">Поиск по странам</option>
+              <option :value="phone">Поиск по телефону</option>
             </select>
           </div>
         </form>
@@ -32,11 +32,12 @@
           </thead>
           <tbody>
             <tr v-for="user in users">
-              <td>asdasd</td>
-              <td><a href="mailto:2tarek.matmeurx@mail.com"></a></td>
-              <td>2tarek.matmeurx</td>
-              <td><a href="tel:+80291234567">80291234567</a></td>
-              <td>Администратор</td>
+              <td>{{ user.name }}</td>
+              <td><a :href="'mailto:' + user.email">{{ user.email }}</a></td>
+              <td>{{ user.country }}</td>
+              <td><a :href="'tel:+' + user.phone">{{ user.phone }}</a></td>
+              <td>{{ user.roles }}</td>
+
               <td class="users-table__controls table-controls">
                 <ul class="table-controls__list">
                   <li class="table-controls__item">
@@ -68,7 +69,7 @@
       </div>
 
       <div class="users__new">
-        <button class="users__new-btn btn" type="button" @click="getUsers">
+        <button class="users__new-btn btn" type="button">
           <svg role="img" width="20px" height="20px">
             <use xlink:href="../../../public/img/svg/sprite.svg#user-add"></use>
           </svg>
@@ -94,8 +95,7 @@ import axios from 'axios'
     methods: {
       getUsers() {
         axios.get('/admin/users/show').then(response => {
-          console.log(response.data)
-          // this.users = response.data
+          console.log(response);
           for (var i = 0; i < response.data.length; i++) {
             this.users.push(response.data[i])
           }

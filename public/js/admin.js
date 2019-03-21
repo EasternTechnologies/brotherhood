@@ -2217,6 +2217,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2232,7 +2233,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/users/show').then(function (response) {
-        console.log(response.data); // this.users = response.data
+        console.log(response);
 
         for (var i = 0; i < response.data.length; i++) {
           _this.users.push(response.data[i]);
@@ -2815,7 +2816,7 @@ var render = function() {
               staticClass: "nav__item",
               attrs: {
                 tag: "li",
-                to: "admin/dashboard",
+                to: "/admin/dashboard",
                 "active-class": "active"
               }
             },
@@ -3627,26 +3628,64 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "section users" }, [
-    _vm._m(0),
+    _c("header", { staticClass: "section-header" }, [
+      _c("h2", { staticClass: "section-header__title dashboard__title" }, [
+        _vm._v("Пользователи")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "users__serch users-search" }, [
+        _c("form", { staticClass: "users-search__form" }, [
+          _c("div", { staticClass: "user-search__block" }, [
+            _c("input", { attrs: { name: "text", type: "text" } }),
+            _vm._v(" "),
+            _c("select", { attrs: { name: "category" } }, [
+              _c("option", { domProps: { value: _vm.user, selected: true } }, [
+                _vm._v("Поиск по пользователям")
+              ]),
+              _vm._v(" "),
+              _c("option", { domProps: { value: _vm.email } }, [
+                _vm._v("Поиск по email")
+              ]),
+              _vm._v(" "),
+              _c("option", { domProps: { value: _vm.country } }, [
+                _vm._v("Поиск по странам")
+              ]),
+              _vm._v(" "),
+              _c("option", { domProps: { value: _vm.phone } }, [
+                _vm._v("Поиск по телефону")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "section-body users__body" }, [
       _c("div", { staticClass: "users__table users-table" }, [
         _c("table", [
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
             _vm._l(_vm.users, function(user) {
               return _c("tr", [
-                _c("td", [_vm._v("asdasd")]),
+                _c("td", [_vm._v(_vm._s(user.name))]),
                 _vm._v(" "),
-                _vm._m(2, true),
+                _c("td", [
+                  _c("a", { attrs: { href: "mailto:" + user.email } }, [
+                    _vm._v(_vm._s(user.email))
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v("2tarek.matmeurx")]),
+                _c("td", [_vm._v(_vm._s(user.country))]),
                 _vm._v(" "),
-                _vm._m(3, true),
+                _c("td", [
+                  _c("a", { attrs: { href: "tel:+" + user.phone } }, [
+                    _vm._v(_vm._s(user.phone))
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v("Администратор")]),
+                _c("td", [_vm._v(_vm._s(user.roles))]),
                 _vm._v(" "),
                 _c(
                   "td",
@@ -3767,11 +3806,7 @@ var render = function() {
       _c("div", { staticClass: "users__new" }, [
         _c(
           "button",
-          {
-            staticClass: "users__new-btn btn",
-            attrs: { type: "button" },
-            on: { click: _vm.getUsers }
-          },
+          { staticClass: "users__new-btn btn", attrs: { type: "button" } },
           [
             _c(
               "svg",
@@ -3799,42 +3834,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "section-header" }, [
-      _c("h2", { staticClass: "section-header__title dashboard__title" }, [
-        _vm._v("Пользователи")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "users__serch users-search" }, [
-        _c("form", { staticClass: "users-search__form" }, [
-          _c("div", { staticClass: "user-search__block" }, [
-            _c("input", { attrs: { name: "text", type: "text" } }),
-            _vm._v(" "),
-            _c("select", { attrs: { name: "category" } }, [
-              _c("option", { attrs: { value: "user" } }, [
-                _vm._v("Поиск по пользователям")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "email" } }, [
-                _vm._v("Поиск по email")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "country" } }, [
-                _vm._v("Поиск по странам")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "phone" } }, [
-                _vm._v("Поиск по телефону")
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Имя")]),
@@ -3849,22 +3848,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "mailto:2tarek.matmeurx@mail.com" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "tel:+80291234567" } }, [_vm._v("80291234567")])
     ])
   }
 ]

@@ -47,28 +47,25 @@ class UserRepository extends CoreRepository
 	/**
 	 * @return mixed
 	 */
-	public function getAllUsers()
+	public function getAllUsers( $county = null )
 	{
 		$columns = [
 			'users.name as name',
-			'users.email',
-			'users.phone',
-			'countries.name as country'
+			'users.email as email',
+			'users.phone as phone',
+			'countries.name as country',
+			'roles.name as roles'
 		];
 
 		$data = $this
 			->startConditions()
 			->select($columns)
 			->leftjoin('countries', 'country_id', '=', 'countries.id')
-			->with(['roles'
-			=> function ($query){
-				$query->select
-				([
-					'user_id',
-					'role_id'
-				]);
-			}
-			])
+			->leftjoin('role_user', 'users.id', '=', 'role_user.user_id')
+			->leftjoin('roles', 'role_user.role_id', '=', 'roles.id')
+			->when($county, function ($query, $county) {
+				return $query->where('countries.name', $county);
+			})
 			->orderBy('users.name')
 			->get();
 

@@ -2,7 +2,7 @@
   <aside class="page-aside">
     <nav class="nav">
       <ul class="nav__list">
-        <router-link class="nav__item" tag="li" to="admin/dashboard" active-class="active">
+        <router-link class="nav__item" tag="li" to="/admin/dashboard" active-class="active">
           <a class="nav__link">
             <svg class="nav__link-img" role="img" width="30px" height="30px">
               <use xlink:href="../../../public/img/svg/sprite.svg#panel"></use>
