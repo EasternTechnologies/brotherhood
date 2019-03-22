@@ -2,7 +2,7 @@
   <aside class="page-aside">
     <nav class="nav">
       <ul class="nav__list">
-        <router-link class="nav__item" tag="li" to="/frontend/admin/dashboard" active-class="active">
+        <router-link class="nav__item" tag="li" to="/admin/dashboard" active-class="active">
           <a class="nav__link">
             <svg class="nav__link-img" role="img" width="30px" height="30px">
               <use xlink:href="../../../public/img/svg/sprite.svg#panel"></use>
@@ -11,7 +11,7 @@
           </a>
         </router-link>
 
-        <router-link class="nav__item" tag="li" to="/frontend/admin/users" active-class="active">
+        <router-link class="nav__item" tag="li" to="/admin/users" active-class="active">
           <a class="nav__link">
             <svg class="nav__link-img" role="img" width="30px" height="30px">
               <use xlink:href="../../../public/img/svg/sprite.svg#users"></use>
@@ -20,7 +20,7 @@
           </a>
         </router-link>
 
-        <router-link class="nav__item" tag="li" to="/frontend/admin/backup" active-class="active">
+        <router-link class="nav__item" tag="li" to="/admin/backup" active-class="active">
           <a class="nav__link">
             <svg class="nav__link-img" role="img" width="30px" height="30px">
               <use xlink:href="../../../public/img/svg/sprite.svg#backup"></use>
@@ -42,10 +42,10 @@
               <h4 class="nav__subtitle submenu" @click="visible = !visible">Строители</h4>
 
               <ul class="nav__sublist" v-show="visible">
-                <router-link to="/frontend/admin/projects/builders/moderation" class="nav__subitem">
+                <router-link to="/admin/projects/builders/moderation" class="nav__subitem">
                   <a class="nav__sublink">Модерация</a>
                 </router-link>
-                <router-link to="/frontend/admin/projects/builders/materials" class="nav__subitem">
+                <router-link to="/admin/projects/builders/materials" class="nav__subitem">
                   <a class="nav__sublink">Материалы</a>
                 </router-link>
               </ul>
@@ -54,7 +54,7 @@
           </ul>
         </li>
 
-        <router-link class="nav__item" tag="li" to="/frontend/admin/control" active-class="active">
+        <router-link class="nav__item" tag="li" to="/admin/control" active-class="active">
           <a class="nav__link">
             <svg class="nav__link-img" role="img" width="30px" height="30px">
               <use xlink:href="../../../public/img/svg/sprite.svg#control"></use>
@@ -63,7 +63,7 @@
           </a>
         </router-link>
 
-        <router-link class="nav__item" tag="li" to="/frontend/admin/email-settings" active-class="active">
+        <router-link class="nav__item" tag="li" to="/admin/email-settings" active-class="active">
           <a class="nav__link">
             <svg class="nav__link-img" role="img" width="30px" height="30px">
               <use xlink:href="../../../public/img/svg/sprite.svg#email-settings"></use>

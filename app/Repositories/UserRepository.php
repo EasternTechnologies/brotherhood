@@ -43,4 +43,36 @@ class UserRepository extends CoreRepository
 
 		return $data;
 	}
+
+	/**
+	 * get all users with search
+	 *
+	 * @param $wordSearch
+	 * @param $columnSearch
+	 * @return mixed
+	 */
+	public function getAllUsers( $wordSearch, $columnSearch )
+	{
+		$columns = [
+			'users.name as name',
+			'users.email as email',
+			'users.phone as phone',
+			'countries.ru as country',
+			'roles.name as roles'
+		];
+
+		$data = $this
+			->startConditions()
+			->select($columns)
+			->leftjoin('countries', 'country_id', '=', 'countries.id')
+			->leftjoin('role_user', 'users.id', '=', 'role_user.user_id')
+			->leftjoin('roles', 'role_user.role_id', '=', 'roles.id')
+			->when($wordSearch, function ($query) use ($columnSearch, $wordSearch) {
+				return $query->where($columnSearch, 'like', '%' . $wordSearch . '%');
+			})
+			->orderBy('users.name')
+			->paginate(20);
+
+		return $data;
+	}
 }
