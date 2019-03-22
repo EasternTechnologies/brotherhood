@@ -2217,30 +2217,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      users: []
+      users: [],
+      selectedSearch: '',
+      selected: 'users.name',
+      options: [{
+        text: 'Поиск по пользователям',
+        value: 'users.name'
+      }, {
+        text: 'Поиск по email',
+        value: 'users.email'
+      }, {
+        text: 'Поиск по странам',
+        value: 'countries.name'
+      }, {
+        text: 'Поиск по телефону',
+        value: 'users.phone'
+      }]
     };
   },
-  mounted: function mounted() {
+  beforeMount: function beforeMount() {
     this.getUsers();
   },
   methods: {
     getUsers: function getUsers() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/users/show').then(function (response) {
-        console.log(response);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/users/show', {
+        params: {
+          selected: this.selected,
+          selectedSearch: this.selectedSearch
+        }
+      }).then(function (response) {
+        _this.users = [];
 
         for (var i = 0; i < response.data.length; i++) {
           _this.users.push(response.data[i]);
         }
       });
+    },
+    searchWithOption: function searchWithOption() {
+      this.getUsers();
     }
-  }
+  } // computed: {
+  //   paintWord() {
+  //     if (this.selectedSearch !== '') {
+  //    // this.selectedSearch, this.selected
+  //     $item = this.users.filter(name => {
+  //
+  //     })
+  //
+  //
+  //     }
+  //     return this.users
+  //   }
+  // }
+
 });
 
 /***/ }),
@@ -3634,29 +3669,88 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "users__serch users-search" }, [
-        _c("form", { staticClass: "users-search__form" }, [
-          _c("div", { staticClass: "user-search__block" }, [
-            _c("input", { attrs: { name: "text", type: "text" } }),
-            _vm._v(" "),
-            _c("select", { attrs: { name: "category" } }, [
-              _c("option", { domProps: { value: _vm.user, selected: true } }, [
-                _vm._v("Поиск по пользователям")
-              ]),
+        _c(
+          "form",
+          {
+            staticClass: "users-search__form",
+            on: {
+              keydown: function($event) {
+                if (
+                  !$event.type.indexOf("key") &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
+                }
+                $event.preventDefault()
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "user-search__block" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selectedSearch,
+                    expression: "selectedSearch"
+                  }
+                ],
+                attrs: { name: "text", type: "text" },
+                domProps: { value: _vm.selectedSearch },
+                on: {
+                  keyup: _vm.searchWithOption,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.selectedSearch = $event.target.value
+                  }
+                }
+              }),
               _vm._v(" "),
-              _c("option", { domProps: { value: _vm.email } }, [
-                _vm._v("Поиск по email")
-              ]),
-              _vm._v(" "),
-              _c("option", { domProps: { value: _vm.country } }, [
-                _vm._v("Поиск по странам")
-              ]),
-              _vm._v(" "),
-              _c("option", { domProps: { value: _vm.phone } }, [
-                _vm._v("Поиск по телефону")
-              ])
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selected,
+                      expression: "selected"
+                    }
+                  ],
+                  attrs: { name: "category" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selected = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                _vm._l(_vm.options, function(option) {
+                  return _c("option", { domProps: { value: option.value } }, [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(option.text) +
+                        "\n            "
+                    )
+                  ])
+                }),
+                0
+              )
             ])
-          ])
-        ])
+          ]
+        )
       ])
     ]),
     _vm._v(" "),
@@ -3669,23 +3763,29 @@ var render = function() {
             "tbody",
             _vm._l(_vm.users, function(user) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(user.name))]),
+                _c("td", { attrs: { value: user.name } }, [
+                  _vm._v(_vm._s(user.name))
+                ]),
                 _vm._v(" "),
-                _c("td", [
+                _c("td", { attrs: { value: user.email } }, [
                   _c("a", { attrs: { href: "mailto:" + user.email } }, [
                     _vm._v(_vm._s(user.email))
                   ])
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(user.country))]),
+                _c("td", { attrs: { value: user.country } }, [
+                  _vm._v(_vm._s(user.country))
+                ]),
                 _vm._v(" "),
-                _c("td", [
+                _c("td", { attrs: { value: user.phone } }, [
                   _c("a", { attrs: { href: "tel:+" + user.phone } }, [
                     _vm._v(_vm._s(user.phone))
                   ])
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(user.roles))]),
+                _c("td", { attrs: { value: user.roles } }, [
+                  _vm._v(_vm._s(user.roles))
+                ]),
                 _vm._v(" "),
                 _c(
                   "td",
@@ -3806,7 +3906,11 @@ var render = function() {
       _c("div", { staticClass: "users__new" }, [
         _c(
           "button",
-          { staticClass: "users__new-btn btn", attrs: { type: "button" } },
+          {
+            staticClass: "users__new-btn btn",
+            attrs: { type: "button" },
+            on: { click: _vm.getUsers }
+          },
           [
             _c(
               "svg",

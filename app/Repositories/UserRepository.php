@@ -47,7 +47,7 @@ class UserRepository extends CoreRepository
 	/**
 	 * @return mixed
 	 */
-	public function getAllUsers( $county = null )
+	public function getAllUsers( $wordSearch, $columnSearch )
 	{
 		$columns = [
 			'users.name as name',
@@ -63,8 +63,8 @@ class UserRepository extends CoreRepository
 			->leftjoin('countries', 'country_id', '=', 'countries.id')
 			->leftjoin('role_user', 'users.id', '=', 'role_user.user_id')
 			->leftjoin('roles', 'role_user.role_id', '=', 'roles.id')
-			->when($county, function ($query, $county) {
-				return $query->where('countries.name', $county);
+			->when($wordSearch, function ($query) use ($columnSearch, $wordSearch) {
+				return $query->where($columnSearch, 'like', '%' . $wordSearch . '%');
 			})
 			->orderBy('users.name')
 			->get();

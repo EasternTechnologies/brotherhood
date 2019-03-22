@@ -27,10 +27,13 @@ class UserController extends BaseController
 	/**
 	 * @return mixed
 	 */
-	public function show()
+	public function show(Request $request)
 	{
-		$users = $this->userRepository->getAllUsers();
-		$county = json_decode(Redis::get(App::getlocale()), true);
+		$wordSearch = $request->selectedSearch;
+		$columnSearch = $request->selected;
+
+		$users = $this->userRepository->getAllUsers($wordSearch, $columnSearch);
+		$county = json_decode(Redis::get('ru'), true);
 		foreach ( $users as $user)
 		{
 			$user->country = $county[$user->country];
