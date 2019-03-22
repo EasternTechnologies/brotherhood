@@ -2217,6 +2217,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2232,11 +2244,13 @@ __webpack_require__.r(__webpack_exports__);
         value: 'users.email'
       }, {
         text: 'Поиск по странам',
-        value: 'countries.name'
+        value: 'countries.ru'
       }, {
         text: 'Поиск по телефону',
         value: 'users.phone'
-      }]
+      }],
+      url: '/admin/users/show',
+      pagination: []
     };
   },
   beforeMount: function beforeMount() {
@@ -2246,36 +2260,35 @@ __webpack_require__.r(__webpack_exports__);
     getUsers: function getUsers() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/users/show', {
+      var $this = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, {
         params: {
           selected: this.selected,
           selectedSearch: this.selectedSearch
         }
       }).then(function (response) {
         _this.users = [];
-
-        for (var i = 0; i < response.data.length; i++) {
-          _this.users.push(response.data[i]);
-        }
+        _this.users = response.data.data;
+        $this.makePagination(response.data);
       });
     },
     searchWithOption: function searchWithOption() {
       this.getUsers();
+    },
+    makePagination: function makePagination(data) {
+      var pagination = {
+        current_page: data.current_page,
+        last_page: data.last_page,
+        next_page_url: data.next_page_url,
+        prev_page_url: data.prev_page_url
+      };
+      this.pagination = pagination;
+    },
+    fetchPaginateUsers: function fetchPaginateUsers(url) {
+      this.url = url;
+      this.getUsers();
     }
-  } // computed: {
-  //   paintWord() {
-  //     if (this.selectedSearch !== '') {
-  //    // this.selectedSearch, this.selected
-  //     $item = this.users.filter(name => {
-  //
-  //     })
-  //
-  //
-  //     }
-  //     return this.users
-  //   }
-  // }
-
+  }
 });
 
 /***/ }),
@@ -3928,6 +3941,45 @@ var render = function() {
             _vm._v(" "),
             _c("span", [_vm._v("Создать пользователя")])
           ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "user__pagination pagination" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn pagination__btn pagination__btn--prev",
+            attrs: { disabled: !_vm.pagination.prev_page_url },
+            on: {
+              click: function($event) {
+                return _vm.fetchPaginateUsers(_vm.pagination.prev_page_url)
+              }
+            }
+          },
+          [_vm._v("\n        Previos\n      ")]
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "pagination__info" }, [
+          _vm._v(
+            "Page " +
+              _vm._s(_vm.pagination.current_page) +
+              " of " +
+              _vm._s(_vm.pagination.last_page)
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn pagination__btn pagination__btn--next",
+            attrs: { disabled: !_vm.pagination.next_page_url },
+            on: {
+              click: function($event) {
+                return _vm.fetchPaginateUsers(_vm.pagination.next_page_url)
+              }
+            }
+          },
+          [_vm._v("\n        Next\n      ")]
         )
       ])
     ])

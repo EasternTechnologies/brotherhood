@@ -53,7 +53,7 @@ class UserRepository extends CoreRepository
 			'users.name as name',
 			'users.email as email',
 			'users.phone as phone',
-			'countries.name as country',
+			'countries.ru as country',
 			'roles.name as roles'
 		];
 
@@ -67,7 +67,8 @@ class UserRepository extends CoreRepository
 				return $query->where($columnSearch, 'like', '%' . $wordSearch . '%');
 			})
 			->orderBy('users.name')
-			->get();
+//			->get();
+			->paginate(20);
 
 		return $data;
 	}

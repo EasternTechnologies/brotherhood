@@ -15,6 +15,7 @@ use App\Repositories\ForumPostRepository;
 use App\Repositories\ForumCategoryRepository;
 use App\Http\Requests\ForumPostCreateRequest;
 
+
 class ProjectController extends Controller
 {
 	private $forumPostRepository;
@@ -43,16 +44,6 @@ class ProjectController extends Controller
 	 */
 	public function index($id)
 	{
-		$item = json_decode(Redis::get('ru'),true);
-		$result=[];
-		foreach ( $item as $key => $value )
-		{
-			$result[] = $value;
-		}
-
-
-		dd( $result);
-
 		$category = $this->forumCategoryRepository->getCategoryTitle($id);
 		$count_user = $this->userRepository->getCountUser();
 		return view('forum.builders', compact('category', 'count_user'));

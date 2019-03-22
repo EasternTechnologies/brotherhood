@@ -33,11 +33,6 @@ class UserController extends BaseController
 		$columnSearch = $request->selected;
 
 		$users = $this->userRepository->getAllUsers($wordSearch, $columnSearch);
-		$county = json_decode(Redis::get('ru'), true);
-		foreach ( $users as $user)
-		{
-			$user->country = $county[$user->country];
-		}
 
 		return $users;
 	}
