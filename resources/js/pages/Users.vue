@@ -119,7 +119,6 @@ import axios from 'axios'
         axios.get( this.url, { params: { selected: this.selected,
                   selectedSearch: this.selectedSearch } }).then(response => {
           this.users = []
-
           this.users = response.data.data
           $this.makePagination(response.data)
         })

@@ -45,6 +45,10 @@ class UserRepository extends CoreRepository
 	}
 
 	/**
+	 * get all users with search
+	 *
+	 * @param $wordSearch
+	 * @param $columnSearch
 	 * @return mixed
 	 */
 	public function getAllUsers( $wordSearch, $columnSearch )
@@ -67,7 +71,6 @@ class UserRepository extends CoreRepository
 				return $query->where($columnSearch, 'like', '%' . $wordSearch . '%');
 			})
 			->orderBy('users.name')
-//			->get();
 			->paginate(20);
 
 		return $data;
