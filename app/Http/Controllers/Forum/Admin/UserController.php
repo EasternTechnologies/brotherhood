@@ -3,12 +3,7 @@
 namespace App\Http\Controllers\Forum\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\App;
-
-
 
 class UserController extends BaseController
 {

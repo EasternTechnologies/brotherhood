@@ -6,7 +6,7 @@
     <div class="section-body dashboard__body">
       <ul class="dashboard__list">
         <li class="dashboard__item dashboard-item dashboard-item--comments">
-          <a class="dashboard-item__link" href="#">
+          <a class="dashboard-item__link" href="/admin/projects/builders/moderation">
             <span class="dashboard-item__count" v-model="published">{{ published }}</span>
             <h3 class="dashboard-item__title" >Количество <br> комментариев</h3>
           </a>
@@ -18,7 +18,7 @@
           </a>
         </li>
         <li class="dashboard__item dashboard-item dashboard-item--unmoderated">
-          <a class="dashboard-item__link" href="#">
+          <a class="dashboard-item__link" href="/admin/projects/builders/materials">
             <span class="dashboard-item__count" v-model="on_moderate">{{ on_moderate }}</span>
             <h3 class="dashboard-item__title">Неотмодерированные <br> комментарии</h3>
           </a>
@@ -44,8 +44,7 @@
     },
     methods: {
       getProjectCards() {
-        axios.get( this.url, { params: { published: this.published,
-            count_users: this.count_users, on_moderate: this.on_moderate } }).then(response => {
+        axios.get( this.url ).then(response => {
           this.published = response.data.published
           this.count_users = response.data.count_users
           this.on_moderate = response.data.on_moderate

@@ -8,7 +8,7 @@
           <div class="user-search__block">
             <input name="text" type="text" v-model="selectedSearch" @keyup="searchWithOption">
             <select name="category" v-model="selected">
-              <option v-for="option in options" :value="option.value">
+              <option v-for="option in options" :key="option.id" :value="option.value">
                 {{ option.text }}
               </option>
             </select>
@@ -115,11 +115,11 @@ import axios from 'axios'
     },
     methods: {
       getUsers() {
-        let $this = this
+        let $this = this;
         axios.get( this.url, { params: { selected: this.selected,
                   selectedSearch: this.selectedSearch } }).then(response => {
-          this.users = []
-          this.users = response.data.data
+          this.users = [];
+          this.users = response.data.data;
           $this.makePagination(response.data)
         })
       },
@@ -132,12 +132,12 @@ import axios from 'axios'
           last_page:  data.last_page,
           next_page_url: data.next_page_url,
           prev_page_url: data.prev_page_url
-        }
+        };
 
         this.pagination = pagination
       },
       fetchPaginateUsers(url) {
-        this.url = url
+        this.url = url;
         this.getUsers()
       }
     }

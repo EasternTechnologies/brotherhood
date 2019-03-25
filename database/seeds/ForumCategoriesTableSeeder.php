@@ -18,7 +18,8 @@ class ForumCategoriesTableSeeder extends Seeder
 			$cName = 'Проект #' . $i;
 
 			$categories[] = [
-				'title' => $cName,
+				'title'	=>	$cName,
+				'slug' 	=>	'builders',
 			];
 		}
 

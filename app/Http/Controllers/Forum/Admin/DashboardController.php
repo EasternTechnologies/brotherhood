@@ -13,6 +13,7 @@ class DashboardController extends BaseController
 {
 	private $userRepository;
 	private $forumPostRepository;
+	private $forumCategoryRepository;
 
 	/**
 	 * construct new model for search in repository
@@ -23,6 +24,7 @@ class DashboardController extends BaseController
 	{
 		$this->userRepository = app(UserRepository::class);
 		$this->forumPostRepository = app(ForumPostRepository::class);
+		$this->forumCategoryRepository =app(ForumCategoryRepository::class);
 	}
 
 	/**
@@ -60,6 +62,18 @@ class DashboardController extends BaseController
 //		$category = $forumCategoryRepository->getForComboBox();
 
 		return $data;
+	}
+
+	/**
+	 * get url project to asideBar
+	 *
+	 * @return mixed
+	 */
+	public function projectSlug()
+	{
+		$getAllProject = $this->forumCategoryRepository->getAllProject();
+
+		return $getAllProject;
 	}
 
 	/**

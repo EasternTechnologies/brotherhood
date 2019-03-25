@@ -5,6 +5,7 @@ import Backup from './pages/Backup'
 import Projects from './pages/Projects'
 import Control from './pages/Control'
 import EmailSettings from './pages/EmailSettings'
+import ProjectPost from './pages/ProjectPost'
 
 export default new VueRouter ({
   mode: 'history',
@@ -39,5 +40,10 @@ export default new VueRouter ({
       name: 'emailSettings',
       component: EmailSettings
     },
+    {
+      path: '/admin/projects/:project+/:publish',
+      name: 'projectModeration',
+      component: ProjectPost
+    }
   ]
 })

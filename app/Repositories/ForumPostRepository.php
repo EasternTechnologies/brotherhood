@@ -181,4 +181,35 @@ class ForumPostRepository extends CoreRepository
 
         return $data;
     }
+
+    public function getPostsWithCountry($published, $category, $country = null)
+	{
+		$columns = [
+			'forum_posts.text',
+			'forum_posts.user_id',
+			'forum_posts.category_id',
+			'forum_posts.created_at',
+			'forum_posts.updated_at',
+			'forum_posts.country_id',
+			'countries.ru',
+		];
+
+		$data = $this
+			->startConditions()
+			->select($columns)
+			->leftJoin('forum_categories', 'category_id', '=', 'forum_categories.id')
+			->leftjoin('countries', 'country_id', '=', 'countries.id')
+			->where([
+				['forum_posts.is_published', '=', $published],
+				['forum_categories.slug', '=', $category ]
+			])
+			->when($country, function ($query) use ($country) {
+				return $query
+					->where('countries.ru', '=', $country );
+			})
+			->orderBy('forum_posts.created_at', 'DESC')
+			->paginate(20);
+
+		return $data;
+	}
 }

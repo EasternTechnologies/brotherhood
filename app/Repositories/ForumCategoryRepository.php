@@ -69,6 +69,26 @@ class  ForumCategoryRepository extends CoreRepository
         return $data;
     }
 
+	/**
+	 * get all project with name && slug for url
+	 *
+	 * @return mixed
+	 */
+    public function getAllProject()
+	{
+		$columns = [
+			'title',
+			'slug'
+		];
+
+		$data = $this
+			->startConditions()
+			->select($columns)
+			->get();
+
+		return $data;
+	}
+
     /**
      * @param int|null $perPage
      *

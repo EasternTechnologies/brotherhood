@@ -38,19 +38,9 @@
           </h3>
 
           <ul class="nav__sublist" v-show="show">
-            <li class="nav__subitem">
-              <h4 class="nav__subtitle submenu" @click="visible = !visible">Строители</h4>
 
-              <ul class="nav__sublist" v-show="visible">
-                <router-link to="/admin/projects/builders/moderation" class="nav__subitem">
-                  <a class="nav__sublink">Модерация</a>
-                </router-link>
-                <router-link to="/admin/projects/builders/materials" class="nav__subitem">
-                  <a class="nav__sublink">Материалы</a>
-                </router-link>
-              </ul>
+              <app-asideLiProject  v-for="project in projects" :key="project.id" :project="project"></app-asideLiProject>
 
-            </li>
           </ul>
         </li>
 
@@ -77,15 +67,26 @@
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
     data() {
       return {
+        projects: '',
         show: false,
         visible: false,
+        url: '/admin/projects/project_slug',
       }
     },
+    beforeMount() {
+      this.getProjects()
+    },
     methods: {
-     
+      getProjects() {
+        axios.get( this.url ).then(response => {
+         this.projects = response.data
+        })
+      },
     }
   }
 
