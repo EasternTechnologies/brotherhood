@@ -25,6 +25,9 @@ class UserController extends BaseController
 	}
 
 	/**
+	 * Show all user with search column
+	 *
+	 * @param Request $request
 	 * @return mixed
 	 */
 	public function show(Request $request)

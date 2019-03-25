@@ -7,9 +7,24 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\ForumPostRepository;
 use App\Repositories\ForumCategoryRepository;
+use App\Repositories\UserRepository;
 
 class DashboardController extends BaseController
 {
+	private $userRepository;
+	private $forumPostRepository;
+
+	/**
+	 * construct new model for search in repository
+	 *
+	 * UserController constructor.
+	 */
+	public function __construct()
+	{
+		$this->userRepository = app(UserRepository::class);
+		$this->forumPostRepository = app(ForumPostRepository::class);
+	}
+
 	/**
 	 * Dashboard panel for admin
 	 *
@@ -18,8 +33,12 @@ class DashboardController extends BaseController
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
-	public function index(ForumCategoryRepository $forumCategoryRepository, ForumPostRepository $forumPostRepository)
+	public function index()
 	{
+		$data['count_users'] = $this->userRepository->getCountUser();
+		$data['published'] = $this->forumPostRepository->getPublishedCount();
+		$data['on_moderate'] = $this->forumPostRepository->getOnModerateCount();
+
 //		$message = 'Eastern Technologies';
 //		$number_item = 0;
 //		$coordinates = [
@@ -40,7 +59,7 @@ class DashboardController extends BaseController
 //
 //		$category = $forumCategoryRepository->getForComboBox();
 
-		return view('forum.admin.layouts.admin');
+		return $data;
 	}
 
 	/**

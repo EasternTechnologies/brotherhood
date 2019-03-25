@@ -100,6 +100,37 @@ class ForumPostRepository extends CoreRepository
         return $data;
     }
 
+
+	/**
+	 * Get all count published post
+	 *
+	 * @return mixed
+	 */
+    public function getPublishedCount()
+	{
+		$data = $this
+			->startConditions()
+			->where('is_published', true)
+			->count();
+
+		return $data;
+	}
+
+	/**
+	 * Get all count on moderate post
+	 *
+	 * @return mixed
+	 */
+	public function getOnModerateCount()
+	{
+		$data = $this
+			->startConditions()
+			->where('is_published', false)
+			->count();
+
+		return $data;
+	}
+
     /**
 	 * Get all published post with country
 	 *

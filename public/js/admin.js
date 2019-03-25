@@ -2041,6 +2041,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2071,7 +2073,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      url: '/admin/dashboard/project_cards',
+      published: '',
+      count_users: '',
+      on_moderate: ''
+    };
+  },
+  beforeMount: function beforeMount() {
+    this.getProjectCards();
+  },
+  methods: {
+    getProjectCards: function getProjectCards() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, {
+        params: {
+          published: this.published,
+          count_users: this.count_users,
+          on_moderate: this.on_moderate
+        }
+      }).then(function (response) {
+        _this.published = response.data.published;
+        _this.count_users = response.data.count_users;
+        _this.on_moderate = response.data.on_moderate;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -3464,103 +3496,155 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("section", { staticClass: "section dashboard" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "section-body dashboard__body" }, [
+      _c("ul", { staticClass: "dashboard__list" }, [
+        _c(
+          "li",
+          {
+            staticClass:
+              "dashboard__item dashboard-item dashboard-item--comments"
+          },
+          [
+            _c(
+              "a",
+              { staticClass: "dashboard-item__link", attrs: { href: "#" } },
+              [
+                _c(
+                  "span",
+                  {
+                    staticClass: "dashboard-item__count",
+                    model: {
+                      value: _vm.published,
+                      callback: function($$v) {
+                        _vm.published = $$v
+                      },
+                      expression: "published"
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.published))]
+                ),
+                _vm._v(" "),
+                _vm._m(1)
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "dashboard__item dashboard-item dashboard-item--users"
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "dashboard-item__link",
+                attrs: { href: "/admin/users" }
+              },
+              [
+                _c(
+                  "span",
+                  {
+                    staticClass: "dashboard-item__count",
+                    model: {
+                      value: _vm.count_users,
+                      callback: function($$v) {
+                        _vm.count_users = $$v
+                      },
+                      expression: "count_users"
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.count_users))]
+                ),
+                _vm._v(" "),
+                _vm._m(2)
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass:
+              "dashboard__item dashboard-item dashboard-item--unmoderated"
+          },
+          [
+            _c(
+              "a",
+              { staticClass: "dashboard-item__link", attrs: { href: "#" } },
+              [
+                _c(
+                  "span",
+                  {
+                    staticClass: "dashboard-item__count",
+                    model: {
+                      value: _vm.on_moderate,
+                      callback: function($$v) {
+                        _vm.on_moderate = $$v
+                      },
+                      expression: "on_moderate"
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.on_moderate))]
+                ),
+                _vm._v(" "),
+                _vm._m(3)
+              ]
+            )
+          ]
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "section dashboard" }, [
-      _c("header", { staticClass: "section-header" }, [
-        _c(
-          "h2",
-          {
-            staticClass:
-              "section-header__title dashboard__title visually-hidden"
-          },
-          [_vm._v("Панель с общей статистикой")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "section-body dashboard__body" }, [
-        _c("ul", { staticClass: "dashboard__list" }, [
-          _c(
-            "li",
-            {
-              staticClass:
-                "dashboard__item dashboard-item dashboard-item--comments"
-            },
-            [
-              _c(
-                "a",
-                { staticClass: "dashboard-item__link", attrs: { href: "#" } },
-                [
-                  _c("span", { staticClass: "dashboard-item__count" }, [
-                    _vm._v("15")
-                  ]),
-                  _vm._v(" "),
-                  _c("h3", { staticClass: "dashboard-item__title" }, [
-                    _vm._v("Количество "),
-                    _c("br"),
-                    _vm._v(" комментариев")
-                  ])
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass:
-                "dashboard__item dashboard-item dashboard-item--users"
-            },
-            [
-              _c(
-                "a",
-                { staticClass: "dashboard-item__link", attrs: { href: "#" } },
-                [
-                  _c("span", { staticClass: "dashboard-item__count" }, [
-                    _vm._v("70")
-                  ]),
-                  _vm._v(" "),
-                  _c("h3", { staticClass: "dashboard-item__title" }, [
-                    _vm._v("Количество "),
-                    _c("br"),
-                    _vm._v(" пользователей")
-                  ])
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass:
-                "dashboard__item dashboard-item dashboard-item--unmoderated"
-            },
-            [
-              _c(
-                "a",
-                { staticClass: "dashboard-item__link", attrs: { href: "#" } },
-                [
-                  _c("span", { staticClass: "dashboard-item__count" }, [
-                    _vm._v("25")
-                  ]),
-                  _vm._v(" "),
-                  _c("h3", { staticClass: "dashboard-item__title" }, [
-                    _vm._v("Неотмодерированные "),
-                    _c("br"),
-                    _vm._v(" комментарии")
-                  ])
-                ]
-              )
-            ]
-          )
-        ])
-      ])
+    return _c("header", { staticClass: "section-header" }, [
+      _c(
+        "h2",
+        {
+          staticClass: "section-header__title dashboard__title visually-hidden"
+        },
+        [_vm._v("Панель с общей статистикой")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "dashboard-item__title" }, [
+      _vm._v("Количество "),
+      _c("br"),
+      _vm._v(" комментариев")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "dashboard-item__title" }, [
+      _vm._v("Количество "),
+      _c("br"),
+      _vm._v(" пользователей")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "dashboard-item__title" }, [
+      _vm._v("Неотмодерированные "),
+      _c("br"),
+      _vm._v(" комментарии")
     ])
   }
 ]
