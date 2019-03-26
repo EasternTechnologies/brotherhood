@@ -8,16 +8,14 @@
             <form class="search-form" autocomplete="off">
                 <p class="search-form__block">
                     <label aria-label="Искать на странице">
-                        <input class="" name="search" type="search" placeholder="Поиск" >
+                        <input class="" name="search" type="search" placeholder="Поиск" v-model="search" @keyup="searchWord">
+                        <input type="hidden" name="_token" :value="csrf">
                     </label>
 
                 </p>
-
-                <p class="search-form__result" >
-                    <ul class="search-form__result-list">
-                        <li class="search-form__result-item" ></li>
-                    </ul>
-                </p>
+                <ul class="search-form__result-list">
+                    <li class="search-form__result-item" v-for="country in countries" :key="country.id" @click="selectCountry($event)">{{country}}</li>
+                </ul>
             </form>
         </header>
         <div class="section-body users__body">
@@ -33,7 +31,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="post in posts">
+                    <tr v-for="post in posts" :key="post.id">
                         <td :value="post.text">{{ post.text }}</td>
                         <td :value="post.ru">{{ post.ru }}</td>
                         <td :value="post.created_at">{{ post.created_at }}</td>
@@ -96,6 +94,8 @@ export default {
             pagination: [],
             url: '',
             search: '',
+            countries: [],
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         }
     },
     mounted() {
@@ -103,12 +103,25 @@ export default {
         this.getAllPosts()
     },
     methods: {
+        searchWord() {
+            this.countries = [];
+            axios.post("/admin/projects/" + this.project + "/" + this.publish + "/searchCountry",
+                { params: { search: this.search } }).then(response => {
+                this.countries = response.data;
+            })
+        },
+        selectCountry(event) {
+            this.search = event.target.innerHTML;
+            this.countries = [];
+            this.getAllPosts();
+        },
         getAllPosts() {
             let $this = this;
             axios.get( this.url,
-                { params: { publish: this.publish, project: this.project } }).then(response => {
-                this.posts = response.data.data
-                $this.makePagination(response.data)
+                { params: { publish: this.publish, project: this.project, country: this.search } }).then(response => {
+
+                this.posts = response.data.data;
+                $this.makePagination(response.data);
             })
         },
         makePagination(data) {
@@ -151,5 +164,10 @@ export default {
 
     .search-form__block input {
         background: #c4c4c4;
+    }
+
+    .search-form__result-list {
+        background: #c4c4c4;
+        margin-top: 20px;
     }
 </style>

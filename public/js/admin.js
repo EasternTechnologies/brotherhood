@@ -2273,8 +2273,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2285,7 +2283,9 @@ __webpack_require__.r(__webpack_exports__);
       posts: [],
       pagination: [],
       url: '',
-      search: ''
+      search: '',
+      countries: [],
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
   mounted: function mounted() {
@@ -2293,17 +2293,35 @@ __webpack_require__.r(__webpack_exports__);
     this.getAllPosts();
   },
   methods: {
-    getAllPosts: function getAllPosts() {
+    searchWord: function searchWord() {
       var _this = this;
+
+      this.countries = [];
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/projects/" + this.project + "/" + this.publish + "/searchCountry", {
+        params: {
+          search: this.search
+        }
+      }).then(function (response) {
+        _this.countries = response.data;
+      });
+    },
+    selectCountry: function selectCountry(event) {
+      this.search = event.target.innerHTML;
+      this.countries = [];
+      this.getAllPosts();
+    },
+    getAllPosts: function getAllPosts() {
+      var _this2 = this;
 
       var $this = this;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, {
         params: {
           publish: this.publish,
-          project: this.project
+          project: this.project,
+          country: this.search
         }
       }).then(function (response) {
-        _this.posts = response.data.data;
+        _this2.posts = response.data.data;
         $this.makePagination(response.data);
       });
     },
@@ -2328,10 +2346,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     _admin__WEBPACK_IMPORTED_MODULE_1__["eventEmitter"].$on('updateData', function () {
-      _this2.getAllPosts();
+      _this3.getAllPosts();
     });
   }
 });
@@ -2543,7 +2561,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.search-form[data-v-193d5040] {\n    width: 100%;\n}\n.search-form__block[data-v-193d5040] {\n    position: relative;\n}\n.search-form__block input[data-v-193d5040] {\n    background: #c4c4c4;\n}\n", ""]);
+exports.push([module.i, "\n.search-form[data-v-193d5040] {\n    width: 100%;\n}\n.search-form__block[data-v-193d5040] {\n    position: relative;\n}\n.search-form__block input[data-v-193d5040] {\n    background: #c4c4c4;\n}\n.search-form__result-list[data-v-193d5040] {\n    background: #c4c4c4;\n    margin-top: 20px;\n}\n", ""]);
 
 // exports
 
@@ -4605,18 +4623,74 @@ var render = function() {
           : _c("span", [_vm._v("Материалы")])
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _c(
+        "form",
+        { staticClass: "search-form", attrs: { autocomplete: "off" } },
+        [
+          _c("p", { staticClass: "search-form__block" }, [
+            _c("label", { attrs: { "aria-label": "Искать на странице" } }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search,
+                    expression: "search"
+                  }
+                ],
+                attrs: { name: "search", type: "search", placeholder: "Поиск" },
+                domProps: { value: _vm.search },
+                on: {
+                  keyup: _vm.searchWord,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: _vm.csrf }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "search-form__result-list" },
+            _vm._l(_vm.countries, function(country) {
+              return _c(
+                "li",
+                {
+                  key: country.id,
+                  staticClass: "search-form__result-item",
+                  on: {
+                    click: function($event) {
+                      return _vm.selectCountry($event)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(country))]
+              )
+            }),
+            0
+          )
+        ]
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "section-body users__body" }, [
       _c("div", { staticClass: "users__table users-table" }, [
         _c("table", [
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
             _vm._l(_vm.posts, function(post) {
-              return _c("tr", [
+              return _c("tr", { key: post.id }, [
                 _c("td", { attrs: { value: post.text } }, [
                   _vm._v(_vm._s(post.text))
                 ]),
@@ -4791,30 +4865,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "form",
-      { staticClass: "search-form", attrs: { autocomplete: "off" } },
-      [
-        _c("p", { staticClass: "search-form__block" }, [
-          _c("label", { attrs: { "aria-label": "Искать на странице" } }, [
-            _c("input", {
-              attrs: { name: "search", type: "search", placeholder: "Поиск" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "search-form__result" }, [
-          _c("ul", { staticClass: "search-form__result-list" }, [
-            _c("li", { staticClass: "search-form__result-item" })
-          ])
-        ])
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

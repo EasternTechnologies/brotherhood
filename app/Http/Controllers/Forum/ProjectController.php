@@ -15,7 +15,6 @@ use App\Repositories\ForumPostRepository;
 use App\Repositories\ForumCategoryRepository;
 use App\Http\Requests\ForumPostCreateRequest;
 
-
 class ProjectController extends Controller
 {
 	private $forumPostRepository;
