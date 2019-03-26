@@ -41,6 +41,24 @@ class PostController extends BaseController
 	}
 
 	/**
+	 * edit post
+	 *
+	 * @param Request $request
+	 * @return Request
+	 */
+	public function editPost(Request $request)
+	{
+		($request->country) ? $country = $request->country : $country = null;
+
+		$post = $this->forumPostRepository->getEdit($request->id);
+
+		$oldCountry = $post->country->ru;
+		$oldUser = $post->user->name;
+
+		return $post;
+	}
+
+	/**
 	 * search on country list who's into redis (language = rus)
 	 *
 	 * @param Request $request

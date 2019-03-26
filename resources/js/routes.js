@@ -6,6 +6,7 @@ import Projects from './pages/Projects'
 import Control from './pages/Control'
 import EmailSettings from './pages/EmailSettings'
 import ProjectPost from './pages/ProjectPost'
+import EditPost from './pages/EditPost'
 
 export default new VueRouter ({
   mode: 'history',
@@ -41,9 +42,15 @@ export default new VueRouter ({
       component: EmailSettings
     },
     {
-      path: '/admin/projects/:project+/:publish',
+      path: '/admin/projects/:project/:publish',
       name: 'projectModeration',
       component: ProjectPost
-    }
+    },
+    {
+      path: '/admin/projects/:project/:publish/editPost/:id',
+      name: 'editPost',
+      component: EditPost,
+      props: true,
+    },
   ]
 })

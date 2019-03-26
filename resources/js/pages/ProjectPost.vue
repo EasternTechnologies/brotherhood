@@ -53,11 +53,11 @@
                                     </button>
                                 </li>
                                 <li class="table-controls__item">
-                                    <button type="button" title="Настройки пользователя">
+                                    <router-link tag="button" title="Редактирование" :to="{name: 'editPost', params: {project: project, publish: publish, id: post.id }}">
                                         <svg class="table-controls__item-img" role="img" width="20px" height="20px">
                                             <use xlink:href="../../../public/img/svg/sprite.svg#user-settings"></use>
                                         </svg>
-                                    </button>
+                                    </router-link>
                                 </li>
                             </ul>
                         </td>
@@ -96,10 +96,11 @@ export default {
             search: '',
             countries: [],
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            editUrl: '',
         }
     },
     mounted() {
-        this.url = "/admin/projects/" + this.project + "/" + this.publish + "/posts"
+        this.url = "/admin/projects/" + this.project + "/" + this.publish + "/posts";
         this.getAllPosts()
     },
     methods: {
@@ -117,9 +118,9 @@ export default {
         },
         getAllPosts() {
             let $this = this;
+            this.editUrl = "/admin/projects/" + this.project + "/" + this.publish + "/editPost";
             axios.get( this.url,
                 { params: { publish: this.publish, project: this.project, country: this.search } }).then(response => {
-
                 this.posts = response.data.data;
                 $this.makePagination(response.data);
             })
@@ -131,7 +132,6 @@ export default {
                 next_page_url: data.next_page_url,
                 prev_page_url: data.prev_page_url
             };
-
             this.pagination = pagination
         },
         fetchPaginateUsers(url) {

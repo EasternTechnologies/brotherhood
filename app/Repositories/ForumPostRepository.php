@@ -182,9 +182,18 @@ class ForumPostRepository extends CoreRepository
         return $data;
     }
 
+	/**
+	 * get all post with country (search)
+	 *
+	 * @param $published
+	 * @param $category
+	 * @param null $country
+	 * @return mixed
+	 */
     public function getPostsWithCountry($published, $category, $country = null)
 	{
 		$columns = [
+			'forum_posts.id',
 			'forum_posts.text',
 			'forum_posts.user_id',
 			'forum_posts.category_id',
