@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Forum\Admin;
 use App\Repositories\ForumPostRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use App\Repositories\UserRepository;
 
 class PostController extends BaseController
 {
 	private $forumPostRepository;
+	private $userRepository;
 
 	/**
 	 * construct new model for search in repository
@@ -18,6 +20,7 @@ class PostController extends BaseController
 	public function __construct()
 	{
 		$this->forumPostRepository = app(ForumPostRepository::class);
+		$this->userRepository = app(UserRepository::class);
 	}
 
 	/**
@@ -51,9 +54,8 @@ class PostController extends BaseController
 		($request->country) ? $country = $request->country : $country = null;
 
 		$post = $this->forumPostRepository->getEdit($request->id);
-
-		$oldCountry = $post->country->ru;
-		$oldUser = $post->user->name;
+		$post->country->ru;
+		$post->user->name;
 
 		return $post;
 	}
@@ -78,6 +80,18 @@ class PostController extends BaseController
 				}
 			}
 		}
+
+		return $result;
+	}
+
+	/**
+	 * @param Request $request
+	 * @return mixed
+	 */
+	public function searchUser(Request $request)
+	{
+		$result = $this->userRepository->getUsers($request->params['search']);
+//		dd($result);
 
 		return $result;
 	}

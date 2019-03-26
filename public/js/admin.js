@@ -2249,9 +2249,11 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.post = response.data;
+        _this.searchCountry = _this.post.country.ru;
+        _this.searchUser = _this.post.user.name;
       });
     },
-    searchWord: function searchWord() {
+    searchWordCountry: function searchWordCountry() {
       var _this2 = this;
 
       this.countries = [];
@@ -2266,6 +2268,24 @@ __webpack_require__.r(__webpack_exports__);
     selectCountry: function selectCountry(event) {
       this.searchCountry = event.target.innerHTML;
       this.countries = [];
+    },
+    searchWordUser: function searchWordUser() {
+      var _this3 = this;
+
+      this.users = [];
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/projects/" + this.project + "/" + this.publish + "/searchUser", {
+        params: {
+          search: this.searchUser
+        }
+      }).then(function (response) {
+        response.data.forEach(function (user) {
+          _this3.users.push(user.name);
+        });
+      });
+    },
+    selectUser: function selectUser(event) {
+      this.searchUser = event.target.innerHTML;
+      this.users = [];
     }
   }
 });
@@ -4750,7 +4770,76 @@ var render = function() {
           _vm._v(" "),
           _c("tbody", [
             _c("tr", [
-              _c("td"),
+              _c("td", [
+                _c(
+                  "form",
+                  {
+                    staticClass: "search-form",
+                    attrs: { autocomplete: "off" }
+                  },
+                  [
+                    _c("p", { staticClass: "search-form__block" }, [
+                      _c(
+                        "label",
+                        { attrs: { "aria-label": "Искать пользователя" } },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.searchUser,
+                                expression: "searchUser"
+                              }
+                            ],
+                            attrs: {
+                              name: "searchUser",
+                              type: "search",
+                              placeholder: "Поиск"
+                            },
+                            domProps: { value: _vm.searchUser },
+                            on: {
+                              keyup: _vm.searchWordUser,
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.searchUser = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.csrf }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      { staticClass: "search-form__result-list" },
+                      _vm._l(_vm.users, function(user) {
+                        return _c(
+                          "li",
+                          {
+                            key: user.id,
+                            staticClass: "search-form__result-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.selectUser($event)
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(user))]
+                        )
+                      }),
+                      0
+                    )
+                  ]
+                )
+              ]),
               _vm._v(" "),
               _c("td", [
                 _c(
@@ -4763,7 +4852,7 @@ var render = function() {
                     _c("p", { staticClass: "search-form__block" }, [
                       _c(
                         "label",
-                        { attrs: { "aria-label": "Искать на странице" } },
+                        { attrs: { "aria-label": "Искать страну" } },
                         [
                           _c("input", {
                             directives: [
@@ -4775,13 +4864,13 @@ var render = function() {
                               }
                             ],
                             attrs: {
-                              name: "search",
+                              name: "searchCountry",
                               type: "search",
                               placeholder: "Поиск"
                             },
                             domProps: { value: _vm.searchCountry },
                             on: {
-                              keyup: _vm.searchWord,
+                              keyup: _vm.searchWordCountry,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return

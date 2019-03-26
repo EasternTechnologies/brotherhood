@@ -75,4 +75,28 @@ class UserRepository extends CoreRepository
 
 		return $data;
 	}
+
+	/**
+	 * Get model for autocomplite in admin
+	 *
+	 * @param $email
+	 * @return mixed
+	 */
+	public function getUsers($name)
+	{
+		$columns = [
+			'id',
+			'name',
+		];
+
+		$data = $this
+			->startConditions()
+			->select($columns)
+			->where('name', 'like', '%' . $name . '%')
+			->limit(15)
+			->toBase()
+			->get();
+
+		return $data;
+	}
 }

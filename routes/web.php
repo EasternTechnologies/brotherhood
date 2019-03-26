@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' 
 	Route::get('/projects/{slug}/{publish}/posts', 'PostController@index');
 	Route::get('/projects/{slug}/{publish}/editPost', 'PostController@editPost');
 	Route::post('/projects/{slug}/{publish}/searchCountry', 'PostController@searchCountry');
+	Route::post('/projects/{slug}/{publish}/searchUser', 'PostController@searchUser');
 	Route::get('/{slug}', function () { return view('forum.admin.layouts.admin');})->where('slug', '[\/\w\.-]*');
 	//    Route::get('/', 'DashboardController@index')->name('admin.dashboard.index');
 //    Route::get('/autocomplite', 'DashboardController@show');

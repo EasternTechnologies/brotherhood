@@ -17,24 +17,24 @@
                     <tbody>
                     <tr>
                         <td>
-                            <!--<form class="search-form" autocomplete="off">-->
-                                <!--<p class="search-form__block">-->
-                                    <!--<label aria-label="Искать на странице">-->
-                                        <!--<input class="" name="search" type="search" placeholder="Поиск" v-model="searchUser" @keyup="searchWordUser">-->
-                                        <!--<input type="hidden" name="_token" :value="csrf">-->
-                                    <!--</label>-->
+                            <form class="search-form" autocomplete="off">
+                                <p class="search-form__block">
+                                    <label aria-label="Искать пользователя">
+                                        <input class="" name="searchUser" type="search" placeholder="Поиск" v-model="searchUser" @keyup="searchWordUser">
+                                        <input type="hidden" name="_token" :value="csrf">
+                                    </label>
 
-                                <!--</p>-->
-                                <!--<ul class="search-form__result-list">-->
-                                    <!--<li class="search-form__result-item" v-for="user in users" :key="user.id" @click="selectUser($event)">{{user}}</li>-->
-                                <!--</ul>-->
-                            <!--</form>-->
+                                </p>
+                                <ul class="search-form__result-list">
+                                    <li class="search-form__result-item" v-for="user in users" :key="user.id" @click="selectUser($event)">{{user}}</li>
+                                </ul>
+                            </form>
                         </td>
                         <td>
                             <form class="search-form" autocomplete="off">
                                 <p class="search-form__block">
-                                    <label aria-label="Искать на странице">
-                                        <input class="" name="search" type="search" placeholder="Поиск" v-model="searchCountry" @keyup="searchWord">
+                                    <label aria-label="Искать страну">
+                                        <input class="" name="searchCountry" type="search" placeholder="Поиск" v-model="searchCountry" @keyup="searchWordCountry">
                                         <input type="hidden" name="_token" :value="csrf">
                                     </label>
 
@@ -83,9 +83,11 @@ export default {
             axios.get("/admin/projects/" + this.project + "/" + this.publish + "/editPost",
                 { params: { id: this.id, country: this.searchCountry } }).then(response => {
                 this.post = response.data;
+                this.searchCountry = this.post.country.ru;
+                this.searchUser = this.post.user.name;
             })
         },
-        searchWord() {
+        searchWordCountry() {
             this.countries = [];
             axios.post("/admin/projects/" + this.project + "/" + this.publish + "/searchCountry",
                 { params: { search: this.searchCountry } }).then(response => {
@@ -95,6 +97,19 @@ export default {
         selectCountry(event) {
             this.searchCountry = event.target.innerHTML;
             this.countries = [];
+        },
+        searchWordUser() {
+            this.users = [];
+            axios.post("/admin/projects/" + this.project + "/" + this.publish + "/searchUser",
+                { params: { search: this.searchUser } }).then(response => {
+                response.data.forEach((user) => {
+                    this.users.push(user.name);
+                });
+            })
+        },
+        selectUser(event) {
+            this.searchUser = event.target.innerHTML;
+            this.users = [];
         },
     },
 }
