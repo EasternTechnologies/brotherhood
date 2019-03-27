@@ -22,7 +22,6 @@ class CountryRepository extends CoreRepository
 	 * Get model for edit in admin
 	 *
 	 * @param int $id
-	 *
 	 * @return Model
 	 */
 	public function getId($name)
@@ -30,6 +29,23 @@ class CountryRepository extends CoreRepository
 		$data = $this
 			->startConditions()
 			->where('name', '=', $name)
+			->first()
+			->id;
+
+		return $data;
+	}
+
+	/**
+	 * Get id on ru-list for edit in admin
+	 *
+	 * @param int $id
+	 * @return Model
+	 */
+	public function getIdRu($name)
+	{
+		$data = $this
+			->startConditions()
+			->where('ru', '=', $name)
 			->first()
 			->id;
 

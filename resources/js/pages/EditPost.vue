@@ -12,6 +12,8 @@
                     <tr>
                         <th>Пользователь</th>
                         <th>Страна</th>
+                        <th>Дата создания</th>
+                        <th>Дата обновления</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,14 +46,43 @@
                                 </ul>
                             </form>
                         </td>
+                        <td v-model="post.created_at">{{post.created_at}}</td>
+                        <td v-model="post.updated_at">{{post.updated_at}}</td>
                     </tr>
                     </tbody>
                 </table>
+
+                <br>
+
                 <div>
-                    <textarea v-model="post.text" name="text" cols="50" rows="10"></textarea>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Текст</th>
+                            <th>Опубликован</th>
+                            <th v-if="isPublished === 1 ">Дата публикации</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><textarea v-model="post.text" name="text" cols="50" rows="10"></textarea>  </td>
+                            <td>
+                                <button v-if="isPublished === 1" @click="rePublish">Отправить на модерацию</button>
+                                <button class="success" v-if="isPublished === 0 " @click="rePublish">Опубликовать</button>
+                            </td>
+                            <td v-if="isPublished === 1 " v-model="post.published_at">{{post.published_at}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
+        <div>
+            <router-link tag="button" title="Назад" :to="{name: 'projectModeration', params: {project: project, publish: publish}}">
+                <div>Назад</div>
+            </router-link>
 
+            <button @click="save">Сохранить</button>
         </div>
     </section>
 </template>
@@ -60,19 +91,22 @@
 import axios from 'axios'
 
 export default {
-    props: [
-        'id',
-        'project',
-        'publish',
-    ],
     data() {
         return {
-            post: '',
+            id: this.$route.params['id'],
+            project: this.$route.params['project'],
+            publish: this.$route.params['publish'],
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            post: '',
             searchCountry: '',
             countries: [],
             searchUser: '',
             users: [],
+            usersArray: [],
+            userId: '',
+            oldCountry: '',
+            isPublished: '',
+            urlPublish: '',
         }
     },
     mounted() {
@@ -83,8 +117,12 @@ export default {
             axios.get("/admin/projects/" + this.project + "/" + this.publish + "/editPost",
                 { params: { id: this.id, country: this.searchCountry } }).then(response => {
                 this.post = response.data;
+                this.isPublished = this.post.is_published;
                 this.searchCountry = this.post.country.ru;
                 this.searchUser = this.post.user.name;
+                if (this.oldCountry === '') {
+                    this.oldCountry = this.searchCountry
+                }
             })
         },
         searchWordCountry() {
@@ -105,12 +143,69 @@ export default {
                 response.data.forEach((user) => {
                     this.users.push(user.name);
                 });
+                this.usersArray = response.data;
             })
         },
         selectUser(event) {
             this.searchUser = event.target.innerHTML;
             this.users = [];
+            this.usersArray.forEach((user) => {
+                if (this.searchUser === user.name) {
+                    this.userId = user.id
+                }
+            });
         },
+        save() {
+            if (this.oldCountry === this.searchCountry ) {
+                this.oldCountry = ''
+            }else{
+                this.oldCountry = this.searchCountry
+            }
+            axios.post("/admin/projects/" + this.project + "/" + this.publish + "/updatePost",
+                { params: {
+                    id: this.id,
+                    userId: this.userId,
+                    country: this.oldCountry,
+                    text: this.post.text
+                } }).then(response => {
+                if (response.statusText === 'OK') {
+                    this.$router.push({name: 'editPost', params: {
+                            project: this.project,
+                            publish: this.publish,
+                            id: this.id
+                        }})
+                }
+            })
+        },
+        rePublish() {
+            if (this.isPublished === 0 ) {
+                this.isPublished = 1
+            }else{
+                this.isPublished = 0
+            }
+            if (this.publish === 'moderation' ) {
+                this.urlPublish = 'materials'
+            }else{
+                this.urlPublish = 'moderation'
+            }
+            axios.get("/admin/projects/" + this.project + "/" + this.urlPublish + "/rePublish",
+                { params: { id: this.id, is_published: this.isPublished } }).then(response => {
+                if (response.statusText === 'OK') {
+                    this.$router.push({name: 'editPost', params: {
+                        project: this.project,
+                        publish: this.urlPublish,
+                        id: this.id
+                    }})
+                }
+            })
+        }
+    },
+    watch: {
+        $route (toRoute, fromRoute) {
+            this.project = toRoute.params['project'];
+            this.publish = toRoute.params['publish'];
+            this.id = toRoute.params['id'];
+        }
     },
 }
 </script>

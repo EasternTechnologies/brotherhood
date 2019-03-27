@@ -39,27 +39,21 @@
                         <td class="users-table__controls table-controls">
                             <ul class="table-controls__list">
                                 <li class="table-controls__item">
-                                    <button type="button" title="Удалить пользователя">
-                                        <svg class="table-controls__item-img" role="img" width="20px" height="20px">
-                                            <use xlink:href="../../../public/img/svg/sprite.svg#user-delete"></use>
-                                        </svg>
-                                    </button>
-                                </li>
-                                <li class="table-controls__item">
-                                    <button type="button" title="Блокировать пользователя">
-                                        <svg class="table-controls__item-img" role="img" width="20px" height="20px">
-                                            <use xlink:href="../../../public/img/svg/sprite.svg#user-block"></use>
-                                        </svg>
-                                    </button>
-                                </li>
-                                <li class="table-controls__item">
-                                    <router-link tag="button" title="Редактирование" :to="{name: 'editPost', params: {project: project, publish: publish, id: post.id }}">
+                                    <router-link tag="button" title="Редактирование сообщения" :to="{name: 'editPost', params: {project: project, publish: publish, id: post.id }}" @click="">
                                         <svg class="table-controls__item-img" role="img" width="20px" height="20px">
                                             <use xlink:href="../../../public/img/svg/sprite.svg#user-settings"></use>
                                         </svg>
                                     </router-link>
                                 </li>
+
                             </ul>
+                            <button id="show-modal" @click="showModal = true">Удалить Сообщение</button>
+                            <div v-if="showModal" @close="showModal = false">
+                                <app-deleteModal
+                                        @close="showModal = false"
+                                        @deletePost="deletePost(post.id)"
+                                ></app-deleteModal>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -97,6 +91,7 @@ export default {
             countries: [],
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             editUrl: '',
+            showModal: false,
         }
     },
     mounted() {
@@ -137,6 +132,18 @@ export default {
         fetchPaginateUsers(url) {
             this.url = url;
             this.getAllPosts()
+        },
+        deletePost(deletePostId) {
+            this.showModal = false;
+            axios.get("/admin/projects/" + this.project + "/" + this.publish + "/deletePost",
+                { params: { id: deletePostId } }).then(response => {
+                if (response.data === 'success') {
+                    this.$router.push({name: 'projectModeration', params: {
+                            project: this.project,
+                            publish: this.publish,
+                        }})
+                }
+            })
         }
     },
     watch: {

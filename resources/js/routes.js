@@ -50,7 +50,6 @@ export default new VueRouter ({
       path: '/admin/projects/:project/:publish/editPost/:id',
       name: 'editPost',
       component: EditPost,
-      props: true,
     },
   ]
 })
