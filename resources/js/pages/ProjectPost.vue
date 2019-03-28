@@ -7,7 +7,7 @@
             <form class="search-form" autocomplete="off">
                 <p class="search-form__block">
                     <label aria-label="Искать на странице">
-                        <input class="" name="search" type="search" placeholder="Поиск" v-model="search" @keyup="searchWord">
+                        <input class="" name="search" type="search" placeholder="Поиск по странам" v-model="search" @keyup="searchWord">
                         <input type="hidden" name="_token" :value="csrf">
                     </label>
 

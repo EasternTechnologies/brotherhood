@@ -54,11 +54,13 @@
                     </button>
                   </li>
                   <li class="table-controls__item">
-                    <button type="button" title="Настройки пользователя">
+                    <router-link tag="button" title="Настройки пользователя"
+                                 :to="{name: 'editUser', params: {id: user.id }}"
+                    >
                       <svg class="table-controls__item-img" role="img" width="20px" height="20px">
                         <use xlink:href="../../../public/img/svg/sprite.svg#user-settings"></use>
                       </svg>
-                    </button>
+                    </router-link>
                   </li>
                 </ul>
               </td>

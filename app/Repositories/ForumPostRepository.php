@@ -24,7 +24,6 @@ class ForumPostRepository extends CoreRepository
      * Get model for edit in admin
      *
      * @param int $id
-     *
      * @return Model
      */
     public function getEdit($id)

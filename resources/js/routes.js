@@ -8,6 +8,7 @@ import EmailSettings from './pages/EmailSettings'
 import ProjectPost from './pages/ProjectPost'
 import EditPost from './pages/EditPost'
 import NewPost from './pages/NewPost'
+import EditUser from './pages/EditUser'
 
 export default new VueRouter ({
   mode: 'history',
@@ -20,7 +21,12 @@ export default new VueRouter ({
     {
       path: '/admin/users',
       name: 'users',
-      component: Users
+      component: Users,
+    },
+    {
+      path: '/admin/users/edit/:id',
+      name: 'editUser',
+      component: EditUser
     },
     {
       path: '/admin/backup',

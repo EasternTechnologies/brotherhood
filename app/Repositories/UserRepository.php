@@ -35,6 +35,24 @@ class UserRepository extends CoreRepository
 		return $data;
 	}
 
+	/**
+	 * Get model for edit in admin
+	 *
+	 * @param int $id
+	 * @return Model
+	 */
+	public function getEdit($id)
+	{
+		return $this
+			->startConditions()
+			->find($id);
+	}
+
+	/**
+	 * get count users
+	 *
+	 * @return mixed
+	 */
 	public function getCountUser()
 	{
 		$data = $this
@@ -54,6 +72,7 @@ class UserRepository extends CoreRepository
 	public function getAllUsers( $wordSearch, $columnSearch )
 	{
 		$columns = [
+			'users.id as id',
 			'users.name as name',
 			'users.email as email',
 			'users.phone as phone',

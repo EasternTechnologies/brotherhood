@@ -34,4 +34,17 @@ class UserController extends BaseController
 
 		return $users;
 	}
+
+	/**
+	 * get user for edit in admin panel
+	 *
+	 * @param Request $request
+	 * @return mixed
+	 */
+	public function edit(Request $request)
+	{
+		$user = $this->userRepository->getEdit($request->id);
+
+		return $user;
+	}
 }

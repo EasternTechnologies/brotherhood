@@ -38,6 +38,7 @@ Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' 
     'roles' => ['Admin', 'Author']], function (){
 	Route::get('/projects/project_slug', 'DashboardController@projectSlug');
 	Route::get('/{slug}/show', 'UserController@show');
+	Route::get('/{slug}/edit', 'UserController@edit');
 	Route::get('/{slug}/project_cards', 'DashboardController@index');
 	Route::get('/projects/{slug}/{publish}/posts', 'PostController@index');
 	Route::get('/projects/{slug}/{publish}/editPost', 'PostController@editPost');
