@@ -29,8 +29,19 @@ class  ForumCategoryRepository extends CoreRepository
      */
     public function getEdit($id)
     {
-        return $this->startConditions()->find($id);
+        return $this
+			->startConditions()
+			->find($id);
     }
+
+    public function getIdSlug($slug)
+	{
+		return $this
+			->startConditions()
+			->where('slug', '=', $slug)
+			->first()
+			->id;
+	}
 
     /**
      * Get list category for show on collection list

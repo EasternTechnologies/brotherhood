@@ -7,6 +7,7 @@ import Control from './pages/Control'
 import EmailSettings from './pages/EmailSettings'
 import ProjectPost from './pages/ProjectPost'
 import EditPost from './pages/EditPost'
+import NewPost from './pages/NewPost'
 
 export default new VueRouter ({
   mode: 'history',
@@ -50,6 +51,11 @@ export default new VueRouter ({
       path: '/admin/projects/:project/:publish/editPost/:id',
       name: 'editPost',
       component: EditPost,
+    },
+    {
+      path: '/admin/projects/:project/:publish/newPost',
+      name: 'newPost',
+      component: NewPost,
     },
   ]
 })

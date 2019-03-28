@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Forum\Admin;
 
+use App\Http\Requests\ForumAdminNewPostRequest;
 use App\Models\ForumPost;
+use App\Repositories\ForumCategoryRepository;
 use App\Repositories\ForumPostRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
@@ -14,6 +16,7 @@ class PostController extends BaseController
 	private $forumPostRepository;
 	private $userRepository;
 	private $countryRepository;
+	private $categoryRepository;
 
 	/**
 	 * construct new model for search in repository
@@ -25,6 +28,7 @@ class PostController extends BaseController
 		$this->forumPostRepository = app(ForumPostRepository::class);
 		$this->userRepository = app(UserRepository::class);
 		$this->countryRepository = app(CountryRepository::class);
+		$this->categoryRepository = app(ForumCategoryRepository::class);
 	}
 
 	/**
@@ -45,6 +49,27 @@ class PostController extends BaseController
 		$users = $this->forumPostRepository->getPostsWithCountry($published, $category, $country);
 
 		return $users;
+	}
+
+	/**
+	 * create new post
+	 *
+	 * @param ForumAdminNewPostRequest $request
+	 * @return bool
+	 */
+	public function createNewPost(ForumAdminNewPostRequest $request)
+	{
+		$post = new ForumPost();
+		$post->text = $request->text;
+		$post->is_published = $request->is_published;
+		if ($post->is_published) $post->published_at = now();
+		$post->user_id = $request->user_id;
+		$post->text = $request->text;
+		$post->country_id = $this->countryRepository->getIdRu($request->country);
+		$post->category_id = $this->categoryRepository->getIdSlug($request->category);
+		$post->save();
+
+		return 'success';
 	}
 
 	/**
@@ -90,10 +115,9 @@ class PostController extends BaseController
 	 */
 	public function deletePost(Request $request)
 	{
-		$a = ForumPost::find($request->id)->delete();
-//		$post = $this->forumPostRepository->getEdit($request->id);
-dd($a);
-		return 'susses';
+		ForumPost::find($request->id)->delete();
+
+		return 'success';
 	}
 
 	/**

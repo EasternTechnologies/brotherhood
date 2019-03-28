@@ -200,6 +200,7 @@ class ForumPostRepository extends CoreRepository
 			'forum_posts.created_at',
 			'forum_posts.updated_at',
 			'forum_posts.country_id',
+			'forum_posts.is_published',
 			'countries.ru',
 		];
 

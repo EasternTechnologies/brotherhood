@@ -2,8 +2,7 @@
     <section class="section users">
         <header class="section-header">
             <h2 class="section-header__title dashboard__title">
-                <span v-if="publish === 'moderation'">Модерация</span>
-                <span v-else="publish === 'materials'">Материалы</span>
+                <span>Создание нового сообшения</span>
             </h2>
             <form class="search-form" autocomplete="off">
                 <p class="search-form__block">
@@ -27,7 +26,11 @@
                         <th>Страна</th>
                         <th>Дата создания</th>
                         <th>Дата редактирования</th>
-                        <th></th>
+                        <th>
+                            <router-link tag="button" title="Редактирование сообщения" :to="{name: 'newPost', params: {project: project, publish: publish }}">
+                                Создать новое сообщенией
+                            </router-link>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,7 +42,7 @@
                         <td class="users-table__controls table-controls">
                             <ul class="table-controls__list">
                                 <li class="table-controls__item">
-                                    <router-link tag="button" title="Редактирование сообщения" :to="{name: 'editPost', params: {project: project, publish: publish, id: post.id }}" @click="">
+                                    <router-link tag="button" title="Редактирование сообщения" :to="{name: 'editPost', params: {project: project, publish: publish, id: post.id }}">
                                         <svg class="table-controls__item-img" role="img" width="20px" height="20px">
                                             <use xlink:href="../../../public/img/svg/sprite.svg#user-settings"></use>
                                         </svg>
@@ -47,14 +50,16 @@
                                 </li>
 
                             </ul>
-                            <button id="show-modal" @click="showModal = true">Удалить Сообщение</button>
-                            <div v-if="showModal" @close="showModal = false">
+                            <button @click="setPosId(post.id)">Удалить Сообщение</button>
+                            <div v-if="showModal">
                                 <app-deleteModal
                                         @close="showModal = false"
-                                        @deletePost="deletePost(post.id)"
+                                        @deletePost="deletePost(deletePostId)"
                                 ></app-deleteModal>
                             </div>
+                            <button class="success" v-if="post.is_published === 0" @click="rePublish(post.id)">Опубликовать</button>
                         </td>
+
                     </tr>
                     </tbody>
                 </table>
@@ -92,6 +97,7 @@ export default {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             editUrl: '',
             showModal: false,
+            deletePostId: '',
         }
     },
     mounted() {
@@ -138,10 +144,19 @@ export default {
             axios.get("/admin/projects/" + this.project + "/" + this.publish + "/deletePost",
                 { params: { id: deletePostId } }).then(response => {
                 if (response.data === 'success') {
-                    this.$router.push({name: 'projectModeration', params: {
-                            project: this.project,
-                            publish: this.publish,
-                        }})
+                    this.getAllPosts()
+                }
+            })
+        },
+        setPosId(PostId) {
+            this.showModal = true;
+            this.deletePostId = PostId
+        },
+        rePublish(postId) {
+            axios.get("/admin/projects/" + this.project + "/" + this.publish + "/rePublish",
+                { params: { id: postId, is_published: 1 } }).then(response => {
+                if (response.statusText === 'OK') {
+                    this.getAllPosts()
                 }
             })
         }
