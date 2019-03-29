@@ -36,16 +36,36 @@ class UserRepository extends CoreRepository
 	}
 
 	/**
-	 * Get model for edit in admin
+	 * Get model for edit in admin with role
 	 *
 	 * @param int $id
 	 * @return Model
 	 */
 	public function getEdit($id)
 	{
-		return $this
+		$columns = [
+			'users.id as id',
+			'users.name as name',
+			'users.email as email',
+			'users.phone as phone',
+			'users.created_at as createdAt',
+			'users.updated_at as updatedAt',
+			'countries.ru as countryName',
+			'roles.id as rolesId',
+			'roles.name as rolesName'
+		];
+
+		$data = $this
 			->startConditions()
-			->find($id);
+			->select($columns)
+			->leftjoin('countries', 'country_id', '=', 'countries.id')
+			->leftjoin('role_user', 'users.id', '=', 'role_user.user_id')
+			->leftjoin('roles', 'role_user.role_id', '=', 'roles.id')
+			->where('users.id', $id)
+			->orderBy('users.name')
+			->get();
+
+		return $data;
 	}
 
 	/**

@@ -11,6 +11,9 @@
                     <thead>
                     <tr>
                         <th>Страна</th>
+                        <th>Роль пользователя</th>
+                        <th>Дата создания</th>
+                        <th>Дата обновления</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,13 +32,57 @@
                                 </ul>
                             </form>
                         </td>
+                        <td>
+                            <div class="users__serch users-search">
+                                <div class="user-search__block">
+                                    <select name="category" v-model="selectedRole">
+                                        <option v-for="role in roles" :key="role.id" :value="role.id">
+                                            {{ role.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{user.createdAt}}</td>
+                        <td>{{user.updatedAt}}</td>
                     </tr>
                     </tbody>
                 </table>
-
                 <br>
-
-
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Email</th>
+                        <th>Пароль</th>
+                        <th>Телефон</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label>
+                                <input v-model="user.name" type="text">
+                            </label>
+                        </td>
+                        <td>
+                            <label>
+                                <input v-model="user.email" type="email">
+                            </label>
+                        </td>
+                        <td>
+                            <label>
+                                <input v-model="password" type="text" placeholder="Новый пароль">
+                            </label>
+                        </td>
+                        <td>
+                            <label>
+                                <input v-model.number="user.phone" type="number">
+                            </label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div>
@@ -58,6 +105,11 @@ export default {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             searchCountry: '',
             countries: [],
+            selectedRole: '',
+            roles: [],
+            user: '',
+            password: '',
+            oldCountry: '',
         }
     },
     mounted() {
@@ -66,7 +118,13 @@ export default {
     methods: {
         getUser () {
             axios.get('/admin/users/edit', {params: { id: this.id }}).then(response => {
-                console.log(response.data)
+                this.roles = response.data.role;
+                this.user = response.data.user[0];
+                this.selectedRole = this.user.rolesId;
+                this.searchCountry = this.user.countryName;
+                if (this.oldCountry === '') {
+                    this.oldCountry = this.searchCountry
+                }
             })
         },
         searchWordCountry() {
@@ -81,7 +139,19 @@ export default {
             this.countries = [];
         },
         save () {
-
+            if (this.oldCountry === this.searchCountry ) {
+                this.oldCountry = ''
+            }else{
+                this.oldCountry = this.searchCountry
+            }
+            axios.post("/admin/user/update", {
+                user: this.user,
+                country: this.oldCountry,
+                password: this.password,
+                role: this.selectedRole 
+            }).then(response => {
+                console.log(response.data)
+            })
         }
     }
 }
@@ -103,5 +173,18 @@ export default {
     .search-form__result-list {
         background: #c4c4c4;
         margin-top: 10px;
+    }
+
+    label {
+        position: relative;
+        width: 50px;
+        height: 35px;
+    }
+
+    input {
+        border: 1px solid black;
+        height: 35px;
+        width: 250px;
+
     }
 </style>

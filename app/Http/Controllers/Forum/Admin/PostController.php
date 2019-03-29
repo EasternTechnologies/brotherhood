@@ -90,7 +90,7 @@ class PostController extends BaseController
 	}
 
 	/**
-	 * create new post or update old
+	 * update post
 	 *
 	 * @param Request $request
 	 * @return mixed

@@ -2523,6 +2523,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2530,7 +2577,12 @@ __webpack_require__.r(__webpack_exports__);
       id: this.$route.params['id'],
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       searchCountry: '',
-      countries: []
+      countries: [],
+      selectedRole: '',
+      roles: [],
+      user: '',
+      password: '',
+      oldCountry: ''
     };
   },
   mounted: function mounted() {
@@ -2538,16 +2590,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getUser: function getUser() {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/users/edit', {
         params: {
           id: this.id
         }
       }).then(function (response) {
-        console.log(response.data);
+        _this.roles = response.data.role;
+        _this.user = response.data.user[0];
+        _this.selectedRole = _this.user.rolesId;
+        _this.searchCountry = _this.user.countryName;
+
+        if (_this.oldCountry === '') {
+          _this.oldCountry = _this.searchCountry;
+        }
       });
     },
     searchWordCountry: function searchWordCountry() {
-      var _this = this;
+      var _this2 = this;
 
       this.countries = [];
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/projects/materials/builders/searchCountry", {
@@ -2555,14 +2616,29 @@ __webpack_require__.r(__webpack_exports__);
           search: this.searchCountry
         }
       }).then(function (response) {
-        _this.countries = response.data;
+        _this2.countries = response.data;
       });
     },
     selectCountry: function selectCountry(event) {
       this.searchCountry = event.target.innerHTML;
       this.countries = [];
     },
-    save: function save() {}
+    save: function save() {
+      if (this.oldCountry === this.searchCountry) {
+        this.oldCountry = '';
+      } else {
+        this.oldCountry = this.searchCountry;
+      }
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/user/update", {
+        user: this.user,
+        country: this.oldCountry,
+        password: this.password,
+        role: this.selectedRole
+      }).then(function (response) {
+        console.log(response.data);
+      });
+    }
   }
 });
 
@@ -3247,7 +3323,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.search-form[data-v-239a40fe] {\n    width: 100%;\n}\n.search-form__block[data-v-239a40fe] {\n    position: relative;\n}\n.search-form__block input[data-v-239a40fe] {\n    background: #c4c4c4;\n}\n.search-form__result-list[data-v-239a40fe] {\n    background: #c4c4c4;\n    margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.search-form[data-v-239a40fe] {\n    width: 100%;\n}\n.search-form__block[data-v-239a40fe] {\n    position: relative;\n}\n.search-form__block input[data-v-239a40fe] {\n    background: #c4c4c4;\n}\n.search-form__result-list[data-v-239a40fe] {\n    background: #c4c4c4;\n    margin-top: 10px;\n}\nlabel[data-v-239a40fe] {\n    position: relative;\n    width: 50px;\n    height: 35px;\n}\ninput[data-v-239a40fe] {\n    border: 1px solid black;\n    height: 35px;\n    width: 250px;\n}\n", ""]);
 
 // exports
 
@@ -5923,12 +5999,178 @@ var render = function() {
                     )
                   ]
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("div", { staticClass: "users__serch users-search" }, [
+                  _c("div", { staticClass: "user-search__block" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectedRole,
+                            expression: "selectedRole"
+                          }
+                        ],
+                        attrs: { name: "category" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.selectedRole = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      _vm._l(_vm.roles, function(role) {
+                        return _c(
+                          "option",
+                          { key: role.id, domProps: { value: role.id } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(role.name) +
+                                "\n                                    "
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.user.createdAt))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.user.updatedAt))])
             ])
           ])
         ]),
         _vm._v(" "),
-        _c("br")
+        _c("br"),
+        _vm._v(" "),
+        _c("table", [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [
+                _c("label", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.name,
+                        expression: "user.name"
+                      }
+                    ],
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.user.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "name", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("label", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.email,
+                        expression: "user.email"
+                      }
+                    ],
+                    attrs: { type: "email" },
+                    domProps: { value: _vm.user.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "email", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("label", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.password,
+                        expression: "password"
+                      }
+                    ],
+                    attrs: { type: "text", placeholder: "Новый пароль" },
+                    domProps: { value: _vm.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.password = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("label", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model.number",
+                        value: _vm.user.phone,
+                        expression: "user.phone",
+                        modifiers: { number: true }
+                      }
+                    ],
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.user.phone },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "phone", _vm._n($event.target.value))
+                      },
+                      blur: function($event) {
+                        return _vm.$forceUpdate()
+                      }
+                    }
+                  })
+                ])
+              ])
+            ])
+          ])
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -5962,7 +6204,33 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [_c("tr", [_c("th", [_vm._v("Страна")])])])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Страна")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Роль пользователя")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Дата создания")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Дата обновления")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Имя")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Пароль")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Телефон")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -22615,7 +22883,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************************************!*\
   !*** ./resources/js/pages/EditUser.vue?vue&type=template&id=239a40fe&scoped=true& ***!
   \************************************************************************************/
-/*! exports provided: render, staticRenderFns */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
