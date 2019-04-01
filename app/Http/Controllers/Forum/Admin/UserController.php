@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Forum\Admin;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\ForumPost;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
@@ -107,9 +108,12 @@ class UserController extends BaseController
 	 */
 	public function deleteUser(Request $request)
 	{
-		$user = User::find($request->id)->forceDeleting();
+		$posts = ForumPost::where('user_id', $request->id)->get();dd($posts);
+		foreach( $posts as $post){
+			$post->delete();
+		}
 
-//		$user->roles()->dettach(3);
+		User::where('id', $request->id)->delete();
 
 		return 'success';
 	}
