@@ -36,6 +36,19 @@ class UserRepository extends CoreRepository
 	}
 
 	/**
+	 * Get model for edit in admin
+	 *
+	 * @param int $id
+	 * @return Model
+	 */
+	public function getUpdate($id)
+	{
+		return $this
+			->startConditions()
+			->find($id);
+	}
+
+	/**
 	 * Get model for edit in admin with role
 	 *
 	 * @param int $id
@@ -50,6 +63,7 @@ class UserRepository extends CoreRepository
 			'users.phone as phone',
 			'users.created_at as createdAt',
 			'users.updated_at as updatedAt',
+			'users.country_id as countryId',
 			'countries.ru as countryName',
 			'roles.id as rolesId',
 			'roles.name as rolesName'

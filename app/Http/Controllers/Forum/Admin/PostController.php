@@ -110,6 +110,8 @@ class PostController extends BaseController
 	}
 
 	/**
+	 * delete post
+	 *
 	 * @param Request $request
 	 * @return string
 	 */

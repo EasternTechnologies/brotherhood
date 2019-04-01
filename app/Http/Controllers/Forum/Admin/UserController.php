@@ -7,11 +7,13 @@ use App\Models\User;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
+use App\Repositories\CountryRepository;
 
 class UserController extends BaseController
 {
 	private $userRepository;
 	private $roleRepository;
+	private $countryRepository;
 
 	/**
 	 * construct new model for search in repository
@@ -22,6 +24,7 @@ class UserController extends BaseController
 	{
 		$this->userRepository = app(UserRepository::class);
 		$this->roleRepository = app(RoleRepository::class);
+		$this->countryRepository = app(CountryRepository::class);
 	}
 
 	/**
@@ -46,9 +49,13 @@ class UserController extends BaseController
 	 * @param Request $request
 	 * @return mixed
 	 */
-	public function edit(Request $request)
+	public function newOrEditUser(Request $request)
 	{
-		$data['user'] = $this->userRepository->getEdit($request->id);
+		if ($request->id) {
+			$data['user'] = $this->userRepository->getEdit($request->id);
+		}else {
+			$data['user'] = null;
+		}
 		$data['role'] = $this->roleRepository->getAll();
 
 		return $data;
@@ -62,17 +69,48 @@ class UserController extends BaseController
 	 */
 	public function updateUser(Request $request)
 	{
-		return $request;
+		$role_user = Role::where('id', $request->role)->first();
+		$country = $this->countryRepository->getIdRu($request->country);
 
-//		$post = $this->forumPostRepository->getEdit($request->params['id']);
-//		if ($request->params['userId']) $post->user_id = $request->params['userId'];
-//		$post->text = $request->params['text'];
-//		$post->updated_at = now();
-//		if ($request->params['country']) {
-//			$post->country_id = $this->countryRepository->getIdRu($request->params['country']);
-//		};
-//		$post->save();
+		if ($request->id) {
+			$user = $this->userRepository->getUpdate($request->id);
 
-//		return $user;
+			$user->name = $request->user['name'];
+			$user->email = $request->user['email'];
+			$user->phone = $request->user['phone'];
+			if ($request->user['password']) {
+				$user->password = bcrypt($request->user['password']);
+			}
+			$user->updated_at = now();
+			$user->country_id = $country;
+			$user->save();
+		}else{
+			$data_user['name'] = $request->user['name'];
+			$data_user['country_id'] = $country;
+			$data_user['password'] = bcrypt($request->user['password']);
+			$data_user['email'] = $request->user['email'];
+			if ($request->phone) $data_user['phone'] = $request->user['phone'];
+
+			$user = new User($data_user);
+			$user->save();
+		}
+		$user->roles()->attach($role_user);
+
+		return 'success';
+	}
+
+	/**
+	 * delete user
+	 *
+	 * @param Request $request
+	 * @return string
+	 */
+	public function deleteUser(Request $request)
+	{
+		$user = User::find($request->id)->forceDeleting();
+
+//		$user->roles()->dettach(3);
+
+		return 'success';
 	}
 }

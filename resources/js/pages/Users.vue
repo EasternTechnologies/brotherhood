@@ -40,11 +40,13 @@
               <td class="users-table__controls table-controls">
                 <ul class="table-controls__list">
                   <li class="table-controls__item">
-                    <button type="button" title="Удалить пользователя">
-                      <svg class="table-controls__item-img" role="img" width="20px" height="20px">
-                        <use xlink:href="../../../public/img/svg/sprite.svg#user-delete"></use>
-                      </svg>
-                    </button>
+                    <button @click="setPosId(user.id)">Удалить Пользователя</button>
+                    <div v-if="showModal">
+                      <app-deleteModal
+                              @close="showModal = false"
+                              @deletePost="deletePost(deletePostId)"
+                      ></app-deleteModal>
+                    </div>
                   </li>
                   <li class="table-controls__item">
                     <button type="button" title="Блокировать пользователя">
@@ -70,12 +72,12 @@
       </div>
 
       <div class="users__new">
-        <button class="users__new-btn btn" type="button" @click="getUsers">
+        <router-link class="users__new-btn btn" tag="button" :to="{name: 'newUser'}">
           <svg role="img" width="20px" height="20px">
             <use xlink:href="../../../public/img/svg/sprite.svg#user-add"></use>
           </svg>
           <span>Создать пользователя</span>
-        </button>
+        </router-link>
       </div>
 
       <div class="user__pagination pagination">
@@ -109,7 +111,9 @@ import axios from 'axios'
           { text: 'Поиск по телефону',      value: 'users.phone' }
         ],
         url: '/admin/users/show',
-        pagination: []
+        pagination: [],
+        showModal: false,
+        deletePostId: '',
       }
     },
     beforeMount() {
@@ -141,7 +145,21 @@ import axios from 'axios'
       fetchPaginateUsers(url) {
         this.url = url;
         this.getUsers()
-      }
+      },
+      deletePost(deletePostId) {
+        this.showModal = false;
+        axios.get("/admin/users/deleteUser",
+                { params: { id: deletePostId } }).then(response => {
+          if (response.data === 'success') {
+            this.getUsers();
+          console.log(response.data)
+          }
+        })
+      },
+      setPosId(PostId) {
+        this.showModal = true;
+        this.deletePostId = PostId
+      },
     }
   }
 

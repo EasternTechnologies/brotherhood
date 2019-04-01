@@ -2,7 +2,11 @@
     <section class="section users">
         <header class="section-header">
             <h2 class="section-header__title dashboard__title">
-                <span>Редактирование пользователя</span>
+                <span v-if="id === ''">Создание нового пользователя</span>
+                <span v-if="id !== ''">Редактирование пользователя</span>
+                <div v-if="error !== ''">
+                    <span style="background-color: red">Заполните поля</span>
+                </div>
             </h2>
         </header>
         <div class="section-body users__body">
@@ -74,6 +78,11 @@
                             <label>
                                 <input v-model="password" type="text" placeholder="Новый пароль">
                             </label>
+                            <br>
+                            <label v-if="password !== ''">
+                                <input v-model.lazy="acceptPassword" type="text" placeholder="Подтверждение пароля">
+                                <span v-if="acceptPassword !== password && acceptPassword !== ''">Пароли не совпадают</span>
+                            </label>
                         </td>
                         <td>
                             <label>
@@ -101,27 +110,45 @@ import axios from 'axios'
 export default {
     data () {
         return {
-            id: this.$route.params['id'],
+            id: '',
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             searchCountry: '',
             countries: [],
             selectedRole: '',
             roles: [],
-            user: '',
-            password: '',
+            user: {
+                name: '',
+                email: '',
+                phone: '',
+                createdAt: '',
+                updatedAt: '',
+                password: ''
+            },
             oldCountry: '',
+            password: '',
+            acceptPassword: '',
+            error: '',
         }
     },
-    mounted() {
+    beforeMount() {
+        if (this.$route.params['id']) {
+            this.id = this.$route.params['id']
+        }
         this.getUser()
     },
     methods: {
         getUser () {
-            axios.get('/admin/users/edit', {params: { id: this.id }}).then(response => {
+            axios.get('/admin/users/newOrEditUser', {params: { id: this.id }}).then(response => {
                 this.roles = response.data.role;
-                this.user = response.data.user[0];
-                this.selectedRole = this.user.rolesId;
-                this.searchCountry = this.user.countryName;
+                if (response.data.user) {
+                    this.user.name = response.data.user[0].name;
+                    this.user.email = response.data.user[0].email;
+                    this.user.phone = response.data.user[0].phone;
+                    this.user.createdAt = response.data.user[0].createdAt;
+                    this.user.updatedAt = response.data.user[0].updatedAt;
+                    this.selectedRole = response.data.user[0].rolesId;
+                    this.searchCountry = response.data.user[0].countryName;
+                }
                 if (this.oldCountry === '') {
                     this.oldCountry = this.searchCountry
                 }
@@ -144,14 +171,36 @@ export default {
             }else{
                 this.oldCountry = this.searchCountry
             }
-            axios.post("/admin/user/update", {
-                user: this.user,
-                country: this.oldCountry,
-                password: this.password,
-                role: this.selectedRole 
-            }).then(response => {
-                console.log(response.data)
-            })
+            if (this.acceptPassword === this.password) {
+                this.user.password = this.acceptPassword
+            }
+            if (this.id === '') {
+                this.createUser()
+            }
+            if (this.error === '') {
+                axios.post("/admin/user/update", {
+                    id: this.id,
+                    user: this.user,
+                    country: this.oldCountry,
+                    role: this.selectedRole
+                }).then(response => {
+                    this.$router.push({name: 'users'})
+                })
+            }
+        },
+        createUser () {
+            if (
+                this.user.name === '' ||
+                this.user.email === '' ||
+                this.selectedRole === '' ||
+                this.searchCountry === '' ||
+                this.acceptPassword !== this.password
+            ) {
+                this.error = 'error'
+            }else{
+                this.error = ''
+                this.oldCountry = this.searchCountry
+            }
         }
     }
 }
