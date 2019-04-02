@@ -18,7 +18,7 @@
       <section class="builders__quotes quotes active">
         <h3 class="quotes__title">@lang('project.builders.project_is')</h3>
 
-        <endless-scroll></endless-scroll>
+        <endless-scroll :project="{{$category->id}}"></endless-scroll>
 
       </section>
 
@@ -86,7 +86,7 @@
 
       <div class="search__form">
 
-        <search-autocomplete></search-autocomplete>
+        <search-autocomplete :project="{{$category->id}}"></search-autocomplete>
 
       </div>
     </section>

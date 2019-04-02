@@ -1763,6 +1763,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 //
 //
 //
@@ -1778,17 +1779,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['project'],
   data: function data() {
     return {
-      persons: []
+      persons: [],
+      country: ''
     };
   },
   methods: {
     getInitialUsers: function getInitialUsers() {
       var _this = this;
 
-      axios.get("/project/1/loadpost").then(function (response) {
+      axios.get('/project/' + this.project + '/loadpost', {
+        params: {
+          country: this.country
+        }
+      }).then(function (response) {
         for (var i = 0; i < response.data.length; i++) {
           _this.persons.push(response.data[i]);
         }
@@ -1804,7 +1812,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (blockSize >= lastSize) {
         var country = $('.search-form input').val();
-        axios.get("/project/1/loadpost", {
+        axios.get('/project/' + this.project + '/loadpost', {
           params: {
             personsLength: this.persons.length,
             country: country
@@ -1822,6 +1830,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.scroll();
+  },
+  created: function created() {
+    var _this3 = this;
+
+    _app__WEBPACK_IMPORTED_MODULE_0__["eventSearch"].$on('updateData', function (country) {
+      _this3.country = country;
+      _this3.persons = [];
+
+      _this3.getInitialUsers();
+    });
   }
 });
 
@@ -1922,6 +1940,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 //
 //
 //
@@ -1943,7 +1962,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['project'],
   data: function data() {
     return {
       queryString: '',
@@ -1964,15 +1985,12 @@ __webpack_require__.r(__webpack_exports__);
           _this.countries.push(country);
         });
       });
+      _app__WEBPACK_IMPORTED_MODULE_0__["eventSearch"].$emit('updateData', this.queryString);
     },
     selectCountry: function selectCountry(event) {
       this.queryString = event.target.innerHTML;
       this.countries = [];
-      axios.get('/project/1/loadpost', {
-        params: {
-          country: this.queryString
-        }
-      }).then(function (response) {});
+      _app__WEBPACK_IMPORTED_MODULE_0__["eventSearch"].$emit('updateData', this.queryString);
     }
   }
 });
@@ -49388,9 +49406,12 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: eventSearch */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eventSearch", function() { return eventSearch; });
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -49411,6 +49432,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+var eventSearch = new Vue();
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
 Vue.component('join-autocomplete', __webpack_require__(/*! ./components/JoinAutocomplete.vue */ "./resources/js/components/JoinAutocomplete.vue").default);
 Vue.component('search-autocomplete', __webpack_require__(/*! ./components/SearchAutocomplete.vue */ "./resources/js/components/SearchAutocomplete.vue").default);
