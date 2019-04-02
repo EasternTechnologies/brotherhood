@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Forum\Admin;
 
 use App\Models\Role;
 use App\Models\User;
-use App\Models\ForumPost;
+use App\Repositories\ForumPostRepository;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
@@ -15,6 +15,7 @@ class UserController extends BaseController
 	private $userRepository;
 	private $roleRepository;
 	private $countryRepository;
+	private $postRepository;
 
 	/**
 	 * construct new model for search in repository
@@ -26,6 +27,7 @@ class UserController extends BaseController
 		$this->userRepository = app(UserRepository::class);
 		$this->roleRepository = app(RoleRepository::class);
 		$this->countryRepository = app(CountryRepository::class);
+		$this->postRepository = app(ForumPostRepository::class);
 	}
 
 	/**
@@ -108,12 +110,10 @@ class UserController extends BaseController
 	 */
 	public function deleteUser(Request $request)
 	{
-		$posts = ForumPost::where('user_id', $request->id)->get();dd($posts);
-		foreach( $posts as $post){
-			$post->delete();
-		}
-
-		User::where('id', $request->id)->delete();
+		$this->postRepository->deleteForce($request->id);
+		$user = $this->userRepository->getUpdate($request->id);
+		$user->roles()->detach();
+		$user->forceDelete();
 
 		return 'success';
 	}

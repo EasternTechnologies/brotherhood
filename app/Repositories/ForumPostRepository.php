@@ -221,4 +221,20 @@ class ForumPostRepository extends CoreRepository
 
 		return $data;
 	}
+
+	/**
+	 * delete all post when user = user_id
+	 *
+	 * @param $id
+	 * @return mixed
+	 */
+	public function deleteForce($id)
+	{
+		$data = $this
+			->startConditions()
+			->where('user_id', '=', $id)
+			->forceDelete();
+
+		return $data;
+	}
 }

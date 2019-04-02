@@ -152,7 +152,6 @@ import axios from 'axios'
                 { params: { id: deletePostId } }).then(response => {
           if (response.data === 'success') {
             this.getUsers();
-          console.log(response.data)
           }
         })
       },

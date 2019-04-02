@@ -3334,8 +3334,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         if (response.data === 'success') {
           _this2.getUsers();
-
-          console.log(response.data);
         }
       });
     },
