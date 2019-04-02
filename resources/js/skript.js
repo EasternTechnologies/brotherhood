@@ -15,7 +15,7 @@ $(document).ready(function() {
   })
 
   $('.languages-form select').change(function () {
-    let changeLanguage = 'http://brotherhood.com/setlocale/' + $('.languages-form select').val();
+    let changeLanguage = '/setlocale/' + $('.languages-form select').val();
     $('.languages-form').attr('action', changeLanguage).submit();
   })
 });

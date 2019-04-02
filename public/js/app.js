@@ -49782,7 +49782,7 @@ $(document).ready(function () {
     form.toggleClass('active');
   });
   $('.languages-form select').change(function () {
-    var changeLanguage = 'http://brotherhood.com/setlocale/' + $('.languages-form select').val();
+    var changeLanguage = '/setlocale/' + $('.languages-form select').val();
     $('.languages-form').attr('action', changeLanguage).submit();
   });
 });

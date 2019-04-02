@@ -108,10 +108,8 @@ class HomeController extends Controller
 	{
 		$locale = $request['languages'];
 
-
 		if (in_array($locale, Config::get('app.locales'))) {
 			Session::put('locale', $locale);
-			dd($locale, Config::get('app.locales'));
 		}
 
 		return redirect()->back();
