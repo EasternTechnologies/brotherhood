@@ -10,19 +10,13 @@
 |
 */
 
-Route::get('setlocale/{locale}', function ($locale) {
-	if (in_array($locale, \Config::get('app.locales'))) {
-		Session::set('locale', $locale);
-	}
-	return redirect()->back();
-})->name('change.locale');
-
 Route::post('login', 'Auth\LoginController@login')->name('login.admin');
 
 Auth::routes();
 
 Route::group(['namespace' => 'Forum'], function(){
-    Route::get('/', 'HomeController@index')->name('forum.home');
+	Route::get('/setlocale/{locale}', 'HomeController@setlocale')->name('change.locale');
+	Route::get('/', 'HomeController@index')->name('forum.home');
     Route::post('/sendMail', 'HomeController@sendMail')->name('forum.home.mail');
     Route::get('/language', 'HomeController@selectedLanguage');
 });

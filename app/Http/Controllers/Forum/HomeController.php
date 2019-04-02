@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Requests\FeedbackRequest;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\ForumCategoryRepository;
 
@@ -94,5 +95,21 @@ class HomeController extends Controller
 		}
 
 		return $result;
+	}
+
+	/**
+	 * switch getLocale on session
+	 *
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function setlocale(Request $request)
+	{
+		$locale = $request['languages'];
+
+		if (in_array($locale, \Config::get('app.locales'))) {
+			Session::put('locale', $locale);
+		}
+		return redirect()->back();
 	}
 }
