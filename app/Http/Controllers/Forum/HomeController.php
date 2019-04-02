@@ -6,6 +6,7 @@ use App\Mail\MailClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Requests\FeedbackRequest;
@@ -107,9 +108,12 @@ class HomeController extends Controller
 	{
 		$locale = $request['languages'];
 
-		if (in_array($locale, \Config::get('app.locales'))) {
+
+		if (in_array($locale, Config::get('app.locales'))) {
 			Session::put('locale', $locale);
+			dd($locale, Config::get('app.locales'));
 		}
+
 		return redirect()->back();
 	}
 }
