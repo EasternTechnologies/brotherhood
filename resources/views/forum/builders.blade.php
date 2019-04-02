@@ -49,8 +49,9 @@
               </label>
             </p>
             <p class="join-form__block">
-              <label aria-label="Поле ввода сообщения, обязательно для заполнения">
-                <textarea class="join-form__field" name="text" placeholder="@lang('project.builders.project_is')*:" required></textarea>
+              <label aria-label="Поле ввода сообщения, обязательно для заполнения" style="font-size: 1.6875rem">
+                @lang('project.builders.project_is')*:
+                <textarea class="join-form__field" name="text" required></textarea>
               </label>
             </p>
             <p class="join-form__block">

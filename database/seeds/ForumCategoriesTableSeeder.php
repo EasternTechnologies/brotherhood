@@ -14,7 +14,7 @@ class ForumCategoriesTableSeeder extends Seeder
     {
 		$categories = [];
 
-		for ( $i = 1; $i <= 5; $i ++ ) {
+		for ( $i = 1; $i <= 1; $i ++ ) {
 			$cName = 'Проект #' . $i;
 
 			$categories[] = [
