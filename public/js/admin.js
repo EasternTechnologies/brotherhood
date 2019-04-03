@@ -2619,6 +2619,113 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      newItem: '',
+      text: '',
+      coordinate1: '',
+      coordinate2: '',
+      messages: [],
+      showModal: false,
+      deleteMessageId: ''
+    };
+  },
+  beforeMount: function beforeMount() {
+    this.updateCoordinateSettings();
+  },
+  methods: {
+    updateCoordinateSettings: function updateCoordinateSettings() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/admin/settings/coordinate", {
+        params: {
+          text: this.text,
+          coordinate1: this.coordinate1,
+          coordinate2: this.coordinate2,
+          messages: this.messages
+        }
+      }).then(function (response) {
+        _this.messages = response.data;
+        _this.newItem = response.data.length;
+      });
+    },
+    deleteMessage: function deleteMessage(deleteMessageId) {
+      var _this2 = this;
+
+      this.showModal = false;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/admin/settings/deleteCoordinate", {
+        params: {
+          id: deleteMessageId
+        }
+      }).then(function (response) {
+        if (response.data === 'success') {
+          _this2.updateCoordinateSettings();
+        }
+      });
+    },
+    setMessageId: function setMessageId(MessageId) {
+      this.showModal = true;
+      this.deleteMessageId = MessageId;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2634,27 +2741,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      id: '',
+      url: '',
       text: '',
       coordinate1: '',
-      coordinate2: '',
-      messages: []
+      coordinate2: ''
     };
   },
-  // beforeMount () {
-  //     this.updateCoordinateSettings()
-  // },
+  mounted: function mounted() {
+    console.log(this.$route.params['id']);
+
+    if (this.$route.params['id'] || this.$route.params['id'] !== null) {
+      this.id = this.$route.params['id'];
+      this.url = 'editCoordinate';
+      this.updateCoordinate();
+    } else {
+      this.url = 'newCoordinate';
+    }
+
+    console.log(this.url);
+  },
   methods: {
-    updateCoordinateSettings: function updateCoordinateSettings() {
+    updateCoordinate: function updateCoordinate() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/admin/settings/coordinate", {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/admin/settings/" + this.url, {
         params: {
+          id: this.id,
           text: this.text,
           coordinate1: this.coordinate1,
           coordinate2: this.coordinate2
         }
       }).then(function (response) {
-        _this.messages = response.data;
+        console.log(_this.id);
+
+        if (response.data === 'success') {
+          _this.$router.go(-1);
+        }
+
+        if (_this.id !== '') {
+          _this.text = response.data.properties.place;
+          _this.coordinate1 = response.data.geometry.coordinates[0];
+          _this.coordinate2 = response.data.geometry.coordinates[1];
+        }
       });
     }
   }
@@ -3597,6 +3726,25 @@ exports.push([module.i, "\n.search-form[data-v-caf64126] {\n    width: 100%;\n}\
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.search-form[data-v-a0222150] {\n    width: 100%;\n}\n.search-form__block[data-v-a0222150] {\n    position: relative;\n}\n.search-form__block input[data-v-a0222150] {\n    background: #c4c4c4;\n}\n.search-form__result-list[data-v-a0222150] {\n    background: #c4c4c4;\n    margin-top: 10px;\n}\nlabel[data-v-a0222150] {\n    position: relative;\n    width: 50px;\n    height: 35px;\n}\ninput[data-v-a0222150] {\n    border: 1px solid black;\n    height: 35px;\n    width: 250px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditUser.vue?vue&type=style&index=0&id=2b6ba2ff&scoped=true&lang=css&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/NewOrEditUser.vue?vue&type=style&index=0&id=2b6ba2ff&scoped=true&lang=css& ***!
@@ -4265,6 +4413,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -6434,7 +6612,211 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "section-body dashboard__body" }, [
-      _c("h2", [_vm._v("Добавить новое сообщение")]),
+      _c("table", [
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v("Текст сообщения")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Координата 1")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Координата 2")]),
+            _vm._v(" "),
+            _c(
+              "th",
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      tag: "button",
+                      title: "Назад",
+                      to: { name: "newCoordinate" }
+                    }
+                  },
+                  [_c("div", [_vm._v("Добавить новое сообщение")])]
+                )
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.messages, function(message, index) {
+            return _c("tr", { key: message.id }, [
+              _c("td", { attrs: { value: message.properties.place } }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(message.properties.place) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { value: message.geometry.coordinates[0] } }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(message.geometry.coordinates[0]) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { value: message.geometry.coordinates[1] } }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(message.geometry.coordinates[1]) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("ul", { staticClass: "table-controls__list" }, [
+                  _c("li", { staticClass: "table-controls__item" }, [
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.setMessageId(index)
+                          }
+                        }
+                      },
+                      [_vm._v("Удалить Сообщение")]
+                    ),
+                    _vm._v(" "),
+                    _vm.showModal
+                      ? _c(
+                          "div",
+                          [
+                            _c("app-deleteModal", {
+                              on: {
+                                close: function($event) {
+                                  _vm.showModal = false
+                                },
+                                deletePost: function($event) {
+                                  return _vm.deleteMessage(_vm.deleteMessageId)
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "table-controls__item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "button",
+                            title: "Настройки сообщения",
+                            to: {
+                              name: "editCoordinate",
+                              params: { id: index }
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "table-controls__item-img",
+                              attrs: {
+                                role: "img",
+                                width: "20px",
+                                height: "20px"
+                              }
+                            },
+                            [
+                              _c("use", {
+                                attrs: {
+                                  "xlink:href":
+                                    __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") +
+                                    "#user-settings"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ])
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "button",
+        {
+          attrs: { tag: "button", title: "Назад" },
+          on: {
+            click: function($event) {
+              return _vm.$router.go(-1)
+            }
+          }
+        },
+        [_vm._v("\n            Назад\n        ")]
+      ),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.updateCoordinateSettings } }, [
+        _vm._v("Сохранить")
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "section-header" }, [
+      _c("h2", { staticClass: "section-header__title dashboard__title" }, [
+        _vm._v("Сообщения на планете")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "section dashboard" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "section-body dashboard__body" }, [
+      _vm.id === "" ? _c("h2", [_vm._v("Добавить новое сообщение")]) : _vm._e(),
+      _vm._v(" "),
+      _vm.id !== "" ? _c("h2", [_vm._v("Редактировать сообщение")]) : _vm._e(),
       _vm._v(" "),
       _c("table", [
         _vm._m(1),
@@ -6519,58 +6901,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Список старых сообщений")]),
-      _vm._v(" "),
-      _c("table", [
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          [
-            _vm._l(_vm.messages, function(message) {
-              return _c("tr", [
-                _c("td", [
-                  _c("label", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: message.properties.place,
-                          expression: "message.properties.place"
-                        }
-                      ],
-                      attrs: { type: "text" },
-                      domProps: { value: message.properties.place },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            message.properties,
-                            "place",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._m(3, true),
-                _vm._v(" "),
-                _vm._m(4, true)
-              ])
-            }),
-            _vm._v(" "),
-            _c("br")
-          ],
-          2
-        )
-      ])
+      _c("br")
     ]),
     _vm._v(" "),
     _c("br"),
@@ -6589,7 +6920,7 @@ var render = function() {
         [_vm._v("\n            Назад\n        ")]
       ),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.updateCoordinateSettings } }, [
+      _c("button", { on: { click: _vm.updateCoordinate } }, [
         _vm._v("Сохранить")
       ])
     ])
@@ -6619,32 +6950,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Координата 2")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Текст сообщения")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Координата 1")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Координата 2")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_c("input", { attrs: { type: "number" } })])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_c("input", { attrs: { type: "number" } })])])
   }
 ]
 render._withStripped = true
@@ -23662,6 +23967,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/NewOrEditMessageOnEarth.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/pages/NewOrEditMessageOnEarth.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true& */ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true&");
+/* harmony import */ var _NewOrEditMessageOnEarth_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewOrEditMessageOnEarth.vue?vue&type=script&lang=js& */ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& */ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _NewOrEditMessageOnEarth_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "a0222150",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/NewOrEditMessageOnEarth.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./NewOrEditMessageOnEarth.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/pages/NewOrEditUser.vue":
 /*!**********************************************!*\
   !*** ./resources/js/pages/NewOrEditUser.vue ***!
@@ -24081,6 +24473,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_NewPost__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/NewPost */ "./resources/js/pages/NewPost.vue");
 /* harmony import */ var _pages_NewOrEditUser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/NewOrEditUser */ "./resources/js/pages/NewOrEditUser.vue");
 /* harmony import */ var _pages_MessageOnEarth__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/MessageOnEarth */ "./resources/js/pages/MessageOnEarth.vue");
+/* harmony import */ var _pages_NewOrEditMessageOnEarth__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/NewOrEditMessageOnEarth */ "./resources/js/pages/NewOrEditMessageOnEarth.vue");
+
 
 
 
@@ -24118,6 +24512,14 @@ __webpack_require__.r(__webpack_exports__);
     path: '/admin/messageOnEarth',
     name: 'messageOnEarth',
     component: _pages_MessageOnEarth__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }, {
+    path: '/admin/messageOnEarth/newCoordinate',
+    name: 'newCoordinate',
+    component: _pages_NewOrEditMessageOnEarth__WEBPACK_IMPORTED_MODULE_11__["default"]
+  }, {
+    path: '/admin/messageOnEarth/:id/editCoordinate',
+    name: 'editCoordinate',
+    component: _pages_NewOrEditMessageOnEarth__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
     path: '/admin/projects',
     name: 'projects',

@@ -45,8 +45,12 @@ class 	DashboardController extends BaseController
 	}
 
 	/**
+	 * setting to coordinate && mail
+	 *
 	 * @param Request $request
 	 * @param $param
+	 * @return array|int|string
+	 * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
 	 */
 	public function settings(Request $request, $param)
 	{
@@ -64,43 +68,60 @@ class 	DashboardController extends BaseController
 					self::changeEnvironmentVariable($item, $key);
 				}
 			}
+
+			return $environmentVariable;
 		}
 
 		if ($param === 'coordinate') {
-			$environmentVariable = [
-				'text' => $request->text,
-				'coordinate1' => $request->coordinate1,
-				'coordinate2' => $request->coordinate2
-			];
-//			$message = 'Eastern Technologies';
-//			$number_item = 0;
-//			$coordinates = [
-//				0 => 27.539602518081665,
-//				1 => 53.905047652725024
-//			];
-//			$mag = rand(20, 30);
-//			foreach ($environmentVariable as $item => $key)
-//			{
-//				if (!$key) {
-//					$environmentVariable[$item] = env($item);
-//				}else{
-//					self::changeMessagePlace($number_item, $message, $coordinates, $mag);
-//				}
-//			}
+			$file = json_decode(Storage::disk('public')->get('ru.place.json'));
+			$count = $file->features;
 
-			$old_file = json_decode(Storage::disk('public')->get('ru.place.json'));
-			$count = $old_file->features;
-
-
-//			dd($count);
-
+			return $count;
 		}
 
-//		dd(true);
+		if ($param === 'newCoordinate') {
 
+			$old_file = json_decode(Storage::disk('public')->get('ru.place.json'));
+			$count = count($old_file->features);
+			$mag = rand(10, 25);
+			$coordinates = [
+				0 => $request->coordinate1,
+				1 => $request->coordinate2
+			];
+			self::changeMessagePlace($count, $request->text, $coordinates, $mag);
 
+			return 'success';
+		}
 
-		return $count;
+		if ($param === 'editCoordinate') {
+
+			if (!$request->text) {
+				$file = json_decode(Storage::disk('public')->get('ru.place.json'), true);
+				$item = $file['features'][$request->id];
+			}else{
+				$coordinates = [
+					0 => $request->coordinate1,
+					1 => $request->coordinate2
+				];
+				self::changeMessagePlace($request->id, $request->text, $coordinates);
+
+				return 'success';
+			}
+
+			return $item;
+		}
+
+		if ($param === 'deleteCoordinate') {
+
+			$oldFile = json_decode(Storage::disk('public')->get('ru.place.json'), true);
+			$oldArray = $oldFile['features'];
+			unset($oldArray[$request->id]);
+			$oldFile['features'] = array_values($oldArray);
+			$newFile = json_encode($oldFile);
+			json_encode(Storage::disk('public')->put('ru.place.json', $newFile));
+
+			return 'success';
+		}
 	}
 
 	/**

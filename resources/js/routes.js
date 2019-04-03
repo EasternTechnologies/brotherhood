@@ -9,6 +9,7 @@ import EditPost from './pages/EditPost'
 import NewPost from './pages/NewPost'
 import NewOrEditUser from './pages/NewOrEditUser'
 import MessageOnEarth from './pages/MessageOnEarth'
+import newOrEditMessageOnEarth from './pages/NewOrEditMessageOnEarth'
 
 export default new VueRouter ({
   mode: 'history',
@@ -42,6 +43,16 @@ export default new VueRouter ({
       path: '/admin/messageOnEarth',
       name: 'messageOnEarth',
       component: MessageOnEarth
+    },
+    {
+      path: '/admin/messageOnEarth/newCoordinate',
+      name: 'newCoordinate',
+      component: newOrEditMessageOnEarth
+    },
+    {
+      path: '/admin/messageOnEarth/:id/editCoordinate',
+      name: 'editCoordinate',
+      component: newOrEditMessageOnEarth
     },
     {
       path: '/admin/projects',

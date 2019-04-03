@@ -4,64 +4,53 @@
             <h2 class="section-header__title dashboard__title">Сообщения на планете</h2>
         </header>
         <div class="section-body dashboard__body">
-            <h2>Добавить новое сообщение</h2>
             <table>
                 <thead>
                 <tr>
                     <th>Текст сообщения</th>
                     <th>Координата 1</th>
                     <th>Координата 2</th>
+                    <th>
+                        <router-link tag="button" title="Назад" :to="{name: 'newCoordinate'}">
+                            <div>Добавить новое сообщение</div>
+                        </router-link>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>
-                        <label>
-                            <input v-model="text" type="text">
-                        </label>
+                <tr v-for="(message, index) in messages" :key="message.id">
+                    <td :value="message.properties.place">
+                        {{message.properties.place}}
+                    </td>
+                    <td :value="message.geometry.coordinates[0]">
+                        {{message.geometry.coordinates[0]}}
+                    </td>
+                    <td :value="message.geometry.coordinates[1]">
+                        {{message.geometry.coordinates[1]}}
                     </td>
                     <td>
-                        <label>
-                            <input v-model="coordinate1" type="number">
-                        </label>
-                    </td>
-                    <td>
-                        <label>
-                            <input v-model="coordinate2" type="number">
-                        </label>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <br>
-            <h2>Список старых сообщений</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Текст сообщения</th>
-                    <th>Координата 1</th>
-                    <th>Координата 2</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="message in messages">
-                    <td>
-                        <label>
-                            <input v-model="message.properties.place" type="text">
-                        </label>
-                    </td>
-                    <td>
-                        <label>
-                            <input type="number">
-                        </label>
-                    </td>
-                    <td>
-                        <label>
-                            <input type="number">
-                        </label>
+                        <ul class="table-controls__list">
+                            <li class="table-controls__item">
+                                <button @click="setMessageId(index)">Удалить Сообщение</button>
+                                <div v-if="showModal">
+                                    <app-deleteModal
+                                        @close="showModal = false"
+                                        @deletePost="deleteMessage(deleteMessageId)"
+                                    ></app-deleteModal>
+                                </div>
+                            </li>
+                            <li class="table-controls__item">
+                                <router-link tag="button" title="Настройки сообщения"
+                                             :to="{name: 'editCoordinate', params: {id: index }}"
+                                >
+                                    <svg class="table-controls__item-img" role="img" width="20px" height="20px">
+                                        <use xlink:href="../../../public/img/svg/sprite.svg#user-settings"></use>
+                                    </svg>
+                                </router-link>
+                            </li>
+                        </ul>
                     </td>
                 </tr>
-                <br>
                 </tbody>
             </table>
         </div>
@@ -83,25 +72,45 @@ import axios from 'axios'
     export default {
         data () {
             return {
+                newItem: '',
                 text: '',
                 coordinate1: '',
                 coordinate2: '',
-                messages: []
+                messages: [],
+                showModal: false,
+                deleteMessageId: '',
             }
         },
-        // beforeMount () {
-        //     this.updateCoordinateSettings()
-        // },
+        beforeMount () {
+            this.updateCoordinateSettings()
+        },
         methods: {
             updateCoordinateSettings () {
                 axios.get("/admin/settings/coordinate",
                     { params: {
-                            text: this.text,
-                            coordinate1: this.coordinate1,
-                            coordinate2:    this.coordinate2
-                        }}).then(response => {
+                        text:           this.text,
+                        coordinate1:    this.coordinate1,
+                        coordinate2:    this.coordinate2,
+                        messages:       this.messages
+                    }}).then(response => {
                     this.messages = response.data
+                    this.newItem = response.data.length
                 })
+            },
+            deleteMessage(deleteMessageId) {
+                this.showModal = false;
+                axios.get("/admin/settings/deleteCoordinate",
+                    { params: {
+                        id: deleteMessageId
+                    }}).then(response => {
+                    if (response.data === 'success') {
+                        this.updateCoordinateSettings()
+                    }
+                })
+            },
+            setMessageId(MessageId) {
+                this.showModal = true;
+                this.deleteMessageId = MessageId
             },
         },
     }
