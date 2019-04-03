@@ -3,12 +3,12 @@ import Users from './pages/Users'
 import Dashboard from './pages/Dashboard'
 import Backup from './pages/Backup'
 import Projects from './pages/Projects'
-import Control from './pages/Control'
 import EmailSettings from './pages/EmailSettings'
 import ProjectPost from './pages/ProjectPost'
 import EditPost from './pages/EditPost'
 import NewPost from './pages/NewPost'
 import NewOrEditUser from './pages/NewOrEditUser'
+import MessageOnEarth from './pages/MessageOnEarth'
 
 export default new VueRouter ({
   mode: 'history',
@@ -39,14 +39,14 @@ export default new VueRouter ({
       component: Backup
     },
     {
+      path: '/admin/messageOnEarth',
+      name: 'messageOnEarth',
+      component: MessageOnEarth
+    },
+    {
       path: '/admin/projects',
       name: 'projects',
       component: Projects
-    },
-    {
-      path: '/admin/control',
-      name: 'control',
-      component: Control
     },
     {
       path: '/admin/email-settings',

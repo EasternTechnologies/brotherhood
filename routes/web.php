@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' 
 	Route::post('/{slug}/update', 'UserController@updateUser');
 	Route::get('/{slug}/deleteUser', 'UserController@deleteUser');
 	Route::get('/{slug}/project_cards', 'DashboardController@index');
+	Route::get('/settings/{slug}', 'DashboardController@settings');
 	Route::get('/projects/{slug}/{publish}/posts', 'PostController@index');
 	Route::get('/projects/{slug}/{publish}/editPost', 'PostController@editPost');
 	Route::post('/projects/{slug}/{publish}/createNewPost', 'PostController@createNewPost');

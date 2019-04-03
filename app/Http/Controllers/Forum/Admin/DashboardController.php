@@ -9,7 +9,7 @@ use App\Repositories\ForumPostRepository;
 use App\Repositories\ForumCategoryRepository;
 use App\Repositories\UserRepository;
 
-class DashboardController extends BaseController
+class 	DashboardController extends BaseController
 {
 	private $userRepository;
 	private $forumPostRepository;
@@ -41,27 +41,66 @@ class DashboardController extends BaseController
 		$data['published'] = $this->forumPostRepository->getPublishedCount();
 		$data['on_moderate'] = $this->forumPostRepository->getOnModerateCount();
 
-//		$message = 'Eastern Technologies';
-//		$number_item = 0;
-//		$coordinates = [
-//			0 => 27.539602518081665,
-//			1 => 53.905047652725024
-//		];
-//		$mag = rand(20, 30);
-//
-//		self::changeMessagePlace($number_item, $message, $coordinates, $mag);
-
-//        self::changeEnvironmentVariable('MAIL_ADMIN', 'MObratstvo@gmail.com');
-
-//        $path =  file_get_contents(base_path('.env'));
-
-//        $published = $forumPostRepository->getAllPublishedPost();
-
-//		$post = $forumPostRepository->getAllWithPaginate(10);
-//
-//		$category = $forumCategoryRepository->getForComboBox();
-
 		return $data;
+	}
+
+	/**
+	 * @param Request $request
+	 * @param $param
+	 */
+	public function settings(Request $request, $param)
+	{
+		if ($param === 'mail') {
+			$environmentVariable = [
+				'MAIL_USERNAME' => $request->MAIL_USERNAME,
+				'MAIL_PASSWORD' => $request->MAIL_PASSWORD,
+				'MAIL_ADMIN' => $request->MAIL_ADMIN
+			];
+			foreach ($environmentVariable as $item => $key)
+			{
+				if (!$key) {
+					$environmentVariable[$item] = env($item);
+				}else{
+					self::changeEnvironmentVariable($item, $key);
+				}
+			}
+		}
+
+		if ($param === 'coordinate') {
+			$environmentVariable = [
+				'text' => $request->text,
+				'coordinate1' => $request->coordinate1,
+				'coordinate2' => $request->coordinate2
+			];
+//			$message = 'Eastern Technologies';
+//			$number_item = 0;
+//			$coordinates = [
+//				0 => 27.539602518081665,
+//				1 => 53.905047652725024
+//			];
+//			$mag = rand(20, 30);
+//			foreach ($environmentVariable as $item => $key)
+//			{
+//				if (!$key) {
+//					$environmentVariable[$item] = env($item);
+//				}else{
+//					self::changeMessagePlace($number_item, $message, $coordinates, $mag);
+//				}
+//			}
+
+			$old_file = json_decode(Storage::disk('public')->get('ru.place.json'));
+			$count = $old_file->features;
+
+
+//			dd($count);
+
+		}
+
+//		dd(true);
+
+
+
+		return $count;
 	}
 
 	/**

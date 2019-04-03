@@ -57,9 +57,6 @@ class ProjectController extends Controller
 	 */
 	public function loadPost(Request $request, $id)
 	{
-
-//		dd($request->country, $request->id);
-
 		if ($request->country) {
 			$county = array_search($request->country, json_decode(Redis::get(App::getlocale()), true));
 		} else {
