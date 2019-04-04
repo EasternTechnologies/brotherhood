@@ -2749,17 +2749,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log(this.$route.params['id']);
-
-    if (this.$route.params['id'] || this.$route.params['id'] !== null) {
+    if (this.$route.params['id'] !== undefined) {
       this.id = this.$route.params['id'];
       this.url = 'editCoordinate';
       this.updateCoordinate();
     } else {
       this.url = 'newCoordinate';
     }
-
-    console.log(this.url);
   },
   methods: {
     updateCoordinate: function updateCoordinate() {
@@ -2773,8 +2769,6 @@ __webpack_require__.r(__webpack_exports__);
           coordinate2: this.coordinate2
         }
       }).then(function (response) {
-        console.log(_this.id);
-
         if (response.data === 'success') {
           _this.$router.go(-1);
         }
@@ -5767,7 +5761,7 @@ var render = function() {
         "a",
         {
           staticClass: "logo__link",
-          attrs: { href: "#", "aria-label": "Ссылка на главную страницу" }
+          attrs: { href: "/", "aria-label": "Ссылка на главную страницу" }
         },
         [
           _c(

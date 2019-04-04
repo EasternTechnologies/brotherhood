@@ -63,16 +63,13 @@
             }
         },
         mounted () {
-            console.log(this.$route.params['id']);
-
-            if (this.$route.params['id'] || this.$route.params['id'] !== null) {
+            if (this.$route.params['id'] !== undefined) {
                 this.id = this.$route.params['id'];
                 this.url = 'editCoordinate';
                 this.updateCoordinate()
             }else{
                 this.url = 'newCoordinate'
             }
-            console.log(this.url);
         },
         methods: {
             updateCoordinate () {
@@ -83,12 +80,10 @@
                         coordinate1:    this.coordinate1,
                         coordinate2:    this.coordinate2,
                     }}).then(response => {
-                        console.log(this.id)
                     if (response.data === 'success') {
                         this.$router.go(-1)
                     }
                     if (this.id !== '') {
-
                         this.text = response.data.properties.place;
                         this.coordinate1 = response.data.geometry.coordinates[0];
                         this.coordinate2 = response.data.geometry.coordinates[1]

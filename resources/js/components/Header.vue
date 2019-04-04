@@ -1,7 +1,7 @@
 <template>
   <header class="page-header">
     <div class="page-header__logo logo">
-      <a class="logo__link" href="#" aria-label="Ссылка на главную страницу">
+      <a class="logo__link" href="/" aria-label="Ссылка на главную страницу">
       <svg class="logo__img" role="img" width="84px" height="84px">
         <use xlink:href="../../../public/img/svg/sprite.svg#logo"></use>
       </svg>
