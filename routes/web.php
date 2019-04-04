@@ -30,6 +30,7 @@ Route::group(['namespace' => 'Forum', 'prefix' => 'project'], function(){
 Route::group(['namespace' => 'Forum\Admin',  'prefix' => 'admin',  'middleware' => 'roles',
     'roles' => ['Admin', 'Author']], function (){
 	Route::get('/projects/project_slug', 'DashboardController@projectSlug');
+	Route::get('/{slug}/databaseBackup', 'DatabaseBackup@handle');
 	Route::get('/{slug}/show', 'UserController@show');
 	Route::get('/{slug}/newOrEditUser', 'UserController@newOrEditUser');
 	Route::post('/{slug}/update', 'UserController@updateUser');

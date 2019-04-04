@@ -1,7 +1,6 @@
 import VueRouter from 'vue-router'
 import Users from './pages/Users'
 import Dashboard from './pages/Dashboard'
-import Backup from './pages/Backup'
 import Projects from './pages/Projects'
 import EmailSettings from './pages/EmailSettings'
 import ProjectPost from './pages/ProjectPost'
@@ -33,11 +32,6 @@ export default new VueRouter ({
       path: '/admin/users/newUser',
       name: 'newUser',
       component: NewOrEditUser
-    },
-    {
-      path: '/admin/backup',
-      name: 'backup',
-      component: Backup
     },
     {
       path: '/admin/messageOnEarth',

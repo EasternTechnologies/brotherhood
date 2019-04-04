@@ -53,14 +53,13 @@
                 </a>
               </router-link>
 
-              <router-link class="nav__item" tag="li" to="/admin/backup" active-class="active">
-                <a class="nav__link">
+                <a class="nav__item nav__link" :href="backup" download>
+                  <i class="fa fa-download"></i>
                   <svg class="nav__link-img" role="img" width="30px" height="30px">
                     <use xlink:href="../../../public/img/svg/sprite.svg#backup"></use>
                   </svg>
                   <span class="nav__link-text">Бэкап</span>
                 </a>
-              </router-link>
 
               <router-link class="nav__item" tag="li" to="/admin/messageOnEarth" active-class="active">
                 <a class="nav__link">
@@ -88,6 +87,7 @@
         show: false,
         visible: false,
         url: '/admin/projects/project_slug',
+        backup: '/admin/settings/databaseBackup',
       }
     },
     beforeMount() {
