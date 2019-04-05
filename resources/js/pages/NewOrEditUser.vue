@@ -37,15 +37,17 @@
                             </form>
                         </td>
                         <td>
-                            <div class="users__serch users-search">
-                                <div class="user-search__block">
-                                    <select name="category" v-model="selectedRole">
-                                        <option v-for="role in roles" :key="role.id" :value="role.id">
-                                            {{ role.name }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
+                            <label>
+                                <input type="radio" value="2" v-model="roles">Admin
+                            </label>
+                            <br>
+                            <label>
+                                <input type="radio" value="1" v-model="roles">User
+                            </label>
+                            <br>
+                            <label>
+                                <input type="radio" value="3" v-model="roles">Moderator
+                            </label>
                         </td>
                         <td>{{user.createdAt}}</td>
                         <td>{{user.updatedAt}}</td>
@@ -114,7 +116,6 @@ export default {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             searchCountry: '',
             countries: [],
-            selectedRole: '',
             roles: [],
             user: {
                 name: '',
@@ -124,7 +125,6 @@ export default {
                 updatedAt: '',
                 password: ''
             },
-            oldCountry: '',
             password: '',
             acceptPassword: '',
             error: '',
@@ -139,18 +139,14 @@ export default {
     methods: {
         getUser () {
             axios.get('/admin/users/newOrEditUser', {params: { id: this.id }}).then(response => {
-                this.roles = response.data.role;
                 if (response.data.user) {
                     this.user.name = response.data.user[0].name;
                     this.user.email = response.data.user[0].email;
                     this.user.phone = response.data.user[0].phone;
                     this.user.createdAt = response.data.user[0].createdAt;
                     this.user.updatedAt = response.data.user[0].updatedAt;
-                    this.selectedRole = response.data.user[0].rolesId;
                     this.searchCountry = response.data.user[0].countryName;
-                }
-                if (this.oldCountry === '') {
-                    this.oldCountry = this.searchCountry
+                    this.roles = response.data.user[0].rolesId;
                 }
             })
         },
@@ -166,11 +162,6 @@ export default {
             this.countries = [];
         },
         save () {
-            if (this.oldCountry === this.searchCountry ) {
-                this.oldCountry = ''
-            }else{
-                this.oldCountry = this.searchCountry
-            }
             if (this.acceptPassword === this.password) {
                 this.user.password = this.acceptPassword
             }
@@ -178,11 +169,12 @@ export default {
                 this.createUser()
             }
             if (this.error === '') {
+                console.log(this.roles)
                 axios.post("/admin/user/update", {
                     id: this.id,
                     user: this.user,
-                    country: this.oldCountry,
-                    role: this.selectedRole
+                    country: this.searchCountry,
+                    role: this.roles
                 }).then(response => {
                     this.$router.push({name: 'users'})
                 })
@@ -192,14 +184,13 @@ export default {
             if (
                 this.user.name === '' ||
                 this.user.email === '' ||
-                this.selectedRole === '' ||
+                this.roles === '' ||
                 this.searchCountry === '' ||
                 this.acceptPassword !== this.password
             ) {
                 this.error = 'error'
             }else{
                 this.error = ''
-                this.oldCountry = this.searchCountry
             }
         }
     }

@@ -13,7 +13,6 @@ use App\Repositories\CountryRepository;
 class UserController extends BaseController
 {
 	private $userRepository;
-	private $roleRepository;
 	private $countryRepository;
 	private $postRepository;
 
@@ -25,7 +24,6 @@ class UserController extends BaseController
 	public function __construct()
 	{
 		$this->userRepository = app(UserRepository::class);
-		$this->roleRepository = app(RoleRepository::class);
 		$this->countryRepository = app(CountryRepository::class);
 		$this->postRepository = app(ForumPostRepository::class);
 	}
@@ -56,10 +54,14 @@ class UserController extends BaseController
 	{
 		if ($request->id) {
 			$data['user'] = $this->userRepository->getEdit($request->id);
+            $data['role'] = [];
+			foreach ($data['user'] as $user )
+            {
+                $data['role'][] = $user->rolesId;
+            }
 		}else {
 			$data['user'] = null;
 		}
-		$data['role'] = $this->roleRepository->getAll();
 
 		return $data;
 	}
@@ -72,7 +74,7 @@ class UserController extends BaseController
 	 */
 	public function updateUser(Request $request)
 	{
-		$role_user = Role::where('id', $request->role)->first();
+        $roles = $request->role * 1;
 		$country = $this->countryRepository->getIdRu($request->country);
 
 		if ($request->id) {
@@ -84,8 +86,8 @@ class UserController extends BaseController
 			if ($request->user['password']) {
 				$user->password = bcrypt($request->user['password']);
 			}
-			$user->updated_at = now();
-			$user->country_id = $country;
+            $user->updated_at = time();
+            $user->country_id = $country;
 			$user->save();
 		}else{
 			$data_user['name'] = $request->user['name'];
@@ -97,7 +99,8 @@ class UserController extends BaseController
 			$user = new User($data_user);
 			$user->save();
 		}
-		$user->roles()->attach($role_user);
+        $user->roles()->detach([1, 2, 3]);
+		$user->roles()->attach($roles);
 
 		return 'success';
 	}
