@@ -30,18 +30,24 @@ class  ForumCategoryRepository extends CoreRepository
     public function getEdit($id)
     {
         return $this
-			->startConditions()
-			->find($id);
+            ->startConditions()
+            ->find($id);
     }
 
+    /**
+     * get slug for admin panel
+     *
+     * @param $slug
+     * @return mixed
+     */
     public function getIdSlug($slug)
-	{
-		return $this
-			->startConditions()
-			->where('slug', '=', $slug)
-			->first()
-			->id;
-	}
+    {
+        return $this
+            ->startConditions()
+            ->where('slug', '=', $slug)
+            ->first()
+            ->id;
+    }
 
     /**
      * Get list category for show on collection list
@@ -51,21 +57,27 @@ class  ForumCategoryRepository extends CoreRepository
     public function getForComboBox()
     {
         $columns = implode(', ', [
-           'id',
-           'title',
+            'id',
+            'title',
         ]);
 
         $data = $this->startConditions()
-                    ->selectRaw($columns)
-                    ->toBase()
-                    ->get();
+            ->selectRaw($columns)
+            ->toBase()
+            ->get();
 
         return $data;
     }
 
+    /**
+     * get title
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getCategoryTitle($id)
     {
-        $columns = implode (', ', [
+        $columns = implode(', ', [
             'id',
             'title'
         ]);
@@ -80,30 +92,31 @@ class  ForumCategoryRepository extends CoreRepository
         return $data;
     }
 
-	/**
-	 * get all project with name && slug for url
-	 *
-	 * @return mixed
-	 */
+    /**
+     * get all project with name && slug for url
+     *
+     * @return mixed
+     */
     public function getAllProject()
-	{
-		$columns = [
-			'title',
-			'slug'
-		];
+    {
+        $columns = [
+            'title',
+            'slug'
+        ];
 
-		$data = $this
-			->startConditions()
-			->select($columns)
-			->get();
+        $data = $this
+            ->startConditions()
+            ->select($columns)
+            ->get();
 
-		return $data;
-	}
+        return $data;
+    }
 
     /**
-     * @param int|null $perPage
+     * get all category with paginator
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @param null $perPage
+     * @return mixed
      */
     public function getAllWithPaginate($perPage = null)
     {

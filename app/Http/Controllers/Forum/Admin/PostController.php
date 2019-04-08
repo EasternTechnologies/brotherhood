@@ -2,173 +2,191 @@
 
 namespace App\Http\Controllers\Forum\Admin;
 
-use App\Http\Requests\ForumAdminNewPostRequest;
 use App\Models\ForumPost;
-use App\Repositories\ForumCategoryRepository;
-use App\Repositories\ForumPostRepository;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ForumAdminNewPostRequest;
 use App\Repositories\UserRepository;
 use App\Repositories\CountryRepository;
+use App\Repositories\ForumPostRepository;
+use App\Repositories\ForumCategoryRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
-class PostController extends BaseController
+class PostController extends Controller
 {
-	private $forumPostRepository;
-	private $userRepository;
-	private $countryRepository;
-	private $categoryRepository;
+    /**
+     * @var ForumPostRepository
+     */
+    private $forumPostRepository;
 
-	/**
-	 * construct new model for search in repository
-	 *
-	 * UserController constructor.
-	 */
-	public function __construct()
-	{
-		$this->forumPostRepository = app(ForumPostRepository::class);
-		$this->userRepository = app(UserRepository::class);
-		$this->countryRepository = app(CountryRepository::class);
-		$this->categoryRepository = app(ForumCategoryRepository::class);
-	}
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
 
-	/**
-	 * search all post with country
-	 *
-	 * @param Request $request
-	 * @param $category
-	 * @param $published
-	 * @return mixed
-	 */
-	public function index(Request $request)
-	{
-		($request->publish === "moderation" ) ? $published = false : $published = true;
-		$category = $request->project;
+    /**
+     * @var CountryRepository
+     */
+    private $countryRepository;
 
-		($request->country) ? $country = $request->country : $country = null;
+    /**
+     * @var ForumCategoryRepository
+     */
+    private $categoryRepository;
 
-		$users = $this->forumPostRepository->getPostsWithCountry($published, $category, $country);
+    /**
+     * construct new model for search in repository
+     *
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+        $this->forumPostRepository = app(ForumPostRepository::class);
+        $this->userRepository = app(UserRepository::class);
+        $this->countryRepository = app(CountryRepository::class);
+        $this->categoryRepository = app(ForumCategoryRepository::class);
+    }
 
-		return $users;
-	}
+    /**
+     * search all post with country
+     *
+     * @param Request $request
+     * @param $category
+     * @param $published
+     * @return mixed
+     */
+    public function index(Request $request)
+    {
+        ($request->publish === "moderation") ? $published = false : $published = true;
+        $category = $request->project;
 
-	/**
-	 * create new post
-	 *
-	 * @param ForumAdminNewPostRequest $request
-	 * @return bool
-	 */
-	public function createNewPost(ForumAdminNewPostRequest $request)
-	{
-		$post = new ForumPost();
-		$post->text = $request->text;
-		$post->is_published = $request->is_published;
-		if ($post->is_published) $post->published_at = now();
-		$post->user_id = $request->user_id;
-		$post->text = $request->text;
-		$post->country_id = $this->countryRepository->getIdRu($request->country);
-		$post->category_id = $this->categoryRepository->getIdSlug($request->category);
-		$post->save();
+        ($request->country) ? $country = $request->country : $country = null;
 
-		return 'success';
-	}
+        $users = $this->forumPostRepository->getPostsWithCountry($published, $category, $country);
 
-	/**
-	 * edit post
-	 *
-	 * @param Request $request
-	 * @return Request
-	 */
-	public function editPost(Request $request)
-	{
-		($request->country) ? $country = $request->country : $country = null;
+        return $users;
+    }
 
-		$post = $this->forumPostRepository->getEdit($request->id);
-		$post->country->ru;
-		$post->user->name;
+    /**
+     * create new post
+     *
+     * @param ForumAdminNewPostRequest $request
+     * @return bool
+     */
+    public function createNewPost(ForumAdminNewPostRequest $request)
+    {
+        $post = new ForumPost();
+        $post->text = $request->text;
+        $post->is_published = $request->is_published;
+        if ($post->is_published) $post->published_at = now();
+        $post->user_id = $request->user_id;
+        $post->text = $request->text;
+        $post->country_id = $this->countryRepository->getIdRu($request->country);
+        $post->category_id = $this->categoryRepository->getIdSlug($request->category);
+        $post->save();
 
-		return $post;
-	}
+        return 'success';
+    }
 
-	/**
-	 * update post
-	 *
-	 * @param Request $request
-	 * @return mixed
-	 */
-	public function updatePost(Request $request)
-	{
-		$post = $this->forumPostRepository->getEdit($request->params['id']);
-		if ($request->params['userId']) $post->user_id = $request->params['userId'];
-		$post->text = $request->params['text'];
-		$post->updated_at = now();
-		if ($request->params['country']) {
-			$post->country_id = $this->countryRepository->getIdRu($request->params['country']);
-		};
-		$post->save();
+    /**
+     * edit post
+     *
+     * @param Request $request
+     * @return Request
+     */
+    public function editPost(Request $request)
+    {
+        ($request->country) ? $country = $request->country : $country = null;
 
-		return $post;
-	}
+        $post = $this->forumPostRepository->getEdit($request->id);
+        $post->country->ru;
+        $post->user->name;
 
-	/**
-	 * delete post
-	 *
-	 * @param Request $request
-	 * @return string
-	 */
-	public function deletePost(Request $request)
-	{
-		ForumPost::find($request->id)->delete();
+        return $post;
+    }
 
-		return 'success';
-	}
+    /**
+     * update post
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function updatePost(Request $request)
+    {
+        $post = $this->forumPostRepository->getEdit($request->params['id']);
+        if ($request->params['userId']) $post->user_id = $request->params['userId'];
+        $post->text = $request->params['text'];
+        $post->updated_at = now();
+        if ($request->params['country']) {
+            $post->country_id = $this->countryRepository->getIdRu($request->params['country']);
+        };
+        $post->save();
 
-	/**
-	 * change publish post
-	 *
-	 * @param Request $request
-	 * @return mixed
-	 */
-	public function rePublish(Request $request)
-	{
-		$post = $this->forumPostRepository->getEdit($request->id);
-		$post->is_published = $request->is_published;
-		($post->is_published) ? $post->published_at = null : $post->published_at = now();
-		$post->save();
-		return $post;
-	}
+        return $post;
+    }
 
-	/**
-	 * search on country list who's into redis (language = rus)
-	 *
-	 * @param Request $request
-	 * @return array
-	 */
-	public function searchCountry(Request $request)
-	{
-		$result = [];
-		$searchWord = $request->params['search'];
+    /**
+     * delete post
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function deletePost(Request $request)
+    {
+        ForumPost::find($request->id)->delete();
 
-		if ($searchWord) {
-			$country = json_decode(Redis::get("ru"), true);
+        return 'success';
+    }
 
-			foreach ($country as $key => $value) {
-				if (mb_stripos($value, $searchWord) !== false) {
-					$result[] = $value;
-				}
-			}
-		}
+    /**
+     * change publish post
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function rePublish(Request $request)
+    {
+        $post = $this->forumPostRepository->getEdit($request->id);
+        $post->is_published = $request->is_published;
+        ($post->is_published) ? $post->published_at = null : $post->published_at = now();
+        $post->save();
+        return $post;
+    }
 
-		return $result;
-	}
+    /**
+     * search on country list who's into redis (language = rus)
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function searchCountry(Request $request)
+    {
+        $result = [];
+        $searchWord = $request->params['search'];
 
-	/**
-	 * @param Request $request
-	 * @return mixed
-	 */
-	public function searchUser(Request $request)
-	{
-		$result = $this->userRepository->getUsers($request->params['search']);
+        if ($searchWord) {
+            $country = json_decode(Redis::get("ru"), true);
 
-		return $result;
-	}
+            foreach ($country as $key => $value) {
+                if (mb_stripos($value, $searchWord) !== false) {
+                    $result[] = $value;
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * search user in repository
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function searchUser(Request $request)
+    {
+        $result = $this->userRepository->getUsers($request->params['search']);
+
+        return $result;
+    }
 }
