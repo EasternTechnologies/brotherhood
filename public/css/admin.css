@@ -681,12 +681,14 @@ input[type=file].visually-hidden {
   background: #2b335b;
 }
 
-.nav__link {
+.nav__link,
+.nav__item-title {
   display: flex;
   align-items: center;
   padding: 0.75rem 0;
   padding-left: 1.875rem;
   font-size: 1.5625rem;
+  font-weight: 300;
   border-bottom: 1px solid transparent;
 }
 
@@ -713,13 +715,15 @@ input[type=file].visually-hidden {
   margin-left: 4.375rem;
 }
 
-.nav__sublink {
+.nav__sublink,
+.nav__item-subtitle {
   position: relative;
   display: block;
   padding: 0.625rem 0;
   padding-right: 1.5625rem;
   padding-left: 0.9375rem;
   font-size: 1.5625rem;
+  font-weight: 300;
   color: #ffffff;
 }
 
