@@ -20,7 +20,11 @@
 </template>
 
 <script>
+import {eventSearch} from '../app'
+
+
   export default {
+    props:['project'],
     data() {
       return {
         queryString: '',
@@ -29,22 +33,18 @@
     },
     methods: {
       getResult() {
-
         this.countries = [];
-
         axios.get('/language', { params: { queryString: this.queryString } }).then(response => {
           response.data.forEach((country) => {
             this.countries.push(country);
           });
         })
+        eventSearch.$emit('updateData', this.queryString);
       },
       selectCountry(event) {
-        this.queryString = event.target.innerHTML
-
-        this.countries = []
-
-        axios.get('/project/1/loadpost', { params: { country: this.queryString } }).then(response => {
-        })
+        this.queryString = event.target.innerHTML;
+        this.countries = [];
+        eventSearch.$emit('updateData', this.queryString);
       }
     }
   }

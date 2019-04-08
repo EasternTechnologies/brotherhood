@@ -14,24 +14,28 @@
 </template>
 
 <script>
+import {eventSearch} from '../app'
+
   export default {
+    props:['project'],
     data() {
       return {
-        persons: []
+        persons: [],
+        country: '',
       }
     },
     methods: {
       getInitialUsers() {
-        axios.get(`/project/1/loadpost`)
+        axios.get('/project/'+ this.project + '/loadpost'
+                ,                { params: {  country: this.country }}
+                )
           .then(response => {
             for (var i = 0; i < response.data.length; i++) {
               this.persons.push(response.data[i])
             }
           })
       },
-
       scroll() {
-
         let block = this.$refs.quotes;
         let last = block.lastChild;
 
@@ -41,7 +45,7 @@
         if (blockSize >= lastSize) {
           let country = $('.search-form input').val();
 
-          axios.get(`/project/1/loadpost`, { params: { personsLength: this.persons.length, country: country } })
+          axios.get('/project/'+ this.project + '/loadpost', { params: { personsLength: this.persons.length, country: country } })
             .then(response => {
               for (var i = 0; i < response.data.length; i++) {
                 this.persons.push(response.data[i])
@@ -55,7 +59,14 @@
     },
     mounted() {
       this.scroll();
-    }
+    },
+    created() {
+      eventSearch.$on('updateData', (country) => {
+        this.country = country;
+        this.persons = [];
+        this.getInitialUsers();
+      })
+    },
   }
 
 </script>

@@ -18,7 +18,7 @@
       <section class="builders__quotes quotes active">
         <h3 class="quotes__title">@lang('project.builders.project_is')</h3>
 
-        <endless-scroll></endless-scroll>
+        <endless-scroll :project="{{$category->id}}"></endless-scroll>
 
       </section>
 
@@ -49,8 +49,9 @@
               </label>
             </p>
             <p class="join-form__block">
-              <label aria-label="Поле ввода сообщения, обязательно для заполнения">
-                <textarea class="join-form__field" name="text" placeholder="@lang('project.builders.project_is')*:" required></textarea>
+              <label aria-label="Поле ввода сообщения, обязательно для заполнения" style="font-size: 1.6875rem">
+                @lang('project.builders.project_is')*:
+                <textarea class="join-form__field" name="text" required></textarea>
               </label>
             </p>
             <p class="join-form__block">
@@ -86,7 +87,7 @@
 
       <div class="search__form">
 
-        <search-autocomplete></search-autocomplete>
+        <search-autocomplete :project="{{$category->id}}"></search-autocomplete>
 
       </div>
     </section>

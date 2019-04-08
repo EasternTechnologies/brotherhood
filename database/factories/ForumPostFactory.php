@@ -9,8 +9,8 @@ $factory->define(App\Models\ForumPost::class, function (Faker $faker) {
     $createdAt = $faker->dateTimeBetween('-3 months', '-2 months');
 
     $data = [
-        'category_id'   =>  rand(1, 5),
-        'user_id'       =>  rand(1, 10),
+        'category_id'   =>  1,
+        'user_id'       =>  rand(1, 30),
         'country_id'    =>  rand(1, 10),
         'text'          =>  $text,
         'is_published'  =>  $isPublished,

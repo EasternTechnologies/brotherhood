@@ -1022,3 +1022,15 @@ table td a {
   fill: #132635;
 }
 
+.pagination {
+  margin-top: 1.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination__info {
+  color: #000;
+  margin: 0px 1.25rem;
+}
+

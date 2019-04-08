@@ -29,7 +29,24 @@ class  ForumCategoryRepository extends CoreRepository
      */
     public function getEdit($id)
     {
-        return $this->startConditions()->find($id);
+        return $this
+            ->startConditions()
+            ->find($id);
+    }
+
+    /**
+     * get slug for admin panel
+     *
+     * @param $slug
+     * @return mixed
+     */
+    public function getIdSlug($slug)
+    {
+        return $this
+            ->startConditions()
+            ->where('slug', '=', $slug)
+            ->first()
+            ->id;
     }
 
     /**
@@ -40,21 +57,27 @@ class  ForumCategoryRepository extends CoreRepository
     public function getForComboBox()
     {
         $columns = implode(', ', [
-           'id',
-           'title',
+            'id',
+            'title',
         ]);
 
         $data = $this->startConditions()
-                    ->selectRaw($columns)
-                    ->toBase()
-                    ->get();
+            ->selectRaw($columns)
+            ->toBase()
+            ->get();
 
         return $data;
     }
 
+    /**
+     * get title
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getCategoryTitle($id)
     {
-        $columns = implode (', ', [
+        $columns = implode(', ', [
             'id',
             'title'
         ]);
@@ -70,9 +93,30 @@ class  ForumCategoryRepository extends CoreRepository
     }
 
     /**
-     * @param int|null $perPage
+     * get all project with name && slug for url
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return mixed
+     */
+    public function getAllProject()
+    {
+        $columns = [
+            'title',
+            'slug'
+        ];
+
+        $data = $this
+            ->startConditions()
+            ->select($columns)
+            ->get();
+
+        return $data;
+    }
+
+    /**
+     * get all category with paginator
+     *
+     * @param null $perPage
+     * @return mixed
      */
     public function getAllWithPaginate($perPage = null)
     {

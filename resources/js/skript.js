@@ -14,14 +14,8 @@ $(document).ready(function() {
     form.toggleClass('active');
   })
 
-  // form.on('submit', function() {
-  //   quotes.toggleClass('active');
-  //   form.toggleClass('active');
-  // })
-
-
   $('.languages-form select').change(function () {
-    let changeLanguage = 'http://brotherhood.com/setlocale/' + $('.languages-form select').val();
+    let changeLanguage = '/setlocale/' + $('.languages-form select').val();
     $('.languages-form').attr('action', changeLanguage).submit();
   })
 });

@@ -10,11 +10,11 @@ Site.DataManager = function(){
             var selectedLanguage = optionLanguage.value;
         }
     }
-    if (selectedLanguage === 'ru') {
+    // if (selectedLanguage === 'ru') {
         var url = "/storage/ru.place.json";
-    }else{
-        var url = "/storage/en.place.json";
-    }
+    // }else{
+    //     var url = "/storage/en.place.json";
+    // }
     var self = this;
     this.earthquakes = [];
     this.loadSignal = new BK.Signal();

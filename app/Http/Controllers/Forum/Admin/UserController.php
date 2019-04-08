@@ -3,83 +3,135 @@
 namespace App\Http\Controllers\Forum\Admin;
 
 use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
+use App\Repositories\CountryRepository;
+use App\Repositories\ForumPostRepository;
 use Illuminate\Http\Request;
 
-class UserController extends BaseController
+/**
+ * Class UserController
+ *
+ * @package App\Http\Controllers\Forum\Admin
+ */
+class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @var UserRepository
      */
-    public function index()
+    private $userRepository;
+
+    /**
+     * @var CountryRepository
+     */
+    private $countryRepository;
+
+    /**
+     * @var ForumPostRepository
+     */
+    private $postRepository;
+
+    /**
+     * construct new model for search in repository
+     *
+     * UserController constructor.
+     */
+    public function __construct()
     {
-        return view ('frontend.layouts.admin');
+        $this->userRepository = app(UserRepository::class);
+        $this->countryRepository = app(CountryRepository::class);
+        $this->postRepository = app(ForumPostRepository::class);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show all user with search column
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return mixed
      */
-    public function create()
+    public function show(Request $request)
     {
-        //
+        $wordSearch = $request->selectedSearch;
+        $columnSearch = $request->selected;
+
+        $users = $this->userRepository->getAllUsers($wordSearch, $columnSearch);
+
+        return $users;
     }
 
     /**
-     * Store a newly created resource in storage.
+     * get user for edit in admin panel
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return mixed
      */
-    public function store(Request $request)
+    public function newOrEditUser(Request $request)
     {
-        //
+        if ($request->id) {
+            $data['user'] = $this->userRepository->getEdit($request->id);
+            $data['role'] = [];
+            foreach ($data['user'] as $user) {
+                $data['role'][] = $user->rolesId;
+            }
+        } else {
+            $data['user'] = null;
+        }
+
+        return $data;
     }
 
     /**
-     * Display the specified resource.
+     * update user
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return mixed
      */
-    public function show(User $user)
+    public function updateUser(Request $request)
     {
-        //
+        $roles = $request->role * 1;
+        $country = $this->countryRepository->getIdRu($request->country);
+
+        if ($request->id) {
+            $user = $this->userRepository->getUpdate($request->id);
+
+            $user->name = $request->user['name'];
+            $user->email = $request->user['email'];
+            $user->phone = $request->user['phone'];
+            if ($request->user['password']) {
+                $user->password = bcrypt($request->user['password']);
+            }
+            $user->updated_at = time();
+            $user->country_id = $country;
+            $user->save();
+        } else {
+            $data_user['name'] = $request->user['name'];
+            $data_user['country_id'] = $country;
+            $data_user['password'] = bcrypt($request->user['password']);
+            $data_user['email'] = $request->user['email'];
+            if ($request->phone) $data_user['phone'] = $request->user['phone'];
+
+            $user = new User($data_user);
+            $user->save();
+        }
+        $user->roles()->detach([1, 2, 3]);
+        $user->roles()->attach($roles);
+
+        return 'success';
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * delete user
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return string
      */
-    public function edit(User $user)
+    public function deleteUser(Request $request)
     {
-        //
-    }
+        $this->postRepository->deleteForce($request->id);
+        $user = $this->userRepository->getUpdate($request->id);
+        $user->roles()->detach();
+        $user->forceDelete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
+        return 'success';
     }
 }
