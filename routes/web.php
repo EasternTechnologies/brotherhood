@@ -17,6 +17,7 @@ Auth::routes();
 Route::group(['namespace' => 'Forum'], function(){
 	Route::get('/setlocale/{locale}', 'HomeController@setlocale')->name('change.locale');
 	Route::get('/', 'HomeController@index')->name('forum.home');
+	Route::get('/getImage/{slug}', 'HomeController@getImage')->name('forum.image');
     Route::post('/sendMail', 'HomeController@sendMail')->name('forum.home.mail');
     Route::get('/language', 'HomeController@selectedLanguage');
 });

@@ -117,4 +117,21 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * load
+     *
+     * @param $slug
+     * @return mixed
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function getImage($slug)
+    {
+        if (! Redis::get($slug)){
+            Redis::set($slug, Storage::disk('image')->get($slug));
+        }
+        $image = Redis::get($slug);
+
+        return $image;
+    }
 }
