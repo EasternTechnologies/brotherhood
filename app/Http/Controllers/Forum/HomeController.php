@@ -119,7 +119,7 @@ class HomeController extends Controller
     }
 
     /**
-     * load
+     * load image from Redis
      *
      * @param $slug
      * @return mixed
