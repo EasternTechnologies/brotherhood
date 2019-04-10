@@ -31,6 +31,8 @@ Vue.component('search-autocomplete', require('./components/SearchAutocomplete.vu
 
 Vue.component('endless-scroll', require('./components/EndlessScroll.vue').default);
 
+Vue.component('video-slider', require('./components/VideoSlider').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

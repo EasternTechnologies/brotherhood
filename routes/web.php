@@ -22,6 +22,10 @@ Route::group(['namespace' => 'Forum'], function(){
     Route::get('/language', 'HomeController@selectedLanguage');
 });
 
+Route::group(['namespace' => 'Forum', 'prefix' => 'art'], function(){
+    Route::get('/', 'ArtController@index')->name('forum.art.show');
+});
+
 Route::group(['namespace' => 'Forum', 'prefix' => 'project'], function(){
     Route::get('/{id}', 'ProjectController@index')->name('forum.project');
     Route::get('/{id}/loadpost', 'ProjectController@loadPost')->name('forum.project.load_post');
