@@ -2943,6 +2943,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this2.countries = response.data;
+        console.log(_this2.countries);
       });
     },
     selectCountry: function selectCountry(event) {
@@ -6842,7 +6843,34 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _c("p", { staticClass: "edit-form__block" }, [
+            _c("label", { staticClass: "edit-form__block-title" }, [
+              _c("span", [_vm._v("Страна")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.searchCountry,
+                    expression: "searchCountry"
+                  }
+                ],
+                staticClass: "edit-form__field",
+                attrs: { name: "country", type: "text" },
+                domProps: { value: _vm.searchCountry },
+                on: {
+                  keyup: _vm.searchWordCountry,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.searchCountry = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
           _vm._v(" "),
           _c("p", { staticClass: "edit-form__block" }, [
             _c("label", { staticClass: "edit-form__block-title" }, [
@@ -7001,28 +7029,13 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(0)
         ])
       ])
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "edit-form__block" }, [
-      _c("label", { staticClass: "edit-form__block-title" }, [
-        _c("span", [_vm._v("Страна")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "edit-form__field",
-          attrs: { name: "country", type: "text" }
-        })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
