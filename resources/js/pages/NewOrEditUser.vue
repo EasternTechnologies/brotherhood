@@ -37,7 +37,7 @@
           <p class="edit-form__block">
             <label class="edit-form__block-title">
               <span>Страна</span>
-              <input class="edit-form__field" name="country" type="text">
+              <input class="edit-form__field" name="country" type="text" v-model="searchCountry" @keyup="searchWordCountry">
             </label>
           </p>
 
@@ -134,6 +134,7 @@
         this.countries = [];
         axios.post("/admin/projects/materials/builders/searchCountry", { params: { search: this.searchCountry } }).then(response => {
           this.countries = response.data;
+          console.log(this.countries)
         })
       },
       selectCountry(event) {
