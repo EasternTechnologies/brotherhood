@@ -3,9 +3,9 @@
     <header class="section-header">
       <h2 class="section-header__title users__title">Пользователи</h2>
 
-      <div class="users__serch users-search">
-        <form class="users-search__form" @keydown.enter.prevent>
-          <div class="user-search__block">
+      <div class="users__serch search">
+        <form class="search-form" @keydown.enter.prevent>
+          <div class="search__block">
             <input name="text" type="text" v-model="selectedSearch" @keyup="searchWithOption">
             <select name="category" v-model="selected">
               <option v-for="option in options" :key="option.id" :value="option.value">

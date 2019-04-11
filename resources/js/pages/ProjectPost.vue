@@ -8,20 +8,19 @@
         Модерация
       </h2>
 
-      <!-- <div class="project__serch project-search">
+      <div class="project__serch">
         <form class="search-form" autocomplete="off">
           <p class="search-form__block">
             <label aria-label="Искать на странице">
-              <input class="" name="search" type="search" placeholder="Поиск по странам" v-model="search" @keyup="searchWord">
+              <input name="search" type="search" placeholder="Поиск по странам" v-model="search" @keyup="searchWord">
               <input type="hidden" name="_token" :value="csrf">
             </label>
-
+            <ul class="search-form__result-list" v-if="countries.length">
+              <li class="search-form__result-item" v-for="country in countries" :key="country.id" @click="selectCountry($event)">{{country}}</li>
+            </ul>
           </p>
-          <ul class="search-form__result-list">
-            <li class="search-form__result-item" v-for="country in countries" :key="country.id" @click="selectCountry($event)">{{country}}</li>
-          </ul>
         </form>
-      </div> -->
+      </div>
     </header>
 
     <div class="section-body project__body">

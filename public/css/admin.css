@@ -988,7 +988,7 @@ h4.submenu__title::before,
   overflow-y: auto;
 }
 
-.user-search__block {
+.search__block {
   position: relative;
   display: flex;
   align-items: center;
@@ -996,7 +996,7 @@ h4.submenu__title::before,
   border: 1px solid #2b325a;
 }
 
-.user-search__block input {
+.search__block input {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1010,12 +1010,12 @@ h4.submenu__title::before,
   border: none;
 }
 
-.user-search__block input:focus {
+.search__block input:focus {
   background: #ffffff;
   outline: none;
 }
 
-.user-search__block select {
+.search__block select {
   width: 100%;
   padding: 0.5rem;
   padding-right: 10px;
@@ -1025,7 +1025,7 @@ h4.submenu__title::before,
   border: none;
 }
 
-.user-search__block select:focus {
+.search__block select:focus {
   outline: none;
 }
 
@@ -1037,6 +1037,10 @@ h4.submenu__title::before,
 .users__new-btn {
   margin: 0 auto;
   font-size: 1.25rem;
+}
+
+.project__serch {
+  min-width: 18.75rem;
 }
 
 .backup__body {
@@ -1176,6 +1180,34 @@ table td a {
   justify-content: space-between;
 }
 
+.edit-form__block {
+  position: relative;
+}
+
+.edit-form__result-list {
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+  width: 100%;
+  max-height: 100px;
+  padding: 5px;
+  overflow-y: auto;
+  background: #eeeeee;
+}
+
+.edit-form__result-item {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.edit-form__result-item:last-child {
+  margin-bottom: 0;
+}
+
+.edit-form__result-item:hover {
+  background: #cccccc;
+}
+
 .edit-form__block-title {
   margin-bottom: 1.5625rem;
 }
@@ -1225,5 +1257,43 @@ table td a {
   width: 100%;
   margin-top: 3.125rem;
   margin-bottom: 0;
+}
+
+.search-form__block {
+  position: relative;
+  border: 1px solid #2b325a;
+}
+
+.search-form__block input {
+  width: 100%;
+  padding: 0.5rem;
+  color: #132635;
+  background: transparent;
+  border: none;
+}
+
+.search-form__result-list {
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+  width: 100%;
+  max-height: 100px;
+  padding: 5px;
+  overflow-y: auto;
+  background: #eeeeee;
+}
+
+.search-form__result-item {
+  margin-bottom: 10px;
+  color: #132635;
+  cursor: pointer;
+}
+
+.search-form__result-item:last-child {
+  margin-bottom: 0;
+}
+
+.search-form__result-item:hover {
+  background: #cccccc;
 }
 
