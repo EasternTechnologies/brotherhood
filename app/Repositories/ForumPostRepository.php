@@ -202,13 +202,15 @@ class ForumPostRepository extends CoreRepository
             'forum_posts.country_id',
             'forum_posts.is_published',
             'countries.ru',
+            'users.name'
         ];
 
         $data = $this
             ->startConditions()
             ->select($columns)
             ->leftJoin('forum_categories', 'category_id', '=', 'forum_categories.id')
-            ->leftjoin('countries', 'country_id', '=', 'countries.id')
+            ->leftJoin('countries', 'country_id', '=', 'countries.id')
+            ->leftJoin('users', 'user_id', '=', 'users.id')
             ->where([
                 ['forum_posts.is_published', '=', $published],
                 ['forum_categories.slug', '=', $category]

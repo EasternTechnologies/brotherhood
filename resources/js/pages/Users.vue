@@ -1,10 +1,10 @@
 <template>
   <section class="section users">
     <header class="section-header">
-      <h2 class="section-header__title dashboard__title">Пользователи</h2>
+      <h2 class="section-header__title users__title">Пользователи</h2>
 
       <div class="users__serch users-search">
-        <form class="users-search__form" @keydown.enter.prevent="">
+        <form class="users-search__form" @keydown.enter.prevent>
           <div class="user-search__block">
             <input name="text" type="text" v-model="selectedSearch" @keyup="searchWithOption">
             <select name="category" v-model="selected">
@@ -16,6 +16,7 @@
         </form>
       </div>
     </header>
+    
     <div class="section-body users__body">
       <div class="users__table users-table">
         <table>
@@ -40,25 +41,26 @@
               <td class="users-table__controls table-controls">
                 <ul class="table-controls__list">
                   <li class="table-controls__item">
-                    <button @click="setPosId(user.id)">Удалить Пользователя</button>
+                    <button class="table-controls__btn" type="button" title="Удалить пользователя" @click="setPosId(user.id)">
+                      <svg class="table-controls__item-img" role="img" width="20px" height="20px">
+                        <use xlink:href="../../../public/img/svg/sprite.svg#user-delete"></use>
+                      </svg>
+                    </button>
                     <div v-if="showModal">
-                      <app-deleteModal
-                              @close="showModal = false"
-                              @deletePost="deletePost(deletePostId)"
-                      ></app-deleteModal>
+                      <app-deleteModal @close="showModal = false" @deletePost="deletePost(deletePostId)"></app-deleteModal>
                     </div>
                   </li>
+
                   <li class="table-controls__item">
-                    <button type="button" title="Блокировать пользователя">
+                    <button class="table-controls__btn" type="button" title="Блокировать пользователя">
                       <svg class="table-controls__item-img" role="img" width="20px" height="20px">
                         <use xlink:href="../../../public/img/svg/sprite.svg#user-block"></use>
                       </svg>
                     </button>
                   </li>
+
                   <li class="table-controls__item">
-                    <router-link tag="button" title="Настройки пользователя"
-                                 :to="{name: 'editUser', params: {id: user.id }}"
-                    >
+                    <router-link class="table-controls__btn" type="button" title="Настройки пользователя" tag="button" :to="{name: 'editUser', params: {id: user.id }}">
                       <svg class="table-controls__item-img" role="img" width="20px" height="20px">
                         <use xlink:href="../../../public/img/svg/sprite.svg#user-settings"></use>
                       </svg>
@@ -80,23 +82,21 @@
         </router-link>
       </div>
 
-      <div class="user__pagination pagination">
-        <button class="btn pagination__btn pagination__btn--prev" @click="fetchPaginateUsers(pagination.prev_page_url)"
-                :disabled="!pagination.prev_page_url">
+      <!-- <div class="user__pagination pagination">
+        <button class="btn pagination__btn pagination__btn--prev" @click="fetchPaginateUsers(pagination.prev_page_url)" :disabled="!pagination.prev_page_url">
           Previos
         </button>
         <span class="pagination__info">Page {{pagination.current_page}} of {{pagination.last_page}}</span>
-        <button class="btn pagination__btn pagination__btn--next" @click="fetchPaginateUsers(pagination.next_page_url)"
-                :disabled="!pagination.next_page_url">
+        <button class="btn pagination__btn pagination__btn--next" @click="fetchPaginateUsers(pagination.next_page_url)" :disabled="!pagination.next_page_url">
           Next
         </button>
-      </div>
+      </div> -->
     </div>
   </section>
 </template>
 
 <script>
-import axios from 'axios'
+  import axios from 'axios'
 
   export default {
     data() {
@@ -106,9 +106,9 @@ import axios from 'axios'
         selected: 'users.name',
         options: [
           { text: 'Поиск по пользователям', value: 'users.name' },
-          { text: 'Поиск по email',         value: 'users.email' },
-          { text: 'Поиск по странам',       value: 'countries.ru' },
-          { text: 'Поиск по телефону',      value: 'users.phone' }
+          { text: 'Поиск по email', value: 'users.email' },
+          { text: 'Поиск по странам', value: 'countries.ru' },
+          { text: 'Поиск по телефону', value: 'users.phone' }
         ],
         url: '/admin/users/show',
         pagination: [],
@@ -122,8 +122,12 @@ import axios from 'axios'
     methods: {
       getUsers() {
         let $this = this;
-        axios.get( this.url, { params: { selected: this.selected,
-                  selectedSearch: this.selectedSearch } }).then(response => {
+        axios.get(this.url, {
+          params: {
+            selected: this.selected,
+            selectedSearch: this.selectedSearch
+          }
+        }).then(response => {
           this.users = [];
           this.users = response.data.data;
           $this.makePagination(response.data)
@@ -135,7 +139,7 @@ import axios from 'axios'
       makePagination(data) {
         let pagination = {
           current_page: data.current_page,
-          last_page:  data.last_page,
+          last_page: data.last_page,
           next_page_url: data.next_page_url,
           prev_page_url: data.prev_page_url
         };
@@ -148,8 +152,7 @@ import axios from 'axios'
       },
       deletePost(deletePostId) {
         this.showModal = false;
-        axios.get("/admin/users/deleteUser",
-                { params: { id: deletePostId } }).then(response => {
+        axios.get("/admin/users/deleteUser", { params: { id: deletePostId } }).then(response => {
           if (response.data === 'success') {
             this.getUsers();
           }

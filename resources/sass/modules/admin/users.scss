@@ -1,47 +1,49 @@
-// Users form
-.users__serch {
-  // width: rem(200);
+.users {
+  height: 100%;
+  overflow-y: auto;
 }
 
+
+// Users search form
 .user-search__block {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
   border: 1px solid #2b325a;
-}
 
-input {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: calc(100% - 30px);
-  padding: rem(8);
-  font-family: $light;
-  font-size: rem(16);
-  color: $mainTextAdmin;
-  background: transparent;
-  border: none;
-}
+  input {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 30px);
+    padding: rem(8);
+    font-family: $light;
+    font-size: rem(16);
+    color: $mainTextAdmin;
+    background: transparent;
+    border: none;
+  }
 
-input:focus {
-  background: #ffffff;
-  outline: none;
-}
+  input:focus {
+    background: #ffffff;
+    outline: none;
+  }
 
-select {
-  width: 100%;
-  padding: rem(8);
-  padding-right: 10px;
-  font-family: $light;
-  font-size: rem(16);
-  color: $mainTextAdmin;
-  border: none;
-}
+  select {
+    width: 100%;
+    padding: rem(8);
+    padding-right: 10px;
+    font-family: $light;
+    font-size: rem(16);
+    color: $mainTextAdmin;
+    border: none;
+  }
 
-select:focus {
-  outline: none;
+  select:focus {
+    outline: none;
+  }
 }
 
 
@@ -55,7 +57,3 @@ select:focus {
   margin: 0 auto;
   font-size: rem(20);
 }
-
-
-// Pagination
-

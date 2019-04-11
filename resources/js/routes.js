@@ -9,6 +9,7 @@ import NewPost from './pages/NewPost'
 import NewOrEditUser from './pages/NewOrEditUser'
 import MessageOnEarth from './pages/MessageOnEarth'
 import newOrEditMessageOnEarth from './pages/NewOrEditMessageOnEarth'
+import BackUp from './pages/BackUp'
 
 export default new VueRouter ({
   mode: 'history',
@@ -57,6 +58,11 @@ export default new VueRouter ({
       path: '/admin/email-settings',
       name: 'emailSettings',
       component: EmailSettings
+    },
+    {
+      path: '/admin/backup',
+      name: 'backUp',
+      component: BackUp
     },
     {
       path: '/admin/projects/:project/:publish',

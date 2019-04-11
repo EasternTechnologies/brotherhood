@@ -64,10 +64,13 @@
 
 
 // Logout
-.logout__link {
+.logout__submit {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .logout__img {

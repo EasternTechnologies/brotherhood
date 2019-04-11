@@ -20,57 +20,49 @@
           </a>
         </router-link>
 
-        <li class="nav__item">
-          <h3 class="nav__link submenu" @click="show = !show">
-            <svg class="nav__link-img" role="img" width="30px" height="30px">
+        <li class="nav__item submenu">
+          <h3 class="submenu__title" :class="{ active: show }" @click="show = !show">
+            <svg class="submenu__img" role="img" width="30px" height="30px">
               <use xlink:href="../../../public/img/svg/sprite.svg#projects"></use>
             </svg>
-            <span class="nav__link-text">Проекты</span>
+            Проекты
           </h3>
 
-          <ul class="nav__sublist" v-show="show">
+          <ul class="submenu__list" v-show="show">
 
-              <app-asideLiProject  v-for="project in projects" :key="project.id" :project="project"></app-asideLiProject>
+            <app-asideLiProject v-for="project in projects" :key="project.id" :project="project"></app-asideLiProject>
 
           </ul>
         </li>
 
-        <li class="nav__item">
-          <h3 class="nav__link submenu" @click="visible = !visible">
-            <svg class="nav__link-img" role="img" width="30px" height="30px">
+        <li class="nav__item submenu">
+          <h3 class="submenu__title" :class="{ active: visible }" @click="visible = !visible">
+            <svg class="submenu__img" role="img" width="30px" height="30px">
               <use xlink:href="../../../public/img/svg/sprite.svg#control"></use>
             </svg>
-            <span class="nav__link-text">Управление интерфейсом</span>
+            Управление интерфейсом
           </h3>
-            <ul class="nav__sublist" v-show="visible">
 
-              <router-link class="nav__item" tag="li" to="/admin/email-settings" active-class="active">
-                <a class="nav__link">
-                  <svg class="nav__link-img" role="img" width="30px" height="30px">
-                    <use xlink:href="../../../public/img/svg/sprite.svg#email-settings"></use>
-                  </svg>
-                  <span class="nav__link-text">Настройки почты</span>
-                </a>
-              </router-link>
+          <ul class="submenu__list" v-show="visible">
 
-                <a class="nav__item nav__link" :href="backup" download>
-                  <i class="fa fa-download"></i>
-                  <svg class="nav__link-img" role="img" width="30px" height="30px">
-                    <use xlink:href="../../../public/img/svg/sprite.svg#backup"></use>
-                  </svg>
-                  <span class="nav__link-text">Бэкап</span>
-                </a>
+            <router-link class="submenu__item" tag="li" to="/admin/email-settings" active-class="active">
+              <a class="submenu__link">
+                Настройки почты
+              </a>
+            </router-link>
 
-              <router-link class="nav__item" tag="li" to="/admin/messageOnEarth" active-class="active">
-                <a class="nav__link">
-                  <svg class="nav__link-img" role="img" width="30px" height="30px">
-                    <use xlink:href="../../../public/img/svg/sprite.svg#projects"></use>
-                  </svg>
-                  <span class="nav__link-text">Сообщения на планете</span>
-                </a>
-              </router-link>
+            <router-link class="submenu__item" tag="li" to="/admin/backup" active-class="active">
+              <a class="submenu__link">
+                Бэкап
+              </a>
+            </router-link>
 
-            </ul>
+            <router-link class="submenu__item" tag="li" to="/admin/messageOnEarth" active-class="active">
+              <a class="submenu__link">
+                Сообщения на планете
+              </a>
+            </router-link>
+          </ul>
         </li>
       </ul>
     </nav>
@@ -95,8 +87,8 @@
     },
     methods: {
       getProjects() {
-        axios.get( this.url ).then(response => {
-         this.projects = response.data
+        axios.get(this.url).then(response => {
+          this.projects = response.data
         })
       },
     }
