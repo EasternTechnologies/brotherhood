@@ -69,6 +69,11 @@ return [
             'root' => storage_path('app/public/redis/country'),
         ],
 
+        'image' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/redis/image'),
+        ],
+
     ],
 
 ];
