@@ -1059,6 +1059,16 @@ h4.submenu__title::before,
   height: 2.5rem;
 }
 
+.quotes__table {
+  margin-bottom: 1.5625rem;
+  overflow-x: auto;
+}
+
+.quotes__new-btn {
+  margin: 0 auto;
+  font-size: 1.25rem;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;

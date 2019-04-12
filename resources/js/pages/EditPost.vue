@@ -72,7 +72,7 @@
               <label class="edit-form__block-title">
                 <span>Сообщение</span>
 
-                <textarea class="edit-form__field" name="text" v-model="post.text" cols="50" rows="10"></textarea>
+                <textarea class="edit-form__field" name="text" v-model="post.text" rows="10"></textarea>
               </label>
             </p>
           </div>

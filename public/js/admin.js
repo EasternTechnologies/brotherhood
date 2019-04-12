@@ -2510,8 +2510,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2621,8 +2619,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2631,7 +2627,7 @@ __webpack_require__.r(__webpack_exports__);
       text: '',
       coordinate1: '',
       coordinate2: '',
-      messages: [],
+      quotes: [],
       showModal: false,
       deleteMessageId: ''
     };
@@ -2648,10 +2644,10 @@ __webpack_require__.r(__webpack_exports__);
           text: this.text,
           coordinate1: this.coordinate1,
           coordinate2: this.coordinate2,
-          messages: this.messages
+          quotes: this.quotes
         }
       }).then(function (response) {
-        _this.messages = response.data;
+        _this.quotes = response.data;
         _this.newItem = response.data.length;
       });
     },
@@ -2689,11 +2685,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3291,7 +3282,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3600,44 +3590,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.search-form[data-v-caf64126] {\n    width: 100%;\n}\n.search-form__block[data-v-caf64126] {\n    position: relative;\n}\n.search-form__block input[data-v-caf64126] {\n    background: #c4c4c4;\n}\n.search-form__result-list[data-v-caf64126] {\n    background: #c4c4c4;\n    margin-top: 10px;\n}\nlabel[data-v-caf64126] {\n    position: relative;\n    width: 50px;\n    height: 35px;\n}\ninput[data-v-caf64126] {\n    border: 1px solid black;\n    height: 35px;\n    width: 250px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.search-form[data-v-a0222150] {\n    width: 100%;\n}\n.search-form__block[data-v-a0222150] {\n    position: relative;\n}\n.search-form__block input[data-v-a0222150] {\n    background: #c4c4c4;\n}\n.search-form__result-list[data-v-a0222150] {\n    background: #c4c4c4;\n    margin-top: 10px;\n}\nlabel[data-v-a0222150] {\n    position: relative;\n    width: 50px;\n    height: 35px;\n}\ninput[data-v-a0222150] {\n    border: 1px solid black;\n    height: 35px;\n    width: 250px;\n}\n", ""]);
-
-// exports
-
 
 /***/ }),
 
@@ -4169,66 +4121,6 @@ process.umask = function() { return 0; };
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
 
 /***/ }),
 
@@ -6048,7 +5940,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "edit-form__field",
-                  attrs: { name: "text", cols: "50", rows: "10" },
+                  attrs: { name: "text", rows: "10" },
                   domProps: { value: _vm.post.text },
                   on: {
                     input: function($event) {
@@ -6134,351 +6026,166 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "section dashboard" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "section-body dashboard__body" }, [
-      _c("table", [
-        _vm._m(1),
-        _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [
-              _c("label", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.MAIL_USERNAME,
-                      expression: "MAIL_USERNAME"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.MAIL_USERNAME },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.MAIL_USERNAME = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("label", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.MAIL_PASSWORD,
-                      expression: "MAIL_PASSWORD"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.MAIL_PASSWORD },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.MAIL_PASSWORD = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("label", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.MAIL_ADMIN,
-                      expression: "MAIL_ADMIN"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.MAIL_ADMIN },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.MAIL_ADMIN = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
+  return _c("section", { staticClass: "section edit" }, [
     _c(
-      "div",
+      "header",
+      { staticClass: "section-header" },
       [
-        _c(
-          "router-link",
-          { attrs: { tag: "button", title: "Назад", to: { name: "control" } } },
-          [_c("div", [_vm._v("Назад")])]
-        ),
-        _vm._v(" "),
-        _c("button", { on: { click: _vm.updateMailSettings } }, [
-          _vm._v("Сохранить")
-        ])
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "section-header" }, [
-      _c("h2", { staticClass: "section-header__title dashboard__title" }, [
-        _vm._v("Настройки почты")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Почта отправителя")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Пароль отправителя")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Почта получателя")])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126&scoped=true&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126&scoped=true& ***!
-  \************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "section dashboard" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "section-body dashboard__body" }, [
-      _c("table", [
-        _c("thead", [
-          _c("tr", [
-            _c("th", [_vm._v("Текст сообщения")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Координата 1")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Координата 2")]),
-            _vm._v(" "),
-            _c(
-              "th",
-              [
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      tag: "button",
-                      title: "Назад",
-                      to: { name: "newCoordinate" }
-                    }
-                  },
-                  [_c("div", [_vm._v("Добавить новое сообщение")])]
-                )
-              ],
-              1
-            )
-          ])
+        _c("h2", { staticClass: "section-header__title edit__title" }, [
+          _vm._v("Настройки почты")
         ]),
         _vm._v(" "),
         _c(
-          "tbody",
-          _vm._l(_vm.messages, function(message, index) {
-            return _c("tr", { key: message.id }, [
-              _c("td", { attrs: { value: message.properties.place } }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(message.properties.place) +
-                    "\n                "
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { value: message.geometry.coordinates[0] } }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(message.geometry.coordinates[0]) +
-                    "\n                "
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { value: message.geometry.coordinates[1] } }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(message.geometry.coordinates[1]) +
-                    "\n                "
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("ul", { staticClass: "table-controls__list" }, [
-                  _c("li", { staticClass: "table-controls__item" }, [
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.setMessageId(index)
-                          }
-                        }
-                      },
-                      [_vm._v("Удалить Сообщение")]
-                    ),
-                    _vm._v(" "),
-                    _vm.showModal
-                      ? _c(
-                          "div",
-                          [
-                            _c("app-deleteModal", {
-                              on: {
-                                close: function($event) {
-                                  _vm.showModal = false
-                                },
-                                deletePost: function($event) {
-                                  return _vm.deleteMessage(_vm.deleteMessageId)
-                                }
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "table-controls__item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            tag: "button",
-                            title: "Настройки сообщения",
-                            to: {
-                              name: "editCoordinate",
-                              params: { id: index }
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "table-controls__item-img",
-                              attrs: {
-                                role: "img",
-                                width: "20px",
-                                height: "20px"
-                              }
-                            },
-                            [
-                              _c("use", {
-                                attrs: {
-                                  "xlink:href":
-                                    __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") +
-                                    "#user-settings"
-                                }
-                              })
-                            ]
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ])
-              ])
-            ])
-          }),
-          0
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("div", [
-      _c(
-        "button",
-        {
-          attrs: { tag: "button", title: "Назад" },
-          on: {
-            click: function($event) {
-              return _vm.$router.go(-1)
+          "router-link",
+          {
+            staticClass: "section-close edit__close",
+            attrs: {
+              type: "button",
+              "aria-label": "Вернуться на предыдущую страницу",
+              tag: "button",
+              to: { name: "control" }
             }
-          }
-        },
-        [_vm._v("\n            Назад\n        ")]
-      ),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.updateCoordinateSettings } }, [
-        _vm._v("Сохранить")
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "edit__close-img",
+                attrs: { role: "img", width: "20px", height: "20px" }
+              },
+              [
+                _c("use", {
+                  attrs: {
+                    "xlink:href":
+                      __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") + "#close"
+                  }
+                })
+              ]
+            )
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "section-body edit__body" }, [
+      _c("div", { staticClass: "edit__form" }, [
+        _c("form", { staticClass: "edit-form" }, [
+          _c("p", { staticClass: "edit-form__block" }, [
+            _c("label", { staticClass: "edit-form__block-title" }, [
+              _c("span", [_vm._v("Почта отправителя")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.MAIL_USERNAME,
+                    expression: "MAIL_USERNAME"
+                  }
+                ],
+                staticClass: "edit-form__field",
+                attrs: { name: "user-email", type: "text" },
+                domProps: { value: _vm.MAIL_USERNAME },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.MAIL_USERNAME = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "edit-form__block" }, [
+            _c("label", { staticClass: "edit-form__block-title" }, [
+              _c("span", [_vm._v("Пароль отправителя")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.MAIL_PASSWORD,
+                    expression: "MAIL_PASSWORD"
+                  }
+                ],
+                staticClass: "edit-form__field",
+                attrs: { name: "user-password", type: "password" },
+                domProps: { value: _vm.MAIL_PASSWORD },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.MAIL_PASSWORD = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "edit-form__block" }, [
+            _c("label", { staticClass: "edit-form__block-title" }, [
+              _c("span", [_vm._v("Почта получателя")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.MAIL_ADMIN,
+                    expression: "MAIL_ADMIN"
+                  }
+                ],
+                staticClass: "edit-form__field",
+                attrs: { name: "admin-email", type: "text" },
+                domProps: { value: _vm.MAIL_ADMIN },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.MAIL_ADMIN = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "p",
+            { staticClass: "edit-form__block edit-form__block--submit" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "edit-form__btn btn",
+                  attrs: { type: "submuit" },
+                  on: { click: _vm.updateMailSettings }
+                },
+                [_vm._v("Сохранить изменения")]
+              )
+            ]
+          )
+        ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "section-header" }, [
-      _c("h2", { staticClass: "section-header__title dashboard__title" }, [
-        _vm._v("Сообщения на планете")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true&":
-/*!*********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true& ***!
-  \*********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126& ***!
+  \************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6490,119 +6197,198 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "section dashboard" }, [
+  return _c("section", { staticClass: "section quotes" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "section-body dashboard__body" }, [
-      _vm.id === "" ? _c("h2", [_vm._v("Добавить новое сообщение")]) : _vm._e(),
-      _vm._v(" "),
-      _vm.id !== "" ? _c("h2", [_vm._v("Редактировать сообщение")]) : _vm._e(),
-      _vm._v(" "),
-      _c("table", [
-        _vm._m(1),
-        _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [
-              _c("label", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.text,
-                      expression: "text"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.text },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.text = $event.target.value
-                    }
-                  }
-                })
+    _c("div", { staticClass: "section-body quotes__body" }, [
+      _c("div", { staticClass: "quotes__table quotes-table" }, [
+        _c("table", [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.quotes, function(message, index) {
+              return _c("tr", { key: message.id }, [
+                _c("td", { attrs: { value: message.properties.place } }, [
+                  _vm._v(
+                    "\n              " +
+                      _vm._s(message.properties.place) +
+                      "\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  { attrs: { value: message.geometry.coordinates[0] } },
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(message.geometry.coordinates[0]) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  { attrs: { value: message.geometry.coordinates[1] } },
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(message.geometry.coordinates[1]) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  { staticClass: "quotes-table__controls table-controls" },
+                  [
+                    _c("ul", { staticClass: "table-controls__list" }, [
+                      _c(
+                        "li",
+                        { staticClass: "table-controls__item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "table-controls__btn",
+                              attrs: {
+                                type: "button",
+                                title: "Редактировать цитату",
+                                tag: "button",
+                                to: {
+                                  name: "editCoordinate",
+                                  params: { id: index }
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "table-controls__item-img",
+                                  attrs: {
+                                    role: "img",
+                                    width: "20px",
+                                    height: "20px"
+                                  }
+                                },
+                                [
+                                  _c("use", {
+                                    attrs: {
+                                      "xlink:href":
+                                        __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") +
+                                        "#edit"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "table-controls__item" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "table-controls__btn",
+                            attrs: { type: "button", title: "Удалить цитату" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setMessageId(index)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "table-controls__item-img",
+                                attrs: {
+                                  role: "img",
+                                  width: "20px",
+                                  height: "20px"
+                                }
+                              },
+                              [
+                                _c("use", {
+                                  attrs: {
+                                    "xlink:href":
+                                      __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") +
+                                      "#remove"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.showModal
+                          ? _c(
+                              "div",
+                              { staticClass: "confirm-modal" },
+                              [
+                                _c("app-deleteModal", {
+                                  on: {
+                                    close: function($event) {
+                                      _vm.showModal = false
+                                    },
+                                    deletePost: function($event) {
+                                      return _vm.deleteMessage(
+                                        _vm.deleteMessageId
+                                      )
+                                    }
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          : _vm._e()
+                      ])
+                    ])
+                  ]
+                )
               ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("label", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.coordinate1,
-                      expression: "coordinate1"
-                    }
-                  ],
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.coordinate1 },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.coordinate1 = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("label", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.coordinate2,
-                      expression: "coordinate2"
-                    }
-                  ],
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.coordinate2 },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.coordinate2 = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ])
-          ])
+            }),
+            0
+          )
         ])
       ]),
       _vm._v(" "),
-      _c("br")
-    ]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("div", [
       _c(
-        "button",
-        {
-          attrs: { tag: "button", title: "Назад" },
-          on: {
-            click: function($event) {
-              return _vm.$router.go(-1)
-            }
-          }
-        },
-        [_vm._v("\n            Назад\n        ")]
-      ),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.updateCoordinate } }, [
-        _vm._v("Сохранить")
-      ])
+        "div",
+        { staticClass: "quotes__new" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "quotes__new-btn btn",
+              attrs: { tag: "button", to: { name: "newCoordinate" } }
+            },
+            [
+              _c(
+                "svg",
+                { attrs: { role: "img", width: "20px", height: "20px" } },
+                [
+                  _c("use", {
+                    attrs: {
+                      "xlink:href":
+                        __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") + "#edit"
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("span", [_vm._v("Создать новую цитату")])
+            ]
+          )
+        ],
+        1
+      )
     ])
   ])
 }
@@ -6612,7 +6398,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("header", { staticClass: "section-header" }, [
-      _c("h2", { staticClass: "section-header__title dashboard__title" }, [
+      _c("h2", { staticClass: "section-header__title quotes__title" }, [
         _vm._v("Сообщения на планете")
       ])
     ])
@@ -6623,15 +6409,194 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Текст сообщения")]),
+        _c("th", [_vm._v("Текст цитаты")]),
         _vm._v(" "),
         _c("th", [_vm._v("Координата 1")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Координата 2")])
+        _c("th", [_vm._v("Координата 2")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "section edit" }, [
+    _c("header", { staticClass: "section-header" }, [
+      _vm.id === ""
+        ? _c("h2", { staticClass: "section-header__title edit__title" }, [
+            _vm._v("Добавить новую цитату")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.id !== ""
+        ? _c("h2", { staticClass: "section-header__title edit__title" }, [
+            _vm._v("Редактировать цитату")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "section-close edit__close",
+          attrs: {
+            type: "button",
+            "aria-label": "Вернуться на предыдущую страницу"
+          },
+          on: {
+            click: function($event) {
+              return _vm.$router.go(-1)
+            }
+          }
+        },
+        [
+          _c(
+            "svg",
+            {
+              staticClass: "edit__close-img",
+              attrs: { role: "img", width: "20px", height: "20px" }
+            },
+            [
+              _c("use", {
+                attrs: {
+                  "xlink:href":
+                    __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") + "#close"
+                }
+              })
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "section-body edit__body" }, [
+      _c("div", { staticClass: "edit__form" }, [
+        _c("form", { staticClass: "edit-form" }, [
+          _c("p", { staticClass: "edit-form__block" }, [
+            _c("label", { staticClass: "edit-form__block-title" }, [
+              _c("span", [_vm._v("Тексты цитаты")]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.text,
+                    expression: "text"
+                  }
+                ],
+                staticClass: "edit-form__field",
+                attrs: { name: "quote", rows: "5" },
+                domProps: { value: _vm.text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.text = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "edit-form__block" }, [
+            _c("label", { staticClass: "edit-form__block-title" }, [
+              _c("span", [_vm._v("Координата 1")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.coordinate1,
+                    expression: "coordinate1"
+                  }
+                ],
+                staticClass: "edit-form__field",
+                attrs: { name: "coordinate1", type: "text" },
+                domProps: { value: _vm.coordinate1 },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.coordinate1 = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "edit-form__block" }, [
+            _c("label", { staticClass: "edit-form__block-title" }, [
+              _c("span", [_vm._v("Координата 2")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.coordinate2,
+                    expression: "coordinate2"
+                  }
+                ],
+                staticClass: "edit-form__field",
+                attrs: { name: "coordinate2", type: "text" },
+                domProps: { value: _vm.coordinate2 },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.coordinate2 = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "p",
+            { staticClass: "edit-form__block edit-form__block--submit" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "edit-form__btn btn",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.updateCoordinate }
+                },
+                [_vm._v("Сохранить")]
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -7379,7 +7344,7 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("input", {
-                  attrs: { type: "hidden", name: "_token" },
+                  attrs: { name: "_token", type: "hidden" },
                   domProps: { value: _vm.csrf }
                 })
               ]),
@@ -7484,7 +7449,7 @@ var render = function() {
                               staticClass: "table-controls__btn",
                               attrs: {
                                 type: "button",
-                                title: "Редактирование сообщение",
+                                title: "Редактировать сообщение",
                                 tag: "button",
                                 to: {
                                   name: "editPost",
@@ -7809,6 +7774,7 @@ var render = function() {
                         _vm.showModal
                           ? _c(
                               "div",
+                              { staticClass: "confirm-modal" },
                               [
                                 _c("app-deleteModal", {
                                   on: {
@@ -23471,11 +23437,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _MessageOnEarth_vue_vue_type_template_id_caf64126_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MessageOnEarth.vue?vue&type=template&id=caf64126&scoped=true& */ "./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126&scoped=true&");
+/* harmony import */ var _MessageOnEarth_vue_vue_type_template_id_caf64126___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MessageOnEarth.vue?vue&type=template&id=caf64126& */ "./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126&");
 /* harmony import */ var _MessageOnEarth_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MessageOnEarth.vue?vue&type=script&lang=js& */ "./resources/js/pages/MessageOnEarth.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _MessageOnEarth_vue_vue_type_style_index_0_id_caf64126_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css& */ "./resources/js/pages/MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -23483,13 +23447,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _MessageOnEarth_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MessageOnEarth_vue_vue_type_template_id_caf64126_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _MessageOnEarth_vue_vue_type_template_id_caf64126_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _MessageOnEarth_vue_vue_type_template_id_caf64126___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MessageOnEarth_vue_vue_type_template_id_caf64126___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "caf64126",
+  null,
   null
   
 )
@@ -23515,35 +23479,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/pages/MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css&":
-/*!********************************************************************************************************!*\
-  !*** ./resources/js/pages/MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css& ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_style_index_0_id_caf64126_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MessageOnEarth.vue?vue&type=style&index=0&id=caf64126&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_style_index_0_id_caf64126_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_style_index_0_id_caf64126_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_style_index_0_id_caf64126_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_style_index_0_id_caf64126_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_style_index_0_id_caf64126_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126&scoped=true&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126&scoped=true& ***!
-  \******************************************************************************************/
+/***/ "./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126& ***!
+  \******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_template_id_caf64126_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MessageOnEarth.vue?vue&type=template&id=caf64126&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_template_id_caf64126_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_template_id_caf64126___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MessageOnEarth.vue?vue&type=template&id=caf64126& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/MessageOnEarth.vue?vue&type=template&id=caf64126&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_template_id_caf64126___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_template_id_caf64126_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageOnEarth_vue_vue_type_template_id_caf64126___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -23558,11 +23506,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true& */ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true&");
+/* harmony import */ var _NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150& */ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&");
 /* harmony import */ var _NewOrEditMessageOnEarth_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewOrEditMessageOnEarth.vue?vue&type=script&lang=js& */ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& */ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -23570,13 +23516,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _NewOrEditMessageOnEarth_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "a0222150",
+  null,
   null
   
 )
@@ -23602,35 +23548,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&":
-/*!*****************************************************************************************************************!*\
-  !*** ./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& ***!
-  \*****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=style&index=0&id=a0222150&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_style_index_0_id_a0222150_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true&":
-/*!***************************************************************************************************!*\
-  !*** ./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true& ***!
-  \***************************************************************************************************/
+/***/ "./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150& ***!
+  \***************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/NewOrEditMessageOnEarth.vue?vue&type=template&id=a0222150&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewOrEditMessageOnEarth_vue_vue_type_template_id_a0222150___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

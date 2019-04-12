@@ -13,7 +13,7 @@
           <p class="search-form__block">
             <label aria-label="Искать на странице">
               <input name="search" type="search" placeholder="Поиск по странам" v-model="search" @keyup="searchWord">
-              <input type="hidden" name="_token" :value="csrf">
+              <input name="_token" type="hidden" :value="csrf">
             </label>
             <ul class="search-form__result-list" v-if="countries.length">
               <li class="search-form__result-item" v-for="country in countries" :key="country.id" @click="selectCountry($event)">{{country}}</li>
@@ -42,7 +42,6 @@
               <td>{{ post.text }}</td>
               <td class="project-table__controls table-controls">
                 <ul class="table-controls__list">
-
                   <li class="table-controls__item">
                     <button class="table-controls__btn" type="button" title="Утвердить сообщение" v-if="post.is_published === 0" @click="rePublish(post.id)">
                       <svg class="table-controls__item-img" role="img" width="20px" height="20px">
@@ -52,7 +51,7 @@
                   </li>
 
                   <li class="table-controls__item">
-                    <router-link class="table-controls__btn" type="button" title="Редактирование сообщение" tag="button" :to="{name: 'editPost', params: {project: project, publish: publish, id: post.id }}">
+                    <router-link class="table-controls__btn" type="button" title="Редактировать сообщение" tag="button" :to="{name: 'editPost', params: {project: project, publish: publish, id: post.id }}">
                       <svg class="table-controls__item-img" role="img" width="20px" height="20px">
                         <use xlink:href="../../../public/img/svg/sprite.svg#edit"></use>
                       </svg>

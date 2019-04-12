@@ -46,7 +46,7 @@
                         <use xlink:href="../../../public/img/svg/sprite.svg#user-delete"></use>
                       </svg>
                     </button>
-                    <div v-if="showModal">
+                    <div class="confirm-modal" v-if="showModal">
                       <app-deleteModal @close="showModal = false" @deletePost="deletePost(deletePostId)"></app-deleteModal>
                     </div>
                   </li>
