@@ -4,7 +4,7 @@
       <h2 class="section-header__title edit__title" v-if="id === ''">Добавить новую цитату</h2>
       <h2 class="section-header__title edit__title" v-if="id !== ''">Редактировать цитату</h2>
 
-      <button class="section-close edit__close" type="button" aria-label="Вернуться на предыдущую страницу" @click="$router.go(-1)">
+      <button class="section-close edit__close" type="button" aria-label="Вернуться на предыдущую страницу" @click="$router.push({ name: 'messageOnEarth' })">
         <svg class="edit__close-img" role="img" width="20px" height="20px">
           <use xlink:href="../../../public/img/svg/sprite.svg#close"></use>
         </svg>
@@ -88,7 +88,4 @@
       },
     },
   }
-
 </script>
-
-<style></style>

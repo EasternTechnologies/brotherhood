@@ -17,13 +17,13 @@
           </thead>
           <tbody>
             <tr v-for="(message, index) in quotes" :key="message.id">
-              <td :value="message.properties.place">
+              <td>
                 {{message.properties.place}}
               </td>
-              <td :value="message.geometry.coordinates[0]">
+              <td>
                 {{message.geometry.coordinates[0]}}
               </td>
-              <td :value="message.geometry.coordinates[1]">
+              <td>
                 {{message.geometry.coordinates[1]}}
               </td>
               <td class="quotes-table__controls table-controls">
@@ -114,5 +114,4 @@
       },
     },
   }
-
 </script>

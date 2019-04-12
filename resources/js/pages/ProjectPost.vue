@@ -178,8 +178,4 @@
       })
     },
   }
-
 </script>
-
-<style>
-</style>

@@ -2504,12 +2504,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3605,7 +3599,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.search-form[data-v-74bdcee7] {\n  width: 100%;\n}\n.search-form__block[data-v-74bdcee7] {\n  position: relative;\n}\n.search-form__block input[data-v-74bdcee7] {\n  background: #c4c4c4;\n}\n.search-form__result-list[data-v-74bdcee7] {\n  margin-top: 10px;\n  background: #c4c4c4;\n}\n.checkbox[data-v-74bdcee7] {\n  position: relative;\n}\n.checkbox input[data-v-74bdcee7] {\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.search-form[data-v-74bdcee7] {\n  width: 100%;\n}\n.search-form__block[data-v-74bdcee7] {\n  position: relative;\n}\n.search-form__block input[data-v-74bdcee7] {\n  background: #c4c4c4;\n}\n.search-form__result-list[data-v-74bdcee7] {\n  margin-top: 10px;\n  background: #c4c4c4;\n}\n.checkbox[data-v-74bdcee7] {\n  position: relative;\n}\n.checkbox input[data-v-74bdcee7] {\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n\n", ""]);
 
 // exports
 
@@ -6027,46 +6021,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "section edit" }, [
-    _c(
-      "header",
-      { staticClass: "section-header" },
-      [
-        _c("h2", { staticClass: "section-header__title edit__title" }, [
-          _vm._v("Настройки почты")
-        ]),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "section-close edit__close",
-            attrs: {
-              type: "button",
-              "aria-label": "Вернуться на предыдущую страницу",
-              tag: "button",
-              to: { name: "control" }
-            }
-          },
-          [
-            _c(
-              "svg",
-              {
-                staticClass: "edit__close-img",
-                attrs: { role: "img", width: "20px", height: "20px" }
-              },
-              [
-                _c("use", {
-                  attrs: {
-                    "xlink:href":
-                      __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") + "#close"
-                  }
-                })
-              ]
-            )
-          ]
-        )
-      ],
-      1
-    ),
+    _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "section-body edit__body" }, [
       _c("div", { staticClass: "edit__form" }, [
@@ -6175,7 +6130,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "section-header" }, [
+      _c("h2", { staticClass: "section-header__title edit__title" }, [
+        _vm._v("Настройки почты")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -6209,7 +6175,7 @@ var render = function() {
             "tbody",
             _vm._l(_vm.quotes, function(message, index) {
               return _c("tr", { key: message.id }, [
-                _c("td", { attrs: { value: message.properties.place } }, [
+                _c("td", [
                   _vm._v(
                     "\n              " +
                       _vm._s(message.properties.place) +
@@ -6217,29 +6183,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  { attrs: { value: message.geometry.coordinates[0] } },
-                  [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(message.geometry.coordinates[0]) +
-                        "\n            "
-                    )
-                  ]
-                ),
+                _c("td", [
+                  _vm._v(
+                    "\n              " +
+                      _vm._s(message.geometry.coordinates[0]) +
+                      "\n            "
+                  )
+                ]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  { attrs: { value: message.geometry.coordinates[1] } },
-                  [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(message.geometry.coordinates[1]) +
-                        "\n            "
-                    )
-                  ]
-                ),
+                _c("td", [
+                  _vm._v(
+                    "\n              " +
+                      _vm._s(message.geometry.coordinates[1]) +
+                      "\n            "
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "td",
@@ -6465,7 +6423,7 @@ var render = function() {
           },
           on: {
             click: function($event) {
-              return _vm.$router.go(-1)
+              return _vm.$router.push({ name: "messageOnEarth" })
             }
           }
         },

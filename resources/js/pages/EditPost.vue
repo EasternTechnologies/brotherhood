@@ -215,8 +215,4 @@
       }
     },
   }
-
 </script>
-
-<style>
-</style>

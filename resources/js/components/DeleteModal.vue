@@ -35,8 +35,4 @@
       return {}
     }
   }
-
 </script>
-
-<style>
-</style>

@@ -2,12 +2,6 @@
   <section class="section edit">
     <header class="section-header">
       <h2 class="section-header__title edit__title">Настройки почты</h2>
-
-      <router-link class="section-close edit__close" type="button" aria-label="Вернуться на предыдущую страницу" tag="button" :to="{name: 'control'}">
-        <svg class="edit__close-img" role="img" width="20px" height="20px">
-          <use xlink:href="../../../public/img/svg/sprite.svg#close"></use>
-        </svg>
-      </router-link>
     </header>
 
     <div class="section-body edit__body">
@@ -74,8 +68,4 @@
       },
     },
   }
-
 </script>
-
-<style>
-</style>
