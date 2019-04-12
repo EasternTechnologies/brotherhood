@@ -1,127 +1,94 @@
 <template>
-    <section class="section dashboard">
-        <header class="section-header">
-            <h2 class="section-header__title dashboard__title">Сообщения на планете</h2>
-        </header>
-        <div class="section-body dashboard__body">
-            <h2 v-if="id === ''">Добавить новое сообщение</h2>
-            <h2 v-if="id !== ''">Редактировать сообщение</h2>
+  <section class="section edit">
+    <header class="section-header">
+      <h2 class="section-header__title edit__title" v-if="id === ''">Добавить новую цитату</h2>
+      <h2 class="section-header__title edit__title" v-if="id !== ''">Редактировать цитату</h2>
 
-            <table>
-                <thead>
-                <tr>
-                    <th>Текст сообщения</th>
-                    <th>Координата 1</th>
-                    <th>Координата 2</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <label>
-                            <input v-model="text" type="text">
-                        </label>
-                    </td>
-                    <td>
-                        <label>
-                            <input v-model="coordinate1" type="number">
-                        </label>
-                    </td>
-                    <td>
-                        <label>
-                            <input v-model="coordinate2" type="number">
-                        </label>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <br>
-        </div>
+      <button class="section-close edit__close" type="button" aria-label="Вернуться на предыдущую страницу" @click="$router.go(-1)">
+        <svg class="edit__close-img" role="img" width="20px" height="20px">
+          <use xlink:href="../../../public/img/svg/sprite.svg#close"></use>
+        </svg>
+      </button>
+    </header>
 
-        <br>
+    <div class="section-body edit__body">
+      <div class="edit__form">
+        <form class="edit-form">
+          <p class="edit-form__block">
+            <label class="edit-form__block-title">
+              <span>Тексты цитаты</span>
 
-        <div>
-            <button tag="button" title="Назад" @click="$router.go(-1)">
-                Назад
-            </button>
+              <textarea class="edit-form__field" name="quote" v-model="text" rows="5"></textarea>
+            </label>
+          </p>
 
-            <button @click="updateCoordinate">Сохранить</button>
-        </div>
-    </section>
+          <p class="edit-form__block">
+            <label class="edit-form__block-title">
+              <span>Координата 1</span>
+              <input class="edit-form__field" name="coordinate1" type="text" v-model="coordinate1">
+            </label>
+          </p>
+
+          <p class="edit-form__block">
+            <label class="edit-form__block-title">
+              <span>Координата 2</span>
+              <input class="edit-form__field" name="coordinate2" type="text" v-model="coordinate2">
+            </label>
+          </p>
+
+          <p class="edit-form__block edit-form__block--submit">
+            <button class="edit-form__btn btn" type="submit" @click="updateCoordinate">Сохранить</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-    import axios from 'axios'
-    export default {
-        data () {
-            return {
-                id: '',
-                url: '',
-                text: '',
-                coordinate1: '',
-                coordinate2: '',
-            }
-        },
-        mounted () {
-            if (this.$route.params['id'] !== undefined) {
-                this.id = this.$route.params['id'];
-                this.url = 'editCoordinate';
-                this.updateCoordinate()
-            }else{
-                this.url = 'newCoordinate'
-            }
-        },
-        methods: {
-            updateCoordinate () {
-                axios.get("/admin/settings/" + this.url,
-                    { params: {
-                        id:             this.id,
-                        text:           this.text,
-                        coordinate1:    this.coordinate1,
-                        coordinate2:    this.coordinate2,
-                    }}).then(response => {
-                    if (response.data === 'success') {
-                        this.$router.go(-1)
-                    }
-                    if (this.id !== '') {
-                        this.text = response.data.properties.place;
-                        this.coordinate1 = response.data.geometry.coordinates[0];
-                        this.coordinate2 = response.data.geometry.coordinates[1]
-                    }
-                })
-            },
-        },
-    }
+  import axios from 'axios'
+  export default {
+    data() {
+      return {
+        id: '',
+        url: '',
+        text: '',
+        coordinate1: '',
+        coordinate2: '',
+      }
+    },
+    mounted() {
+      if (this.$route.params['id'] !== undefined) {
+        this.id = this.$route.params['id'];
+        this.url = 'editCoordinate';
+        this.updateCoordinate()
+      } else {
+        this.url = 'newCoordinate'
+      }
+    },
+    methods: {
+      updateCoordinate() {
+        axios.get("/admin/settings/" + this.url, {
+          params: {
+            id: this.id,
+            text: this.text,
+            coordinate1: this.coordinate1,
+            coordinate2: this.coordinate2,
+          }
+        }).then(response => {
+          if (response.data === 'success') {
+            this.$router.go(-1)
+          }
+          if (this.id !== '') {
+            this.text = response.data.properties.place;
+            this.coordinate1 = response.data.geometry.coordinates[0];
+            this.coordinate2 = response.data.geometry.coordinates[1]
+          }
+        })
+      },
+    },
+  }
+
 </script>
 
-<style scoped>
-    .search-form {
-        width: 100%;
-    }
-
-    .search-form__block {
-        position: relative;
-    }
-
-    .search-form__block input {
-        background: #c4c4c4;
-    }
-
-    .search-form__result-list {
-        background: #c4c4c4;
-        margin-top: 10px;
-    }
-
-    label {
-        position: relative;
-        width: 50px;
-        height: 35px;
-    }
-
-    input {
-        border: 1px solid black;
-        height: 35px;
-        width: 250px;
-
-    }
-</style>
+<style></style>
