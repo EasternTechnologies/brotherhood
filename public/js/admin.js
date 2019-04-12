@@ -2510,8 +2510,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -6159,139 +6157,156 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "section dashboard" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "section-body dashboard__body" }, [
-      _c("table", [
-        _vm._m(1),
-        _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [
-              _c("label", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.MAIL_USERNAME,
-                      expression: "MAIL_USERNAME"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.MAIL_USERNAME },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.MAIL_USERNAME = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("label", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.MAIL_PASSWORD,
-                      expression: "MAIL_PASSWORD"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.MAIL_PASSWORD },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.MAIL_PASSWORD = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("label", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.MAIL_ADMIN,
-                      expression: "MAIL_ADMIN"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.MAIL_ADMIN },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.MAIL_ADMIN = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
+  return _c("section", { staticClass: "section edit" }, [
     _c(
-      "div",
+      "header",
+      { staticClass: "section-header" },
       [
+        _c("h2", { staticClass: "section-header__title edit__title" }, [
+          _vm._v("Настройки почты")
+        ]),
+        _vm._v(" "),
         _c(
           "router-link",
-          { attrs: { tag: "button", title: "Назад", to: { name: "control" } } },
-          [_c("div", [_vm._v("Назад")])]
-        ),
-        _vm._v(" "),
-        _c("button", { on: { click: _vm.updateMailSettings } }, [
-          _vm._v("Сохранить")
-        ])
+          {
+            staticClass: "section-close edit__close",
+            attrs: {
+              type: "button",
+              "aria-label": "Вернуться на предыдущую страницу",
+              tag: "button",
+              to: { name: "control" }
+            }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "edit__close-img",
+                attrs: { role: "img", width: "20px", height: "20px" }
+              },
+              [
+                _c("use", {
+                  attrs: {
+                    "xlink:href":
+                      __webpack_require__(/*! ../../../public/img/svg/sprite.svg */ "./public/img/svg/sprite.svg") + "#close"
+                  }
+                })
+              ]
+            )
+          ]
+        )
       ],
       1
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "section-body edit__body" }, [
+      _c("div", { staticClass: "edit__form" }, [
+        _c("form", { staticClass: "edit-form" }, [
+          _c("p", { staticClass: "edit-form__block" }, [
+            _c("label", { staticClass: "edit-form__block-title" }, [
+              _c("span", [_vm._v("Почта отправителя")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.MAIL_USERNAME,
+                    expression: "MAIL_USERNAME"
+                  }
+                ],
+                staticClass: "edit-form__field",
+                attrs: { name: "user-email", type: "text" },
+                domProps: { value: _vm.MAIL_USERNAME },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.MAIL_USERNAME = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "edit-form__block" }, [
+            _c("label", { staticClass: "edit-form__block-title" }, [
+              _c("span", [_vm._v("Пароль отправителя")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.MAIL_PASSWORD,
+                    expression: "MAIL_PASSWORD"
+                  }
+                ],
+                staticClass: "edit-form__field",
+                attrs: { name: "user-password", type: "password" },
+                domProps: { value: _vm.MAIL_PASSWORD },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.MAIL_PASSWORD = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "edit-form__block" }, [
+            _c("label", { staticClass: "edit-form__block-title" }, [
+              _c("span", [_vm._v("Почта получателя")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.MAIL_ADMIN,
+                    expression: "MAIL_ADMIN"
+                  }
+                ],
+                staticClass: "edit-form__field",
+                attrs: { name: "admin-email", type: "text" },
+                domProps: { value: _vm.MAIL_ADMIN },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.MAIL_ADMIN = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "p",
+            { staticClass: "edit-form__block edit-form__block--submit" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "edit-form__btn btn",
+                  attrs: { type: "submuit" },
+                  on: { click: _vm.updateMailSettings }
+                },
+                [_vm._v("Сохранить изменения")]
+              )
+            ]
+          )
+        ])
+      ])
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "section-header" }, [
-      _c("h2", { staticClass: "section-header__title dashboard__title" }, [
-        _vm._v("Настройки почты")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Почта отправителя")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Пароль отправителя")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Почта получателя")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
