@@ -1,89 +1,90 @@
 <template>
-  <section class="section users">
+  <section class="section edit">
     <header class="section-header">
-      <h2 class="section-header__title dashboard__title">
+      <h2 class="section-header__title edit__title">
         <span>Редактирование сообщения</span>
       </h2>
+
+      <router-link class="section-close edit__close" tag="button" type="button" aria-label="Вернуться на предыдущую страницу" title="Вернуться на предыдущую страницу" :to="{name: 'projectModeration', params: {project: project, publish: publish}}">
+        <svg class="edit__close-img" role="img" width="20px" height="20px">
+          <use xlink:href="../../../public/img/svg/sprite.svg#close"></use>
+        </svg>
+      </router-link>
     </header>
-    <div class="section-body users__body">
-      <div class="users__table users-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Пользователь</th>
-              <th>Страна</th>
-              <th>Дата создания</th>
-              <th>Дата обновления</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <form class="search-form" autocomplete="off">
-                  <p class="search-form__block">
-                    <label aria-label="Искать пользователя">
-                      <input class="" name="searchUser" type="search" placeholder="Поиск" v-model="searchUser" @keyup="searchWordUser">
-                      <input type="hidden" name="_token" :value="csrf">
-                    </label>
 
-                  </p>
-                  <ul class="search-form__result-list">
-                    <li class="search-form__result-item" v-for="user in users" :key="user.id" @click="selectUser($event)">{{user}}</li>
-                  </ul>
-                </form>
-              </td>
-              <td>
-                <form class="search-form" autocomplete="off">
-                  <p class="search-form__block">
-                    <label aria-label="Искать страну">
-                      <input class="" name="searchCountry" type="search" placeholder="Поиск" v-model="searchCountry" @keyup="searchWordCountry">
-                      <input type="hidden" name="_token" :value="csrf">
-                    </label>
+    <div class="section-body edit__body">
 
-                  </p>
-                  <ul class="search-form__result-list">
-                    <li class="search-form__result-item" v-for="country in countries" :key="country.id" @click="selectCountry($event)">{{country}}</li>
-                  </ul>
-                </form>
-              </td>
-              <td v-model="post.created_at">{{post.created_at}}</td>
-              <td v-model="post.updated_at">{{post.updated_at}}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="edit__form">
+        <form class="edit-form">
 
-        <br>
+          <div class="form-section form-section--content">
+            <p class="edit-form__block">
+              <label class="edit-form__block-title">
+                <span>Пользователь</span>
+                <input class="edit-form__field" name="searchUser" type="search" placeholder="Имя пользователя" v-model="searchUser" @keyup="searchWordUser">
+                <input type="hidden" name="_token" :value="csrf">
+              </label>
 
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Текст</th>
-                <th>Опубликован</th>
-                <th v-if="isPublished === 1 ">Дата публикации</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><textarea v-model="post.text" name="text" cols="50" rows="10"></textarea> </td>
-                <td>
-                  <button v-if="isPublished === 1" @click="rePublish">Отправить на модерацию</button>
-                  <button class="success" v-if="isPublished === 0 " @click="rePublish">Опубликовать</button>
-                </td>
-                <td v-if="isPublished === 1 " v-model="post.published_at">{{post.published_at}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              <ul class="edit-form__result-list">
+                <li class="edit-form__result-item" v-for="user in users" :key="user.id" @click="selectUser($event)">{{user}}</li>
+              </ul>
+            </p>
+
+            <p class="edit-form__block">
+              <label class="edit-form__block-title">
+                <span>Страна</span>
+                <input class="edit-form__field" name="searchCountry" type="search" placeholder="Страна" v-model="searchCountry" @keyup="searchWordCountry">
+                <input type="hidden" name="_token" :value="csrf">
+              </label>
+
+              <ul class="edit-form__result-list">
+                <li class="edit-form__result-item" v-for="country in countries" :key="country.id" @click="selectCountry($event)">{{country}}</li>
+              </ul>
+            </p>
+
+            <p class="edit-form__block">
+              <label class="edit-form__block-title">
+                <span>Дата создания</span>
+                <input class="edit-form__field" name="created" type="text" v-model="post.created_at" disabled>
+              </label>
+            </p>
+
+            <p class="edit-form__block">
+              <label class="edit-form__block-title">
+                <span>Дата редактирования</span>
+                <input class="edit-form__field" name="created" type="text" v-model="post.updated_at" disabled>
+              </label>
+            </p>
+
+            <p class="edit-form__block" v-if="isPublished === 1">
+              <label class="edit-form__block-title">
+                <span>Дата публикации</span>
+                <input class="edit-form__field" name="published" type="text" v-model="post.published_at" disabled>
+              </label>
+            </p>
+          </div>
+
+          <div class="form-section form-section--text">
+            <p class="edit-form__block">
+              <label class="edit-form__block-title">
+                <span>Сообщение</span>
+
+                <textarea class="edit-form__field" name="text" v-model="post.text" cols="50" rows="10"></textarea>
+              </label>
+            </p>
+          </div>
+
+          <p class="edit-form__block edit-form__block--submit">
+            <button class="edit-form__btn btn" type="submit" @click="save">Сохранить</button>
+
+            <button class="edit-form__btn btn" type="button" v-if="isPublished === 0 " @click="rePublish">Опубликовать</button>
+
+            <button class="edit-form__btn btn" type="button" v-else @click="rePublish">Отправить на модерацию</button>
+          </p>
+        </form>
       </div>
     </div>
-    <div>
-      <router-link tag="button" title="Назад" :to="{name: 'projectModeration', params: {project: project, publish: publish}}">
-        <div>Назад</div>
-      </router-link>
 
-      <button @click="save">Сохранить</button>
-    </div>
   </section>
 </template>
 
@@ -214,23 +215,5 @@
 
 </script>
 
-<style scoped>
-.search-form {
-  width: 100%;
-}
-
-.search-form__block {
-  position: relative;
-}
-
-.search-form__block input {
-  background: #c4c4c4;
-}
-
-.search-form__result-list {
-  margin-top: 10px;
-  background: #c4c4c4;
-}
-
-
+<style>
 </style>
