@@ -2291,6 +2291,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -5804,10 +5807,10 @@ var render = function() {
           {
             staticClass: "section-close edit__close",
             attrs: {
-              tag: "button",
               type: "button",
-              "aria-label": "Вернуться на предыдущую страницу",
               title: "Вернуться на предыдущую страницу",
+              "aria-label": "Вернуться на предыдущую страницу",
+              tag: "button",
               to: {
                 name: "projectModeration",
                 params: { project: _vm.project, publish: _vm.publish }
@@ -5857,7 +5860,8 @@ var render = function() {
                   attrs: {
                     name: "searchUser",
                     type: "search",
-                    placeholder: "Имя пользователя"
+                    placeholder: "Имя пользователя",
+                    autocomplete: "off"
                   },
                   domProps: { value: _vm.searchUser },
                   on: {
@@ -5872,31 +5876,33 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("input", {
-                  attrs: { type: "hidden", name: "_token" },
+                  attrs: { name: "_token", type: "hidden" },
                   domProps: { value: _vm.csrf }
                 })
               ]),
               _vm._v(" "),
-              _c(
-                "ul",
-                { staticClass: "edit-form__result-list" },
-                _vm._l(_vm.users, function(user) {
-                  return _c(
-                    "li",
-                    {
-                      key: user.id,
-                      staticClass: "edit-form__result-item",
-                      on: {
-                        click: function($event) {
-                          return _vm.selectUser($event)
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(user))]
+              _vm.users.length
+                ? _c(
+                    "ul",
+                    { staticClass: "edit-form__result-list" },
+                    _vm._l(_vm.users, function(user) {
+                      return _c(
+                        "li",
+                        {
+                          key: user.id,
+                          staticClass: "edit-form__result-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.selectUser($event)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(user))]
+                      )
+                    }),
+                    0
                   )
-                }),
-                0
-              )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "edit-form__block" }, [
@@ -5916,7 +5922,8 @@ var render = function() {
                   attrs: {
                     name: "searchCountry",
                     type: "search",
-                    placeholder: "Страна"
+                    placeholder: "Страна",
+                    autocomplete: "off"
                   },
                   domProps: { value: _vm.searchCountry },
                   on: {
@@ -5931,31 +5938,33 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("input", {
-                  attrs: { type: "hidden", name: "_token" },
+                  attrs: { name: "_token", type: "hidden" },
                   domProps: { value: _vm.csrf }
                 })
               ]),
               _vm._v(" "),
-              _c(
-                "ul",
-                { staticClass: "edit-form__result-list" },
-                _vm._l(_vm.countries, function(country) {
-                  return _c(
-                    "li",
-                    {
-                      key: country.id,
-                      staticClass: "edit-form__result-item",
-                      on: {
-                        click: function($event) {
-                          return _vm.selectCountry($event)
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(country))]
+              _vm.countries.length
+                ? _c(
+                    "ul",
+                    { staticClass: "                               " },
+                    _vm._l(_vm.countries, function(country) {
+                      return _c(
+                        "li",
+                        {
+                          key: country.id,
+                          staticClass: "edit-form__result-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.selectCountry($event)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(country))]
+                      )
+                    }),
+                    0
                   )
-                }),
-                0
-              )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "edit-form__block" }, [

@@ -5,7 +5,7 @@
         <span>Редактирование сообщения</span>
       </h2>
 
-      <router-link class="section-close edit__close" tag="button" type="button" aria-label="Вернуться на предыдущую страницу" title="Вернуться на предыдущую страницу" :to="{name: 'projectModeration', params: {project: project, publish: publish}}">
+      <router-link class="section-close edit__close" type="button" title="Вернуться на предыдущую страницу" aria-label="Вернуться на предыдущую страницу" tag="button" :to="{name: 'projectModeration', params: {project: project, publish: publish}}">
         <svg class="edit__close-img" role="img" width="20px" height="20px">
           <use xlink:href="../../../public/img/svg/sprite.svg#close"></use>
         </svg>
@@ -21,11 +21,12 @@
             <p class="edit-form__block">
               <label class="edit-form__block-title">
                 <span>Пользователь</span>
-                <input class="edit-form__field" name="searchUser" type="search" placeholder="Имя пользователя" v-model="searchUser" @keyup="searchWordUser">
-                <input type="hidden" name="_token" :value="csrf">
+                <input class="edit-form__field" name="searchUser" type="search" placeholder="Имя пользователя" v-model="searchUser" @keyup="searchWordUser"
+                autocomplete="off">
+                <input name="_token" type="hidden" :value="csrf">
               </label>
 
-              <ul class="edit-form__result-list">
+              <ul class="edit-form__result-list" v-if="users.length">
                 <li class="edit-form__result-item" v-for="user in users" :key="user.id" @click="selectUser($event)">{{user}}</li>
               </ul>
             </p>
@@ -33,11 +34,13 @@
             <p class="edit-form__block">
               <label class="edit-form__block-title">
                 <span>Страна</span>
-                <input class="edit-form__field" name="searchCountry" type="search" placeholder="Страна" v-model="searchCountry" @keyup="searchWordCountry">
-                <input type="hidden" name="_token" :value="csrf">
+                <input class="edit-form__field" name="searchCountry" type="search" placeholder="Страна" v-model="searchCountry"
+                @keyup="searchWordCountry"
+                autocomplete="off">
+                <input name="_token" type="hidden" :value="csrf">
               </label>
 
-              <ul class="edit-form__result-list">
+              <ul class="                               " v-if="countries.length">
                 <li class="edit-form__result-item" v-for="country in countries" :key="country.id" @click="selectCountry($event)">{{country}}</li>
               </ul>
             </p>
