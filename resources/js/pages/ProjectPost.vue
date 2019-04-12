@@ -64,9 +64,6 @@
                         <use xlink:href="../../../public/img/svg/sprite.svg#remove"></use>
                       </svg>
                     </button>
-                    <div class="confirm-modal" v-if="showModal">
-                      <app-deleteModal @close="showModal = false" @deletePost="deletePost(deletePostId)"></app-deleteModal>
-                    </div>
                   </li>
                 </ul>
               </td>
@@ -74,6 +71,15 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="project__new" v-if="publish === 'materials'">
+        <router-link class="project__new-btn btn" tag="button" :to="{name: 'newPost'}">
+          <svg role="img" width="20px" height="20px">
+            <use xlink:href="../../../public/img/svg/sprite.svg#edit"></use>
+          </svg>
+          <span>Создать сообщение</span>
+        </router-link>
       </div>
 
       <!-- <div class="user__pagination pagination">
@@ -85,6 +91,10 @@
           Next
         </button>
       </div> -->
+    </div>
+
+    <div class="confirm-modal" v-if="showModal">
+      <app-deleteModal @close="showModal = false" @deletePost="deletePost(deletePostId)"></app-deleteModal>
     </div>
   </section>
 </template>
@@ -178,4 +188,5 @@
       })
     },
   }
+
 </script>

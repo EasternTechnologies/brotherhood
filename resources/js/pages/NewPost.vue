@@ -1,85 +1,69 @@
 <template>
-  <section class="section users">
+  <section class="section edit">
     <header class="section-header">
-      <h2 class="section-header__title dashboard__title">
-        <span>Редактирование сообщения</span>
+      <h2 class="section-header__title edit__title">
+        Создание нового материала
       </h2>
-    </header>
-    <div class="section-body users__body">
-      <div class="users__table users-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Пользователь</th>
-              <th>Страна</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <form class="search-form" autocomplete="off">
-                  <p class="search-form__block">
-                    <label aria-label="Искать пользователя">
-                      <input name="searchUser" type="search" placeholder="Поиск" v-model="searchUser" @keyup="searchWordUser">
-                      <input type="hidden" name="_token" :value="csrf">
-                    </label>
 
-                  </p>
-                  <ul class="search-form__result-list">
-                    <li class="search-form__result-item" v-for="user in users" :key="user.id" @click="selectUser($event)">{{user}}</li>
-                  </ul>
-                </form>
-              </td>
-              <td>
-                <form class="search-form" autocomplete="off">
-                  <p class="search-form__block">
-                    <label aria-label="Искать страну">
-                      <input class="" name="searchCountry" type="search" placeholder="Поиск" v-model="searchCountry" @keyup="searchWordCountry">
-                      <input type="hidden" name="_token" :value="csrf">
-                    </label>
-
-                  </p>
-                  <ul class="search-form__result-list">
-                    <li class="search-form__result-item" v-for="country in countries" :key="country.id" @click="selectCountry($event)">{{country}}</li>
-                  </ul>
-                </form>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <br>
-
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Текст</th>
-                <th>Опубликован</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><textarea v-model="post.text" name="text" cols="50" rows="10"></textarea></td>
-                <td>
-                  <div>
-                    <label class="checkbox">
-                      <input type="checkbox" value="1" v-model="post.is_published">Опубликовать при сохранении
-                    </label>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div>
-      <router-link tag="button" title="Назад" :to="{name: 'projectModeration', params: {project: project, publish: publish}}">
-        <div>Назад</div>
+      <router-link class="section-close edit__close" type="button" title="Вернуться на предыдущую страницу" tag="button" :to="{name: 'projectModeration', params: {project: project, publish: publish}}">
+        <svg class="edit__close-img" role="img" width="20px" height="20px">
+          <use xlink:href="../../../public/img/svg/sprite.svg#close"></use>
+        </svg>
       </router-link>
+    </header>
+    <div class="section-body edit__body">
 
-      <button @click="save">Сохранить</button>
+      <div class="edit__form">
+        <form class="edit-form">
+
+          <div class="form-section form-section--content">
+            <p class="edit-form__block">
+              <label class="edit-form__block-title">
+                <span>Пользователь</span>
+                <input class="edit-form__field" name="searchUser" type="search" placeholder="Имя пользователя" v-model="searchUser" @keyup="searchWordUser" autocomplete="off">
+                <input name="_token" type="hidden" :value="csrf">
+              </label>
+
+              <ul class="edit-form__result-list" v-if="users.length">
+                <li class="edit-form__result-item" v-for="user in users" :key="user.id" @click="selectUser($event)">{{user}}</li>
+              </ul>
+            </p>
+
+            <p class="edit-form__block">
+              <label class="edit-form__block-title">
+                <span>Страна</span>
+                <input class="edit-form__field" name="searchCountry" type="search" placeholder="Страна" v-model="searchCountry" @keyup="searchWordCountry" autocomplete="off">
+                <input name="_token" type="hidden" :value="csrf">
+              </label>
+
+              <ul class="search-form__result-list" v-if="countries.length">
+                <li class="edit-form__result-item" v-for="country in countries" :key="country.id" @click="selectCountry($event)">{{country}}</li>
+              </ul>
+            </p>
+
+            <p class="edit-form__block edit-form__block--checkbox">
+              <label class="edit-form__block-title">
+                <input type="checkbox" value="1" v-model="post.is_published">
+                <span>Опубликовать при сохранении</span>
+              </label>
+            </p>
+          </div>
+
+          <div class="form-section form-section--text">
+            <p class="edit-form__block">
+              <label class="edit-form__block-title">
+                <span>Сообщение</span>
+
+                <textarea class="edit-form__field" name="text" v-model="post.text" rows="10"></textarea>
+              </label>
+            </p>
+          </div>
+
+          <p class="edit-form__block edit-form__block--submit">
+            <button class="edit-form__btn btn" type="submit" @click="save">Сохранить</button>
+          </p>
+        </form>
+      </div>
     </div>
   </section>
 </template>
@@ -167,33 +151,3 @@
   }
 
 </script>
-
-<style scoped>
-.search-form {
-  width: 100%;
-}
-
-.search-form__block {
-  position: relative;
-}
-
-.search-form__block input {
-  background: #c4c4c4;
-}
-
-.search-form__result-list {
-  margin-top: 10px;
-  background: #c4c4c4;
-}
-
-.checkbox {
-  position: relative;
-}
-
-.checkbox input {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-</style>

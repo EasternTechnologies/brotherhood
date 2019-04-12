@@ -155,3 +155,20 @@
     background: #cccccc;
   }
 }
+
+.edit-form__block--checkbox {
+  .edit-form__block-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+
+    span {
+      margin-bottom: 0;
+    }
+
+    input {
+      width: rem(25);
+      height: rem(25);
+    }
+  }
+}

@@ -5,7 +5,7 @@
         <span>Редактирование сообщения</span>
       </h2>
 
-      <router-link class="section-close edit__close" type="button" title="Вернуться на предыдущую страницу" aria-label="Вернуться на предыдущую страницу" tag="button" :to="{name: 'projectModeration', params: {project: project, publish: publish}}">
+      <router-link class="section-close edit__close" type="button" title="Вернуться на предыдущую страницу" tag="button" :to="{name: 'projectModeration', params: {project: project, publish: publish}}">
         <svg class="edit__close-img" role="img" width="20px" height="20px">
           <use xlink:href="../../../public/img/svg/sprite.svg#close"></use>
         </svg>

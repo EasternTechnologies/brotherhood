@@ -989,6 +989,10 @@ h4.submenu__title::before,
   overflow-y: auto;
 }
 
+.users__search {
+  min-width: 18.75rem;
+}
+
 .search__block {
   position: relative;
   display: flex;
@@ -1042,6 +1046,16 @@ h4.submenu__title::before,
 
 .project__serch {
   min-width: 18.75rem;
+}
+
+.project__table {
+  margin-bottom: 1.5625rem;
+  overflow-x: auto;
+}
+
+.project__new-btn {
+  margin: 0 auto;
+  font-size: 1.25rem;
 }
 
 .backup__body {
@@ -1350,5 +1364,20 @@ table td a {
 
 .search-form__result-item:hover {
   background: #cccccc;
+}
+
+.edit-form__block--checkbox .edit-form__block-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.edit-form__block--checkbox .edit-form__block-title span {
+  margin-bottom: 0;
+}
+
+.edit-form__block--checkbox .edit-form__block-title input {
+  width: 1.5625rem;
+  height: 1.5625rem;
 }
 
