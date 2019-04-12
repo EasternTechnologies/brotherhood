@@ -9,7 +9,7 @@
         Редактирование пользователя
       </h2>
 
-      <button class="section-close edit__close" type="button" aria-label="Вернуться на предыдущую страницу">
+      <button class="section-close edit__close" type="button" aria-label="Вернуться на предыдущую страницу" @click="$router.push({ name: 'users' })">
         <svg class="edit__close-img" role="img" width="20px" height="20px">
           <use xlink:href="../../../public/img/svg/sprite.svg#close"></use>
         </svg>
@@ -37,7 +37,7 @@
           <p class="edit-form__block">
             <label class="edit-form__block-title">
               <span>Страна</span>
-              <input class="edit-form__field" name="country" type="text" v-model="searchCountry" @keyup="searchWordCountry">
+              <input class="edit-form__field" name="country" type="text" v-model="searchCountry" @keyup="searchWordCountry" autocomplete="off">
             </label>
             <ul class="edit-form__result-list" v-if="countries.length">
               <li class="edit-form__result-item" v-for="country in countries" @click="selectCountry($event)" :key="country.id">{{ country }}</li>
@@ -176,8 +176,4 @@
       }
     }
   }
-
 </script>
-
-<style>
-</style>

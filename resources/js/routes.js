@@ -1,7 +1,6 @@
 import VueRouter from 'vue-router'
 import Users from './pages/Users'
 import Dashboard from './pages/Dashboard'
-import Projects from './pages/Projects'
 import EmailSettings from './pages/EmailSettings'
 import ProjectPost from './pages/ProjectPost'
 import EditPost from './pages/EditPost'
@@ -48,11 +47,6 @@ export default new VueRouter ({
       path: '/admin/messageOnEarth/:id/editCoordinate',
       name: 'editCoordinate',
       component: newOrEditMessageOnEarth
-    },
-    {
-      path: '/admin/projects',
-      name: 'projects',
-      component: Projects
     },
     {
       path: '/admin/email-settings',
