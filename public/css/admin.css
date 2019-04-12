@@ -1079,36 +1079,37 @@ h4.submenu__title::before,
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(0, 0, 0, 0.3);
   transition: opacity 0.3s ease;
 }
 
 .modal {
   position: relative;
   z-index: 9999;
-  min-width: 450px;
-  padding: 25px 55px;
+  min-width: 28.125rem;
+  padding: 1.5625rem 3.4375rem;
   background: #ffffff;
   border: 1px solid #7b7b7b;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }
 
 .modal .modal-header {
-  margin-bottom: 30px;
-  font-size: 25px;
+  margin-bottom: 1.875rem;
+  font-size: 1.5625rem;
+  color: #132635;
 }
 
 .modal .modal-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 22px;
+  padding: 0 1.375rem;
 }
 
 .modal .modal-btn {
   display: block;
-  width: 140px;
-  font-size: 20px;
+  width: 8.75rem;
+  font-size: 1.25rem;
 }
 
 .modal-enter {
@@ -1121,8 +1122,8 @@ h4.submenu__title::before,
 
 .modal-enter .modal-container,
 .modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 table {

@@ -16,7 +16,7 @@
         </form>
       </div>
     </header>
-    
+
     <div class="section-body users__body">
       <div class="users__table users-table">
         <table>
@@ -46,9 +46,6 @@
                         <use xlink:href="../../../public/img/svg/sprite.svg#user-delete"></use>
                       </svg>
                     </button>
-                    <div class="confirm-modal" v-if="showModal">
-                      <app-deleteModal @close="showModal = false" @deletePost="deletePost(deletePostId)"></app-deleteModal>
-                    </div>
                   </li>
 
                   <li class="table-controls__item">
@@ -91,6 +88,10 @@
           Next
         </button>
       </div> -->
+    </div>
+
+    <div class="confirm-modal" v-if="showModal">
+      <app-deleteModal @close="showModal = false" @deletePost="deletePost(deletePostId)"></app-deleteModal>
     </div>
   </section>
 </template>
@@ -164,4 +165,5 @@
       },
     }
   }
+
 </script>

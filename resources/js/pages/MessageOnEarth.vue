@@ -42,9 +42,6 @@
                         <use xlink:href="../../../public/img/svg/sprite.svg#remove"></use>
                       </svg>
                     </button>
-                    <div class="confirm-modal" v-if="showModal">
-                      <app-deleteModal @close="showModal = false" @deletePost="deleteMessage(deleteMessageId)"></app-deleteModal>
-                    </div>
                   </li>
                 </ul>
               </td>
@@ -61,6 +58,10 @@
           <span>Создать новую цитату</span>
         </router-link>
       </div>
+    </div>
+
+    <div class="confirm-modal" v-if="showModal">
+      <app-deleteModal @close="showModal = false" @deletePost="deleteMessage(deleteMessageId)"></app-deleteModal>
     </div>
   </section>
 </template>
@@ -114,4 +115,5 @@
       },
     },
   }
+
 </script>
