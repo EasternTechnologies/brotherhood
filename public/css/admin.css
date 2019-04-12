@@ -1192,9 +1192,14 @@ table td a {
   padding: 0.625rem 0.9375rem;
   font-size: 1.25rem;
   background: #ffffff;
-  border: 1px solid #2b335b;
+  border: 1px solid #8488a1;
   border-radius: 10px;
-  box-shadow: inset 0 5px 10px 1px rgba(14, 15, 15, 0.25);
+  box-shadow: inset 0 5px 10px 1px rgba(14, 15, 15, 0.15);
+}
+
+.edit-form__field:disabled {
+  color: #000000;
+  background: #dbdbdb;
 }
 
 .edit-form__field::-webkit-input-placeholder {
@@ -1225,5 +1230,39 @@ table td a {
   width: 100%;
   margin-top: 3.125rem;
   margin-bottom: 0;
+}
+
+.edit-form__block--submit .edit-form__btn {
+  margin-right: 1.25rem;
+}
+
+.edit-form__block--submit .edit-form__btn:last-child {
+  margin-right: 0;
+}
+
+.edit-form__block--text {
+  float: right;
+  margin-left: 30px;
+}
+
+.form-section--content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  width: 65%;
+}
+
+.form-section--content .edit-form__block {
+  align-items: flex-start;
+  width: 46%;
+}
+
+.form-section--text {
+  width: 30%;
+}
+
+.form-section--text .edit-form__block {
+  width: 100%;
 }
 

@@ -77,34 +77,5 @@ import axios from 'axios'
   }
 </script>
 
-<style scoped>
-  .search-form {
-    width: 100%;
-  }
-
-  .search-form__block {
-    position: relative;
-  }
-
-  .search-form__block input {
-    background: #c4c4c4;
-  }
-
-  .search-form__result-list {
-    background: #c4c4c4;
-    margin-top: 10px;
-  }
-
-  label {
-    position: relative;
-    width: 50px;
-    height: 35px;
-  }
-
-  input {
-    border: 1px solid black;
-    height: 35px;
-    width: 250px;
-
-  }
+<style>
 </style>
