@@ -1811,7 +1811,9 @@ __webpack_require__.r(__webpack_exports__);
       var lastSize = last.offsetTop + last.offsetHeight;
 
       if (blockSize >= lastSize) {
-        var country = $('.search-form input').val();
+        var country = $('.search-form input').val(); // let country = document.querySelector('.search-form input');
+        // console.log(country);
+
         axios.get('/project/' + this.project + '/loadpost', {
           params: {
             personsLength: this.persons.length,
@@ -1991,88 +1993,6 @@ __webpack_require__.r(__webpack_exports__);
       this.queryString = event.target.innerHTML;
       this.countries = [];
       _app__WEBPACK_IMPORTED_MODULE_0__["eventSearch"].$emit('updateData', this.queryString);
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VideoSlider.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VideoSlider.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      currentOffset: 0,
-      windowSize: 3,
-      paginationFactor: 220,
-      items: [{
-        name: 'Tycoon Thai',
-        tag: "Thai"
-      }, {
-        name: 'Ippudo',
-        tag: "Japanese"
-      }, {
-        name: 'Milano',
-        tag: "Pizza"
-      }, {
-        name: 'Tsing Tao',
-        tag: "Chinese"
-      }, {
-        name: 'Frances',
-        tag: "French"
-      }, {
-        name: 'Burma Superstar',
-        tag: "Burmese"
-      }, {
-        name: 'Salt and Straw',
-        tag: "Ice cream"
-      }]
-    };
-  },
-  computed: {
-    atEndOfList: function atEndOfList() {
-      return this.currentOffset <= this.paginationFactor * -1 * (this.items.length - this.windowSize);
-    },
-    atHeadOfList: function atHeadOfList() {
-      return this.currentOffset === 0;
-    }
-  },
-  methods: {
-    moveCarousel: function moveCarousel(direction) {
-      // Find a more elegant way to express the :style. consider using props to make it truly generic
-      if (direction === 1 && !this.atEndOfList) {
-        this.currentOffset -= this.paginationFactor;
-      } else if (direction === -1 && !this.atHeadOfList) {
-        this.currentOffset += this.paginationFactor;
-      }
     }
   }
 });
@@ -6520,112 +6440,6 @@ __webpack_require__.r(__webpack_exports__);
 
 }));
 //# sourceMappingURL=bootstrap.js.map
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody[data-v-75e4ee21] {\n    background: #f8f8f8;\n    color: #2c3e50;\n    font-family: 'Source Sans Pro', sans-serif;\n    min-height: 1000px;\n}\n.card-carousel-wrapper[data-v-75e4ee21] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin: 20px 0 40px;\n    color: #666a73;\n}\n.card-carousel[data-v-75e4ee21] {\n    display: flex;\n    justify-content: center;\n    width: 640px;\n}\n.card-carousel--overflow-container[data-v-75e4ee21] {\n    overflow: hidden;\n}\n.card-carousel--nav__left[data-v-75e4ee21], .card-carousel--nav__right[data-v-75e4ee21] {\n    display: inline-block;\n    width: 15px;\n    height: 15px;\n    padding: 10px;\n    box-sizing: border-box;\n    border-top: 2px solid #42b883;\n    border-right: 2px solid #42b883;\n    cursor: pointer;\n    margin: 0 10px;\n    transition: -webkit-transform 150ms linear;\n    transition: transform 150ms linear;\n    transition: transform 150ms linear, -webkit-transform 150ms linear;\n}\n.card-carousel--nav__left[disabled][data-v-75e4ee21], .card-carousel--nav__right[disabled][data-v-75e4ee21] {\n    opacity: 0.2;\n    border-color: black;\n}\n.card-carousel--nav__left[data-v-75e4ee21] {\n    -webkit-transform: rotate(-135deg);\n            transform: rotate(-135deg);\n}\n.card-carousel--nav__left[data-v-75e4ee21]:active {\n    -webkit-transform: rotate(-135deg) scale(0.9);\n            transform: rotate(-135deg) scale(0.9);\n}\n.card-carousel--nav__right[data-v-75e4ee21] {\n    -webkit-transform: rotate(45deg);\n            transform: rotate(45deg);\n}\n.card-carousel--nav__right[data-v-75e4ee21]:active {\n    -webkit-transform: rotate(45deg) scale(0.9);\n            transform: rotate(45deg) scale(0.9);\n}\n.card-carousel-cards[data-v-75e4ee21] {\n    display: flex;\n    transition: -webkit-transform 150ms ease-out;\n    transition: transform 150ms ease-out;\n    transition: transform 150ms ease-out, -webkit-transform 150ms ease-out;\n    -webkit-transform: translatex(0px);\n            transform: translatex(0px);\n}\n.card-carousel-cards .card-carousel--card[data-v-75e4ee21] {\n    margin: 0 10px;\n    cursor: pointer;\n    box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06), 0 2px 2px 0 rgba(40, 44, 53, 0.08);\n    background-color: #fff;\n    border-radius: 4px;\n    z-index: 3;\n    margin-bottom: 2px;\n}\n.card-carousel-cards .card-carousel--card[data-v-75e4ee21]:first-child {\n    margin-left: 0;\n}\n.card-carousel-cards .card-carousel--card[data-v-75e4ee21]:last-child {\n    margin-right: 0;\n}\n.card-carousel-cards .card-carousel--card img[data-v-75e4ee21] {\n    vertical-align: bottom;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n    transition: opacity 150ms linear;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.card-carousel-cards .card-carousel--card img[data-v-75e4ee21]:hover {\n    opacity: 0.5;\n}\n.card-carousel-cards .card-carousel--card--footer[data-v-75e4ee21] {\n    border-top: 0;\n    padding: 7px 15px;\n}\n.card-carousel-cards .card-carousel--card--footer p[data-v-75e4ee21] {\n    padding: 3px 0;\n    margin: 0;\n    margin-bottom: 2px;\n    font-size: 19px;\n    font-weight: 500;\n    color: #2c3e50;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.card-carousel-cards .card-carousel--card--footer p[data-v-75e4ee21]:nth-of-type(2) {\n    font-size: 12px;\n    font-weight: 300;\n    padding: 6px;\n    background: rgba(40, 44, 53, 0.06);\n    display: inline-block;\n    position: relative;\n    margin-left: 4px;\n    color: #666a73;\n}\n.card-carousel-cards .card-carousel--card--footer p[data-v-75e4ee21]:nth-of-type(2):before {\n    content: \"\";\n    float: left;\n    position: absolute;\n    top: 0;\n    left: -12px;\n    width: 0;\n    height: 0;\n    border-color: transparent rgba(40, 44, 53, 0.06) transparent transparent;\n    border-style: solid;\n    border-width: 12px 12px 12px 0;\n}\n.card-carousel-cards .card-carousel--card--footer p[data-v-75e4ee21]:nth-of-type(2):after {\n    content: \"\";\n    position: absolute;\n    top: 10px;\n    left: -1px;\n    float: left;\n    width: 4px;\n    height: 4px;\n    border-radius: 2px;\n    background: white;\n    box-shadow: -0px -0px 0px #004977;\n}\nh1[data-v-75e4ee21] {\n    font-size: 3.6em;\n    font-weight: 100;\n    text-align: center;\n    margin-bottom: 0;\n    color: #42b883;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/lib/css-base.js":
-/*!*************************************************!*\
-  !*** ./node_modules/css-loader/lib/css-base.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
 
 
 /***/ }),
@@ -34160,7 +33974,7 @@ return jQuery;
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.15.0
+ * @version 1.14.7
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -35764,14 +35578,7 @@ function flip(data, options) {
 
     // flip the variation if required
     var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
-
-    // flips variation if reference element overflows boundaries
-    var flippedVariationByRef = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
-
-    // flips variation if popper content overflows boundaries
-    var flippedVariationByContent = !!options.flipVariationsByContent && (isVertical && variation === 'start' && overflowsRight || isVertical && variation === 'end' && overflowsLeft || !isVertical && variation === 'start' && overflowsBottom || !isVertical && variation === 'end' && overflowsTop);
-
-    var flippedVariation = flippedVariationByRef || flippedVariationByContent;
+    var flippedVariation = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
 
     if (overlapsRef || overflowsBoundaries || flippedVariation) {
       // this boolean to detect any flip loop
@@ -36378,23 +36185,7 @@ var modifiers = {
      * The popper will never be placed outside of the defined boundaries
      * (except if `keepTogether` is enabled)
      */
-    boundariesElement: 'viewport',
-    /**
-     * @prop {Boolean} flipVariations=false
-     * The popper will switch placement variation between `-start` and `-end` when
-     * the reference element overlaps its boundaries.
-     *
-     * The original placement should have a set variation.
-     */
-    flipVariations: false,
-    /**
-     * @prop {Boolean} flipVariationsByContent=false
-     * The popper will switch placement variation between `-start` and `-end` when
-     * the popper element overlaps its reference boundaries.
-     *
-     * The original placement should have a set variation.
-     */
-    flipVariationsByContent: false
+    boundariesElement: 'viewport'
   },
 
   /**
@@ -36611,8 +36402,8 @@ var Popper = function () {
   /**
    * Creates a new Popper.js instance.
    * @class Popper
-   * @param {Element|referenceObject} reference - The reference element used to position the popper
-   * @param {Element} popper - The HTML / XML element used as the popper
+   * @param {HTMLElement|referenceObject} reference - The reference element used to position the popper
+   * @param {HTMLElement} popper - The HTML element used as the popper
    * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
    * @return {Object} instance - The generated Popper.js instance
    */
@@ -37160,545 +36951,6 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/lib/addStyles.js":
-/*!****************************************************!*\
-  !*** ./node_modules/style-loader/lib/addStyles.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-
-var stylesInDom = {};
-
-var	memoize = function (fn) {
-	var memo;
-
-	return function () {
-		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-		return memo;
-	};
-};
-
-var isOldIE = memoize(function () {
-	// Test for IE <= 9 as proposed by Browserhacks
-	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-	// Tests for existence of standard globals is to allow style-loader
-	// to operate correctly into non-standard environments
-	// @see https://github.com/webpack-contrib/style-loader/issues/177
-	return window && document && document.all && !window.atob;
-});
-
-var getTarget = function (target, parent) {
-  if (parent){
-    return parent.querySelector(target);
-  }
-  return document.querySelector(target);
-};
-
-var getElement = (function (fn) {
-	var memo = {};
-
-	return function(target, parent) {
-                // If passing function in options, then use it for resolve "head" element.
-                // Useful for Shadow Root style i.e
-                // {
-                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
-                // }
-                if (typeof target === 'function') {
-                        return target();
-                }
-                if (typeof memo[target] === "undefined") {
-			var styleTarget = getTarget.call(this, target, parent);
-			// Special case to return head of iframe instead of iframe itself
-			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
-				try {
-					// This will throw an exception if access to iframe is blocked
-					// due to cross-origin restrictions
-					styleTarget = styleTarget.contentDocument.head;
-				} catch(e) {
-					styleTarget = null;
-				}
-			}
-			memo[target] = styleTarget;
-		}
-		return memo[target]
-	};
-})();
-
-var singleton = null;
-var	singletonCounter = 0;
-var	stylesInsertedAtTop = [];
-
-var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
-
-module.exports = function(list, options) {
-	if (typeof DEBUG !== "undefined" && DEBUG) {
-		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-
-	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
-
-	// By default, add <style> tags to the <head> element
-        if (!options.insertInto) options.insertInto = "head";
-
-	// By default, add <style> tags to the bottom of the target
-	if (!options.insertAt) options.insertAt = "bottom";
-
-	var styles = listToStyles(list, options);
-
-	addStylesToDom(styles, options);
-
-	return function update (newList) {
-		var mayRemove = [];
-
-		for (var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-
-		if(newList) {
-			var newStyles = listToStyles(newList, options);
-			addStylesToDom(newStyles, options);
-		}
-
-		for (var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-
-			if(domStyle.refs === 0) {
-				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
-
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-};
-
-function addStylesToDom (styles, options) {
-	for (var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-
-		if(domStyle) {
-			domStyle.refs++;
-
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles (list, options) {
-	var styles = [];
-	var newStyles = {};
-
-	for (var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = options.base ? item[0] + options.base : item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-
-		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
-		else newStyles[id].parts.push(part);
-	}
-
-	return styles;
-}
-
-function insertStyleElement (options, style) {
-	var target = getElement(options.insertInto)
-
-	if (!target) {
-		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-	}
-
-	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
-
-	if (options.insertAt === "top") {
-		if (!lastStyleElementInsertedAtTop) {
-			target.insertBefore(style, target.firstChild);
-		} else if (lastStyleElementInsertedAtTop.nextSibling) {
-			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			target.appendChild(style);
-		}
-		stylesInsertedAtTop.push(style);
-	} else if (options.insertAt === "bottom") {
-		target.appendChild(style);
-	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
-		var nextSibling = getElement(options.insertAt.before, target);
-		target.insertBefore(style, nextSibling);
-	} else {
-		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
-	}
-}
-
-function removeStyleElement (style) {
-	if (style.parentNode === null) return false;
-	style.parentNode.removeChild(style);
-
-	var idx = stylesInsertedAtTop.indexOf(style);
-	if(idx >= 0) {
-		stylesInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement (options) {
-	var style = document.createElement("style");
-
-	if(options.attrs.type === undefined) {
-		options.attrs.type = "text/css";
-	}
-
-	if(options.attrs.nonce === undefined) {
-		var nonce = getNonce();
-		if (nonce) {
-			options.attrs.nonce = nonce;
-		}
-	}
-
-	addAttrs(style, options.attrs);
-	insertStyleElement(options, style);
-
-	return style;
-}
-
-function createLinkElement (options) {
-	var link = document.createElement("link");
-
-	if(options.attrs.type === undefined) {
-		options.attrs.type = "text/css";
-	}
-	options.attrs.rel = "stylesheet";
-
-	addAttrs(link, options.attrs);
-	insertStyleElement(options, link);
-
-	return link;
-}
-
-function addAttrs (el, attrs) {
-	Object.keys(attrs).forEach(function (key) {
-		el.setAttribute(key, attrs[key]);
-	});
-}
-
-function getNonce() {
-	if (false) {}
-
-	return __webpack_require__.nc;
-}
-
-function addStyle (obj, options) {
-	var style, update, remove, result;
-
-	// If a transform function was defined, run it on the css
-	if (options.transform && obj.css) {
-	    result = typeof options.transform === 'function'
-		 ? options.transform(obj.css) 
-		 : options.transform.default(obj.css);
-
-	    if (result) {
-	    	// If transform returns a value, use that instead of the original css.
-	    	// This allows running runtime transformations on the css.
-	    	obj.css = result;
-	    } else {
-	    	// If the transform function returns a falsy value, don't add this css.
-	    	// This allows conditional loading of css
-	    	return function() {
-	    		// noop
-	    	};
-	    }
-	}
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-
-		style = singleton || (singleton = createStyleElement(options));
-
-		update = applyToSingletonTag.bind(null, style, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-
-	} else if (
-		obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function"
-	) {
-		style = createLinkElement(options);
-		update = updateLink.bind(null, style, options);
-		remove = function () {
-			removeStyleElement(style);
-
-			if(style.href) URL.revokeObjectURL(style.href);
-		};
-	} else {
-		style = createStyleElement(options);
-		update = applyToTag.bind(null, style);
-		remove = function () {
-			removeStyleElement(style);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle (newObj) {
-		if (newObj) {
-			if (
-				newObj.css === obj.css &&
-				newObj.media === obj.media &&
-				newObj.sourceMap === obj.sourceMap
-			) {
-				return;
-			}
-
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag (style, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (style.styleSheet) {
-		style.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = style.childNodes;
-
-		if (childNodes[index]) style.removeChild(childNodes[index]);
-
-		if (childNodes.length) {
-			style.insertBefore(cssNode, childNodes[index]);
-		} else {
-			style.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag (style, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		style.setAttribute("media", media)
-	}
-
-	if(style.styleSheet) {
-		style.styleSheet.cssText = css;
-	} else {
-		while(style.firstChild) {
-			style.removeChild(style.firstChild);
-		}
-
-		style.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink (link, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/*
-		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-		and there is no publicPath defined then lets turn convertToAbsoluteUrls
-		on by default.  Otherwise default to the convertToAbsoluteUrls option
-		directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls) {
-		css = fixUrls(css);
-	}
-
-	if (sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = link.href;
-
-	link.href = URL.createObjectURL(blob);
-
-	if(oldSrc) URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/lib/urls.js":
-/*!***********************************************!*\
-  !*** ./node_modules/style-loader/lib/urls.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-/**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
-
-module.exports = function (css) {
-  // get current location
-  var location = typeof window !== "undefined" && window.location;
-
-  if (!location) {
-    throw new Error("fixUrls requires window.location");
-  }
-
-	// blank or null?
-	if (!css || typeof css !== "string") {
-	  return css;
-  }
-
-  var baseUrl = location.protocol + "//" + location.host;
-  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
-
-	// convert each url(...)
-	/*
-	This regular expression is just a way to recursively match brackets within
-	a string.
-
-	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
-	   (  = Start a capturing group
-	     (?:  = Start a non-capturing group
-	         [^)(]  = Match anything that isn't a parentheses
-	         |  = OR
-	         \(  = Match a start parentheses
-	             (?:  = Start another non-capturing groups
-	                 [^)(]+  = Match anything that isn't a parentheses
-	                 |  = OR
-	                 \(  = Match a start parentheses
-	                     [^)(]*  = Match anything that isn't a parentheses
-	                 \)  = Match a end parentheses
-	             )  = End Group
-              *\) = Match anything and then a close parens
-          )  = Close non-capturing group
-          *  = Match anything
-       )  = Close capturing group
-	 \)  = Match a close parens
-
-	 /gi  = Get all matches, not the first.  Be case insensitive.
-	 */
-	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
-		// strip quotes (if they exist)
-		var unquotedOrigUrl = origUrl
-			.trim()
-			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
-			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
-
-		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
-		  return fullMatch;
-		}
-
-		// convert the url to a full url
-		var newUrl;
-
-		if (unquotedOrigUrl.indexOf("//") === 0) {
-		  	//TODO: should we add protocol?
-			newUrl = unquotedOrigUrl;
-		} else if (unquotedOrigUrl.indexOf("/") === 0) {
-			// path should be relative to the base url
-			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
-		} else {
-			// path should be relative to current directory
-			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
-		}
-
-		// send back the fixed url(...)
-		return "url(" + JSON.stringify(newUrl) + ")";
-	});
-
-	// send back the fixed css
-	return fixedCss;
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/timers-browserify/main.js":
 /*!************************************************!*\
   !*** ./node_modules/timers-browserify/main.js ***!
@@ -38053,78 +37305,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VideoSlider.vue?vue&type=template&id=75e4ee21&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VideoSlider.vue?vue&type=template&id=75e4ee21&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "section" }, [
-    _c("div", { staticClass: "card-carousel-wrapper" }, [
-      _c("div", {
-        staticClass: "card-carousel--nav__left",
-        attrs: { disabled: _vm.atHeadOfList },
-        on: {
-          click: function($event) {
-            return _vm.moveCarousel(-1)
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-carousel" }, [
-        _c("div", { staticClass: "card-carousel--overflow-container" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card-carousel-cards",
-              style: {
-                transform: "translateX" + "(" + _vm.currentOffset + "px" + ")"
-              }
-            },
-            _vm._l(_vm.items, function(item) {
-              return _c("div", { staticClass: "card-carousel--card" }, [
-                _c("img", { attrs: { src: "https://placehold.it/200x200" } }),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-carousel--card--footer" }, [
-                  _c("p", [_vm._v(_vm._s(item.name))]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(item.tag))])
-                ])
-              ])
-            }),
-            0
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", {
-        staticClass: "card-carousel--nav__right",
-        attrs: { disabled: _vm.atEndOfList },
-        on: {
-          click: function($event) {
-            return _vm.moveCarousel(1)
-          }
-        }
-      })
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -38241,7 +37421,7 @@ function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.10
+ * Vue.js v2.6.6
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -38719,7 +37899,7 @@ var config = ({
  * using https://www.w3.org/TR/html53/semantics-scripting.html#potentialcustomelementname
  * skipping \u10000-\uEFFFF due to it freezing up PhantomJS
  */
-var unicodeRegExp = /a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD/;
+var unicodeLetters = 'a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD';
 
 /**
  * Check if a string starts with $ or _
@@ -38744,7 +37924,7 @@ function def (obj, key, val, enumerable) {
 /**
  * Parse simple path.
  */
-var bailRE = new RegExp(("[^" + (unicodeRegExp.source) + ".$_\\d]"));
+var bailRE = new RegExp(("[^" + unicodeLetters + ".$_\\d]"));
 function parsePath (path) {
   if (bailRE.test(path)) {
     return
@@ -39648,7 +38828,7 @@ function checkComponents (options) {
 }
 
 function validateComponentName (name) {
-  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + (unicodeRegExp.source) + "]*$")).test(name)) {
+  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + unicodeLetters + "]*$")).test(name)) {
     warn(
       'Invalid component name: "' + name + '". Component names ' +
       'should conform to valid custom element name in html5 specification.'
@@ -40063,30 +39243,23 @@ function isBoolean () {
 /*  */
 
 function handleError (err, vm, info) {
-  // Deactivate deps tracking while processing error handler to avoid possible infinite rendering.
-  // See: https://github.com/vuejs/vuex/issues/1505
-  pushTarget();
-  try {
-    if (vm) {
-      var cur = vm;
-      while ((cur = cur.$parent)) {
-        var hooks = cur.$options.errorCaptured;
-        if (hooks) {
-          for (var i = 0; i < hooks.length; i++) {
-            try {
-              var capture = hooks[i].call(cur, err, vm, info) === false;
-              if (capture) { return }
-            } catch (e) {
-              globalHandleError(e, cur, 'errorCaptured hook');
-            }
+  if (vm) {
+    var cur = vm;
+    while ((cur = cur.$parent)) {
+      var hooks = cur.$options.errorCaptured;
+      if (hooks) {
+        for (var i = 0; i < hooks.length; i++) {
+          try {
+            var capture = hooks[i].call(cur, err, vm, info) === false;
+            if (capture) { return }
+          } catch (e) {
+            globalHandleError(e, cur, 'errorCaptured hook');
           }
         }
       }
     }
-    globalHandleError(err, vm, info);
-  } finally {
-    popTarget();
   }
+  globalHandleError(err, vm, info);
 }
 
 function invokeWithErrorHandling (
@@ -40099,11 +39272,8 @@ function invokeWithErrorHandling (
   var res;
   try {
     res = args ? handler.apply(context, args) : handler.call(context);
-    if (res && !res._isVue && isPromise(res) && !res._handled) {
+    if (res && !res._isVue && isPromise(res)) {
       res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
-      // issue #9511
-      // avoid catch triggering multiple times when nested calls
-      res._handled = true;
     }
   } catch (e) {
     handleError(e, vm, info);
@@ -40786,37 +39956,32 @@ function normalizeScopedSlots (
   prevSlots
 ) {
   var res;
-  var hasNormalSlots = Object.keys(normalSlots).length > 0;
-  var isStable = slots ? !!slots.$stable : !hasNormalSlots;
-  var key = slots && slots.$key;
   if (!slots) {
     res = {};
   } else if (slots._normalized) {
     // fast path 1: child component re-render only, parent did not change
     return slots._normalized
   } else if (
-    isStable &&
+    slots.$stable &&
     prevSlots &&
     prevSlots !== emptyObject &&
-    key === prevSlots.$key &&
-    !hasNormalSlots &&
-    !prevSlots.$hasNormal
+    Object.keys(normalSlots).length === 0
   ) {
     // fast path 2: stable scoped slots w/ no normal slots to proxy,
     // only need to normalize once
     return prevSlots
   } else {
     res = {};
-    for (var key$1 in slots) {
-      if (slots[key$1] && key$1[0] !== '$') {
-        res[key$1] = normalizeScopedSlot(normalSlots, key$1, slots[key$1]);
+    for (var key in slots) {
+      if (slots[key] && key[0] !== '$') {
+        res[key] = normalizeScopedSlot(normalSlots, key, slots[key]);
       }
     }
   }
   // expose normal slots on scopedSlots
-  for (var key$2 in normalSlots) {
-    if (!(key$2 in res)) {
-      res[key$2] = proxyNormalSlot(normalSlots, key$2);
+  for (var key$1 in normalSlots) {
+    if (!(key$1 in res)) {
+      res[key$1] = proxyNormalSlot(normalSlots, key$1);
     }
   }
   // avoriaz seems to mock a non-extensible $scopedSlots object
@@ -40824,9 +39989,7 @@ function normalizeScopedSlots (
   if (slots && Object.isExtensible(slots)) {
     (slots)._normalized = res;
   }
-  def(res, '$stable', isStable);
-  def(res, '$key', key);
-  def(res, '$hasNormal', hasNormalSlots);
+  def(res, '$stable', slots ? !!slots.$stable : true);
   return res
 }
 
@@ -40836,10 +39999,8 @@ function normalizeScopedSlot(normalSlots, key, fn) {
     res = res && typeof res === 'object' && !Array.isArray(res)
       ? [res] // single vnode
       : normalizeChildren(res);
-    return res && (
-      res.length === 0 ||
-      (res.length === 1 && res[0].isComment) // #9658
-    ) ? undefined
+    return res && res.length === 0
+      ? undefined
       : res
   };
   // this is a slot using the new v-slot syntax without scope. although it is
@@ -41019,13 +40180,12 @@ function bindObjectProps (
             : data.attrs || (data.attrs = {});
         }
         var camelizedKey = camelize(key);
-        var hyphenatedKey = hyphenate(key);
-        if (!(camelizedKey in hash) && !(hyphenatedKey in hash)) {
+        if (!(key in hash) && !(camelizedKey in hash)) {
           hash[key] = value[key];
 
           if (isSync) {
             var on = data.on || (data.on = {});
-            on[("update:" + key)] = function ($event) {
+            on[("update:" + camelizedKey)] = function ($event) {
               value[key] = $event;
             };
           }
@@ -41124,16 +40284,14 @@ function bindObjectListeners (data, value) {
 
 function resolveScopedSlots (
   fns, // see flow/vnode
-  res,
-  // the following are added in 2.6
   hasDynamicKeys,
-  contentHashKey
+  res
 ) {
   res = res || { $stable: !hasDynamicKeys };
   for (var i = 0; i < fns.length; i++) {
     var slot = fns[i];
     if (Array.isArray(slot)) {
-      resolveScopedSlots(slot, res, hasDynamicKeys);
+      resolveScopedSlots(slot, hasDynamicKeys, res);
     } else if (slot) {
       // marker for reverse proxying v-slot without scope on this.$slots
       if (slot.proxy) {
@@ -41141,9 +40299,6 @@ function resolveScopedSlots (
       }
       res[slot.key] = slot.fn;
     }
-  }
-  if (contentHashKey) {
-    (res).$key = contentHashKey;
   }
   return res
 }
@@ -41859,23 +41014,17 @@ function resolveAsyncComponent (
     return factory.resolved
   }
 
-  var owner = currentRenderingInstance;
-  if (owner && isDef(factory.owners) && factory.owners.indexOf(owner) === -1) {
-    // already pending
-    factory.owners.push(owner);
-  }
-
   if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
     return factory.loadingComp
   }
 
-  if (owner && !isDef(factory.owners)) {
+  var owner = currentRenderingInstance;
+  if (isDef(factory.owners)) {
+    // already pending
+    factory.owners.push(owner);
+  } else {
     var owners = factory.owners = [owner];
     var sync = true;
-    var timerLoading = null;
-    var timerTimeout = null
-
-    ;(owner).$on('hook:destroyed', function () { return remove(owners, owner); });
 
     var forceRender = function (renderCompleted) {
       for (var i = 0, l = owners.length; i < l; i++) {
@@ -41884,14 +41033,6 @@ function resolveAsyncComponent (
 
       if (renderCompleted) {
         owners.length = 0;
-        if (timerLoading !== null) {
-          clearTimeout(timerLoading);
-          timerLoading = null;
-        }
-        if (timerTimeout !== null) {
-          clearTimeout(timerTimeout);
-          timerTimeout = null;
-        }
       }
     };
 
@@ -41938,8 +41079,7 @@ function resolveAsyncComponent (
           if (res.delay === 0) {
             factory.loading = true;
           } else {
-            timerLoading = setTimeout(function () {
-              timerLoading = null;
+            setTimeout(function () {
               if (isUndef(factory.resolved) && isUndef(factory.error)) {
                 factory.loading = true;
                 forceRender(false);
@@ -41949,8 +41089,7 @@ function resolveAsyncComponent (
         }
 
         if (isDef(res.timeout)) {
-          timerTimeout = setTimeout(function () {
-            timerTimeout = null;
+          setTimeout(function () {
             if (isUndef(factory.resolved)) {
               reject(
                 "timeout (" + (res.timeout) + "ms)"
@@ -42338,12 +41477,9 @@ function updateChildComponent (
   // check if there are dynamic scopedSlots (hand-written or compiled but with
   // dynamic slot names). Static scoped slots compiled from template has the
   // "$stable" marker.
-  var newScopedSlots = parentVnode.data.scopedSlots;
-  var oldScopedSlots = vm.$scopedSlots;
   var hasDynamicScopedSlot = !!(
-    (newScopedSlots && !newScopedSlots.$stable) ||
-    (oldScopedSlots !== emptyObject && !oldScopedSlots.$stable) ||
-    (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key)
+    (parentVnode.data.scopedSlots && !parentVnode.data.scopedSlots.$stable) ||
+    (vm.$scopedSlots !== emptyObject && !vm.$scopedSlots.$stable)
   );
 
   // Any static slot children from the parent may have changed during parent's
@@ -42496,21 +41632,11 @@ var getNow = Date.now;
 // timestamp can either be hi-res (relative to page load) or low-res
 // (relative to UNIX epoch), so in order to compare time we have to use the
 // same timestamp type when saving the flush timestamp.
-// All IE versions use low-res event timestamps, and have problematic clock
-// implementations (#9632)
-if (inBrowser && !isIE) {
-  var performance = window.performance;
-  if (
-    performance &&
-    typeof performance.now === 'function' &&
-    getNow() > document.createEvent('Event').timeStamp
-  ) {
-    // if the event timestamp, although evaluated AFTER the Date.now(), is
-    // smaller than it, it means the event is using a hi-res timestamp,
-    // and we need to use the hi-res version for event listener timestamps as
-    // well.
-    getNow = function () { return performance.now(); };
-  }
+if (inBrowser && getNow() > document.createEvent('Event').timeStamp) {
+  // if the low-res timestamp which is bigger than the event timestamp
+  // (which is evaluated AFTER) it means the event is using a hi-res timestamp,
+  // and we need to use the hi-res version for event listeners as well.
+  getNow = function () { return performance.now(); };
 }
 
 /**
@@ -43675,7 +42801,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.10';
+Vue.version = '2.6.6';
 
 /*  */
 
@@ -45767,10 +44893,8 @@ function add$1 (
         e.target === e.currentTarget ||
         // event is fired after handler attachment
         e.timeStamp >= attachedTimestamp ||
-        // bail for environments that have buggy event.timeStamp implementations
-        // #9462 iOS 9 bug: event.timeStamp is 0 after history.pushState
-        // #9681 QtWebEngine event.timeStamp is negative value
-        e.timeStamp <= 0 ||
+        // #9462 bail for iOS 9 bug: event.timeStamp is 0 after history.pushState
+        e.timeStamp === 0 ||
         // #9448 bail if event is fired in another document in a multi-page
         // electron/nw.js app, since event.timeStamp will be using a different
         // starting reference
@@ -45837,11 +44961,10 @@ function updateDOMProps (oldVnode, vnode) {
   }
 
   for (key in oldProps) {
-    if (!(key in props)) {
+    if (isUndef(props[key])) {
       elm[key] = '';
     }
   }
-
   for (key in props) {
     cur = props[key];
     // ignore children if the node has textContent or innerHTML,
@@ -45857,7 +44980,15 @@ function updateDOMProps (oldVnode, vnode) {
       }
     }
 
-    if (key === 'value' && elm.tagName !== 'PROGRESS') {
+    // skip the update if old and new VDOM state is the same.
+    // the only exception is `value` where the DOM value may be temporarily
+    // out of sync with VDOM state due to focus, composition and modifiers.
+    // This also covers #4521 by skipping the unnecesarry `checked` update.
+    if (key !== 'value' && cur === oldProps[key]) {
+      continue
+    }
+
+    if (key === 'value') {
       // store value as _value as well since
       // non-string values will be stringified
       elm._value = cur;
@@ -45877,18 +45008,8 @@ function updateDOMProps (oldVnode, vnode) {
       while (svg.firstChild) {
         elm.appendChild(svg.firstChild);
       }
-    } else if (
-      // skip the update if old and new VDOM state is the same.
-      // `value` is handled separately because the DOM value may be temporarily
-      // out of sync with VDOM state due to focus, composition and modifiers.
-      // This  #4521 by skipping the unnecesarry `checked` update.
-      cur !== oldProps[key]
-    ) {
-      // some property updates can throw
-      // e.g. `value` on <progress> w/ non-finite value
-      try {
-        elm[key] = cur;
-      } catch (e) {}
+    } else {
+      elm[key] = cur;
     }
   }
 }
@@ -46389,8 +45510,8 @@ function enter (vnode, toggleDisplay) {
   var context = activeInstance;
   var transitionNode = activeInstance.$vnode;
   while (transitionNode && transitionNode.parent) {
-    context = transitionNode.context;
     transitionNode = transitionNode.parent;
+    context = transitionNode.context;
   }
 
   var isAppear = !context._isMounted || !vnode.isRootInsert;
@@ -47480,7 +46601,7 @@ var isNonPhrasingTag = makeMap(
 // Regular Expressions for parsing tags and attributes
 var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
 var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
-var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + (unicodeRegExp.source) + "]*";
+var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + unicodeLetters + "]*";
 var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
 var startTagOpen = new RegExp(("^<" + qnameCapture));
 var startTagClose = /^\s*(\/?)>/;
@@ -47742,7 +46863,7 @@ function parseHTML (html, options) {
         ) {
           options.warn(
             ("tag <" + (stack[i].tag) + "> has no matching end tag."),
-            { start: stack[i].start, end: stack[i].end }
+            { start: stack[i].start }
           );
         }
         if (options.end) {
@@ -47779,7 +46900,7 @@ var dynamicArgRE = /^\[.*\]$/;
 
 var argRE = /:(.*)$/;
 var bindRE = /^:|^\.|^v-bind:/;
-var modifierRE = /\.[^.\]]+(?=[^\]]*$)/g;
+var modifierRE = /\.[^.]+/g;
 
 var slotRE = /^v-slot(:|$)|^#/;
 
@@ -47956,7 +47077,7 @@ function parse (
     shouldDecodeNewlinesForHref: options.shouldDecodeNewlinesForHref,
     shouldKeepComment: options.comments,
     outputSourceRange: options.outputSourceRange,
-    start: function start (tag, attrs, unary, start$1, end) {
+    start: function start (tag, attrs, unary, start$1) {
       // check namespace.
       // inherit parent ns if there is one
       var ns = (currentParent && currentParent.ns) || platformGetTagNamespace(tag);
@@ -47975,7 +47096,6 @@ function parse (
       {
         if (options.outputSourceRange) {
           element.start = start$1;
-          element.end = end;
           element.rawAttrsMap = element.attrsList.reduce(function (cumulated, attr) {
             cumulated[attr.name] = attr;
             return cumulated
@@ -48097,7 +47217,7 @@ function parse (
         text = preserveWhitespace ? ' ' : '';
       }
       if (text) {
-        if (!inPre && whitespaceOption === 'condense') {
+        if (whitespaceOption === 'condense') {
           // condense consecutive whitespaces into single space
           text = text.replace(whitespaceRE$1, ' ');
         }
@@ -48958,7 +48078,7 @@ function isDirectChildOfTemplateFor (node) {
 
 /*  */
 
-var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*(?:[\w$]+)?\s*\(/;
+var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*\(/;
 var fnInvokeRE = /\([^)]*?\);*$/;
 var simplePathRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/;
 
@@ -49460,7 +48580,7 @@ function genScopedSlots (
   // components with only scoped slots to skip forced updates from parent.
   // but in some cases we have to bail-out of this optimization
   // for example if the slot contains dynamic names, has v-if or v-for on them...
-  var needsForceUpdate = el.for || Object.keys(slots).some(function (key) {
+  var needsForceUpdate = Object.keys(slots).some(function (key) {
     var slot = slots[key];
     return (
       slot.slotTargetDynamic ||
@@ -49469,49 +48589,22 @@ function genScopedSlots (
       containsSlotChild(slot) // is passing down slot from parent which may be dynamic
     )
   });
-
-  // #9534: if a component with scoped slots is inside a conditional branch,
-  // it's possible for the same component to be reused but with different
-  // compiled slot content. To avoid that, we generate a unique key based on
-  // the generated code of all the slot contents.
-  var needsKey = !!el.if;
-
-  // OR when it is inside another scoped slot or v-for (the reactivity may be
-  // disconnected due to the intermediate scope variable)
-  // #9438, #9506
-  // TODO: this can be further optimized by properly analyzing in-scope bindings
-  // and skip force updating ones that do not actually use scope variables.
+  // OR when it is inside another scoped slot (the reactivity is disconnected)
+  // #9438
   if (!needsForceUpdate) {
     var parent = el.parent;
     while (parent) {
-      if (
-        (parent.slotScope && parent.slotScope !== emptySlotScopeToken) ||
-        parent.for
-      ) {
+      if (parent.slotScope && parent.slotScope !== emptySlotScopeToken) {
         needsForceUpdate = true;
         break
-      }
-      if (parent.if) {
-        needsKey = true;
       }
       parent = parent.parent;
     }
   }
 
-  var generatedSlots = Object.keys(slots)
-    .map(function (key) { return genScopedSlot(slots[key], state); })
-    .join(',');
-
-  return ("scopedSlots:_u([" + generatedSlots + "]" + (needsForceUpdate ? ",null,true" : "") + (!needsForceUpdate && needsKey ? (",null,false," + (hash(generatedSlots))) : "") + ")")
-}
-
-function hash(str) {
-  var hash = 5381;
-  var i = str.length;
-  while(i) {
-    hash = (hash * 33) ^ str.charCodeAt(--i);
-  }
-  return hash >>> 0
+  return ("scopedSlots:_u([" + (Object.keys(slots).map(function (key) {
+      return genScopedSlot(slots[key], state)
+    }).join(',')) + "]" + (needsForceUpdate ? ",true" : "") + ")")
 }
 
 function containsSlotChild (el) {
@@ -49846,13 +48939,11 @@ function generateCodeFrame (
 
 function repeat$1 (str, n) {
   var result = '';
-  if (n > 0) {
-    while (true) { // eslint-disable-line
-      if (n & 1) { result += str; }
-      n >>>= 1;
-      if (n <= 0) { break }
-      str += str;
-    }
+  while (true) { // eslint-disable-line
+    if (n & 1) { result += str; }
+    n >>>= 1;
+    if (n <= 0) { break }
+    str += str;
   }
   return result
 }
@@ -50292,11 +49383,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 var eventSearch = new Vue();
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-Vue.component('join-autocomplete', __webpack_require__(/*! ./components/JoinAutocomplete.vue */ "./resources/js/components/JoinAutocomplete.vue")["default"]);
-Vue.component('search-autocomplete', __webpack_require__(/*! ./components/SearchAutocomplete.vue */ "./resources/js/components/SearchAutocomplete.vue")["default"]);
-Vue.component('endless-scroll', __webpack_require__(/*! ./components/EndlessScroll.vue */ "./resources/js/components/EndlessScroll.vue")["default"]);
-Vue.component('video-slider', __webpack_require__(/*! ./components/VideoSlider */ "./resources/js/components/VideoSlider.vue")["default"]);
+Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
+Vue.component('join-autocomplete', __webpack_require__(/*! ./components/JoinAutocomplete.vue */ "./resources/js/components/JoinAutocomplete.vue").default);
+Vue.component('search-autocomplete', __webpack_require__(/*! ./components/SearchAutocomplete.vue */ "./resources/js/components/SearchAutocomplete.vue").default);
+Vue.component('endless-scroll', __webpack_require__(/*! ./components/EndlessScroll.vue */ "./resources/js/components/EndlessScroll.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50324,7 +49414,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
+  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
@@ -50643,93 +49733,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/VideoSlider.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/components/VideoSlider.vue ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _VideoSlider_vue_vue_type_template_id_75e4ee21_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideoSlider.vue?vue&type=template&id=75e4ee21&scoped=true& */ "./resources/js/components/VideoSlider.vue?vue&type=template&id=75e4ee21&scoped=true&");
-/* harmony import */ var _VideoSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VideoSlider.vue?vue&type=script&lang=js& */ "./resources/js/components/VideoSlider.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _VideoSlider_vue_vue_type_style_index_0_id_75e4ee21_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css& */ "./resources/js/components/VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _VideoSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _VideoSlider_vue_vue_type_template_id_75e4ee21_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _VideoSlider_vue_vue_type_template_id_75e4ee21_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "75e4ee21",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/VideoSlider.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/VideoSlider.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/VideoSlider.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./VideoSlider.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VideoSlider.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/components/VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css& ***!
-  \**********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_style_index_0_id_75e4ee21_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--7-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/vue-loader/lib??vue-loader-options!./VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VideoSlider.vue?vue&type=style&index=0&id=75e4ee21&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_style_index_0_id_75e4ee21_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_style_index_0_id_75e4ee21_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_style_index_0_id_75e4ee21_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_style_index_0_id_75e4ee21_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_style_index_0_id_75e4ee21_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/components/VideoSlider.vue?vue&type=template&id=75e4ee21&scoped=true&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/VideoSlider.vue?vue&type=template&id=75e4ee21&scoped=true& ***!
-  \********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_template_id_75e4ee21_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./VideoSlider.vue?vue&type=template&id=75e4ee21&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VideoSlider.vue?vue&type=template&id=75e4ee21&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_template_id_75e4ee21_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoSlider_vue_vue_type_template_id_75e4ee21_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/skript.js":
 /*!********************************!*\
   !*** ./resources/js/skript.js ***!
@@ -50787,9 +49790,9 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/brotherhood.com/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/brotherhood.com/resources/sass/admin.scss */"./resources/sass/admin.scss");
-module.exports = __webpack_require__(/*! /var/www/brotherhood.com/resources/sass/inner.scss */"./resources/sass/inner.scss");
+__webpack_require__(/*! D:\_Sites\brotherhood.com\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\_Sites\brotherhood.com\resources\sass\admin.scss */"./resources/sass/admin.scss");
+module.exports = __webpack_require__(/*! D:\_Sites\brotherhood.com\resources\sass\inner.scss */"./resources/sass/inner.scss");
 
 
 /***/ })

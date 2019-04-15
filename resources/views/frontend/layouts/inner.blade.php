@@ -52,7 +52,7 @@
   <script src="{{ asset('js/static/third-party/google/WebFontLoader.js') }}" defer></script>
 
   <!-- Other JS -->
- 
+
   {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
   <script src="https://www.google.com/recaptcha/api.js" defer></script>
 

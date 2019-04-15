@@ -58,6 +58,12 @@
   box-shadow: inset 0 5px 10px 1px rgba(14, 15, 15, 0.15);
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .edit-form__field:disabled {
   color: #000000;
   background: #dbdbdb;

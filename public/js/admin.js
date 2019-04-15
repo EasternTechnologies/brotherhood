@@ -2078,7 +2078,7 @@ __webpack_require__.r(__webpack_exports__);
         // else {
         //   // throw error and go to catch block
         // }
-      })["catch"](function (error) {});
+      }).catch(function (error) {});
     }
   }
 });
@@ -6858,7 +6858,46 @@ var render = function() {
             ],
             1
           )
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "project__pagination pagination" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn pagination__btn pagination__btn--prev",
+            attrs: { disabled: !_vm.pagination.prev_page_url },
+            on: {
+              click: function($event) {
+                return _vm.fetchPaginateproject(_vm.pagination.prev_page_url)
+              }
+            }
+          },
+          [_vm._v("\n        Previos\n      ")]
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "pagination__info" }, [
+          _vm._v(
+            "Page " +
+              _vm._s(_vm.pagination.current_page) +
+              " of " +
+              _vm._s(_vm.pagination.last_page)
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn pagination__btn pagination__btn--next",
+            attrs: { disabled: !_vm.pagination.next_page_url },
+            on: {
+              click: function($event) {
+                return _vm.fetchPaginateproject(_vm.pagination.next_page_url)
+              }
+            }
+          },
+          [_vm._v("\n        Next\n      ")]
+        )
+      ])
     ]),
     _vm._v(" "),
     _vm.showModal
@@ -7214,7 +7253,46 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "user__pagination pagination" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn pagination__btn pagination__btn--prev",
+            attrs: { disabled: !_vm.pagination.prev_page_url },
+            on: {
+              click: function($event) {
+                return _vm.fetchPaginateUsers(_vm.pagination.prev_page_url)
+              }
+            }
+          },
+          [_vm._v("\n        Previos\n      ")]
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "pagination__info" }, [
+          _vm._v(
+            "Page " +
+              _vm._s(_vm.pagination.current_page) +
+              " of " +
+              _vm._s(_vm.pagination.last_page)
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn pagination__btn pagination__btn--next",
+            attrs: { disabled: !_vm.pagination.next_page_url },
+            on: {
+              click: function($event) {
+                return _vm.fetchPaginateUsers(_vm.pagination.next_page_url)
+              }
+            }
+          },
+          [_vm._v("\n        Next\n      ")]
+        )
+      ])
     ]),
     _vm._v(" "),
     _vm.showModal
@@ -10013,7 +10091,7 @@ if (inBrowser && window.Vue) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.10
+ * Vue.js v2.6.6
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -10491,7 +10569,7 @@ var config = ({
  * using https://www.w3.org/TR/html53/semantics-scripting.html#potentialcustomelementname
  * skipping \u10000-\uEFFFF due to it freezing up PhantomJS
  */
-var unicodeRegExp = /a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD/;
+var unicodeLetters = 'a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD';
 
 /**
  * Check if a string starts with $ or _
@@ -10516,7 +10594,7 @@ function def (obj, key, val, enumerable) {
 /**
  * Parse simple path.
  */
-var bailRE = new RegExp(("[^" + (unicodeRegExp.source) + ".$_\\d]"));
+var bailRE = new RegExp(("[^" + unicodeLetters + ".$_\\d]"));
 function parsePath (path) {
   if (bailRE.test(path)) {
     return
@@ -11420,7 +11498,7 @@ function checkComponents (options) {
 }
 
 function validateComponentName (name) {
-  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + (unicodeRegExp.source) + "]*$")).test(name)) {
+  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + unicodeLetters + "]*$")).test(name)) {
     warn(
       'Invalid component name: "' + name + '". Component names ' +
       'should conform to valid custom element name in html5 specification.'
@@ -11835,30 +11913,23 @@ function isBoolean () {
 /*  */
 
 function handleError (err, vm, info) {
-  // Deactivate deps tracking while processing error handler to avoid possible infinite rendering.
-  // See: https://github.com/vuejs/vuex/issues/1505
-  pushTarget();
-  try {
-    if (vm) {
-      var cur = vm;
-      while ((cur = cur.$parent)) {
-        var hooks = cur.$options.errorCaptured;
-        if (hooks) {
-          for (var i = 0; i < hooks.length; i++) {
-            try {
-              var capture = hooks[i].call(cur, err, vm, info) === false;
-              if (capture) { return }
-            } catch (e) {
-              globalHandleError(e, cur, 'errorCaptured hook');
-            }
+  if (vm) {
+    var cur = vm;
+    while ((cur = cur.$parent)) {
+      var hooks = cur.$options.errorCaptured;
+      if (hooks) {
+        for (var i = 0; i < hooks.length; i++) {
+          try {
+            var capture = hooks[i].call(cur, err, vm, info) === false;
+            if (capture) { return }
+          } catch (e) {
+            globalHandleError(e, cur, 'errorCaptured hook');
           }
         }
       }
     }
-    globalHandleError(err, vm, info);
-  } finally {
-    popTarget();
   }
+  globalHandleError(err, vm, info);
 }
 
 function invokeWithErrorHandling (
@@ -11871,11 +11942,8 @@ function invokeWithErrorHandling (
   var res;
   try {
     res = args ? handler.apply(context, args) : handler.call(context);
-    if (res && !res._isVue && isPromise(res) && !res._handled) {
+    if (res && !res._isVue && isPromise(res)) {
       res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
-      // issue #9511
-      // avoid catch triggering multiple times when nested calls
-      res._handled = true;
     }
   } catch (e) {
     handleError(e, vm, info);
@@ -12558,37 +12626,32 @@ function normalizeScopedSlots (
   prevSlots
 ) {
   var res;
-  var hasNormalSlots = Object.keys(normalSlots).length > 0;
-  var isStable = slots ? !!slots.$stable : !hasNormalSlots;
-  var key = slots && slots.$key;
   if (!slots) {
     res = {};
   } else if (slots._normalized) {
     // fast path 1: child component re-render only, parent did not change
     return slots._normalized
   } else if (
-    isStable &&
+    slots.$stable &&
     prevSlots &&
     prevSlots !== emptyObject &&
-    key === prevSlots.$key &&
-    !hasNormalSlots &&
-    !prevSlots.$hasNormal
+    Object.keys(normalSlots).length === 0
   ) {
     // fast path 2: stable scoped slots w/ no normal slots to proxy,
     // only need to normalize once
     return prevSlots
   } else {
     res = {};
-    for (var key$1 in slots) {
-      if (slots[key$1] && key$1[0] !== '$') {
-        res[key$1] = normalizeScopedSlot(normalSlots, key$1, slots[key$1]);
+    for (var key in slots) {
+      if (slots[key] && key[0] !== '$') {
+        res[key] = normalizeScopedSlot(normalSlots, key, slots[key]);
       }
     }
   }
   // expose normal slots on scopedSlots
-  for (var key$2 in normalSlots) {
-    if (!(key$2 in res)) {
-      res[key$2] = proxyNormalSlot(normalSlots, key$2);
+  for (var key$1 in normalSlots) {
+    if (!(key$1 in res)) {
+      res[key$1] = proxyNormalSlot(normalSlots, key$1);
     }
   }
   // avoriaz seems to mock a non-extensible $scopedSlots object
@@ -12596,9 +12659,7 @@ function normalizeScopedSlots (
   if (slots && Object.isExtensible(slots)) {
     (slots)._normalized = res;
   }
-  def(res, '$stable', isStable);
-  def(res, '$key', key);
-  def(res, '$hasNormal', hasNormalSlots);
+  def(res, '$stable', slots ? !!slots.$stable : true);
   return res
 }
 
@@ -12608,10 +12669,8 @@ function normalizeScopedSlot(normalSlots, key, fn) {
     res = res && typeof res === 'object' && !Array.isArray(res)
       ? [res] // single vnode
       : normalizeChildren(res);
-    return res && (
-      res.length === 0 ||
-      (res.length === 1 && res[0].isComment) // #9658
-    ) ? undefined
+    return res && res.length === 0
+      ? undefined
       : res
   };
   // this is a slot using the new v-slot syntax without scope. although it is
@@ -12791,13 +12850,12 @@ function bindObjectProps (
             : data.attrs || (data.attrs = {});
         }
         var camelizedKey = camelize(key);
-        var hyphenatedKey = hyphenate(key);
-        if (!(camelizedKey in hash) && !(hyphenatedKey in hash)) {
+        if (!(key in hash) && !(camelizedKey in hash)) {
           hash[key] = value[key];
 
           if (isSync) {
             var on = data.on || (data.on = {});
-            on[("update:" + key)] = function ($event) {
+            on[("update:" + camelizedKey)] = function ($event) {
               value[key] = $event;
             };
           }
@@ -12896,16 +12954,14 @@ function bindObjectListeners (data, value) {
 
 function resolveScopedSlots (
   fns, // see flow/vnode
-  res,
-  // the following are added in 2.6
   hasDynamicKeys,
-  contentHashKey
+  res
 ) {
   res = res || { $stable: !hasDynamicKeys };
   for (var i = 0; i < fns.length; i++) {
     var slot = fns[i];
     if (Array.isArray(slot)) {
-      resolveScopedSlots(slot, res, hasDynamicKeys);
+      resolveScopedSlots(slot, hasDynamicKeys, res);
     } else if (slot) {
       // marker for reverse proxying v-slot without scope on this.$slots
       if (slot.proxy) {
@@ -12913,9 +12969,6 @@ function resolveScopedSlots (
       }
       res[slot.key] = slot.fn;
     }
-  }
-  if (contentHashKey) {
-    (res).$key = contentHashKey;
   }
   return res
 }
@@ -13631,23 +13684,17 @@ function resolveAsyncComponent (
     return factory.resolved
   }
 
-  var owner = currentRenderingInstance;
-  if (owner && isDef(factory.owners) && factory.owners.indexOf(owner) === -1) {
-    // already pending
-    factory.owners.push(owner);
-  }
-
   if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
     return factory.loadingComp
   }
 
-  if (owner && !isDef(factory.owners)) {
+  var owner = currentRenderingInstance;
+  if (isDef(factory.owners)) {
+    // already pending
+    factory.owners.push(owner);
+  } else {
     var owners = factory.owners = [owner];
     var sync = true;
-    var timerLoading = null;
-    var timerTimeout = null
-
-    ;(owner).$on('hook:destroyed', function () { return remove(owners, owner); });
 
     var forceRender = function (renderCompleted) {
       for (var i = 0, l = owners.length; i < l; i++) {
@@ -13656,14 +13703,6 @@ function resolveAsyncComponent (
 
       if (renderCompleted) {
         owners.length = 0;
-        if (timerLoading !== null) {
-          clearTimeout(timerLoading);
-          timerLoading = null;
-        }
-        if (timerTimeout !== null) {
-          clearTimeout(timerTimeout);
-          timerTimeout = null;
-        }
       }
     };
 
@@ -13710,8 +13749,7 @@ function resolveAsyncComponent (
           if (res.delay === 0) {
             factory.loading = true;
           } else {
-            timerLoading = setTimeout(function () {
-              timerLoading = null;
+            setTimeout(function () {
               if (isUndef(factory.resolved) && isUndef(factory.error)) {
                 factory.loading = true;
                 forceRender(false);
@@ -13721,8 +13759,7 @@ function resolveAsyncComponent (
         }
 
         if (isDef(res.timeout)) {
-          timerTimeout = setTimeout(function () {
-            timerTimeout = null;
+          setTimeout(function () {
             if (isUndef(factory.resolved)) {
               reject(
                 "timeout (" + (res.timeout) + "ms)"
@@ -14110,12 +14147,9 @@ function updateChildComponent (
   // check if there are dynamic scopedSlots (hand-written or compiled but with
   // dynamic slot names). Static scoped slots compiled from template has the
   // "$stable" marker.
-  var newScopedSlots = parentVnode.data.scopedSlots;
-  var oldScopedSlots = vm.$scopedSlots;
   var hasDynamicScopedSlot = !!(
-    (newScopedSlots && !newScopedSlots.$stable) ||
-    (oldScopedSlots !== emptyObject && !oldScopedSlots.$stable) ||
-    (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key)
+    (parentVnode.data.scopedSlots && !parentVnode.data.scopedSlots.$stable) ||
+    (vm.$scopedSlots !== emptyObject && !vm.$scopedSlots.$stable)
   );
 
   // Any static slot children from the parent may have changed during parent's
@@ -14268,21 +14302,11 @@ var getNow = Date.now;
 // timestamp can either be hi-res (relative to page load) or low-res
 // (relative to UNIX epoch), so in order to compare time we have to use the
 // same timestamp type when saving the flush timestamp.
-// All IE versions use low-res event timestamps, and have problematic clock
-// implementations (#9632)
-if (inBrowser && !isIE) {
-  var performance = window.performance;
-  if (
-    performance &&
-    typeof performance.now === 'function' &&
-    getNow() > document.createEvent('Event').timeStamp
-  ) {
-    // if the event timestamp, although evaluated AFTER the Date.now(), is
-    // smaller than it, it means the event is using a hi-res timestamp,
-    // and we need to use the hi-res version for event listener timestamps as
-    // well.
-    getNow = function () { return performance.now(); };
-  }
+if (inBrowser && getNow() > document.createEvent('Event').timeStamp) {
+  // if the low-res timestamp which is bigger than the event timestamp
+  // (which is evaluated AFTER) it means the event is using a hi-res timestamp,
+  // and we need to use the hi-res version for event listeners as well.
+  getNow = function () { return performance.now(); };
 }
 
 /**
@@ -15447,7 +15471,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.10';
+Vue.version = '2.6.6';
 
 /*  */
 
@@ -17539,10 +17563,8 @@ function add$1 (
         e.target === e.currentTarget ||
         // event is fired after handler attachment
         e.timeStamp >= attachedTimestamp ||
-        // bail for environments that have buggy event.timeStamp implementations
-        // #9462 iOS 9 bug: event.timeStamp is 0 after history.pushState
-        // #9681 QtWebEngine event.timeStamp is negative value
-        e.timeStamp <= 0 ||
+        // #9462 bail for iOS 9 bug: event.timeStamp is 0 after history.pushState
+        e.timeStamp === 0 ||
         // #9448 bail if event is fired in another document in a multi-page
         // electron/nw.js app, since event.timeStamp will be using a different
         // starting reference
@@ -17609,11 +17631,10 @@ function updateDOMProps (oldVnode, vnode) {
   }
 
   for (key in oldProps) {
-    if (!(key in props)) {
+    if (isUndef(props[key])) {
       elm[key] = '';
     }
   }
-
   for (key in props) {
     cur = props[key];
     // ignore children if the node has textContent or innerHTML,
@@ -17629,7 +17650,15 @@ function updateDOMProps (oldVnode, vnode) {
       }
     }
 
-    if (key === 'value' && elm.tagName !== 'PROGRESS') {
+    // skip the update if old and new VDOM state is the same.
+    // the only exception is `value` where the DOM value may be temporarily
+    // out of sync with VDOM state due to focus, composition and modifiers.
+    // This also covers #4521 by skipping the unnecesarry `checked` update.
+    if (key !== 'value' && cur === oldProps[key]) {
+      continue
+    }
+
+    if (key === 'value') {
       // store value as _value as well since
       // non-string values will be stringified
       elm._value = cur;
@@ -17649,18 +17678,8 @@ function updateDOMProps (oldVnode, vnode) {
       while (svg.firstChild) {
         elm.appendChild(svg.firstChild);
       }
-    } else if (
-      // skip the update if old and new VDOM state is the same.
-      // `value` is handled separately because the DOM value may be temporarily
-      // out of sync with VDOM state due to focus, composition and modifiers.
-      // This  #4521 by skipping the unnecesarry `checked` update.
-      cur !== oldProps[key]
-    ) {
-      // some property updates can throw
-      // e.g. `value` on <progress> w/ non-finite value
-      try {
-        elm[key] = cur;
-      } catch (e) {}
+    } else {
+      elm[key] = cur;
     }
   }
 }
@@ -18161,8 +18180,8 @@ function enter (vnode, toggleDisplay) {
   var context = activeInstance;
   var transitionNode = activeInstance.$vnode;
   while (transitionNode && transitionNode.parent) {
-    context = transitionNode.context;
     transitionNode = transitionNode.parent;
+    context = transitionNode.context;
   }
 
   var isAppear = !context._isMounted || !vnode.isRootInsert;
@@ -19252,7 +19271,7 @@ var isNonPhrasingTag = makeMap(
 // Regular Expressions for parsing tags and attributes
 var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
 var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
-var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + (unicodeRegExp.source) + "]*";
+var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + unicodeLetters + "]*";
 var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
 var startTagOpen = new RegExp(("^<" + qnameCapture));
 var startTagClose = /^\s*(\/?)>/;
@@ -19514,7 +19533,7 @@ function parseHTML (html, options) {
         ) {
           options.warn(
             ("tag <" + (stack[i].tag) + "> has no matching end tag."),
-            { start: stack[i].start, end: stack[i].end }
+            { start: stack[i].start }
           );
         }
         if (options.end) {
@@ -19551,7 +19570,7 @@ var dynamicArgRE = /^\[.*\]$/;
 
 var argRE = /:(.*)$/;
 var bindRE = /^:|^\.|^v-bind:/;
-var modifierRE = /\.[^.\]]+(?=[^\]]*$)/g;
+var modifierRE = /\.[^.]+/g;
 
 var slotRE = /^v-slot(:|$)|^#/;
 
@@ -19728,7 +19747,7 @@ function parse (
     shouldDecodeNewlinesForHref: options.shouldDecodeNewlinesForHref,
     shouldKeepComment: options.comments,
     outputSourceRange: options.outputSourceRange,
-    start: function start (tag, attrs, unary, start$1, end) {
+    start: function start (tag, attrs, unary, start$1) {
       // check namespace.
       // inherit parent ns if there is one
       var ns = (currentParent && currentParent.ns) || platformGetTagNamespace(tag);
@@ -19747,7 +19766,6 @@ function parse (
       {
         if (options.outputSourceRange) {
           element.start = start$1;
-          element.end = end;
           element.rawAttrsMap = element.attrsList.reduce(function (cumulated, attr) {
             cumulated[attr.name] = attr;
             return cumulated
@@ -19869,7 +19887,7 @@ function parse (
         text = preserveWhitespace ? ' ' : '';
       }
       if (text) {
-        if (!inPre && whitespaceOption === 'condense') {
+        if (whitespaceOption === 'condense') {
           // condense consecutive whitespaces into single space
           text = text.replace(whitespaceRE$1, ' ');
         }
@@ -20730,7 +20748,7 @@ function isDirectChildOfTemplateFor (node) {
 
 /*  */
 
-var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*(?:[\w$]+)?\s*\(/;
+var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*\(/;
 var fnInvokeRE = /\([^)]*?\);*$/;
 var simplePathRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/;
 
@@ -21232,7 +21250,7 @@ function genScopedSlots (
   // components with only scoped slots to skip forced updates from parent.
   // but in some cases we have to bail-out of this optimization
   // for example if the slot contains dynamic names, has v-if or v-for on them...
-  var needsForceUpdate = el.for || Object.keys(slots).some(function (key) {
+  var needsForceUpdate = Object.keys(slots).some(function (key) {
     var slot = slots[key];
     return (
       slot.slotTargetDynamic ||
@@ -21241,49 +21259,22 @@ function genScopedSlots (
       containsSlotChild(slot) // is passing down slot from parent which may be dynamic
     )
   });
-
-  // #9534: if a component with scoped slots is inside a conditional branch,
-  // it's possible for the same component to be reused but with different
-  // compiled slot content. To avoid that, we generate a unique key based on
-  // the generated code of all the slot contents.
-  var needsKey = !!el.if;
-
-  // OR when it is inside another scoped slot or v-for (the reactivity may be
-  // disconnected due to the intermediate scope variable)
-  // #9438, #9506
-  // TODO: this can be further optimized by properly analyzing in-scope bindings
-  // and skip force updating ones that do not actually use scope variables.
+  // OR when it is inside another scoped slot (the reactivity is disconnected)
+  // #9438
   if (!needsForceUpdate) {
     var parent = el.parent;
     while (parent) {
-      if (
-        (parent.slotScope && parent.slotScope !== emptySlotScopeToken) ||
-        parent.for
-      ) {
+      if (parent.slotScope && parent.slotScope !== emptySlotScopeToken) {
         needsForceUpdate = true;
         break
-      }
-      if (parent.if) {
-        needsKey = true;
       }
       parent = parent.parent;
     }
   }
 
-  var generatedSlots = Object.keys(slots)
-    .map(function (key) { return genScopedSlot(slots[key], state); })
-    .join(',');
-
-  return ("scopedSlots:_u([" + generatedSlots + "]" + (needsForceUpdate ? ",null,true" : "") + (!needsForceUpdate && needsKey ? (",null,false," + (hash(generatedSlots))) : "") + ")")
-}
-
-function hash(str) {
-  var hash = 5381;
-  var i = str.length;
-  while(i) {
-    hash = (hash * 33) ^ str.charCodeAt(--i);
-  }
-  return hash >>> 0
+  return ("scopedSlots:_u([" + (Object.keys(slots).map(function (key) {
+      return genScopedSlot(slots[key], state)
+    }).join(',')) + "]" + (needsForceUpdate ? ",true" : "") + ")")
 }
 
 function containsSlotChild (el) {
@@ -21618,13 +21609,11 @@ function generateCodeFrame (
 
 function repeat$1 (str, n) {
   var result = '';
-  if (n > 0) {
-    while (true) { // eslint-disable-line
-      if (n & 1) { result += str; }
-      n >>>= 1;
-      if (n <= 0) { break }
-      str += str;
-    }
+  while (true) { // eslint-disable-line
+    if (n & 1) { result += str; }
+    n >>>= 1;
+    if (n <= 0) { break }
+    str += str;
   }
   return result
 }
@@ -22007,7 +21996,7 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/login.svg?477f74b58de90b08265b18e5c6a9bbe8";
+module.exports = "/images/login.svg?2111a2cf7e3f4b08e3c28253f697499f";
 
 /***/ }),
 
@@ -22112,11 +22101,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var eventEmitter = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-header', __webpack_require__(/*! ./components/Header.vue */ "./resources/js/components/Header.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-footer', __webpack_require__(/*! ./components/Footer.vue */ "./resources/js/components/Footer.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-aside', __webpack_require__(/*! ./components/Aside.vue */ "./resources/js/components/Aside.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-asideLiProject', __webpack_require__(/*! ./components/AsideLiProject.vue */ "./resources/js/components/AsideLiProject.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-deleteModal', __webpack_require__(/*! ./components/DeleteModal.vue */ "./resources/js/components/DeleteModal.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-header', __webpack_require__(/*! ./components/Header.vue */ "./resources/js/components/Header.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-footer', __webpack_require__(/*! ./components/Footer.vue */ "./resources/js/components/Footer.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-aside', __webpack_require__(/*! ./components/Aside.vue */ "./resources/js/components/Aside.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-asideLiProject', __webpack_require__(/*! ./components/AsideLiProject.vue */ "./resources/js/components/AsideLiProject.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-deleteModal', __webpack_require__(/*! ./components/DeleteModal.vue */ "./resources/js/components/DeleteModal.vue").default);
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#admin',
   render: function render(h) {
@@ -23255,7 +23244,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/brotherhood.com/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! D:\_Sites\brotherhood.com\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

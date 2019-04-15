@@ -44,6 +44,8 @@ import {eventSearch} from '../app'
 
         if (blockSize >= lastSize) {
           let country = $('.search-form input').val();
+          // let country = document.querySelector('.search-form input');
+          // console.log(country);
 
           axios.get('/project/'+ this.project + '/loadpost', { params: { personsLength: this.persons.length, country: country } })
             .then(response => {

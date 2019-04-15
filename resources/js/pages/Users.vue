@@ -79,7 +79,7 @@
         </router-link>
       </div>
 
-      <!-- <div class="user__pagination pagination">
+      <div class="user__pagination pagination">
         <button class="btn pagination__btn pagination__btn--prev" @click="fetchPaginateUsers(pagination.prev_page_url)" :disabled="!pagination.prev_page_url">
           Previos
         </button>
@@ -87,7 +87,7 @@
         <button class="btn pagination__btn pagination__btn--next" @click="fetchPaginateUsers(pagination.next_page_url)" :disabled="!pagination.next_page_url">
           Next
         </button>
-      </div> -->
+      </div>
     </div>
 
     <div class="confirm-modal" v-if="showModal">
