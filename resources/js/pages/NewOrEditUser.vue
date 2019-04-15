@@ -61,7 +61,7 @@
           <p class="edit-form__block">
             <label class="edit-form__block-title">
               <span>Телефон</span>
-              <input class="edit-form__field" name="phone" type="text" v-model.number="user.phone">
+              <input class="edit-form__field" name="phone" type="number" v-model.number="user.phone">
             </label>
           </p>
 
@@ -81,7 +81,7 @@
           </p>
 
           <p class="edit-form__block edit-form__block--submit">
-            <button class="edit-form__btn btn" type="submuit">Сохранить изменения</button>
+            <button class="edit-form__btn btn" type="submuit" @click.prevent="save">Сохранить изменения</button>
           </p>
         </form>
       </div>

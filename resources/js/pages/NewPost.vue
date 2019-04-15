@@ -60,7 +60,7 @@
           </div>
 
           <p class="edit-form__block edit-form__block--submit">
-            <button class="edit-form__btn btn" type="submit" @click="save">Сохранить</button>
+            <button class="edit-form__btn btn" type="submit" @click.prevent="save">Сохранить</button>
           </p>
         </form>
       </div>

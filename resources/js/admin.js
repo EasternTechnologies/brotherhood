@@ -1,14 +1,11 @@
-// window.Vue = require('vue');
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import router from './routes'
-// import axios from 'axios'
 
 export const eventEmitter = new Vue();
 
 Vue.use(VueRouter);
-// Vue.use(axios);
 
 Vue.component('app-header', require('./components/Header.vue').default);
 Vue.component('app-footer', require('./components/Footer.vue').default);
