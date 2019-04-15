@@ -79,14 +79,28 @@ Site.FormManager = function() {
     };
 
     this.showForm = function(section) {
+        var lang = document.querySelector('.languages-form__field');
+        var langVal = lang.value;
+
         if (section == 4) {
             form.classList.add("active");
+
             self.requestButton.classList.add("submit");
-            self.requestButton.span.innerHTML = "Отправить";
+
+            if (langVal === 'ru') {
+                self.requestButton.span.innerHTML = "Отправить";
+            } else {
+                self.requestButton.span.innerHTML = "Send";
+            }
         } else {
             form.classList.remove("active");
             self.requestButton.classList.remove("submit");
-            self.requestButton.span.innerHTML = "Задайте вопрос"
+
+            if (langVal === 'ru') {
+                self.requestButton.span.innerHTML = "Задайте вопрос"
+            } else {
+                self.requestButton.span.innerHTML = "Ask a question";
+            }
         }
     };
 

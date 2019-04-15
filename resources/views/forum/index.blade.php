@@ -1,6 +1,7 @@
 @extends('frontend.layouts.index')
 
 @section('content')
+  <div id="app">
   <div id="quake-info">
     <div>
       <span></span>
@@ -340,5 +341,5 @@
             transform="translate(-446.219 -776.812)"></path>
     </svg>
   </a>
-
+  </div>
 @endsection
