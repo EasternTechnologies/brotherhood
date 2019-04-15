@@ -4844,7 +4844,7 @@ var render = function() {
               "a",
               {
                 staticClass: "dashboard-item__link",
-                attrs: { href: "/admin/projects/builders/moderation" }
+                attrs: { href: "/admin/projects/builders/materials" }
               },
               [
                 _c(
@@ -4913,7 +4913,7 @@ var render = function() {
               "a",
               {
                 staticClass: "dashboard-item__link",
-                attrs: { href: "/admin/projects/builders/materials" }
+                attrs: { href: "/admin/projects/builders/moderation" }
               },
               [
                 _c(
