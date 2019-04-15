@@ -89,6 +89,32 @@ Stationary content
   display: block;
 }
 
+.header .page-header__languages {
+  position: absolute;
+  right: 15vw;
+}
+
+@media (max-width: 992px) {
+  .header .page-header__languages {
+    right: 20vw;
+  }
+}
+
+.header .languages-form__field {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 300;
+  color: #ffffff;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+}
+
+.header .languages-form__field option {
+  color: #000000;
+}
+
 .header .social {
   position: absolute;
   top: 50%;
