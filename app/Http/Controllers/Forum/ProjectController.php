@@ -118,7 +118,7 @@ class ProjectController extends Controller
             $user->save();
         }
 
-        $cut_url = str_replace('http://brotherhood.com/project/', '', $request->url());
+        $cut_url = str_replace('http://bratstvo.world/project/', '', $request->url());
         $category_id = substr($cut_url, 0, mb_stripos($cut_url, '/'));
 
         $post = new ForumPost();
